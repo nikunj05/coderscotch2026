@@ -1,0 +1,378 @@
+// Coderscotch Journey css start
+.coder-journey-section {
+  .heading_section {
+    .section-title {
+      font-size: 42px;
+    }
+  }
+
+  .our-achievement-section {
+    padding: 0px;
+    background-color: transparent;
+
+    .achievement-container {
+      gap: 30px;
+
+      .achievement-box-img {
+        min-height: 197px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        position: relative;
+
+        .achievement-item-icon {
+          position: absolute;
+          top: 0px;
+          right: 0px;
+        }
+      }
+
+      .achievement-item {
+        padding: 55px 20px 20px 20px;
+        border-radius: 20px;
+        background: $color-white;
+        width: 100%;
+
+        &::before {
+          display: none;
+        }
+
+      }
+    }
+  }
+
+}
+
+// Coderscotch Journey css end
+
+// Our Projects Service css start
+.our-projects-service {
+  margin-top: 0px;
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+
+  .our-projects-service-wrapper {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .our-projects-service-list {
+    border: 1px solid #E6E6E6;
+    border-radius: 30px;
+    padding: 12px;
+    flex: 1;
+    background: $color-white;
+
+    .our-projects-service-item {
+      overflow: hidden;
+      flex: 1;
+      padding: 32px;
+      border-radius: 20px;
+      transition: $transition;
+
+      &:hover {
+        background: #00BEC50D;
+
+        .our-projects-service-item-title {
+          color: $brand-color;
+        }
+      }
+
+      .our-projects-service-item-inner {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .our-projects-service-item-title {
+        font-size: 32px;
+        font-weight: $font-weight700;
+        font-family: $font-family-sora;
+        margin-bottom: 10px;
+        color: $color-black-100;
+        transition: $transition;
+      }
+
+      .our-projects-service-item-description {
+        font-size: 18px;
+        margin: 0px;
+        color: $color-black-2960;
+      }
+    }
+  }
+}
+
+// Our Projects Service css end
+
+// Our Values Section css start
+.our-values-section {
+  .our-values-inner {
+    background: linear-gradient(0deg,
+        #f6f6f6 0%,
+        #ffffff 100%);
+    border-radius: 50px;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 0.5px 1px 1px 1px;
+      box-sizing: border-box;
+      border-radius: inherit;
+      background: linear-gradient(180deg,
+          #00bec5 0%,
+          #f6f6f6 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+  }
+
+  .values-mobile-line {
+    display: none;
+  }
+
+  .values-outer-box {
+    padding: 60px 60px 0px 60px;
+    max-width: 1440px;
+    margin: 0 auto;
+
+    .heading_section {
+      max-width: 670px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+  }
+
+  .values-header {
+    max-width: 600px;
+    margin-bottom: 40px;
+
+
+    .section-title {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: $color-black;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: #777;
+      line-height: 1.6;
+    }
+  }
+
+  .values-timeline-container {
+    position: relative;
+    width: 100%;
+    margin-top: 0px;
+
+
+  }
+
+  svg.values-svg-path {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 383px;
+    z-index: 1;
+    pointer-events: none;
+    display: block;
+
+    .main-path {
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .bg-path {
+      display: block;
+      stroke: #F4F4F4;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  }
+
+  .values-flex-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+    gap: 30px;
+    // padding-top: 310px;
+    padding-bottom: 105px;
+  }
+
+  .value-milestone {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    max-width: 270px;
+    opacity: 1;
+    pointer-events: auto;
+
+    // Manual offsets to follow the wavy line visually if needed
+    &.value-milestone-1 {
+      margin-top: 328px;
+    }
+
+    &.value-milestone-2 {
+      margin-top: 250px;
+    }
+
+    &.value-milestone-3 {
+      margin-top: 216px;
+    }
+
+    &.value-milestone-4 {
+      margin-top: 76px;
+    }
+
+    &.value-milestone-5 {
+      margin-top: 0px;
+      position: absolute;
+      right: -15px;
+      top: -15px;
+    }
+
+    .milestone-dot {
+      margin-left: -15px;
+      margin-bottom: 25px;
+    }
+
+    .milestone-content {
+      text-align: left;
+      opacity: 1;
+      transform: none;
+
+      .milestone-title {
+        font-size: 22px;
+        font-weight: $font-weight700;
+        margin-bottom: 12px;
+        color: $color-black-100;
+        font-family: $font-family-sora;
+      }
+
+      .milestone-description {
+        font-size: 18px;
+        color: $color-black;
+        margin: 0;
+        line-height: 1.4;
+      }
+    }
+
+    &:hover {
+      z-index: 4;
+    }
+  }
+
+  .values-illustration {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    z-index: 0;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+// Our Values Section css end
+
+// Technological Focus Section css start
+.tech-focus-section {
+  background: $color-white;
+
+  .heading_section {
+    margin-bottom: 30px;
+  }
+
+  .tech-main-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 40px;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+
+  .tech-feature-cards-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .tech-feature-card {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    padding: 24px 19px 24px 12px;
+    background-color: #B7B7B70D;
+    border-radius: 24px;
+    transition: $transition;
+
+    .card-icon-box {
+      width: 70px;
+      height: 70px;
+      background-color: #00BEC50D;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: $transition;
+
+      img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+      }
+    }
+
+    .card-content {
+      .tech-card-title {
+        font-family: $font-family-sora;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: $color-black-29;
+      }
+
+      .tech-card-description {
+        font-size: 18px;
+        color: $color-black-2960;
+        margin-bottom: 0;
+      }
+    }
+
+    &:hover {
+      background: #00BEC50D;
+
+      .card-icon-box {
+        background: $color-white;
+      }
+    }
+  }
+
+}
+
+// Technological Focus Section css end

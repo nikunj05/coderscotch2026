@@ -1,0 +1,192 @@
+.service-listing-banner {
+  &.common-banner-section {
+    align-items: start;
+  }
+
+
+  .banner-section-content {
+    .connect-section {
+      .heading_section {
+        margin-bottom: 40px;
+      }
+    }
+  }
+
+  .service-listing-technology-section {
+    margin: 50px 0px;
+    padding: 0px;
+    background: transparent;
+
+    .technologies-tab-details {
+      margin: 0px;
+      background: transparent;
+      border-radius: 0px;
+
+      &::before {
+        display: none;
+      }
+
+      .technologies-tab-content {
+        max-width: 100%;
+        padding: 0px;
+
+        .technologies-list {
+          gap: 16px;
+        }
+      }
+    }
+  }
+}
+
+.service-listing-all-service-section {
+  background: linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+
+  .all-service-card-listing {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+
+    .service-card-item {
+      border: 1px solid rgba(0, 190, 197, 0.2);
+      border-radius: 20px;
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(50px);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      cursor: pointer;
+      z-index: 1;
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 20px;
+        z-index: -1;
+        padding: 0.5px;
+        background: linear-gradient(90deg, #00BEC5 0%, #009196 100%);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: transparent !important;
+      }
+
+      &:hover {
+        background: linear-gradient(151.29deg, rgba(67, 206, 162, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%);
+        border-color: transparent;
+
+        &::before {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .service-card-footer {
+          .service-tech-list {
+            li {
+              .tech-icon {
+                border-color: $brand-color;
+              }
+            }
+          }
+        }
+
+        .section-tag-button {
+          .section-tag-circle {
+            svg {
+              transform: rotate(45deg);
+
+              circle {
+                fill: #02969b !important;
+              }
+            }
+          }
+        }
+      }
+
+      .service-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 30px;
+
+        .service-icon-box {
+          width: 60px;
+          height: 60px;
+          border: 1px solid $brand-color;
+          background: $color-white;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 9px;
+
+        }
+
+      }
+
+      .service-card-body {
+        margin-bottom: auto;
+        flex: 1;
+
+        .service-title {
+          font-family: $font-family-sora;
+          font-size: 18px;
+          font-weight: $font-weight600;
+          margin-bottom: 16px;
+          color: $color-black-000;
+        }
+
+        .service-description {
+          font-size: 18px;
+          color: #161C2D;
+          margin-bottom: 0px;
+        }
+      }
+
+      .serive-card-seperator {
+        border-bottom: 1px solid #00000033;
+        margin: 24px 0px;
+        width: 100%;
+      }
+
+      .service-card-footer {
+        .service-tech-list {
+          display: flex;
+          gap: 10px;
+          padding: 0;
+          margin: 0;
+          list-style: none;
+          flex-wrap: wrap;
+
+          li {
+            .tech-icon {
+              width: 70px;
+              height: 70px;
+              border: 1px solid #3333334D;
+              background: $color-white;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 10px;
+              transition: 0.3s;
+            }
+          }
+        }
+      }
+    }
+  }
+}

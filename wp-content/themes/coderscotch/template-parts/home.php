@@ -212,7 +212,6 @@ $the_query = new WP_Query($args);
 </section>
 
 <?php $the_query->rewind_posts(); ?>
-
   <!-- Home About us Section Start -->
   <?php $id = 96; ?>
   <section class="home-aboutus-section">
@@ -360,473 +359,66 @@ $the_query = new WP_Query($args);
       <div class="container">
         <div class="heading_section text-center">
           <h2 class="section-title" data-aos="fade" data-aos-duration="800">
-            The Tools
-            <span class="highlight-text"> Behind Our Magic</span>
+            <?= get_field('tech_title1', $id); ?>
           </h2>
           <p class="section-description" data-aos="fade" data-aos-duration="800">
-            We use the latest and most trusted technologies to build secure,
-            scalable, and high-performing <br />
-            digital products that meet global standards.
+            <?= get_field('tech_title2', $id); ?>
           </p>
         </div>
         <div class="technologies-tab">
           <div class="technologies-tab-nav">
             <ul class="nav nav-pills justify-content-center category-tabs" id="tech-pills-tab" role="tablist">
-              <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="tech-pills-frontend-tab" data-bs-toggle="pill"
-                  data-bs-target="#tech-pills-frontend" type="button" role="tab">
-                  <span class="tech-link-title">Frontend Development</span>
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tech-pills-backend-tab" data-bs-toggle="pill"
-                  data-bs-target="#tech-pills-backend" type="button" role="tab">
-                  <span class="tech-link-title"> Backend Development </span>
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tech-pills-aiml-tab" data-bs-toggle="pill"
-                  data-bs-target="#tech-pills-aiml" type="button" role="tab">
-                  <span class="tech-link-title"> AI/ML </span>
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tech-pills-database-tab" data-bs-toggle="pill"
-                  data-bs-target="#tech-pills-database" type="button" role="tab">
-                  <span class="tech-link-title"> Database </span>
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tech-pills-cloud-tab" data-bs-toggle="pill"
-                  data-bs-target="#tech-pills-cloud" type="button" role="tab">
-                  <span class="tech-link-title"> Cloud </span>
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tech-pills-testing-tab" data-bs-toggle="pill"
-                  data-bs-target="#tech-pills-testing" type="button" role="tab">
-                  <span class="tech-link-title"> Testing </span>
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tech-pills-devOps-tab" data-bs-toggle="pill"
-                  data-bs-target="#tech-pills-devOps" type="button" role="tab">
-                  <span class="tech-link-title"> DevOps </span>
-                </button>
-              </li>
-            </ul>
+  <?php $count = 0; ?>
+  <?php if (have_rows('tech_stacks')) : while (have_rows('tech_stacks')) : the_row();
+    $title = get_sub_field('tech_title');
+    $slug  = sanitize_title($title);
+  ?>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link <?= ($count === 0) ? 'active' : ''; ?>"
+        id="tech-pills-<?= $slug; ?>-tab"
+        data-bs-toggle="pill"
+        data-bs-target="#tech-pills-<?= $slug; ?>"
+        type="button"
+        role="tab"
+        aria-controls="tech-pills-<?= $slug; ?>"
+        aria-selected="<?= ($count === 0) ? 'true' : 'false'; ?>"
+      >
+        <span class="tech-link-title"><?= esc_html($title); ?></span>
+      </button>
+    </li>
+  <?php $count++; endwhile; endif; ?>
+</ul>
           </div>
         </div>
       </div>
       <div class="technologies-tab-details">
         <div class="container">
-          <div class="technologies-tab-content tab-content" id="tech-pills-tabContent">
-            <!-- Frontend Tab -->
-            <div class="tab-pane fade show active" id="tech-pills-frontend" role="tabpanel">
-              <div class="technologies-list">
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/flutter-icon.svg" width="25" height="30"
-                      alt="Flutter Development Logo" />
-                  </div>
-                  <div class="technologies-items-title">Flutter</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/android-icon.svg" width="30" height="30"
-                      alt="Android Development Logo" />
-                  </div>
-                  <div class="technologies-items-title">Android</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/apple-icon.svg" width="26" height="30"
-                      alt="iOS App Development Logo" />
-                  </div>
-                  <div class="technologies-items-title">IOS</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/react-icon.svg" width="30" height="30"
-                      alt="Flutter Cross-Platform App Development Logo" />
-                  </div>
-                  <div class="technologies-items-title">React Native</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/jscript-iocn.svg" width="30" height="30"
-                      alt="JavaScript Programming Language Logo" />
-                  </div>
-                  <div class="technologies-items-title">J. Script</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/react-icon.svg" width="30" height="30"
-                      alt="React Frontend Framework Logo" />
-                  </div>
-                  <div class="technologies-items-title">React</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/angular-icon.svg" width="30" height="30"
-                      alt="Angular Frontend Framework Logo" />
-                  </div>
-                  <div class="technologies-items-title">Angular</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/word-press-icon.svg" width="30" height="30"
-                      alt="WordPress CMS Logo" />
-                  </div>
-                  <div class="technologies-items-title">WordPress</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/next-js-icon.svg" width="30" height="30"
-                      alt="Next.js React Framework Logo" />
-                  </div>
-                  <div class="technologies-items-title">Next.js</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/bootstrap-icon.svg" width="38" height="30"
-                      alt="Bootstrap CSS Framework Logo" />
-                  </div>
-                  <div class="technologies-items-title">Bootstrap</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/laravel-icon.svg" width="30" height="30"
-                      alt="Laravel PHP Framework Logo" />
-                  </div>
-                  <div class="technologies-items-title">Laravel</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/webflow-icon.svg" width="32" height="20"
-                      alt="Webflow Website Builder Logo" />
-                  </div>
-                  <div class="technologies-items-title">WebFlow</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/adobe-xd-icon.svg" width="31" height="30"
-                      alt="Adobe XD UI/UX Design Tool Logo" />
-                  </div>
-                  <div class="technologies-items-title">Adobe XD</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/figma-icon.svg" width="20" height="30"
-                      alt="Figma UI/UX Design Tool Logo" />
-                  </div>
-                  <div class="technologies-items-title">Figma</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/adobe-illustrator-icon.svg" width="30" height="30"
-                      alt="Adobe Illustrator Design Tool Logo" />
-                  </div>
-                  <div class="technologies-items-title">Illustrator</div>
+          <div class="technologies-tab-content tab-content pt-0" id="tech-pills-tabContent">
+            <?php $count = 0; ?>
+            <?php if (have_rows('tech_stacks')) : while (have_rows('tech_stacks')) : the_row();
+              $title = get_sub_field('tech_title');
+              $slug  = sanitize_title($title);
+            ?>
+              <div
+                class="tab-pane fade <?= ($count === 0) ? 'show active' : ''; ?>"
+                id="tech-pills-<?= $slug; ?>"
+                role="tabpanel"
+                aria-labelledby="tech-pills-<?= $slug; ?>-tab"
+                tabindex="0"
+              >
+                <div class="technologies-list">
+                  <?php if (have_rows('tech_list')) : while (have_rows('tech_list')) : the_row(); ?>
+                    <div class="technologies-items d-flex">
+                      <div class="technologies-items-icon">
+                        <img src="<?= esc_url(get_sub_field('tech_image')); ?>" width="25" height="30" alt="<?= esc_attr(get_sub_field('tech_name')); ?>">
+                      </div>
+                      <div class="technologies-items-title"><?= esc_html(get_sub_field('tech_name')); ?></div>
+                    </div>
+                  <?php endwhile; endif; ?>
                 </div>
               </div>
-            </div>
-
-            <!-- Backend Tab -->
-            <div class="tab-pane fade" id="tech-pills-backend" role="tabpanel">
-              <div class="technologies-list">
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/laravel-icon.svg" width="30" height="30"
-                      alt="Laravel Backend Development" />
-                  </div>
-                  <div class="technologies-items-title">Laravel</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/django-icon.svg" width="30" height="30"
-                      alt="Django Python Framework" />
-                  </div>
-                  <div class="technologies-items-title">Django</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/python-icon.svg" width="30" height="30"
-                      alt="Python Programming Language" />
-                  </div>
-                  <div class="technologies-items-title">Python</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/symfony-icon.svg" width="30" height="30"
-                      alt="Symfony Enterprise PHP Framework" />
-                  </div>
-                  <div class="technologies-items-title">Symfony</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/aws-icon.svg" width="30" height="18"
-                      alt="AWS Cloud Infrastructure" />
-                  </div>
-                  <div class="technologies-items-title">AWS</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/azure-icon.svg" width="30" height="30"
-                      alt="Microsoft Azure Cloud" />
-                  </div>
-                  <div class="technologies-items-title">Azure</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/google-cloud-icon.svg" width="30" height="24"
-                      alt="Google Cloud Platform" />
-                  </div>
-                  <div class="technologies-items-title">Google Cloud</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/vuejs-icon.svg" width="30" height="30"
-                      alt="Vue.js Frontend Development" />
-                  </div>
-                  <div class="technologies-items-title">Vue</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- AIML Tab -->
-            <div class="tab-pane fade" id="tech-pills-aiml" role="tabpanel">
-              <div class="technologies-list">
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/python-icon.svg" width="30" height="30"
-                      alt="Python for AI and Machine Learning" />
-                  </div>
-                  <div class="technologies-items-title">Python</div>
-                </div>
-
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/django-icon.svg" width="30" height="30"
-                      alt="Django for AI Applications" />
-                  </div>
-                  <div class="technologies-items-title">Django</div>
-                </div>
-
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/symfony-icon.svg" width="30" height="30"
-                      alt="Symfony Enterprise Solutions" />
-                  </div>
-                  <div class="technologies-items-title">Symfony</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/vuejs-icon.svg" width="30" height="30"
-                      alt="Vue.js for AI Dashboards" />
-                  </div>
-                  <div class="technologies-items-title">Vue</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Database Tab -->
-            <div class="tab-pane fade" id="tech-pills-database" role="tabpanel">
-              <div class="technologies-list">
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/laravel-icon.svg" width="30" height="30"
-                      alt="Laravel Database Management" />
-                  </div>
-                  <div class="technologies-items-title">Laravel</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/django-icon.svg" width="30" height="30"
-                      alt="Django Database Integration" />
-                  </div>
-                  <div class="technologies-items-title">Django</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/python-icon.svg" width="30" height="30"
-                      alt="Python Database Scripting" />
-                  </div>
-                  <div class="technologies-items-title">Python</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/symfony-icon.svg" width="30" height="30"
-                      alt="Symfony Database Connectivity" />
-                  </div>
-                  <div class="technologies-items-title">Symfony</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/vuejs-icon.svg" width="30" height="30"
-                      alt="Vue.js Data Visualization" />
-                  </div>
-                  <div class="technologies-items-title">Vue</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Cloud Tab -->
-            <div class="tab-pane fade" id="tech-pills-cloud" role="tabpanel">
-              <div class="technologies-list">
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/aws-icon.svg" width="30" height="18"
-                      alt="AWS Cloud Solutions" />
-                  </div>
-                  <div class="technologies-items-title">AWS</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/azure-icon.svg" width="30" height="30"
-                      alt="Microsoft Azure Cloud Services" />
-                  </div>
-                  <div class="technologies-items-title">Azure</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/google-cloud-icon.svg" width="30" height="24"
-                      alt="Google Cloud Platform Deployment" />
-                  </div>
-                  <div class="technologies-items-title">Google Cloud</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/vuejs-icon.svg" width="30" height="30"
-                      alt="Vue.js Cloud Dashboards" />
-                  </div>
-                  <div class="technologies-items-title">Vue</div>
-                </div>
-              </div>
-            </div>
-            <!-- testing Tab -->
-            <div class="tab-pane fade" id="tech-pills-testing" role="tabpanel">
-              <div class="technologies-list">
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/vuejs-icon.svg" width="30" height="30"
-                      alt="Vue.js Component Testing" />
-                  </div>
-                  <div class="technologies-items-title">Vue</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/laravel-icon.svg" width="30" height="30"
-                      alt="Laravel Unit Testing" />
-                  </div>
-                  <div class="technologies-items-title">Laravel</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/django-icon.svg" width="30" height="30"
-                      alt="Django Testing Framework" />
-                  </div>
-                  <div class="technologies-items-title">Django</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/python-icon.svg" width="30" height="30"
-                      alt="Python Automated Testing" />
-                  </div>
-                  <div class="technologies-items-title">Python</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/symfony-icon.svg" width="30" height="30"
-                      alt="Symfony Testing Tools" />
-                  </div>
-                  <div class="technologies-items-title">Symfony</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/aws-icon.svg" width="30" height="18"
-                      alt="AWS Testing Environment" />
-                  </div>
-                  <div class="technologies-items-title">AWS</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/azure-icon.svg" width="30" height="30"
-                      alt="Azure DevOps Testing" />
-                  </div>
-                  <div class="technologies-items-title">Azure</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/google-cloud-icon.svg" width="30" height="24"
-                      alt="Google Cloud Testing Services" />
-                  </div>
-                  <div class="technologies-items-title">Google Cloud</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Devops Tab -->
-            <div class="tab-pane fade" id="tech-pills-devOps" role="tabpanel">
-              <div class="technologies-list">
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/laravel-icon.svg" width="30" height="30"
-                      alt="Laravel DevOps Pipeline Integration" />
-                  </div>
-                  <div class="technologies-items-title">Laravel</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/django-icon.svg" width="30" height="30"
-                      alt="Django for DevOps Automation" />
-                  </div>
-                  <div class="technologies-items-title">Django</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/python-icon.svg" width="30" height="30"
-                      alt="Python DevOps Scripting Tools" />
-                  </div>
-                  <div class="technologies-items-title">Python</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/symfony-icon.svg" width="30" height="30"
-                      alt="Symfony Programming Framework" />
-                  </div>
-                  <div class="technologies-items-title">Symfony</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/aws-icon.svg" width="30" height="30"
-                      alt="AWS DevOps Automation" />
-                  </div>
-                  <div class="technologies-items-title">AWS</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/azure-icon.svg" width="30" height="30"
-                      alt="Azure DevOps Solutions" />
-                  </div>
-                  <div class="technologies-items-title">Azure</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/google-cloud-icon.svg" width="30" height="24"
-                      alt="Google Cloud DevOps Services" />
-                  </div>
-                  <div class="technologies-items-title">Google Cloud</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/vuejs-icon.svg" width="30" height="30"
-                      alt="Vue.js DevOps Dashboards" />
-                  </div>
-                  <div class="technologies-items-title">Vue</div>
-                </div>
-              </div>
-            </div>
+            <?php $count++; endwhile; endif; ?>
           </div>
         </div>
       </div>

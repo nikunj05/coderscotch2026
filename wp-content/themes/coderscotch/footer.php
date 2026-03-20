@@ -12,7 +12,7 @@
 
 ?>
 <!-- footer section Start -->
-<footer class="page-footer position-relative section-space-t">
+<footer class="page-footer footer-contact-form position-relative section-space-t">
     <div class="container">
       <div class="connect-section section-space80-b">
         <div class="heading_section text-center">
@@ -23,27 +23,106 @@
           <p class="section-description" data-aos="fade" data-aos-duration="800">
            <?=get_field('join_coderscotch', 'options');?>
           </p>
-
         </div>
-        <a href="<?php echo get_permalink( get_page_by_path('contact-us') ); ?>" class="button button-primary mx-auto">
-          Let’s Connect With Us
-          <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M0 23C0 10.2975 10.2975 0 23 0C35.7025 0 46 10.2975 46 23C46 35.7025 35.7025 46 23 46C10.2975 46 0 35.7025 0 23Z"
-              fill="url(#paint0_linear_507_314)"></path>
-            <path
-              d="M28.625 18V26.125C28.625 26.2908 28.5591 26.4497 28.4419 26.5669C28.3247 26.6842 28.1657 26.75 28 26.75C27.8342 26.75 27.6753 26.6842 27.558 26.5669C27.4408 26.4497 27.375 26.2908 27.375 26.125V19.5086L18.4422 28.4422C18.3249 28.5595 18.1658 28.6253 18 28.6253C17.8341 28.6253 17.6751 28.5595 17.5578 28.4422C17.4405 28.3249 17.3746 28.1659 17.3746 28C17.3746 27.8341 17.4405 27.6751 17.5578 27.5578L26.4914 18.625H19.875C19.7092 18.625 19.5502 18.5592 19.433 18.4419C19.3158 18.3247 19.25 18.1658 19.25 18C19.25 17.8342 19.3158 17.6753 19.433 17.5581C19.5502 17.4408 19.7092 17.375 19.875 17.375H28C28.1657 17.375 28.3247 17.4408 28.4419 17.5581C28.5591 17.6753 28.625 17.8342 28.625 18Z"
-              fill="white"></path>
-            <defs>
-              <linearGradient id="paint0_linear_507_314" x1="7.80357" y1="5.75" x2="61.8887" y2="67.3571"
-                gradientUnits="userSpaceOnUse">
-                <stop stop-color="#00BEC5"></stop>
-                <stop offset="1" stop-color="#43CEA2"></stop>
-              </linearGradient>
-            </defs>
-          </svg>
-        </a>
+        <div class="contact-with-form-section home-page-contact-form">
+          <div class="contact-form-wrapper">
+            <?php echo do_shortcode('[contact-form-7 id="c7c8386" title="Contact Form - Home Page"]'); ?>
+          </div>
+        </div>
       </div>
+      <!-- FAQ Section Start -->
+      <section class="faq-accordion-section home-page-faq section-space80-b">
+        <div class="container">
+          <div class="heading_section text-center">
+            <h2 class="section-title">
+              Frequently Asked <span class="highlight-text">Questions</span>
+            </h2>
+            <p class="section-description">
+              Lorem ipsum dolor sit amet consectetur. Elementum imperdiet amet malesuada nunc integer ac sed amet. <br>
+              Enim nibh semper est tincidunt viverra pellentesque integer pulvinar.
+            </p>
+          </div>
+
+          <div class="faq-accordion" id="ecommerceFAQ">
+            <!-- FAQ Item 1 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  01. What do I Hire React developers from CoderScotch?
+                  <span class="accordion-icon"></span>
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                data-bs-parent="#ecommerceFAQ">
+                <div class="accordion-body">
+                  Yes, we provide support and maintenance after the successful completion of your React project. Our
+                  after-sale services include bug fixes, upgrade of the framework, as well as monitoring and technical
+                  glitch resolutions to the enhancements to your React application.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                  aria-expanded="true" aria-controls="collapseTwo">
+                  02. Do you offer maintenance & support services after project completion?
+                  <span class="accordion-icon"></span>
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                data-bs-parent="#ecommerceFAQ">
+                <div class="accordion-body">
+                  Yes, we provide support and maintenance after the successful completion of your React project. Our
+                  after-sale services include bug fixes, upgrade of the framework, as well as monitoring and technical
+                  glitch resolutions to the enhancements to your React application.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  03. What can I do to test my React Developers expertise?
+                  <span class="accordion-icon"></span>
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                data-bs-parent="#ecommerceFAQ">
+                <div class="accordion-body">
+                  Yes, we provide support and maintenance after the successful completion of your React project. Our
+                  after-sale services include bug fixes, upgrade of the framework, as well as monitoring and technical
+                  glitch resolutions to the enhancements to your React application.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  04. Can I migrate the existing web application into React?
+                  <span class="accordion-icon"></span>
+                </button>
+              </h2>
+              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                data-bs-parent="#ecommerceFAQ">
+                <div class="accordion-body">
+                  Yes, we provide support and maintenance after the successful completion of your React project. Our
+                  after-sale services include bug fixes, upgrade of the framework, as well as monitoring and technical
+                  glitch resolutions to the enhancements to your React application.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- FAQ Section End -->
       <div class="office-address-wrapper">
         <div class="office-address-container">
           <?php while (have_rows('location', 'options')) : the_row(); ?>

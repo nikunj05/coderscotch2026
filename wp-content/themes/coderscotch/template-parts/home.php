@@ -307,7 +307,7 @@ $the_query = new WP_Query($args);
               <img src="<?=$url_img?>" width="646" height="230"
                 alt="<?=the_title();?>" class="case-study-card-img">
               <div class="case-study-card-overlay">
-                <a href="<?= get_field("button_url", $id ); ?>" class="case-study-link-icon">
+                <a href="<?= get_field("button_url", $id ); ?>" class="case-study-link-icon" target="_blank">
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/images/up-arrow.svg" width="44" height="44">
                 </a>
               </div>
@@ -322,11 +322,18 @@ $the_query = new WP_Query($args);
               </div>
               <p class="case-study-card-desc"><?=the_excerpt();?></p>
             </div>
+            <?php 
+              $tags = get_the_tags();
+            ?>
             <div class="case-study-card-tags">
               <div class="case-study-card-tags-inner">
-                <span class="case-study-card-tag">UI/UX Design</span>
-                <span class="case-study-card-tag">App Development</span>
-                <span class="case-study-card-tag">Online Shopping</span>
+                <?php
+                if ($tags) {
+                    foreach ($tags as $tag) {
+                        echo '<span class="case-study-card-tag">' . $tag->name . '</span> ';
+                    }
+                }
+                ?>
               </div>
             </div>
           </div>
@@ -338,7 +345,7 @@ $the_query = new WP_Query($args);
         </div>
         <!-- Load More Button -->
         <div class="case-studies-load-more text-center" id="case-studies-load-more">
-          <a href="" class="button button-secondary mx-auto">
+          <a href="<?php the_permalink('120');?>" class="button button-secondary mx-auto">
             <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="46" height="46" rx="10" fill="white"></rect>
               <path

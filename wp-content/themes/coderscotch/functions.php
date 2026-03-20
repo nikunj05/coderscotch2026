@@ -776,3 +776,16 @@ function allow_svg_upload($mimes) {
     return $mimes;
 }
 add_filter('upload_mimes', 'allow_svg_upload');
+
+
+if ( ! function_exists( 'cs_estimate_reading_time' ) ) {
+    /**
+     * Helper function to estimate reading time
+     */
+    function cs_estimate_reading_time($content) {
+        if (!$content) return 0;
+        $word_count = str_word_count(strip_tags($content));
+        $reading_time = ceil($word_count / 200); // 200 words per minute
+        return $reading_time > 0 ? $reading_time : 1;
+    }
+}

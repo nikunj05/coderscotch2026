@@ -103,115 +103,122 @@ get_header();
 
 <!-- Home Service slider section start -->
   <?php
-$args = array(
-  'post_type' => 'services',
-  'posts_per_page' => -1,
-  'orderby' => 'ID',
-  'order' => 'DESC',
-  'post_status' => 'publish',
-  'suppress_filters' => true
-);
+    $terms = get_terms(array(
+      'taxonomy'   => 'category',
+      'hide_empty' => false,
+      'orderby'    => 'term_id',
+      'order'      => 'DESC',
+    ));
 
-$the_query = new WP_Query($args);
-?>
 
-<section class="services-slider-section">
-  <div class="container">
-    <div class="services-slider-inner">
+    // Filter categories that should show on home page
+    $home_categories = array();
+    if (!empty($terms) && !is_wp_error($terms)) {
+      foreach ($terms as $term) {
+        if (get_field('show_on_home_page_services', 'category_' . $term->term_id) === "Yes") {
+          $home_categories[] = $term;
+        }
+      }
+    }
+    ?>
 
-      <!-- Tabs Nav -->
-      <div class="services-tabs-nav-wrapper">
-        <ul class="nav nav-pills services-tabs-nav justify-content-center" id="services-tab-dynamic" role="tablist">
-          <?php
-          $n = 0;
-          while ($the_query->have_posts()) : $the_query->the_post();
-            if (get_field('show_on_home_page_services') !== "Yes") continue;
+    <section class="services-slider-section">
+      <div class="container">
+        <div class="services-slider-inner">
 
-            $n++;
-            $isActive = ($n === 1);
-          ?>
-            <li class="nav-item" role="presentation">
-              <button
-                class="nav-link <?php echo $isActive ? 'active' : ''; ?>"
-                id="home-service-<?php echo get_the_ID(); ?>-tab"
-                data-bs-toggle="pill"
-                data-bs-target="#home-service-<?php echo get_the_ID(); ?>"
-                type="button"
-                role="tab"
-                aria-controls="home-service-<?php echo get_the_ID(); ?>"
-                aria-selected="<?php echo $isActive ? 'true' : 'false'; ?>">
-                <?php echo esc_html(get_the_title()); ?>
-              </button>
-            </li>
-          <?php endwhile; ?>
-        </ul>
-      </div>
-
-      <?php $the_query->rewind_posts(); ?>
-
-      <!-- Tab Content -->
-      <div class="tab-content services-tab-content" id="services-tabContent-dynamic">
-        <?php
-        $m = 0;
-        while ($the_query->have_posts()) : $the_query->the_post();
-          if (get_field('show_on_home_page_services') !== "Yes") continue;
-
-          $m++;
-          $isActive = ($m === 1);
-        ?>
-          <div
-            class="tab-pane fade <?php echo $isActive ? 'show active' : ''; ?>"
-            id="home-service-<?php echo get_the_ID(); ?>"
-            role="tabpanel"
-            aria-labelledby="home-service-<?php echo get_the_ID(); ?>-tab"
-            tabindex="0">
-
-            <div class="home-service-tab-content align-items-center">
-              <div class="home-service-tab-content-left">
-                <div class="service-content-left">
-                  <h3 class="service-title"><?php echo esc_html(get_field('title2')); ?></h3>
-
-                  <p class="service-description">
-                    <?php echo wp_kses_post(wp_trim_words(get_the_content(), 40)); ?>
-                  </p>
-
-                  <a href="<?php echo esc_url(get_permalink()); ?>" class="button button-secondary">
-                    <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="46" height="46" rx="10" fill="white"></rect>
-                      <path d="M28.625 18V26.125C28.625 26.2908 28.5591 26.4497 28.4419 26.5669C28.3247 26.6842 28.1657 26.75 28 26.75C27.8342 26.75 27.6753 26.6842 27.558 26.5669C27.4408 26.4497 27.375 26.2908 27.375 26.125V19.5086L18.4422 28.4422C18.3249 28.5595 18.1658 28.6253 18 28.6253C17.8341 28.6253 17.6751 28.5595 17.5578 28.4422C17.4405 28.3249 17.3746 28.1659 17.3746 28C17.3746 27.8341 17.4405 27.6751 17.5578 27.5578L26.4914 18.625H19.875C19.7092 18.625 19.5502 18.5592 19.433 18.4419C19.3158 18.3247 19.25 18.1658 19.25 18C19.25 17.8342 19.3158 17.6753 19.433 17.5581C19.5502 17.4408 19.7092 17.375 19.875 17.375H28C28.1657 17.375 28.3247 17.4408 28.4419 17.5581C28.5591 17.6753 28.625 17.8342 28.625 18Z" fill="#00BEC5"></path>
-                    </svg>
-                    Know More
-                  </a>
-                </div>
-              </div>
-
-              <div class="home-service-tab-content-right">
-                <div class="service-process-diagram">
-                  <?php if (have_rows('small_services_boxes')) : ?>
-                    <?php while (have_rows('small_services_boxes')) : the_row(); ?>
-                      <div class="process-step-card">
-                        <div class="step-icon">
-                          <img src="<?php echo esc_url(get_sub_field('icon')); ?>"
-                               alt="<?php echo esc_attr(get_sub_field('title')); ?>"
-                               width="32" height="32">
-                        </div>
-                        <h4 class="step-title"><?php echo esc_html(get_sub_field('title')); ?></h4>
-                      </div>
-                    <?php endwhile; ?>
-                  <?php endif; ?>
-                </div>
-              </div>
-
-            </div>
+          <!-- Tabs Nav -->
+          <div class="services-tabs-nav-wrapper">
+            <ul class="nav nav-pills services-tabs-nav justify-content-center" id="services-tab-dynamic" role="tablist">
+              <?php
+              $n = 0;
+              foreach ($home_categories as $term) :
+                $n++;
+                $isActive = ($n === 1);
+                $term_id = $term->term_id;
+              ?>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link <?php echo $isActive ? 'active' : ''; ?>"
+                    id="home-service-<?php echo $term_id; ?>-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#home-service-<?php echo $term_id; ?>"
+                    type="button"
+                    role="tab"
+                    aria-controls="home-service-<?php echo $term_id; ?>"
+                    aria-selected="<?php echo $isActive ? 'true' : 'false'; ?>">
+                    <?php echo esc_html($term->name); ?>
+                  </button>
+                </li>
+              <?php endforeach; ?>
+            </ul>
           </div>
-        <?php endwhile; ?>
+
+
+
+          <!-- Tab Content -->
+          <div class="tab-content services-tab-content" id="services-tabContent-dynamic">
+            <?php
+            $m = 0;
+            foreach ($home_categories as $term) :
+              $m++;
+              $isActive = ($m === 1);
+              $term_id = $term->term_id;
+              $acf_term_id = 'category_' . $term_id;
+            ?>
+              <div
+                class="tab-pane fade <?php echo $isActive ? 'show active' : ''; ?>"
+                id="home-service-<?php echo $term_id; ?>"
+                role="tabpanel"
+                aria-labelledby="home-service-<?php echo $term_id; ?>-tab"
+                tabindex="0">
+
+                <div class="home-service-tab-content align-items-center">
+                  <div class="home-service-tab-content-left">
+                    <div class="service-content-left">
+                      <h3 class="service-title"><?php echo esc_html(get_field('title2', $acf_term_id)); ?></h3>
+
+                      <p class="service-description">
+                        <?php echo wp_kses_post(wp_trim_words($term->description, 100)); ?>
+                      </p>
+
+                      <a href="<?php echo esc_url(get_term_link($term)); ?>" class="button button-secondary">
+                        <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect width="46" height="46" rx="10" fill="white"></rect>
+                          <path d="M28.625 18V26.125C28.625 26.2908 28.5591 26.4497 28.4419 26.5669C28.3247 26.6842 28.1657 26.75 28 26.75C27.8342 26.75 27.6753 26.6842 27.558 26.5669C27.4408 26.4497 27.375 26.2908 27.375 26.125V19.5086L18.4422 28.4422C18.3249 28.5595 18.1658 28.6253 18 28.6253C17.8341 28.6253 17.6751 28.5595 17.5578 28.4422C17.4405 28.3249 17.3746 28.1659 17.3746 28C17.3746 27.8341 17.4405 27.6751 17.5578 27.5578L26.4914 18.625H19.875C19.7092 18.625 19.5502 18.5592 19.433 18.4419C19.3158 18.3247 19.25 18.1658 19.25 18C19.25 17.8342 19.3158 17.6753 19.433 17.5581C19.5502 17.4408 19.7092 17.375 19.875 17.375H28C28.1657 17.375 28.3247 17.4408 28.4419 17.5581C28.5591 17.6753 28.625 17.8342 28.625 18Z" fill="#00BEC5"></path>
+                        </svg>
+                        Know More
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="home-service-tab-content-right">
+                    <div class="service-process-diagram">
+                      <?php if (have_rows('small_services_boxes', $acf_term_id)) : ?>
+                        <?php while (have_rows('small_services_boxes', $acf_term_id)) : the_row(); ?>
+                          <div class="process-step-card">
+                            <div class="step-icon">
+                              <img src="<?php echo esc_url(get_sub_field('icon')); ?>"
+                                alt="<?php echo esc_attr(get_sub_field('title')); ?>"
+                                width="32" height="32">
+                            </div>
+                            <h4 class="step-title"><?php echo esc_html(get_sub_field('title')); ?></h4>
+                          </div>
+                        <?php endwhile; ?>
+                      <?php endif; ?>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            <?php endforeach; ?>
+          </div>
+
+        </div>
       </div>
+    </section>
 
-    </div>
-  </div>
-</section>
 
-<?php $the_query->rewind_posts(); ?>
+
   <!-- Home About us Section Start -->
   <?php $id = 96; ?>
   <section class="home-aboutus-section">
@@ -344,7 +351,7 @@ $the_query = new WP_Query($args);
             ?>
         </div>
         <!-- Load More Button -->
-        <div class="case-studies-load-more text-center" id="case-studies-load-more">
+        <div class="case-studies-load-more text-center" id="">
           <a href="<?php the_permalink('120');?>" class="button button-secondary mx-auto">
             <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="46" height="46" rx="10" fill="white"></rect>
@@ -352,7 +359,7 @@ $the_query = new WP_Query($args);
                 d="M28.625 18V26.125C28.625 26.2908 28.5591 26.4497 28.4419 26.5669C28.3247 26.6842 28.1657 26.75 28 26.75C27.8342 26.75 27.6753 26.6842 27.558 26.5669C27.4408 26.4497 27.375 26.2908 27.375 26.125V19.5086L18.4422 28.4422C18.3249 28.5595 18.1658 28.6253 18 28.6253C17.8341 28.6253 17.6751 28.5595 17.5578 28.4422C17.4405 28.3249 17.3746 28.1659 17.3746 28C17.3746 27.8341 17.4405 27.6751 17.5578 27.5578L26.4914 18.625H19.875C19.7092 18.625 19.5502 18.5592 19.433 18.4419C19.3158 18.3247 19.25 18.1658 19.25 18C19.25 17.8342 19.3158 17.6753 19.433 17.5581C19.5502 17.4408 19.7092 17.375 19.875 17.375H28C28.1657 17.375 28.3247 17.4408 28.4419 17.5581C28.5591 17.6753 28.625 17.8342 28.625 18Z"
                 fill="#00BEC5"></path>
             </svg>
-            View More Projects
+            View Portfolio
           </a>
         </div>
       </div>
@@ -588,6 +595,11 @@ $the_query = new WP_Query($args);
                   <div class="ourblog-card-items-content">
                     <a href="<?= get_permalink(); ?>" class="ourblog-card-items-title redhat-font-family"><?= get_the_title(); ?></a>
                     <p class="ourblog-card-items-des"><?php echo wp_trim_words(get_the_content(), 20,); ?></p>
+                    <a href="<?= get_permalink(); ?>" class="read-article-link">Read More 
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.125 4.5L14.625 9M14.625 9L10.125 13.5M14.625 9H3.375" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </a>
                   </div>
                 </div>
             <?php

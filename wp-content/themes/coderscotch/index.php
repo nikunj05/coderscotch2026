@@ -61,9 +61,22 @@ $banner_desc = 'At CoderScotch, we combine passion and precision to deliver outs
                 <img src="<?php echo esc_url($featured_img); ?>" width="360" height="230" alt="<?php echo esc_attr(get_the_title()); ?>">
               </a>
               <div class="ourblog-card-items-content">
-                <div class="ourblog-card-items-date"><?php echo get_the_date('M d, Y'); ?> • <?php echo cs_estimate_reading_time(get_the_content()); ?> min</div>
+                    <?php
+                    $first_name = get_the_author_meta('first_name');
+                    $last_name  = get_the_author_meta('last_name');
+                    $full_name  = trim($first_name . ' ' . $last_name);
+                    if (empty($full_name)) {
+                        $full_name = get_the_author();
+                    }
+                    ?>
+                    <div class="ourblog-card-items-date">By <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php echo esc_html($full_name); ?></a> • <?php echo get_the_date('M d, Y'); ?> • <?php echo cs_estimate_reading_time(get_the_content()); ?> min</div>
                 <a href="<?php the_permalink(); ?>" class="ourblog-card-items-title"><?php the_title(); ?></a>
                 <p class="ourblog-card-items-des"><?php echo wp_trim_words(get_the_excerpt(), 20); ?></p>
+                <a href="<?php the_permalink(); ?>" class="read-article-link">Read More 
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.125 4.5L14.625 9M14.625 9L10.125 13.5M14.625 9H3.375" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
               </div>
             </div>
           <?php endwhile; ?>

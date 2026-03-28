@@ -41,10 +41,18 @@ if ( ! function_exists( 'coderscotch_posted_by' ) ) :
 	 * Prints HTML with meta information for the current author.
 	 */
 	function coderscotch_posted_by() {
+		$first_name = get_the_author_meta('first_name');
+		$last_name  = get_the_author_meta('last_name');
+		$full_name  = trim($first_name . ' ' . $last_name);
+
+		if (empty($full_name)) {
+			$full_name = get_the_author();
+		}
+
 		$byline = sprintf(
 			/* translators: %s: post author. */
 			esc_html_x( 'by %s', 'post author', 'coderscotch' ),
-			'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
+			'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( $full_name ) . '</a></span>'
 		);
 
 		echo '<span class="byline"> ' . $byline . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

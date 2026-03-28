@@ -22,8 +22,9 @@
 			?>
 			<div class="entry-meta">
 				<?php
-				coderscotch_posted_on();
 				coderscotch_posted_by();
+				echo ' • ';
+				coderscotch_posted_on();
 				?>
 			</div><!-- .entry-meta -->
 		<?php endif; ?>

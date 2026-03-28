@@ -1,38 +1,46 @@
 <?php get_header(); ?>
-<section class="hero hero--inner hero--webdev">
-   <div class="container-large container-fluid">
-      <div class="hero-wrapper">
-         <div class="ourservices-head about-us hero__head">
-             <h1 class="text-white"><?= the_title(); ?></h1>
-         </div>
-      </div>
-   </div>
-</section>
-<!-- Hero ENDS -->
-<?php if (have_posts()) : ?>
-   <?php while (have_posts()) : the_post(); ?>
-      <section class="section-inner servicefeatured lefttopart bg-sky">
-         <div class="servicefeatured-wrapper">
-            <div class="container">
-               <div class="servicefeatured-row">
-                  <div class="servicefeatured-col servicefeatured-content">
-                     <h3><?= get_field('banner_title'); ?></h3>
-                     <p><?= get_field('banner_text2'); ?></p>
-                     <a href="#" title="Know More" class="bttn bttn-outline-black">
-                        <span class="bttn-right-arrow">Learn More</span>
-                     </a>
-                  </div>
-                  <div class="servicefeatured-col servicefeatured-img">
-                     <img src="<?= get_field('banner_image'); ?>" width="640" height="630" alt="<?= the_title(); ?>" title="<?= the_title(); ?>"/>
-                  </div>
-               </div>
+<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+  <!-- Banner Section Start -->
+  <section class="common-banner-section mobile-development-banner-section position-relative z-index-0">
+    <div class="container">
+      <div class="banner-section-content content-with-img">
+        <div class="connect-section">
+          <div class="heading_section text-left">
+            <h1 class="section-title">
+              <?php the_title(); ?>
+            </h1>
+            <div class="section-description">
+              <?php the_content(); ?>
             </div>
-         </div>
-      </section>
 
-<?php
-   endwhile;
-endif; ?>
+          </div>
+          <a href="#" class="button button-primary">
+            Speak to our expert
+            <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0 23C0 10.2975 10.2975 0 23 0C35.7025 0 46 10.2975 46 23C46 35.7025 35.7025 46 23 46C10.2975 46 0 35.7025 0 23Z"
+                fill="url(#paint0_linear_507_314)"></path>
+              <path
+                d="M28.625 18V26.125C28.625 26.2908 28.5591 26.4497 28.4419 26.5669C28.3247 26.6842 28.1657 26.75 28 26.75C27.8342 26.75 27.6753 26.6842 27.558 26.5669C27.4408 26.4497 27.375 26.2908 27.375 26.125V19.5086L18.4422 28.4422C18.3249 28.5595 18.1658 28.6253 18 28.6253C17.8341 28.6253 17.6751 28.5595 17.5578 28.4422C17.4405 28.3249 17.3746 28.1659 17.3746 28C17.3746 27.8341 17.4405 27.6751 17.5578 27.5578L26.4914 18.625H19.875C19.7092 18.625 19.5502 18.5592 19.433 18.4419C19.3158 18.3247 19.25 18.1658 19.25 18C19.25 17.8342 19.3158 17.6753 19.433 17.5581C19.5502 17.4408 19.7092 17.375 19.875 17.375H28C28.1657 17.375 28.3247 17.4408 28.4419 17.5581C28.5591 17.6753 28.625 17.8342 28.625 18Z"
+                fill="white"></path>
+              <defs>
+                <linearGradient id="paint0_linear_507_314" x1="7.80357" y1="5.75" x2="61.8887" y2="67.3571"
+                  gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#00BEC5"></stop>
+                  <stop offset="1" stop-color="#43CEA2"></stop>
+                </linearGradient>
+              </defs>
+            </svg>
+          </a>
+        </div>
+        <div class="common-banner-bottom-image">
+          <img src="<?= get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>" alt="<?php the_title(); ?>" width="405"
+            height="453" class="common-banner-bottom-image">
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Banner Section End -->
 <!-- Service Box ENDS -->
 <section class="section section-inner section-webdevservies bg-sky rightbottomart">
    <div class="container-fluid">
@@ -260,4 +268,5 @@ endif; ?>
    </div>
 </section>
 <!--Site CTA ENDS-->
+<?php endwhile; endif; ?>
 <?php get_footer(); ?>

@@ -13,6 +13,12 @@ get_header();
 <?php
 while (have_posts()) : the_post();
     $id = get_the_ID();
+    $first_name = get_the_author_meta('first_name');
+    $last_name  = get_the_author_meta('last_name');
+    $full_name  = trim($first_name . ' ' . $last_name);
+    if (empty($full_name)) {
+        $full_name = get_the_author();
+    }
 ?>
 
   <!-- Blog Detail Banner Section Start -->
@@ -23,6 +29,9 @@ while (have_posts()) : the_post();
           <h1 class="section-title m-0">
             <?php the_title(); ?>
           </h1>
+          <div class="blog-detail-banner-meta mt-2">
+            By <span class="blog-detail-author"><a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php echo esc_html($full_name); ?></a></span> • <?php echo get_the_date('M d, Y'); ?>
+          </div>
         </div>
       </div>
     </div>
@@ -69,6 +78,19 @@ while (have_posts()) : the_post();
                 endwhile;
             endif;
             ?>
+
+            <!-- Author Bio Section Start -->
+            <div class="blog-author-box mt-5 p-4 d-flex align-items-center">
+              <div class="author-avatar me-4">
+                <?php echo get_avatar(get_the_author_meta('ID'), 100, '', '', ['class' => 'rounded-circle shadow-sm border border-2 border-white']); ?>
+              </div>
+              <div class="author-info">
+                <h4 class="author-label text-uppercase mb-1" style="font-size: 0.8rem; letter-spacing: 1px; color: #00BEC5; font-weight: 700;">About The Author</h4>
+                <h3 class="author-name mb-2" style="font-weight: 700;"><a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php echo esc_html($full_name); ?></a></h3>
+                <p class="author-bio mb-0" style="color: #626262; line-height: 1.6;"><?php echo get_the_author_meta('description'); ?></p>
+              </div>
+            </div>
+            <!-- Author Bio Section End -->
 
           </div>
         </div>

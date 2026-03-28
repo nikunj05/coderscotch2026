@@ -789,3 +789,15 @@ if ( ! function_exists( 'cs_estimate_reading_time' ) ) {
         return $reading_time > 0 ? $reading_time : 1;
     }
 }
+
+/**
+ * Add social media contact methods to user profile
+ */
+function coderscotch_add_social_contact_methods($user_contact) {
+    $user_contact['facebook_url'] = __('Facebook URL', 'coderscotch');
+    $user_contact['twitter_url']  = __('Twitter URL', 'coderscotch');
+    $user_contact['linkedin_url'] = __('LinkedIn URL', 'coderscotch');
+    $user_contact['upwork_url']   = __('Upwork URL', 'coderscotch');
+    return $user_contact;
+}
+add_filter('user_contactmethods', 'coderscotch_add_social_contact_methods');

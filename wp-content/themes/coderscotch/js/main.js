@@ -1,181 +1,159 @@
-// header sub menu toggle js
-document.addEventListener("DOMContentLoaded", () => {
-  const menuItems = document.querySelectorAll(".nav-item.has-submenu");
+$(document).ready(function () {
+  // Menu active state on hover + current page parent
   const currentPath = decodeURIComponent(window.location.pathname);
 
-  menuItems.forEach((item) => {
-    const submenu = item.querySelector(".submenu");
+  $(".nav-item.has-submenu").each(function () {
+    const $item = $(this);
+    const $submenu = $item.find(".submenu").first();
     let isCurrentParent = false;
 
-    // Check if any link in submenu matches current page
-    if (submenu) {
-      const links = submenu.querySelectorAll("a");
-      links.forEach((link) => {
-        const hrefAttr = link.getAttribute("href");
-        // Ignore placeholder links
+    if ($submenu.length) {
+      $submenu.find("a").each(function () {
+        const hrefAttr = $(this).attr("href");
+
         if (
           hrefAttr &&
           hrefAttr !== "#" &&
           !hrefAttr.startsWith("javascript") &&
           !hrefAttr.startsWith("#")
         ) {
-          if (decodeURIComponent(link.pathname) === currentPath) {
+          if (decodeURIComponent(this.pathname) === currentPath) {
             isCurrentParent = true;
           }
         }
       });
     }
 
-    // If it is the parent of current page, add active class and marker
     if (isCurrentParent) {
-      item.classList.add("active");
-      item.classList.add("current-page-parent");
+      $item.addClass("active current-page-parent");
     }
 
-    item.addEventListener("mouseenter", () => {
-      item.classList.add("active");
+    $item.on("mouseenter", function () {
+      $item.addClass("active");
     });
 
-    item.addEventListener("mouseleave", () => {
-      // Only remove if it's NOT the current page parent
-      if (!item.classList.contains("current-page-parent")) {
-        item.classList.remove("active");
+    $item.on("mouseleave", function () {
+      if (!$item.hasClass("current-page-parent")) {
+        $item.removeClass("active");
       }
     });
 
-    if (submenu) {
-      submenu.addEventListener("mouseenter", () => {
-        item.classList.add("active");
+    if ($submenu.length) {
+      $submenu.on("mouseenter", function () {
+        $item.addClass("active");
       });
 
-      submenu.addEventListener("mouseleave", () => {
-        if (!item.classList.contains("current-page-parent")) {
-          item.classList.remove("active");
+      $submenu.on("mouseleave", function () {
+        if (!$item.hasClass("current-page-parent")) {
+          $item.removeClass("active");
         }
       });
     }
   });
-});
 
-// sub menu on click to open sub sub menu
-document.addEventListener("DOMContentLoaded", function () {
-  const tabLinks = document.querySelectorAll('[data-bs-toggle="tab"], .header [data-bs-toggle="pill"]');
-
-  tabLinks.forEach(function (tabLink) {
-    tabLink.addEventListener("mouseenter", function () {
-      if (window.innerWidth >= 992) {
-        const tabTrigger = new bootstrap.Tab(tabLink);
+  // Tabs on hover
+  $('[data-bs-toggle="tab"], .header [data-bs-toggle="pill"]').each(function () {
+    $(this).on("mouseenter", function () {
+      if ($(window).width() >= 992) {
+        const tabTrigger = new bootstrap.Tab(this);
         tabTrigger.show();
       }
     });
   });
-});
 
-// Button hover Effects
-document.querySelectorAll(".button-hover-effect").forEach((button) => {
-  button.addEventListener("mousemove", function (e) {
+  // Button hover effects
+  $(".button-hover-effect").on("mousemove", function (e) {
     const rect = this.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    this.style.setProperty("--x", x + "px");
-    this.style.setProperty("--y", y + "px");
+    $(this).css("--x", x + "px");
+    $(this).css("--y", y + "px");
   });
-});
 
-// Hamburger Menu js
-// Hamburger Menu js
-const burgAnimation = () => {
-  const burger = document.querySelector(".svgburg");
-  if (!burger) return;
+  // Hamburger menu
+  function burgAnimation() {
+    const $burger = $(".svgburg");
+    if (!$burger.length) return;
 
-  const path1 = document.querySelector(".path1");
-  const path2 = document.querySelector(".path2");
-  const mline = document.querySelector(".mline");
-
-  burger.addEventListener("click", () => {
-    if (path1) path1.classList.toggle("cross");
-    if (path2) path2.classList.toggle("cross");
-    if (mline) mline.classList.toggle("hide");
-  });
-};
-burgAnimation();
-
-
-// Close Navbar on Outside Click (All Devices)
-document.addEventListener("click", function (event) {
-
-  const navbarCollapse = document.querySelector(".navbar-collapse");
-  const navbarToggler = document.querySelector(".navbar-toggler");
-
-  if (
-    navbarCollapse &&
-    navbarCollapse.classList.contains("show") &&
-    !navbarCollapse.contains(event.target) &&
-    (!navbarToggler || !navbarToggler.contains(event.target))
-  ) {
-    try {
-      const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
-      if (bsCollapse) {
-        bsCollapse.hide();
-      } else {
-        new bootstrap.Collapse(navbarCollapse).hide();
-      }
-    } catch (e) {
-      navbarCollapse.classList.remove("show");
-    }
-
-    const path1 = document.querySelector(".path1");
-    const path2 = document.querySelector(".path2");
-    const mline = document.querySelector(".mline");
-    if (path1) path1.classList.remove("cross");
-    if (path2) path2.classList.remove("cross");
-    if (mline) mline.classList.remove("hide");
+    $burger.on("click", function () {
+      $(".path1").toggleClass("cross");
+      $(".path2").toggleClass("cross");
+      $(".mline").toggleClass("hide");
+    });
   }
-});
+  burgAnimation();
 
-// Mobile Menu Accordion Structure (<767px)
-document.addEventListener("DOMContentLoaded", function () {
+  // Close navbar on outside click
+  $(document).on("click", function (event) {
+    const $navbarCollapse = $(".navbar-collapse");
+    const $navbarToggler = $(".navbar-toggler");
+
+    if (
+      $navbarCollapse.length &&
+      $navbarCollapse.hasClass("show") &&
+      !$navbarCollapse.is(event.target) &&
+      $navbarCollapse.has(event.target).length === 0 &&
+      (!$navbarToggler.length ||
+        (!$navbarToggler.is(event.target) &&
+          $navbarToggler.has(event.target).length === 0))
+    ) {
+      try {
+        const collapseEl = $navbarCollapse[0];
+        const bsCollapse = bootstrap.Collapse.getInstance(collapseEl);
+
+        if (bsCollapse) {
+          bsCollapse.hide();
+        } else {
+          new bootstrap.Collapse(collapseEl).hide();
+        }
+      } catch (e) {
+        $navbarCollapse.removeClass("show");
+      }
+
+      $(".path1, .path2").removeClass("cross");
+      $(".mline").removeClass("hide");
+    }
+  });
+
+  // Mobile menu accordion structure
   const mobileBreakpoint = 767;
 
   function handleMobileMenuStructure() {
-    const isMobile = window.innerWidth <= mobileBreakpoint;
+    const isMobile = $(window).width() <= mobileBreakpoint;
 
-    document.querySelectorAll(".nav-item.has-submenu").forEach(menuItem => {
-      const desktopContainer = menuItem.querySelector(".submenu-col.industry-col.tab-content");
-      const triggers = menuItem.querySelectorAll(".submenu-col.services-col .submenu-link[data-bs-target]");
+    $(".nav-item.has-submenu").each(function () {
+      const $menuItem = $(this);
+      const $desktopContainer = $menuItem.find(".submenu-col.industry-col.tab-content").first();
+      const $triggers = $menuItem.find(".submenu-col.services-col .submenu-link[data-bs-target]");
 
-      triggers.forEach(trigger => {
-        const targetId = trigger.getAttribute("data-bs-target");
+      $triggers.each(function () {
+        const targetId = $(this).attr("data-bs-target");
         if (!targetId) return;
 
         let targetPane = null;
+        const rawId = targetId.startsWith("#") ? targetId.slice(1) : targetId;
 
-        if (targetId) {
-          // Prefer getElementById for #id targets (avoids invalid selector crashes)
-          const rawId = targetId.startsWith("#") ? targetId.slice(1) : targetId;
-          targetPane = document.getElementById(rawId);
+        targetPane = document.getElementById(rawId);
 
-          // Fallback to querySelector only if needed (and safely)
-          if (!targetPane) {
-            try {
-              targetPane = document.querySelector(targetId);
-            } catch (err) {
-              console.warn("Invalid data-bs-target selector:", targetId, err);
-              targetPane = null;
-            }
+        if (!targetPane) {
+          try {
+            targetPane = document.querySelector(targetId);
+          } catch (err) {
+            console.warn("Invalid data-bs-target selector:", targetId, err);
+            targetPane = null;
           }
         }
 
         if (targetPane) {
           if (isMobile) {
-            const parentLi = trigger.closest(".nav-item");
-            if (parentLi && !parentLi.contains(targetPane)) {
-              parentLi.appendChild(targetPane);
+            const $parentLi = $(this).closest(".nav-item");
+            if ($parentLi.length && !$parentLi[0].contains(targetPane)) {
+              $parentLi.append(targetPane);
             }
           } else {
-            if (desktopContainer && !desktopContainer.contains(targetPane)) {
-              desktopContainer.appendChild(targetPane);
+            if ($desktopContainer.length && !$desktopContainer[0].contains(targetPane)) {
+              $desktopContainer.append(targetPane);
             }
           }
         }
@@ -183,317 +161,132 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Run on load
   handleMobileMenuStructure();
+  $(window).on("resize", handleMobileMenuStructure);
 
-  // Run on resize
-  window.addEventListener("resize", handleMobileMenuStructure);
-});
+  // Universal submenu click toggle
+  $(".has-submenu > .dropdown-toggle").on("click", function (e) {
+    e.preventDefault();
 
-// Universal Sub Menu Click Toggle
-document.addEventListener("DOMContentLoaded", function () {
-  const dropdowns = document.querySelectorAll(".has-submenu > .dropdown-toggle");
+    const $parentLi = $(this).parent();
+    const $submenu = $parentLi.find(".submenu").first();
 
-  dropdowns.forEach(function (dropdown) {
-    dropdown.addEventListener("click", function (e) {
-      e.preventDefault();
-      let parentLi = this.parentElement;
-      let submenu = parentLi.querySelector(".submenu");
+    if ($parentLi.hasClass("sub-menu-opened")) {
+      $submenu.removeClass("open");
+      $parentLi.removeClass("sub-menu-opened");
+    } else {
+      $(".has-submenu.sub-menu-opened").each(function () {
+        $(this).removeClass("sub-menu-opened");
+        $(this).find(".submenu").first().removeClass("open");
+      });
 
-      if (parentLi.classList.contains("sub-menu-opened")) {
-        // Close
-        if (submenu) submenu.classList.remove("open");
-        parentLi.classList.remove("sub-menu-opened");
-      } else {
-        // Close all other open submenus
-        document.querySelectorAll(".has-submenu.sub-menu-opened").forEach(function (openItem) {
-          openItem.classList.remove("sub-menu-opened");
-          const openSub = openItem.querySelector(".submenu");
-          if (openSub) openSub.classList.remove("open");
-        });
+      $submenu.addClass("open");
+      $parentLi.addClass("sub-menu-opened");
+    }
+  });
 
-        // Open this one
-        if (submenu) submenu.classList.add("open");
-        parentLi.classList.add("sub-menu-opened");
+  // Close submenu on outside click
+  $(document).on("click", function (e) {
+    if (!$(e.target).closest(".has-submenu").length) {
+      $(".has-submenu.sub-menu-opened").each(function () {
+        $(this).removeClass("sub-menu-opened");
+        $(this).find(".submenu").first().removeClass("open");
+      });
+    }
+  });
+
+  // Cards hover/click effect
+  const $cards = $(".card");
+  let $lastActive = $(".card.active").first().length ? $(".card.active").first() : $cards.first();
+
+  $cards.each(function () {
+    const $card = $(this);
+
+    $card.on("mouseenter", function () {
+      if ($(window).width() >= 768) {
+        $cards.removeClass("active");
+        $card.addClass("active");
+        $lastActive = $card;
+      }
+    });
+
+    $card.on("mouseleave", function () {
+      if ($(window).width() >= 768) {
+        $cards.removeClass("active");
+        if ($lastActive && $lastActive.length) {
+          $lastActive.addClass("active");
+        }
+      }
+    });
+
+    $card.on("click", function () {
+      if ($(window).width() < 768) {
+        $cards.removeClass("active");
+        $card.addClass("active");
+        $lastActive = $card;
       }
     });
   });
-});
 
-// Close submenu on outside click (Universal)
-document.addEventListener("click", function (e) {
-  if (!e.target.closest(".has-submenu")) {
-    document.querySelectorAll(".has-submenu.sub-menu-opened").forEach(function (openItem) {
-      openItem.classList.remove("sub-menu-opened");
-      const openSub = openItem.querySelector(".submenu");
-      if (openSub) openSub.classList.remove("open");
-    });
-  }
-});
-
-const cards = document.querySelectorAll(".card");
-let lastActive = document.querySelector(".card.active") || cards[0] || null;
-
-cards.forEach((card) => {
-  // 🖱️ Desktop hover effect (your original code)
-  card.addEventListener("mouseenter", () => {
-    if (window.innerWidth >= 768) {
-      cards.forEach((c) => c.classList.remove("active"));
-      card.classList.add("active");
-      lastActive = card;
-    }
-  });
-
-  card.addEventListener("mouseleave", () => {
-    if (window.innerWidth >= 768) {
-      cards.forEach((c) => c.classList.remove("active"));
-      if (lastActive) lastActive.classList.add("active");
-    }
-  });
-
-  // 📱 Mobile click effect (<767px)
-  card.addEventListener("click", () => {
-    if (window.innerWidth < 768) {
-      cards.forEach((c) => c.classList.remove("active"));
-      card.classList.add("active");
-      lastActive = card;
-    }
-  });
-});
-
-// Digital Marketing page Challenging section js
-const accordionItems = document.querySelectorAll(
-  ".challenges-accordion-section .accordion-item"
-);
-
-accordionItems.forEach((item, index) => {
-  const collapse = item.querySelector(".accordion-collapse");
-  if (!collapse) return;
-
-  // Pre-add 'open' class to the first item if it is already shown
-  if (index === 0 && collapse.classList.contains("show")) {
-    item.classList.add("open");
-  }
-
-  // When the collapse opens
-  collapse.addEventListener("show.bs.collapse", () => {
-    item.classList.add("open");
-  });
-
-  // When the collapse closes
-  collapse.addEventListener("hide.bs.collapse", () => {
-    item.classList.remove("open");
-  });
-});
-
-// FAQ Section js
-document
-  .querySelectorAll(".faq-accordion .accordion-item")
-  .forEach((item, index) => {
-    const button = item.querySelector(".accordion-button");
-    const collapse = item.querySelector(".accordion-collapse");
-
+  // Digital Marketing page accordion
+  $(".challenges-accordion-section .accordion-item").each(function (index) {
+    const $item = $(this);
+    const collapse = $item.find(".accordion-collapse")[0];
     if (!collapse) return;
 
-    // ✅ Default open (first item)
-    if (index === 0) {
-      item.classList.add("open");
+    if (index === 0 && $(collapse).hasClass("show")) {
+      $item.addClass("open");
     }
 
-    // ✅ Toggle 'open' class automatically with Bootstrap collapse
-    collapse.addEventListener("show.bs.collapse", () => {
-      item.classList.add("open");
+    collapse.addEventListener("show.bs.collapse", function () {
+      $item.addClass("open");
     });
 
-    collapse.addEventListener("hide.bs.collapse", () => {
-      item.classList.remove("open");
+    collapse.addEventListener("hide.bs.collapse", function () {
+      $item.removeClass("open");
     });
   });
 
+  // FAQ accordion
+  $(".faq-accordion .accordion-item").each(function (index) {
+    const $item = $(this);
+    const collapse = $item.find(".accordion-collapse")[0];
+    if (!collapse) return;
 
-// home service Testimonial Swiper js start
-// const swiper = new Swiper(".testimonial-swiper", {
-//   direction: "horizontal",
-//   loop: true,
-//   slidesPerView: 1,
-//   spaceBetween: 30,
-//   speed: 1000, // Standard speed for mobile swipe
-//   autoplay: false, // Managed manually
-//   allowTouchMove: true,
-//   centeredSlides: true, // Activity class on middle slide for mobile
+    if (index === 0) {
+      $item.addClass("open");
+    }
 
-//   // Responsive breakpoints
-//   breakpoints: {
-//     0: {
-//       slidesPerView: 1.1, // Show a bit of next slide for cue
-//       spaceBetween: 15,
-//       centeredSlides: true,
-//     },
-//     768: {
-//       slidesPerView: 2,
-//       spaceBetween: 24,
-//       centeredSlides: false,
-//     },
-//     992: {
-//       slidesPerView: 3,
-//       spaceBetween: 24,
-//       centeredSlides: false, // No center active on desktop
-//     },
-//     1200: {
-//       slidesPerView: 4,
-//       spaceBetween: 30,
-//       centeredSlides: false,
-//     },
-//   },
-// });
+    collapse.addEventListener("show.bs.collapse", function () {
+      $item.addClass("open");
+    });
 
-// const swiperContainer = document.querySelector(".testimonial-swiper");
-// let scrollAnimationId;
-// let isScrolling = false;
-// let scrollPosition = 0;
-// let scrollSpeed = 0.8;
+    collapse.addEventListener("hide.bs.collapse", function () {
+      $item.removeClass("open");
+    });
+  });
 
-// // Desktop Manual Scroll Logic
-// function startContinuousScroll() {
-//   if (isScrolling) return;
-//   if (!swiper.slides || swiper.slides.length === 0) return;
-
-//   isScrolling = true;
-//   swiper.autoplay.stop(); // Ensure native autoplay is off
-
-//   function animate() {
-//     if (!isScrolling) return;
-
-//     // Only run this logic on Desktop
-//     if (window.innerWidth < 992) {
-//       stopContinuousScroll();
-//       handleMobileView();
-//       return;
-//     }
-
-//     scrollPosition -= scrollSpeed;
-//     if (!swiper.slides[0]) return;
-
-//     const slideWithMargin = swiper.slides[0].offsetWidth + swiper.params.spaceBetween;
-
-//     if (Math.abs(scrollPosition) >= slideWithMargin) {
-//       scrollPosition += slideWithMargin;
-//       const firstSlide = swiper.slides[0];
-//       swiper.wrapperEl.appendChild(firstSlide);
-//       swiper.update();
-//     }
-
-//     swiper.wrapperEl.style.transform = `translateX(${scrollPosition}px)`;
-//     swiper.wrapperEl.style.transition = "none";
-
-//     scrollAnimationId = requestAnimationFrame(animate);
-//   }
-//   animate();
-// }
-
-// function stopContinuousScroll() {
-//   isScrolling = false;
-//   if (scrollAnimationId) {
-//     cancelAnimationFrame(scrollAnimationId);
-//   }
-// }
-
-// // Mobile Native Autoplay Logic
-// function handleMobileView() {
-//   // Mobile: < 992px
-//   // Stop manual stuff
-//   stopContinuousScroll();
-
-//   // Reset styles set by manual scroll
-//   swiper.wrapperEl.style.transform = "";
-//   swiper.wrapperEl.style.transition = "";
-
-//   // Enable Native Autoplay
-//   // We need to configure params dynamically if needed, but simple start is usually enough
-//   // Check if already running to avoid restart spam
-//   if (!swiper.autoplay.running) {
-//     swiper.params.autoplay.delay = 2500;
-//     swiper.params.autoplay.disableOnInteraction = false;
-//     swiper.autoplay.start();
-//   }
-
-//   // Force immediate update to fix "first screen bad UI" issue
-//   swiper.update();
-//   swiper.slideToLoop(swiper.realIndex, 0, false);
-// }
-
-// // Hover Logic (Desktop Only)
-// if (swiperContainer) {
-//   swiperContainer.addEventListener("mouseenter", function () {
-//     if (window.innerWidth >= 992) {
-//       // Instant Stop Logic (Manual)
-//       stopContinuousScroll();
-//     }
-//   });
-
-//   swiperContainer.addEventListener("mouseleave", function () {
-//     if (window.innerWidth >= 992) {
-//       // Desktop Resume: Instant Resume (Manual)
-//       startContinuousScroll();
-//     }
-//   });
-// }
-
-// // Init based on screen size
-// let isDesktopMode = -1; // -1: undefined, 0: mobile, 1: desktop
-
-// function initSliderMode() {
-//   const currentWidth = window.innerWidth;
-//   const isNowDesktop = currentWidth >= 992;
-
-//   // Only execute if state changes
-//   if (isNowDesktop && isDesktopMode !== 1) {
-//     isDesktopMode = 1;
-//     startContinuousScroll();
-//   } else if (!isNowDesktop && isDesktopMode !== 0) {
-//     isDesktopMode = 0;
-//     handleMobileView();
-//   }
-// }
-
-// // Run on load and resize
-// if (swiperContainer) {
-//   initSliderMode();
-//   window.addEventListener("resize", () => {
-//     initSliderMode();
-//   });
-// }
-
-// home service Testimonial Swiper js end
-
-// Achievement Counter Animation js
-document.addEventListener("DOMContentLoaded", function () {
+  // Achievement Counter Animation
   function animateCounter(element, targetValue, duration = 1800) {
     const startValue = 0;
     const startTime = performance.now();
-    const isPercentage = targetValue.toString().includes("+");
-
-    // Remove + sign for calculation
+    const isPlus = targetValue.toString().includes("+");
     const numericTarget = parseInt(targetValue.toString().replace("+", ""));
 
     function updateCounter(currentTime) {
       const elapsedTime = currentTime - startTime;
       const progress = Math.min(elapsedTime / duration, 1);
-
-      // Easing function for smooth animation
       const easeOutCubic = 1 - Math.pow(1 - progress, 3);
       const currentValue = Math.floor(
         startValue + (numericTarget - startValue) * easeOutCubic
       );
 
-      // Add + sign back if it was there
-      element.textContent = isPercentage ? currentValue + "+" : currentValue;
+      $(element).text(isPlus ? currentValue + "+" : currentValue);
 
       if (progress < 1) {
         requestAnimationFrame(updateCounter);
       } else {
-        // Ensure final value is exact
-        element.textContent = targetValue;
+        $(element).text(targetValue);
       }
     }
 
@@ -501,103 +294,152 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function initCounterAnimation() {
-    const achievementNumbers = document.querySelectorAll(".achievement-number");
-    const achievementSection = document.querySelector(
-      ".our-achievement-section"
-    );
+    const $achievementNumbers = $(".achievement-number");
+    const $achievementSection = $(".our-achievement-section");
 
-    if (!achievementSection || achievementNumbers.length === 0) return;
+    if (!$achievementSection.length || !$achievementNumbers.length) return;
 
     let hasAnimated = false;
 
     function checkVisibility() {
-      const rect = achievementSection.getBoundingClientRect();
+      const rect = $achievementSection[0].getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      // Trigger animation when section is 80% visible
       if (rect.top <= windowHeight * 0.8 && rect.bottom >= 0 && !hasAnimated) {
         hasAnimated = true;
 
-        achievementNumbers.forEach((numberElement, index) => {
-          const targetValue = numberElement.textContent.trim();
-          // Delay each counter by 200ms for staggered effect
-          setTimeout(() => {
-            animateCounter(numberElement, targetValue, 2500);
+        $achievementNumbers.each(function (index) {
+          const targetValue = $(this).text().trim();
+          const el = this;
+
+          setTimeout(function () {
+            animateCounter(el, targetValue, 2500);
           }, index * 200);
         });
 
-        // Remove scroll listener after animation
-        window.removeEventListener("scroll", checkVisibility);
+        $(window).off("scroll", checkVisibility);
       }
     }
 
-    // Initial check
     checkVisibility();
-
-    // Listen for scroll events
-    window.addEventListener("scroll", checkVisibility);
+    $(window).on("scroll", checkVisibility);
   }
 
   initCounterAnimation();
+
+  // E-commerce Solutions Section Interaction
+  $(".ecommerce-solutions-section .solution-item").on("mouseenter", function () {
+    $(".ecommerce-solutions-section .solution-item").removeClass("active");
+    $(this).addClass("active");
+  });
+
+  // Case Studies Load More Logic
+  const $section = $(".case-studies-listing-section");
+  if ($section.length) {
+    const limit = 8;
+
+    function updateView() {
+      let $activePanel = $section.find(".tab-pane.active").first();
+      if (!$activePanel.length) {
+        $activePanel = $section;
+      }
+
+      const $cards = $activePanel.find(".case-study-card");
+      const isExpanded = $activePanel.data("expanded") === true || $activePanel.attr("data-expanded") === "true";
+      const $btnContainer = $activePanel.find("#case-studies-load-more").first();
+
+      if (!$btnContainer.length && !$cards.length) return;
+
+      const hasMoreItems = $cards.length > limit;
+      const shouldShowButton = hasMoreItems && !isExpanded;
+
+      $cards.each(function (idx) {
+        if (isExpanded || idx < limit) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      });
+
+      if ($btnContainer.length) {
+        if (shouldShowButton) {
+          $btnContainer.show();
+        } else {
+          $btnContainer.hide();
+        }
+      }
+    }
+
+    updateView();
+
+    $section.find('button[data-bs-toggle="pill"]').each(function () {
+      this.addEventListener("shown.bs.tab", updateView);
+    });
+
+    $section.on("click", "#case-studies-load-more .button", function (e) {
+      e.preventDefault();
+
+      let $activePanel = $section.find(".tab-pane.active").first();
+      if (!$activePanel.length) {
+        $activePanel = $section;
+      }
+
+      if ($activePanel.length) {
+        $activePanel.attr("data-expanded", "true");
+        updateView();
+      }
+    });
+  }
 });
 
+// Client Review Section Swiper
+$(document).ready(function () {
+  const $reviewGrid = $(".client-review-grid");
+  if (!$reviewGrid.length) return;
 
-// Client Review Section: Swiper Implementation
-document.addEventListener("DOMContentLoaded", () => {
-  const reviewGrid = document.querySelector(".client-review-grid");
-  if (!reviewGrid) return;
+  const sourceCards = $reviewGrid.find(".client-review-card").map(function () {
+    return $(this).clone()[0];
+  }).get();
 
-  // 1. Harvest Unique Cards (Source)
-  const sourceCards = Array.from(reviewGrid.querySelectorAll(".client-review-card")).map(card => card.cloneNode(true));
-
-  // Clear to start fresh
-  reviewGrid.innerHTML = "";
+  $reviewGrid.empty();
 
   let swiperInstances = [];
 
   function initClientReviews() {
-    // Cleanup
     swiperInstances.forEach(sw => sw.destroy(true, true));
     swiperInstances = [];
-    reviewGrid.innerHTML = "";
+    $reviewGrid.empty();
 
-    const width = window.innerWidth;
+    const width = $(window).width();
     const isMobile = width < 992;
 
-    // Force Grid Styles to handle columns correctly
     if (isMobile) {
-      reviewGrid.style.gridTemplateColumns = "1fr";
-    } else {
-      reviewGrid.style.gridTemplateColumns = "repeat(3, 1fr)";
-    }
+      $reviewGrid.css("grid-template-columns", "1fr");
 
-    if (isMobile) {
-      // --- Mobile: 1 Column ---
-      const col = document.createElement("div");
-      col.classList.add("review-col", "swiper");
-      col.style.overflow = "hidden"; // Ensure clip
-      col.style.height = "100%";
-
-      const wrapper = document.createElement("div");
-      wrapper.classList.add("swiper-wrapper");
-
-      sourceCards.forEach(card => {
-        const slide = document.createElement("div");
-        slide.classList.add("swiper-slide");
-        slide.style.height = "auto";
-        slide.style.marginBottom = "30px";
-        slide.appendChild(card.cloneNode(true));
-        wrapper.appendChild(slide);
+      const $col = $('<div class="review-col swiper"></div>').css({
+        overflow: "hidden",
+        height: "100%"
       });
 
-      col.appendChild(wrapper);
-      reviewGrid.appendChild(col);
+      const $wrapper = $('<div class="swiper-wrapper"></div>');
 
-      const sw = new Swiper(col, {
+      sourceCards.forEach(card => {
+        const $slide = $('<div class="swiper-slide"></div>').css({
+          height: "auto",
+          marginBottom: "30px"
+        });
+        $slide.append($(card).clone());
+        $wrapper.append($slide);
+      });
+
+      $col.append($wrapper);
+      $reviewGrid.append($col);
+
+      const sw = new Swiper($col[0], {
         direction: "vertical",
         loop: true,
         slidesPerView: "auto",
-        spaceBetween: 0, // Handled by margin
+        spaceBetween: 0,
         speed: 3000,
         allowTouchMove: true,
         autoplay: {
@@ -608,52 +450,47 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       swiperInstances.push(sw);
-
     } else {
-      // --- Desktop: 3 Columns ---
+      $reviewGrid.css("grid-template-columns", "repeat(3, 1fr)");
+
       const numCols = 3;
       const cols = [];
 
       for (let i = 0; i < numCols; i++) {
-        const col = document.createElement("div");
-        col.classList.add("review-col", "swiper");
-        col.style.overflow = "hidden";
-        col.style.height = "100%";
+        const $col = $('<div class="review-col swiper"></div>').css({
+          overflow: "hidden",
+          height: "100%"
+        });
 
-        const wrapper = document.createElement("div");
-        wrapper.classList.add("swiper-wrapper");
-        col.appendChild(wrapper);
-        reviewGrid.appendChild(col);
-        cols.push(wrapper);
+        const $wrapper = $('<div class="swiper-wrapper"></div>');
+        $col.append($wrapper);
+        $reviewGrid.append($col);
+        cols.push($wrapper);
       }
 
-      // Distribute
-      // MANDATORY: Duplicate cards to ensure infinite loop works.
       const desktopSource = [...sourceCards, ...sourceCards, ...sourceCards, ...sourceCards];
 
       desktopSource.forEach((card, index) => {
         const colIndex = index % numCols;
-        const slide = document.createElement("div");
-        slide.classList.add("swiper-slide");
-        slide.style.height = "auto";
-        slide.style.marginBottom = "30px";
+        const $slide = $('<div class="swiper-slide"></div>').css({
+          height: "auto",
+          marginBottom: "30px"
+        });
 
         if (colIndex === 1) {
-          slide.style.transform = "scaleY(-1)";
+          $slide.css("transform", "scaleY(-1)");
         }
 
-        slide.appendChild(card.cloneNode(true));
-        cols[colIndex].appendChild(slide);
+        $slide.append($(card).clone());
+        cols[colIndex].append($slide);
       });
 
-      // Init
-      cols.forEach((wrapper, index) => {
-        const parentCol = wrapper.parentElement;
+      cols.forEach(($wrapper, index) => {
+        const parentCol = $wrapper.parent()[0];
         const isMiddle = index === 1;
 
-        // VISUAL FLIP: Flip the middle container to make it scroll Down visually
         if (isMiddle) {
-          parentCol.style.transform = "scaleY(-1)";
+          $(parentCol).css("transform", "scaleY(-1)");
         }
 
         const sw = new Swiper(parentCol, {
@@ -666,17 +503,16 @@ document.addEventListener("DOMContentLoaded", () => {
           autoplay: {
             delay: 0,
             disableOnInteraction: false,
-            // FORCE STANDARD DIRECTION (More reliable for stopping)
             pauseOnMouseEnter: false
           },
           freeMode: true
         });
 
-        // Manual Instant Stop/Start
-        parentCol.addEventListener('mouseenter', () => {
+        $(parentCol).on("mouseenter", function () {
           sw.autoplay.stop();
         });
-        parentCol.addEventListener('mouseleave', () => {
+
+        $(parentCol).on("mouseleave", function () {
           sw.autoplay.start();
         });
 
@@ -688,41 +524,23 @@ document.addEventListener("DOMContentLoaded", () => {
   initClientReviews();
 
   let resizeTimer;
-  window.addEventListener("resize", () => {
+  $(window).on("resize", function () {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(initClientReviews, 200);
   });
 });
 
-
-// About us page Mission & Vision Timeline Animation 
-document.addEventListener("DOMContentLoaded", () => {
-
+// GSAP/Swiper sections
+$(window).on("load", function () {
   // Mission & Vision Timeline Animation
   const timelineLine = document.querySelector(".timeline-line");
   const missionVisionSection = document.querySelector(".mission-vision-section");
 
-  if (timelineLine && missionVisionSection) {
+  if (timelineLine && missionVisionSection && typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.to(".timeline-line::after", {
-      scrollTrigger: {
-        trigger: ".mission-vision-wrapper",
-        start: "top 80%",
-        end: "bottom 80%",
-        scrub: true,
-        onUpdate: (self) => {
-          // Update the height of the fill line via custom property or direct style
-          // Since pseudo-elements are hard to target with JS, we use a CSS variable
-          document.documentElement.style.setProperty('--timeline-progress', `${self.progress * 100}%`);
-          timelineLine.style.setProperty('--timeline-height', `${self.progress * 100}%`);
-        }
-      }
-    });
-
-    // Animate the line using a more robust method: a real div for the fill
-    const fillLine = document.createElement('div');
-    fillLine.className = 'timeline-fill';
+    const fillLine = document.createElement("div");
+    fillLine.className = "timeline-fill";
     timelineLine.appendChild(fillLine);
 
     gsap.to(fillLine, {
@@ -741,17 +559,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const mainPath = document.querySelector(".values-svg-path .main-path");
   const valuesSection = document.querySelector(".our-values-section");
 
-  if (mainPath && valuesSection) {
-    // Initial setup
+  if (mainPath && valuesSection && typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     const pathLength = mainPath.getTotalLength();
 
-    // Set initial state
     gsap.set(mainPath, {
       strokeDasharray: pathLength,
       strokeDashoffset: pathLength
     });
 
-    // Drawing animation
     gsap.to(mainPath, {
       strokeDashoffset: 0,
       duration: 4,
@@ -763,16 +578,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Refresh scrolltrigger after layout stabilizes
-    window.addEventListener('load', () => {
+    $(window).on("load", function () {
       ScrollTrigger.refresh();
     });
   }
 
-  // Mobile Vertical Line Animation (New)
+  // Mobile Vertical Line Animation
   const mobileLineFill = document.querySelector(".values-mobile-line-fill");
 
-  if (mobileLineFill && valuesSection) {
+  if (mobileLineFill && valuesSection && typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     gsap.to(mobileLineFill, {
       height: "100%",
       ease: "none",
@@ -784,16 +598,76 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  // AI Development Process Timeline Fill & Color Activation
+  const timelineSection = document.querySelector(".ai-development-process");
+  const timelineWrapper = document.querySelector(".process-timeline-wrapper");
+  const lineFill = document.querySelector(".line-fill");
+  const verticalLine = document.querySelector(".process-vertical-line");
+  const stepItems = document.querySelectorAll(".process-step-item");
+
+  if (timelineSection && lineFill && verticalLine && typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+
+    let thresholds = [];
+
+    const calculateThresholds = () => {
+      const firstCircle = stepItems[0].querySelector(".step-number-circle");
+      const lastCircle = stepItems[stepItems.length - 1].querySelector(".step-number-circle");
+      const wrapperRect = timelineWrapper.getBoundingClientRect();
+
+      const firstRect = firstCircle.getBoundingClientRect();
+      const lastRect = lastCircle.getBoundingClientRect();
+      const lineTop = (firstRect.top + firstRect.height / 2) - wrapperRect.top;
+      const lineBottom = wrapperRect.bottom - (lastRect.top + lastRect.height / 2);
+
+      verticalLine.style.top = `${lineTop}px`;
+      verticalLine.style.bottom = `${lineBottom}px`;
+
+      const lineRect = verticalLine.getBoundingClientRect();
+      thresholds = Array.from(stepItems).map(item => {
+        const circle = item.querySelector(".step-number-circle");
+        const circleRect = circle.getBoundingClientRect();
+        return (circleRect.top - lineRect.top) / lineRect.height;
+      });
+    };
+
+    calculateThresholds();
+    $(window).on("resize", calculateThresholds);
+
+    gsap.fromTo(lineFill,
+      { height: "0%" },
+      {
+        height: "100%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: timelineWrapper,
+          start: "top 70%",
+          end: "bottom 80%",
+          scrub: 1,
+          onUpdate: (self) => {
+            const progress = self.progress;
+
+            stepItems.forEach((item, index) => {
+              const circle = item.querySelector(".step-number-circle");
+              if (progress >= thresholds[index]) {
+                circle.classList.add("active-circle");
+              } else {
+                circle.classList.remove("active-circle");
+              }
+            });
+          }
+        }
+      }
+    );
+
+    ScrollTrigger.refresh();
+  }
 });
 
-
-// Mobile App Development Page - Service Slider (Main + Thumbs)
-document.addEventListener("DOMContentLoaded", function () {
-  const serviceSlider2 = document.querySelector(".serviceSlider2");
-  const serviceSliderThumb = document.querySelector(".serviceSlider.service_two_thumb_slider");
-
-  if (serviceSlider2 && serviceSliderThumb) {
-    // Initialize Thumbs Slider
+// Service Slider
+$(document).ready(function () {
+  if ($(".serviceSlider2").length && $(".serviceSlider.service_two_thumb_slider").length) {
     const swiperThumbs = new Swiper(".serviceSlider.service_two_thumb_slider", {
       spaceBetween: 30,
       slidesPerView: "auto",
@@ -814,8 +688,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Initialize Main Slider
-    const swiperMain = new Swiper(".serviceSlider2", {
+    new Swiper(".serviceSlider2", {
       spaceBetween: 10,
       effect: "slide",
       autoplay: {
@@ -827,13 +700,10 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
   }
-});
 
-// Digital Creations Slider
-document.addEventListener("DOMContentLoaded", function () {
-  const digitalCreationSlider = document.querySelector(".digital-creations-slider");
-  if (digitalCreationSlider) {
-    const swiperDigital = new Swiper(".digital-creations-slider", {
+  // Digital Creations Slider
+  if ($(".digital-creations-slider").length) {
+    new Swiper(".digital-creations-slider", {
       slidesPerView: 1,
       spaceBetween: 30,
       loop: true,
@@ -853,146 +723,62 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
   }
-});
 
-
-// Case Studies Load More Logic
-document.addEventListener("DOMContentLoaded", () => {
-  const section = document.querySelector(".case-studies-listing-section");
-  if (!section) return;
-
-  const limit = 8;
-
-  const updateView = () => {
-    let activePanel = section.querySelector(".tab-pane.active");
-    if (!activePanel) {
-      activePanel = section;
-    }
-
-
-    const cards = activePanel.querySelectorAll(".case-study-card");
-    const isExpanded = activePanel.dataset.expanded === "true";
-
-    const btnContainer = activePanel.querySelector("#case-studies-load-more");
-
-    if (!btnContainer && cards.length === 0) return;
-    const hasMoreItems = cards.length > limit;
-    const shouldShowButton = hasMoreItems && !isExpanded;
-
-    cards.forEach((card, idx) => {
-      if (isExpanded || idx < limit) {
-        card.style.display = "";
-      } else {
-        card.style.display = "none";
-      }
-    });
-
-    if (btnContainer) {
-      if (shouldShowButton) {
-        btnContainer.style.display = "";
-      } else {
-        btnContainer.style.display = "none";
-      }
-    }
-  };
-
-  // Bind events
-  updateView();
-  section.querySelectorAll('button[data-bs-toggle="pill"]').forEach(tab => {
-    tab.addEventListener('shown.bs.tab', updateView);
-  });
-
-  // Use event delegation for the buttons
-  section.addEventListener("click", (e) => {
-    const btn = e.target.closest("#case-studies-load-more .button");
-    if (btn) {
-      e.preventDefault();
-
-      let activePanel = section.querySelector(".tab-pane.active");
-      if (!activePanel) {
-        activePanel = section;
-      }
-
-      if (activePanel) {
-        activePanel.dataset.expanded = "true";
-        updateView();
-      }
-    }
-  });
-});
-
-// Case Study Detail page - Challenge & Solution Animation
-document.addEventListener("DOMContentLoaded", function () {
+  // Case Study Detail page animation
   const connectorSection = document.querySelector(".challenge-solution-connector");
 
-  if (connectorSection) {
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
+  if (connectorSection && typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
 
-      const lineFill = connectorSection.querySelector(".connector-line-fill");
-      const bottomDot = connectorSection.querySelector(".connector-dot.bottom-dot");
-      const solutionBox = document.querySelector(".solution-box");
-      const challengeBox = document.querySelector(".challenge-box");
+    const lineFill = connectorSection.querySelector(".connector-line-fill");
+    const bottomDot = connectorSection.querySelector(".connector-dot.bottom-dot");
+    const solutionBox = document.querySelector(".solution-box");
+    const challengeBox = document.querySelector(".challenge-box");
 
-      if (challengeBox) {
-        gsap.from(challengeBox, {
-          opacity: 0,
-          y: 30,
-          duration: 0.8,
-          scrollTrigger: {
-            trigger: challengeBox,
-            start: "top 80%",
-            toggleActions: "play none none reverse"
-          }
-        });
-      }
+    if (challengeBox) {
+      gsap.from(challengeBox, {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: challengeBox,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      });
+    }
 
-      if (lineFill) {
-        gsap.to(lineFill, {
-          height: "100%",
-          ease: "none",
-          scrollTrigger: {
-            trigger: connectorSection,
-            start: "top 60%",
-            end: "bottom 60%",
-            scrub: true,
-            onUpdate: (self) => {
-              if (self.progress > 0.95) {
-                if (bottomDot) bottomDot.classList.add("active");
-              } else {
-                if (bottomDot) bottomDot.classList.remove("active");
-              }
+    if (lineFill) {
+      gsap.to(lineFill, {
+        height: "100%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: connectorSection,
+          start: "top 60%",
+          end: "bottom 60%",
+          scrub: true,
+          onUpdate: (self) => {
+            if (self.progress > 0.95) {
+              if (bottomDot) bottomDot.classList.add("active");
+            } else {
+              if (bottomDot) bottomDot.classList.remove("active");
             }
           }
-        });
-      }
+        }
+      });
+    }
 
-      if (solutionBox) {
-        gsap.from(solutionBox, {
-          opacity: 0,
-          y: 30,
-          duration: 0.8,
-          scrollTrigger: {
-            trigger: solutionBox,
-            start: "top 75%",
-            toggleActions: "play none none reverse"
-          }
-        });
-      }
+    if (solutionBox) {
+      gsap.from(solutionBox, {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: solutionBox,
+          start: "top 75%",
+          toggleActions: "play none none reverse"
+        }
+      });
     }
   }
-});
-
-// E-commerce Solutions Section Interaction
-document.addEventListener("DOMContentLoaded", () => {
-  const solutionItems = document.querySelectorAll(".ecommerce-solutions-section .solution-item");
-
-  solutionItems.forEach(item => {
-    item.addEventListener("mouseenter", () => {
-      // Remove active from all others
-      solutionItems.forEach(sib => sib.classList.remove("active"));
-      // Add active to hovering item
-      item.classList.add("active");
-    });
-  });
 });

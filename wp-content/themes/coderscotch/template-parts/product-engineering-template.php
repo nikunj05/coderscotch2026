@@ -21,7 +21,7 @@ get_header(); ?>
               ?>
             </h1>
             <p class="section-description">
-              <?php echo get_the_content(); ?>
+              <?php echo wp_strip_all_tags( get_the_content() ); ?>
             </p>
 
           </div>
@@ -61,371 +61,89 @@ get_header(); ?>
   <!-- Banner Section End -->
 
   <!-- Product Engineering Services slider section start -->
-  <section class="mob-service-slider-two section-space-t">
-    <div class="container">
-      <!-- mob serive slider thumb -->
-      <div class="swiper serviceSlider overflow-visible lg:block hidden service_two_thumb_slider">
-        <div class="swiper-wrapper overflow-visible ">
-          <div class="swiper-slide">
-            <div class="mobile-service-card">
-              <div class="mobile-service-header">
-                <div class="mobile-service-icon">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/pen-icon.svg" alt="Product UI/UX Design" width="40" height="40" />
-                </div>
-                <div class="mobile-service-action">
-                  <a href="#" class="mobile-service-link section-tag-button">
-                    <div class="section-tag">
-                      <div class="section-tag-circle">
-                        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="12.5" cy="12.5" r="12.5" fill="#00BEC5"></circle>
-                          <path
-                            d="M16.5107 8.85377L11.3547 8.85377C11.2182 8.85614 11.088 8.91205 10.9923 9.00945C10.8966 9.10685 10.8429 9.23796 10.8429 9.37452C10.8429 9.51109 10.8966 9.64219 10.9923 9.73959C11.088 9.83699 11.2182 9.8929 11.3547 9.89528L15.2534 9.89528L8.77671 16.3719C8.67904 16.4696 8.62417 16.6021 8.62417 16.7402C8.62417 16.8784 8.67904 17.0108 8.77671 17.1085C8.87439 17.2062 9.00687 17.261 9.145 17.261C9.28313 17.261 9.41561 17.2062 9.51328 17.1085L15.9899 10.6318L15.9899 14.5305C15.9887 14.5997 16.0013 14.6684 16.027 14.7326C16.0526 14.7968 16.0907 14.8553 16.1392 14.9046C16.1877 14.954 16.2455 14.9931 16.3093 15.0199C16.3731 15.0466 16.4415 15.0604 16.5107 15.0604C16.5799 15.0604 16.6483 15.0466 16.7121 15.0199C16.7759 14.9931 16.8337 14.954 16.8822 14.9046C16.9306 14.8553 16.9688 14.7968 16.9944 14.7326C17.0201 14.6684 17.0327 14.5997 17.0314 14.5305L17.0314 9.37452C17.0314 9.23642 16.9766 9.10397 16.8789 9.00632C16.7812 8.90866 16.6488 8.85379 16.5107 8.85377Z"
-                            fill="white"></path>
-                        </svg>
-                      </div>
+  <?php if (have_rows('engineering_services')) : ?>
+    <section class="mob-service-slider-two section-space-t">
+      <div class="container">
+        <!-- mob serive slider thumb -->
+        <div class="swiper serviceSlider overflow-visible lg:block hidden service_two_thumb_slider">
+          <div class="swiper-wrapper overflow-visible ">
+            <?php while (have_rows('engineering_services')) : the_row(); 
+              $icon = get_sub_field('icon');
+              $title = get_sub_field('title');
+            ?>
+              <div class="swiper-slide">
+                <div class="mobile-service-card">
+                  <div class="mobile-service-header">
+                    <div class="mobile-service-icon">
+                      <?php if ($icon) : ?>
+                        <img src="<?php echo esc_url($icon); ?>" alt="<?php echo esc_attr($title); ?>" width="40" height="40" />
+                      <?php endif; ?>
                     </div>
-                  </a>
+                    <div class="mobile-service-action">
+                      <a href="#" class="mobile-service-link section-tag-button">
+                        <div class="section-tag">
+                          <div class="section-tag-circle">
+                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <circle cx="12.5" cy="12.5" r="12.5" fill="#00BEC5"></circle>
+                              <path
+                                d="M16.5107 8.85377L11.3547 8.85377C11.2182 8.85614 11.088 8.91205 10.9923 9.00945C10.8966 9.10685 10.8429 9.23796 10.8429 9.37452C10.8429 9.51109 10.8966 9.64219 10.9923 9.73959C11.088 9.83699 11.2182 9.8929 11.3547 9.89528L15.2534 9.89528L8.77671 16.3719C8.67904 16.4696 8.62417 16.6021 8.62417 16.7402C8.62417 16.8784 8.67904 17.0108 8.77671 17.1085C8.87439 17.2062 9.00687 17.261 9.145 17.261C9.28313 17.261 9.41561 17.2062 9.51328 17.1085L15.9899 10.6318L15.9899 14.5305C15.9887 14.5997 16.0013 14.6684 16.027 14.7326C16.0526 14.7968 16.0907 14.8553 16.1392 14.9046C16.1877 14.954 16.2455 14.9931 16.3093 15.0199C16.3731 15.0466 16.4415 15.0604 16.5107 15.0604C16.5799 15.0604 16.6483 15.0466 16.7121 15.0199C16.7759 14.9931 16.8337 14.954 16.8822 14.9046C16.9306 14.8553 16.9688 14.7968 16.9944 14.7326C17.0201 14.6684 17.0327 14.5997 17.0314 14.5305L17.0314 9.37452C17.0314 9.23642 16.9766 9.10397 16.8789 9.00632C16.7812 8.90866 16.6488 8.85379 16.5107 8.85377Z"
+                                fill="white"></path>
+                            </svg>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                  <h3 class="mobile-service-title"><?php echo esc_html(str_replace(array('{', '}'), '', $title)); ?></h3>
                 </div>
               </div>
-              <h3 class="mobile-service-title">Product UI/UX Design</h3>
-            </div>
+            <?php endwhile; ?>
           </div>
-          <div class="swiper-slide">
-            <div class="mobile-service-card">
-              <div class="mobile-service-header">
-                <div class="mobile-service-icon">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/react-icon.svg" alt="Engineering Services"
-                    width="40" height="40" />
-                </div>
-                <div class="mobile-service-action">
-                  <a href="#" class="mobile-service-link section-tag-button">
-                    <div class="section-tag">
-                      <div class="section-tag-circle">
-                        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="12.5" cy="12.5" r="12.5" fill="#00BEC5"></circle>
-                          <path
-                            d="M16.5107 8.85377L11.3547 8.85377C11.2182 8.85614 11.088 8.91205 10.9923 9.00945C10.8966 9.10685 10.8429 9.23796 10.8429 9.37452C10.8429 9.51109 10.8966 9.64219 10.9923 9.73959C11.088 9.83699 11.2182 9.8929 11.3547 9.89528L15.2534 9.89528L8.77671 16.3719C8.67904 16.4696 8.62417 16.6021 8.62417 16.7402C8.62417 16.8784 8.67904 17.0108 8.77671 17.1085C8.87439 17.2062 9.00687 17.261 9.145 17.261C9.28313 17.261 9.41561 17.2062 9.51328 17.1085L15.9899 10.6318L15.9899 14.5305C15.9887 14.5997 16.0013 14.6684 16.027 14.7326C16.0526 14.7968 16.0907 14.8553 16.1392 14.9046C16.1877 14.954 16.2455 14.9931 16.3093 15.0199C16.3731 15.0466 16.4415 15.0604 16.5107 15.0604C16.5799 15.0604 16.6483 15.0466 16.7121 15.0199C16.7759 14.9931 16.8337 14.954 16.8822 14.9046C16.9306 14.8553 16.9688 14.7968 16.9944 14.7326C17.0201 14.6684 17.0327 14.5997 17.0314 14.5305L17.0314 9.37452C17.0314 9.23642 16.9766 9.10397 16.8789 9.00632C16.7812 8.90866 16.6488 8.85379 16.5107 8.85377Z"
-                            fill="white"></path>
-                        </svg>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-              <h3 class="mobile-service-title">Engineering Services</h3>
+        </div>
 
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="mobile-service-card">
-              <div class="mobile-service-header">
-                <div class="mobile-service-icon">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/apple-icon.svg" alt="Software Engineering" width="40"
-                    height="40" />
-                </div>
-                <div class="mobile-service-action">
-                  <a href="#" class="mobile-service-link section-tag-button">
-                    <div class="section-tag">
-                      <div class="section-tag-circle">
-                        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="12.5" cy="12.5" r="12.5" fill="#00BEC5"></circle>
-                          <path
-                            d="M16.5107 8.85377L11.3547 8.85377C11.2182 8.85614 11.088 8.91205 10.9923 9.00945C10.8966 9.10685 10.8429 9.23796 10.8429 9.37452C10.8429 9.51109 10.8966 9.64219 10.9923 9.73959C11.088 9.83699 11.2182 9.8929 11.3547 9.89528L15.2534 9.89528L8.77671 16.3719C8.67904 16.4696 8.62417 16.6021 8.62417 16.7402C8.62417 16.8784 8.67904 17.0108 8.77671 17.1085C8.87439 17.2062 9.00687 17.261 9.145 17.261C9.28313 17.261 9.41561 17.2062 9.51328 17.1085L15.9899 10.6318L15.9899 14.5305C15.9887 14.5997 16.0013 14.6684 16.027 14.7326C16.0526 14.7968 16.0907 14.8553 16.1392 14.9046C16.1877 14.954 16.2455 14.9931 16.3093 15.0199C16.3731 15.0466 16.4415 15.0604 16.5107 15.0604C16.5799 15.0604 16.6483 15.0466 16.7121 15.0199C16.7759 14.9931 16.8337 14.954 16.8822 14.9046C16.9306 14.8553 16.9688 14.7968 16.9944 14.7326C17.0201 14.6684 17.0327 14.5997 17.0314 14.5305L17.0314 9.37452C17.0314 9.23642 16.9766 9.10397 16.8789 9.00632C16.7812 8.90866 16.6488 8.85379 16.5107 8.85377Z"
-                            fill="white"></path>
-                        </svg>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-              <h3 class="mobile-service-title">Software Engineering</h3>
+        <?php reset_rows(); ?>
 
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="mobile-service-card">
-              <div class="mobile-service-header">
-                <div class="mobile-service-icon">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/apple-icon.svg" alt="iOS App Development" width="40"
-                    height="40" />
-                </div>
-                <div class="mobile-service-action">
-                  <a href="#" class="mobile-service-link section-tag-button">
-                    <div class="section-tag">
-                      <div class="section-tag-circle">
-                        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="12.5" cy="12.5" r="12.5" fill="#00BEC5"></circle>
-                          <path
-                            d="M16.5107 8.85377L11.3547 8.85377C11.2182 8.85614 11.088 8.91205 10.9923 9.00945C10.8966 9.10685 10.8429 9.23796 10.8429 9.37452C10.8429 9.51109 10.8966 9.64219 10.9923 9.73959C11.088 9.83699 11.2182 9.8929 11.3547 9.89528L15.2534 9.89528L8.77671 16.3719C8.67904 16.4696 8.62417 16.6021 8.62417 16.7402C8.62417 16.8784 8.67904 17.0108 8.77671 17.1085C8.87439 17.2062 9.00687 17.261 9.145 17.261C9.28313 17.261 9.41561 17.2062 9.51328 17.1085L15.9899 10.6318L15.9899 14.5305C15.9887 14.5997 16.0013 14.6684 16.027 14.7326C16.0526 14.7968 16.0907 14.8553 16.1392 14.9046C16.1877 14.954 16.2455 14.9931 16.3093 15.0199C16.3731 15.0466 16.4415 15.0604 16.5107 15.0604C16.5799 15.0604 16.6483 15.0466 16.7121 15.0199C16.7759 14.9931 16.8337 14.954 16.8822 14.9046C16.9306 14.8553 16.9688 14.7968 16.9944 14.7326C17.0201 14.6684 17.0327 14.5997 17.0314 14.5305L17.0314 9.37452C17.0314 9.23642 16.9766 9.10397 16.8789 9.00632C16.7812 8.90866 16.6488 8.85379 16.5107 8.85377Z"
-                            fill="white"></path>
-                        </svg>
+        <!-- mob serive slider -->
+        <div class="swiper serviceSlider2 md:mb-10">
+          <div class="swiper-wrapper">
+            <?php while (have_rows('engineering_services')) : the_row(); ?>
+              <div class="swiper-slide">
+                <div class="feature-slide-item">
+                  <div class="feature-slide-row">
+                    <div class="feature-slider-left">
+                      <div class="feature-slide-image">
+                        <?php if ($image = get_sub_field('main_image')) : ?>
+                          <img src="<?php echo esc_url($image); ?>" width="470" height="300" 
+                            alt="<?php echo esc_attr(get_sub_field('title')); ?>" class="mob-service-slider" />
+                        <?php endif; ?>
                       </div>
                     </div>
-                  </a>
-                </div>
-              </div>
-              <h3 class="mobile-service-title">iOS Development</h3>
-
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="mobile-service-card">
-              <div class="mobile-service-header">
-                <div class="mobile-service-icon">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/android-icon.svg" alt="Android Development" width="40"
-                    height="40" />
-                </div>
-                <div class="mobile-service-action">
-                  <a href="#" class="mobile-service-link section-tag-button">
-                    <div class="section-tag">
-                      <div class="section-tag-circle">
-                        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="12.5" cy="12.5" r="12.5" fill="#00BEC5"></circle>
-                          <path
-                            d="M16.5107 8.85377L11.3547 8.85377C11.2182 8.85614 11.088 8.91205 10.9923 9.00945C10.8966 9.10685 10.8429 9.23796 10.8429 9.37452C10.8429 9.51109 10.8966 9.64219 10.9923 9.73959C11.088 9.83699 11.2182 9.8929 11.3547 9.89528L15.2534 9.89528L8.77671 16.3719C8.67904 16.4696 8.62417 16.6021 8.62417 16.7402C8.62417 16.8784 8.67904 17.0108 8.77671 17.1085C8.87439 17.2062 9.00687 17.261 9.145 17.261C9.28313 17.261 9.41561 17.2062 9.51328 17.1085L15.9899 10.6318L15.9899 14.5305C15.9887 14.5997 16.0013 14.6684 16.027 14.7326C16.0526 14.7968 16.0907 14.8553 16.1392 14.9046C16.1877 14.954 16.2455 14.9931 16.3093 15.0199C16.3731 15.0466 16.4415 15.0604 16.5107 15.0604C16.5799 15.0604 16.6483 15.0466 16.7121 15.0199C16.7759 14.9931 16.8337 14.954 16.8822 14.9046C16.9306 14.8553 16.9688 14.7968 16.9944 14.7326C17.0201 14.6684 17.0327 14.5997 17.0314 14.5305L17.0314 9.37452C17.0314 9.23642 16.9766 9.10397 16.8789 9.00632C16.7812 8.90866 16.6488 8.85379 16.5107 8.85377Z"
-                            fill="white"></path>
-                        </svg>
+                    <div class="feature-slider-right">
+                      <div class="feature-slide-content">
+                        <div class="heading_section text-left">
+                          <h3 class="section-title">
+                            <?php 
+                              $title = get_sub_field('title');
+                              $title = str_replace('{', '<span class="highlight-text">', $title);
+                              $title = str_replace('}', '</span>', $title);
+                              echo wp_kses($title, array('span' => array('class' => array())));
+                            ?>
+                          </h3>
+                          <p class="section-description">
+                            <?php echo wp_kses_post(get_sub_field('description')); ?>
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </a>
+                  </div>
                 </div>
               </div>
-              <h3 class="mobile-service-title">Android Development</h3>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="mobile-service-card">
-              <div class="mobile-service-header">
-                <div class="mobile-service-icon">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/flutter-icon.svg" alt="Flutter Development" width="40"
-                    height="40" />
-                </div>
-                <div class="mobile-service-action">
-                  <a href="#" class="mobile-service-link section-tag-button">
-                    <div class="section-tag">
-                      <div class="section-tag-circle">
-                        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="12.5" cy="12.5" r="12.5" fill="#00BEC5"></circle>
-                          <path
-                            d="M16.5107 8.85377L11.3547 8.85377C11.2182 8.85614 11.088 8.91205 10.9923 9.00945C10.8966 9.10685 10.8429 9.23796 10.8429 9.37452C10.8429 9.51109 10.8966 9.64219 10.9923 9.73959C11.088 9.83699 11.2182 9.8929 11.3547 9.89528L15.2534 9.89528L8.77671 16.3719C8.67904 16.4696 8.62417 16.6021 8.62417 16.7402C8.62417 16.8784 8.67904 17.0108 8.77671 17.1085C8.87439 17.2062 9.00687 17.261 9.145 17.261C9.28313 17.261 9.41561 17.2062 9.51328 17.1085L15.9899 10.6318L15.9899 14.5305C15.9887 14.5997 16.0013 14.6684 16.027 14.7326C16.0526 14.7968 16.0907 14.8553 16.1392 14.9046C16.1877 14.954 16.2455 14.9931 16.3093 15.0199C16.3731 15.0466 16.4415 15.0604 16.5107 15.0604C16.5799 15.0604 16.6483 15.0466 16.7121 15.0199C16.7759 14.9931 16.8337 14.954 16.8822 14.9046C16.9306 14.8553 16.9688 14.7968 16.9944 14.7326C17.0201 14.6684 17.0327 14.5997 17.0314 14.5305L17.0314 9.37452C17.0314 9.23642 16.9766 9.10397 16.8789 9.00632C16.7812 8.90866 16.6488 8.85379 16.5107 8.85377Z"
-                            fill="white"></path>
-                        </svg>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-              <h3 class="mobile-service-title">Flutter Development</h3>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="mobile-service-card">
-              <div class="mobile-service-header">
-                <div class="mobile-service-icon">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/shopify-icon.svg" alt="Shopify Development" width="40"
-                    height="40" />
-                </div>
-                <div class="mobile-service-action">
-                  <a href="#" class="mobile-service-link section-tag-button">
-                    <div class="section-tag">
-                      <div class="section-tag-circle">
-                        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="12.5" cy="12.5" r="12.5" fill="#00BEC5"></circle>
-                          <path
-                            d="M16.5107 8.85377L11.3547 8.85377C11.2182 8.85614 11.088 8.91205 10.9923 9.00945C10.8966 9.10685 10.8429 9.23796 10.8429 9.37452C10.8429 9.51109 10.8966 9.64219 10.9923 9.73959C11.088 9.83699 11.2182 9.8929 11.3547 9.89528L15.2534 9.89528L8.77671 16.3719C8.67904 16.4696 8.62417 16.6021 8.62417 16.7402C8.62417 16.8784 8.67904 17.0108 8.77671 17.1085C8.87439 17.2062 9.00687 17.261 9.145 17.261C9.28313 17.261 9.41561 17.2062 9.51328 17.1085L15.9899 10.6318L15.9899 14.5305C15.9887 14.5997 16.0013 14.6684 16.027 14.7326C16.0526 14.7968 16.0907 14.8553 16.1392 14.9046C16.1877 14.954 16.2455 14.9931 16.3093 15.0199C16.3731 15.0466 16.4415 15.0604 16.5107 15.0604C16.5799 15.0604 16.6483 15.0466 16.7121 15.0199C16.7759 14.9931 16.8337 14.954 16.8822 14.9046C16.9306 14.8553 16.9688 14.7968 16.9944 14.7326C17.0201 14.6684 17.0327 14.5997 17.0314 14.5305L17.0314 9.37452C17.0314 9.23642 16.9766 9.10397 16.8789 9.00632C16.7812 8.90866 16.6488 8.85379 16.5107 8.85377Z"
-                            fill="white"></path>
-                        </svg>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-              <h3 class="mobile-service-title">Shopify Development</h3>
-            </div>
+            <?php endwhile; ?>
           </div>
         </div>
       </div>
-      <!-- mob serive slider -->
-      <div class="swiper serviceSlider2 md:mb-10">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="feature-slide-item">
-              <div class="feature-slide-row">
-                <div class="feature-slider-left">
-                  <div class="feature-slide-image">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technological-focus-img.png" width="470" height="300"
-                      alt="React Native App Development" class="mob-service-slider" />
-                  </div>
-                </div>
-                <div class="feature-slider-right">
-                  <div class="feature-slide-content">
-                    <div class="heading_section text-left">
-                      <h3 class="section-title">
-                        React Native App
-                        <span class="highlight-text">Development </span>
-                      </h3>
-                      <p class="section-description">
-                        sit amet consectetur. Tincidunt venenatis vitae varius egestas tempor consequat.
-                        Tortor aliquet
-                        malesuada aliquam imperdiet. Bibendum sed vel id eu cursus augue lectus in quis. Congue enim
-                        ultricies elementum velit
-                        adipiscing consectetur tincidunt donec enim.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="feature-slide-item">
-              <div class="feature-slide-row">
-                <div class="feature-slider-left">
-                  <div class="feature-slide-image">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/coder-Journey-img1.png" width="470" height="300" alt="iOS App Development"
-                      class="mob-service-slider" />
-                  </div>
-                </div>
-                <div class="feature-slider-right">
-                  <div class="feature-slide-content">
-                    <div class="heading_section text-left">
-                      <h3 class="section-title">
-                        iOS App
-                        <span class="highlight-text">Development </span>
-                      </h3>
-                      <p class="section-description">
-                        sit amet consectetur. Tincidunt venenatis varius egestas tempor consequat.
-                        Tortor aliquet
-                        malesuada aliquam imperdiet. Bibendum sed vel id eu cursus augue lectus in quis. Congue enim
-                        ultricies elementum velit
-                        adipiscing consectetur tincidunt donec enim.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="feature-slide-item">
-              <div class="feature-slide-row">
-                <div class="feature-slider-left">
-                  <div class="feature-slide-image">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/development-service-image.png" width="470" height="300"
-                      alt="Android App Development" class="mob-service-slider" />
-                  </div>
-                </div>
-                <div class="feature-slider-right">
-                  <div class="feature-slide-content">
-                    <div class="heading_section text-left">
-                      <h3 class="section-title">
-                        Android App
-                        <span class="highlight-text">Development </span>
-                      </h3>
-                      <p class="section-description">
-                        sit amet consectetur. Tincidunt venenatis vitae varius egestas tempor consequat.
-                        Tortor aliquet
-                        malesuada aliquam imperdiet. Bibendum sed vel id eu cursus augue lectus in quis. Congue enim
-                        ultricies elementum velit
-                        adipiscing consectetur tincidunt donec enim.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="feature-slide-item">
-              <div class="feature-slide-row">
-                <div class="feature-slider-left">
-                  <div class="feature-slide-image">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-slider-image.png" width="470" height="300"
-                      alt="Flutter App Development" class="mob-service-slider" />
-                  </div>
-                </div>
-                <div class="feature-slider-right">
-                  <div class="feature-slide-content">
-                    <div class="heading_section text-left">
-                      <h3 class="section-title">
-                        Flutter App
-                        <span class="highlight-text">Development </span>
-                      </h3>
-                      <p class="section-description">
-                        sit amet consectetur. Tincidunt venenatis vitae varius egestas tempor consequat.
-                        Tortor aliquet
-                        malesuada aliquam imperdiet. Bibendum sed vel id eu cursus augue lectus in quis. Congue enim
-                        ultricies elementum velit
-                        adipiscing consectetur tincidunt donec enim.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="feature-slide-item">
-              <div class="feature-slide-row">
-                <div class="feature-slider-left">
-                  <div class="feature-slide-image">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/e-commerce-image.png" width="470" height="300" alt="WordPress Development"
-                      class="mob-service-slider" />
-                  </div>
-                </div>
-                <div class="feature-slider-right">
-                  <div class="feature-slide-content">
-                    <div class="heading_section text-left">
-                      <h3 class="section-title">
-                        WordPress
-                        <span class="highlight-text">Development </span>
-                      </h3>
-                      <p class="section-description">
-                        sit amet consectetur. Tincidunt venenatis vitae varius egestas tempor consequat.
-                        Tortor aliquet
-                        malesuada aliquam imperdiet. Bibendum sed vel id eu cursus augue lectus in quis. Congue enim
-                        ultricies elementum velit
-                        adipiscing consectetur tincidunt donec enim.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="feature-slide-item">
-              <div class="feature-slide-row">
-                <div class="feature-slider-left">
-                  <div class="feature-slide-image">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/mob-service-slider-img1.png" width="470" height="300"
-                      alt="Shopify Development" class="mob-service-slider" />
-                  </div>
-                </div>
-                <div class="feature-slider-right">
-                  <div class="feature-slide-content">
-                    <div class="heading_section text-left">
-                      <h3 class="section-title">
-                        Shopify
-                        <span class="highlight-text">Development </span>
-                      </h3>
-                      <p class="section-description">
-                        sit amet consectetur. Tincidunt venenatis vitae varius egestas tempor consequat.
-                        Tortor aliquet
-                        malesuada aliquam imperdiet. Bibendum sed vel id eu cursus augue lectus in quis. Congue enim
-                        ultricies elementum velit
-                        adipiscing consectetur tincidunt donec enim.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
+  <?php endif; ?>
 
   <!-- mob service contact box section start -->
   <section class="mob-projects-service section-space-b">

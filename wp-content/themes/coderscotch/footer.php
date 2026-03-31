@@ -14,6 +14,7 @@
 <!-- footer section Start -->
 <footer class="page-footer footer-contact-form position-relative section-space-t">
     <div class="container">
+      <?php if ( ! is_page_template( 'template-parts/contact.php' ) ) : ?>
       <div class="connect-section section-space80-b">
         <div class="heading_section text-center">
           <h2 class="section-title" data-aos="fade" data-aos-duration="800">
@@ -122,6 +123,7 @@
           </div>
         </div>
       </section>
+      <?php endif; ?>
       <!-- FAQ Section End -->
       <div class="office-address-wrapper">
         <div class="office-address-container">

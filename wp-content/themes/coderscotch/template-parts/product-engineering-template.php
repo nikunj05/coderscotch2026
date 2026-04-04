@@ -153,9 +153,9 @@ get_header(); ?>
           <div class="mob-projects-service-item">
             <div class="mob-projects-service-item-inner">
               <div class="mob-projects-service-item-content">
-                <h3 class="mob-projects-service-item-title">Contact Now</h3>
-                <p class="mob-projects-service-item-description">Contact now for get Product 
-                  <br> Engineering Service
+                <h3 class="mob-projects-service-item-title">Start Your Project</h3>
+                <p class="mob-projects-service-item-description">Turn your idea into a scalable product. 
+                  <br> Build, optimize, and launch faster with our expert team.
                 </p>
               </div>
               <div class="mob-projects-service-item-icon">
@@ -180,8 +180,8 @@ get_header(); ?>
             <div class="mob-projects-service-item-inner">
               <div class="mob-projects-service-item-content">
                 <h3 class="mob-projects-service-item-title">Other Services</h3>
-                <p class="mob-projects-service-item-description">Check out the services we have
-                  <br> provide for our clients
+                <p class="mob-projects-service-item-description">Discover services built to accelerate your growth.
+                  <br> From product engineering to AI, we help you scale efficiently.
                 </p>
               </div>
               <div class="mob-projects-service-item-icon">
@@ -210,95 +210,84 @@ get_header(); ?>
     <div class="container">
       <div class="heading_section text-center">
         <h2 class="section-title" data-aos="fade" data-aos-duration="800">
-          Services You An Opt From
-          <span class="highlight-text"> Project Key Points </span>
+          <?php 
+          $kp_title = get_field('key_points_section_title');
+          if ($kp_title) {
+              $kp_title = str_replace('{', '<span class="highlight-text">', $kp_title);
+              $kp_title = str_replace('}', '</span>', $kp_title);
+              echo wp_kses($kp_title, array('span' => array('class' => array())));
+          } else {
+              echo 'Project Key Points';
+          }
+          ?>
         </h2>
-        <p class="section-description" data-aos="fade" data-aos-duration="800">
-          Lorem ipsum dolor sit amet consectetur. Elementum imperdiet amet malesuada nunc integer ac sed amet. <br>
-          Enim nibh semper est tincidunt viverra pellentesque integer pulvinar.
-        </p>
+        <?php if ($kp_description = get_field('key_points_section_description')) : ?>
+          <p class="section-description" data-aos="fade" data-aos-duration="800">
+            <?php echo wp_kses_post($kp_description); ?>
+          </p>
+        <?php endif; ?>
       </div>
 
       <div class="key-points-wrapper">
+        <?php 
+        $key_points = get_field('key_points_repeater');
+        if ($key_points) : 
+            $count = count($key_points);
+            $half = ceil($count / 2);
+            $left_col = array_slice($key_points, 0, $half);
+            $right_col = array_slice($key_points, $half);
+        ?>
+          <div class="key-points-col left-col">
+            <?php foreach ($left_col as $point) : ?>
+              <div class="key-point-card">
+                <div class="key-point-icon">
+                  <?php if ($point['icon']) : ?>
+                    <img src="<?php echo esc_url($point['icon']); ?>" alt="<?php echo esc_attr($point['title']); ?>" width="50" height="50">
+                  <?php endif; ?>
+                </div>
+                <div class="key-point-content">
+                  <h3 class="key-point-title"><?php echo esc_html($point['title']); ?></h3>
+                  <p class="key-point-desc"><?php echo esc_html($point['description']); ?></p>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          </div>
 
-        <div class="key-points-col left-col">
-          <div class="key-point-card">
-            <div class="key-point-icon">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/key-point-icon1.svg" alt="Agile development" width="50" height="50">
+          <div class="key-points-col middle-col">
+            <div class="key-middle-effect effect-left">
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/key-point-effect-left.svg" width="181" height="342"
+                alt="Key Middle Effect Left">
             </div>
-            <div class="key-point-content">
-              <h3 class="key-point-title">Agile development</h3>
-              <p class="key-point-desc">Aliquam erat volutpat. Pellentesque habitant morbi tristique et netus</p>
+            <div class="key-points-center">
+              <div class="center-key-circle">
+                <div class="pulse-ring"></div>
+                <div class="pulse-ring delay-1"></div>
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/key-icon.svg" alt="Key Icon" width="50" height="50"
+                  class="key-point-key-icon">
+              </div>
             </div>
-          </div>
-          <div class="key-point-card">
-            <div class="key-point-icon">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/key-point-icon2.svg" alt="Custom Development" width="50" height="50">
-            </div>
-            <div class="key-point-content">
-              <h3 class="key-point-title">Custom Development</h3>
-              <p class="key-point-desc">Aliquam erat volutpat. Pellentesque habitant morbi tristique et netus</p>
-            </div>
-          </div>
-          <div class="key-point-card">
-            <div class="key-point-icon">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/key-point-icon3.svg" alt="Results-focused" width="50" height="50">
-            </div>
-            <div class="key-point-content">
-              <h3 class="key-point-title">Results-focused</h3>
-              <p class="key-point-desc">Aliquam erat volutpat. Pellentesque habitant morbi tristique et netus</p>
+            <div class="key-middle-effect effect-right">
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/key-point-effect-right.svg" width="181" height="342"
+                alt="Key Middle Effect Right">
             </div>
           </div>
-        </div>
-        <div class="key-points-col middle-col">
-          <div class="key-middle-effect effect-left">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/key-point-effect-left.svg" width="181" height="342"
-              alt="Key Middle Effect Left">
-          </div>
-          <div class="key-points-center">
-            <div class="center-key-circle">
-              <div class="pulse-ring"></div>
-              <div class="pulse-ring delay-1"></div>
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/key-icon.svg" alt="Key Icon" width="50" height="50"
-                class="key-point-key-icon">
-            </div>
-          </div>
-          <div class="key-middle-effect effect-right">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/key-point-effect-right.svg" width="181" height="342"
-              alt="Key Middle Effect Right">
-          </div>
-        </div>
 
-        <div class="key-points-col right-col">
-
-          <div class="key-point-card">
-            <div class="key-point-icon">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/key-point-icon4.svg" alt="Transparent process" width="50" height="50">
-            </div>
-            <div class="key-point-content">
-              <h3 class="key-point-title">Transparent process</h3>
-              <p class="key-point-desc">Aliquam erat volutpat. Pellentesque habitant morbi tristique et netus</p>
-            </div>
+          <div class="key-points-col right-col">
+            <?php foreach ($right_col as $point) : ?>
+              <div class="key-point-card">
+                <div class="key-point-icon">
+                  <?php if ($point['icon']) : ?>
+                    <img src="<?php echo esc_url($point['icon']); ?>" alt="<?php echo esc_attr($point['title']); ?>" width="50" height="50">
+                  <?php endif; ?>
+                </div>
+                <div class="key-point-content">
+                  <h3 class="key-point-title"><?php echo esc_html($point['title']); ?></h3>
+                  <p class="key-point-desc"><?php echo esc_html($point['description']); ?></p>
+                </div>
+              </div>
+            <?php endforeach; ?>
           </div>
-          <div class="key-point-card">
-            <div class="key-point-icon">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/key-point-icon5.svg" alt="Quick turnaround time" width="50" height="50">
-            </div>
-            <div class="key-point-content">
-              <h3 class="key-point-title">Quick turnaround time</h3>
-              <p class="key-point-desc">Aliquam erat volutpat. Pellentesque habitant morbi tristique et netus</p>
-            </div>
-          </div>
-          <div class="key-point-card">
-            <div class="key-point-icon">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/key-point-icon6.svg" alt="End-to-End Service" width="50" height="50">
-            </div>
-            <div class="key-point-content">
-              <h3 class="key-point-title">End-to-End Service</h3>
-              <p class="key-point-desc">Aliquam erat volutpat. Pellentesque habitant morbi tristique et netus</p>
-            </div>
-          </div>
-        </div>
+        <?php endif; ?>
       </div>
     </div>
   </section>
@@ -309,112 +298,71 @@ get_header(); ?>
     <div class="container">
       <div class="heading_section text-center">
         <h2 class="section-title">
-          Coderscotch
-          <span class="highlight-text"> Offered Another Services </span>
+          <?php 
+          $oas_title = get_field('offered_services_section_title');
+          if ($oas_title) {
+              $oas_title = str_replace('{', '<span class="highlight-text">', $oas_title);
+              $oas_title = str_replace('}', '</span>', $oas_title);
+              echo wp_kses($oas_title, array('span' => array('class' => array())));
+          } else {
+              echo 'Coderscotch <span class="highlight-text"> Offered Another Services </span>';
+          }
+          ?>
         </h2>
-        <p class="section-description">
-          Discover the innovative technologies that power our cutting-edge digital solutions at CoderScotch.
-        </p>
+        <?php if ($oas_description = get_field('offered_services_section_description')) : ?>
+          <p class="section-description">
+            <?php echo wp_kses_post($oas_description); ?>
+          </p>
+        <?php endif; ?>
       </div>
-      <div class="other-services-wrapper">
-        <div class="other-service-card retail-card">
-          <div class="card-header-top">
-            <div class="service-icon">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/bag-icon.svg" alt="Retail" width="32" height="32">
-            </div>
-            <a href="#" class="section-tag-button">
-              <div class="section-tag">
-                <div class="section-tag-circle">
-                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12.5" cy="12.5" r="12.5" fill="#00BEC5"></circle>
-                    <path
-                      d="M16.5107 8.85377L11.3547 8.85377C11.2182 8.85614 11.088 8.91205 10.9923 9.00945C10.8966 9.10685 10.8429 9.23796 10.8429 9.37452C10.8429 9.51109 10.8966 9.64219 10.9923 9.73959C11.088 9.83699 11.2182 9.8929 11.3547 9.89528L15.2534 9.89528L8.77671 16.3719C8.67904 16.4696 8.62417 16.6021 8.62417 16.7402C8.62417 16.8784 8.67904 17.0108 8.77671 17.1085C8.87439 17.2062 9.00687 17.261 9.145 17.261C9.28313 17.261 9.41561 17.2062 9.51328 17.1085L15.9899 10.6318L15.9899 14.5305C15.9887 14.5997 16.0013 14.6684 16.027 14.7326C16.0526 14.7968 16.0907 14.8553 16.1392 14.9046C16.1877 14.954 16.2455 14.9931 16.3093 15.0199C16.3731 15.0466 16.4415 15.0604 16.5107 15.0604C16.5799 15.0604 16.6483 15.0466 16.7121 15.0199C16.7759 14.9931 16.8337 14.954 16.8822 14.9046C16.9306 14.8553 16.9688 14.7968 16.9944 14.7326C17.0201 14.6684 17.0327 14.5997 17.0314 14.5305L17.0314 9.37452C17.0314 9.23642 16.9766 9.10397 16.8789 9.00632C16.7812 8.90866 16.6488 8.85379 16.5107 8.85377Z"
-                      fill="white"></path>
-                  </svg>
+      
+      <?php if (have_rows('offered_services_repeater')) : ?>
+        <div class="other-services-wrapper">
+          <?php while (have_rows('offered_services_repeater')) : the_row(); 
+            $icon = get_sub_field('icon');
+            $title = get_sub_field('title');
+            $description = get_sub_field('description');
+            $card_class = get_sub_field('card_class');
+            $link = get_sub_field('link');
+          ?>
+            <div class="other-service-card <?php echo esc_attr($card_class); ?>">
+              <div class="card-header-top">
+                <div class="service-icon">
+                  <?php if ($icon) : ?>
+                    <img src="<?php echo esc_url($icon); ?>" alt="<?php echo esc_attr($title); ?>" width="32" height="32">
+                  <?php endif; ?>
                 </div>
+                <a href="<?php echo esc_url($link ? $link : '#'); ?>" class="section-tag-button">
+                  <div class="section-tag">
+                    <div class="section-tag-circle">
+                      <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12.5" cy="12.5" r="12.5" fill="#00BEC5"></circle>
+                        <path
+                          d="M16.5107 8.85377L11.3547 8.85377C11.2182 8.85614 11.088 8.91205 10.9923 9.00945C10.8966 9.10685 10.8429 9.23796 10.8429 9.37452C10.8429 9.51109 10.8966 9.64219 10.9923 9.73959C11.088 9.83699 11.2182 9.8929 11.3547 9.89528L15.2534 9.89528L8.77671 16.3719C8.67904 16.4696 8.62417 16.6021 8.62417 16.7402C8.62417 16.8784 8.67904 17.0108 8.77671 17.1085C8.87439 17.2062 9.00687 17.261 9.145 17.261C9.28313 17.261 9.41561 17.2062 9.51328 17.1085L15.9899 10.6318L15.9899 14.5305C15.9887 14.5997 16.0013 14.6684 16.027 14.7326C16.0526 14.7968 16.0907 14.8553 16.1392 14.9046C16.1877 14.954 16.2455 14.9931 16.3093 15.0199C16.3731 15.0466 16.4415 15.0604 16.5107 15.0604C16.5799 15.0604 16.6483 15.0466 16.7121 15.0199C16.7759 14.9931 16.8337 14.954 16.8822 14.9046C16.9306 14.8553 16.9688 14.7968 16.9944 14.7326C17.0201 14.6684 17.0327 14.5997 17.0314 14.5305L17.0314 9.37452C17.0314 9.23642 16.9766 9.10397 16.8789 9.00632C16.7812 8.90866 16.6488 8.85379 16.5107 8.85377Z"
+                          fill="white"></path>
+                      </svg>
+                    </div>
+                  </div>
+                </a>
               </div>
-            </a>
-          </div>
-          <h3 class="service-title">Retail</h3>
-          <p class="service-desc">
-            Lorem ipsum dolor sit amet dictum no consectetur. Enim nec dictum non cras sed sapien amet.
-          </p>
-          <div class="service-divider"></div>
-          <ul class="service-features">
-            <li>
-              <div class="list-box-icon"></div>Lorem ipsum dolor sit amet dictum.
-            </li>
-            <li>
-              <div class="list-box-icon"></div>Lorem ipsum dolor sit amet.
-            </li>
-          </ul>
-        </div>
-
-        <div class="other-service-card finance-card">
-          <div class="card-header-top">
-            <div class="service-icon">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/wallet-icon.svg" alt="Finance" width="32" height="32">
+              <h3 class="service-title"><?php echo esc_html($title); ?></h3>
+              <p class="service-desc">
+                <?php echo esc_html($description); ?>
+              </p>
+              <div class="service-divider"></div>
+              <?php if (have_rows('features')) : ?>
+                <ul class="service-features">
+                  <?php while (have_rows('features')) : the_row(); ?>
+                    <li>
+                      <div class="list-box-icon"></div><?php echo esc_html(get_sub_field('feature_text')); ?>
+                    </li>
+                  <?php endwhile; ?>
+                </ul>
+              <?php endif; ?>
             </div>
-            <a href="#" class="section-tag-button">
-              <div class="section-tag">
-                <div class="section-tag-circle">
-                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12.5" cy="12.5" r="12.5" fill="#00BEC5"></circle>
-                    <path
-                      d="M16.5107 8.85377L11.3547 8.85377C11.2182 8.85614 11.088 8.91205 10.9923 9.00945C10.8966 9.10685 10.8429 9.23796 10.8429 9.37452C10.8429 9.51109 10.8966 9.64219 10.9923 9.73959C11.088 9.83699 11.2182 9.8929 11.3547 9.89528L15.2534 9.89528L8.77671 16.3719C8.67904 16.4696 8.62417 16.6021 8.62417 16.7402C8.62417 16.8784 8.67904 17.0108 8.77671 17.1085C8.87439 17.2062 9.00687 17.261 9.145 17.261C9.28313 17.261 9.41561 17.2062 9.51328 17.1085L15.9899 10.6318L15.9899 14.5305C15.9887 14.5997 16.0013 14.6684 16.027 14.7326C16.0526 14.7968 16.0907 14.8553 16.1392 14.9046C16.1877 14.954 16.2455 14.9931 16.3093 15.0199C16.3731 15.0466 16.4415 15.0604 16.5107 15.0604C16.5799 15.0604 16.6483 15.0466 16.7121 15.0199C16.7759 14.9931 16.8337 14.954 16.8822 14.9046C16.9306 14.8553 16.9688 14.7968 16.9944 14.7326C17.0201 14.6684 17.0327 14.5997 17.0314 14.5305L17.0314 9.37452C17.0314 9.23642 16.9766 9.10397 16.8789 9.00632C16.7812 8.90866 16.6488 8.85379 16.5107 8.85377Z"
-                      fill="white"></path>
-                  </svg>
-                </div>
-              </div>
-            </a>
-          </div>
-          <h3 class="service-title">Finance</h3>
-          <p class="service-desc">
-            Lorem ipsum dolor sit amet dictum no consectetur. Enim nec dictum non cras sed sapien amet.
-          </p>
-          <div class="service-divider"></div>
-          <ul class="service-features">
-            <li>
-              <div class="list-box-icon"></div>Lorem ipsum dolor sit amet dictum.
-            </li>
-            <li>
-              <div class="list-box-icon"></div>Lorem ipsum dolor sit amet.
-            </li>
-          </ul>
+          <?php endwhile; ?>
         </div>
-        <div class="other-service-card education-card">
-          <div class="card-header-top">
-            <div class="service-icon">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/student-cap-icon.svg" alt="Education" width="32" height="32">
-            </div>
-            <a href="#" class="section-tag-button">
-              <div class="section-tag">
-                <div class="section-tag-circle">
-                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12.5" cy="12.5" r="12.5" fill="#00BEC5"></circle>
-                    <path
-                      d="M16.5107 8.85377L11.3547 8.85377C11.2182 8.85614 11.088 8.91205 10.9923 9.00945C10.8966 9.10685 10.8429 9.23796 10.8429 9.37452C10.8429 9.51109 10.8966 9.64219 10.9923 9.73959C11.088 9.83699 11.2182 9.8929 11.3547 9.89528L15.2534 9.89528L8.77671 16.3719C8.67904 16.4696 8.62417 16.6021 8.62417 16.7402C8.62417 16.8784 8.67904 17.0108 8.77671 17.1085C8.87439 17.2062 9.00687 17.261 9.145 17.261C9.28313 17.261 9.41561 17.2062 9.51328 17.1085L15.9899 10.6318L15.9899 14.5305C15.9887 14.5997 16.0013 14.6684 16.027 14.7326C16.0526 14.7968 16.0907 14.8553 16.1392 14.9046C16.1877 14.954 16.2455 14.9931 16.3093 15.0199C16.3731 15.0466 16.4415 15.0604 16.5107 15.0604C16.5799 15.0604 16.6483 15.0466 16.7121 15.0199C16.7759 14.9931 16.8337 14.954 16.8822 14.9046C16.9306 14.8553 16.9688 14.7968 16.9944 14.7326C17.0201 14.6684 17.0327 14.5997 17.0314 14.5305L17.0314 9.37452C17.0314 9.23642 16.9766 9.10397 16.8789 9.00632C16.7812 8.90866 16.6488 8.85379 16.5107 8.85377Z"
-                      fill="white"></path>
-                  </svg>
-                </div>
-              </div>
-            </a>
-          </div>
-          <h3 class="service-title">Education</h3>
-          <p class="service-desc">
-            Lorem ipsum dolor sit amet dictum no consectetur. Enim nec dictum non cras sed sapien amet.
-          </p>
-          <div class="service-divider"></div>
-          <ul class="service-features">
-            <li>
-              <div class="list-box-icon"></div>Lorem ipsum dolor sit amet dictum.
-            </li>
-            <li>
-              <div class="list-box-icon"></div>Lorem ipsum dolor sit amet.
-            </li>
-          </ul>
-        </div>
-      </div>
+      <?php endif; ?>
     </div>
   </section>
 
@@ -428,7 +376,7 @@ get_header(); ?>
         <div class="banner-decoration right-decoration">
           <img src="<?php echo get_template_directory_uri(); ?>/assets/images/connect-effect-left.png" alt="connect-effect" width="280" height="216">
         </div>
-        <a href="#" class="connect-content">
+        <a href="<?php echo get_permalink( get_page_by_path('contact-us') ); ?>" class="connect-content">
           <h2 class="connect-title">Connect with us</h2>
           <span class="section-tag-button">
             <div class="section-tag">
@@ -458,7 +406,7 @@ get_header(); ?>
             <span class="highlight-text"> We are Specialized In</span>
           </h2>
           <p class="section-description">
-            Discover the innovative technologies that power our cutting-edge digital solutions at CoderScotch.
+            Discover the innovative technologies that power our cutting-edge digital solutions at Coder Scotch.
           </p>
         </div>
         <div class="technologies-tab section-space80-b">
@@ -511,103 +459,48 @@ get_header(); ?>
           </div>
         </div>
       </div>
+
       <div class="technologies-tab-details">
         <div class="container">
           <div class="technologies-tab-content section-space80-t">
-
+            
             <div class="heading_section text-center">
               <h2 class="section-title">
-                <span class="highlight-text"> Technologies We Use For</span>
-                Product Engineering
+                <?php 
+                $tech_title = get_field('specialized_tech_title');
+                if ($tech_title) {
+                    $tech_title = str_replace('{', '<span class="highlight-text">', $tech_title);
+                    $tech_title = str_replace('}', '</span>', $tech_title);
+                    echo wp_kses($tech_title, array('span' => array('class' => array())));
+                } else {
+                    echo '<span class="highlight-text"> Technologies We Use For</span> ' . get_the_title();
+                }
+                ?>
               </h2>
-              <p class="section-description">
-                Lorem ipsum dolor sit amet consectetur. Elementum imperdiet amet malesuada nunc integer ac sed amet.
-                <br>
-                Enim nibh semper est tincidunt viverra pellentesque integer pulvinar.
-              </p>
+              <?php if ($tech_desc = get_field('specialized_tech_description')) : ?>
+                <p class="section-description">
+                  <?php echo wp_kses_post($tech_desc); ?>
+                </p>
+              <?php endif; ?>
             </div>
 
-            <div class="tab-pane fade show">
+            <?php if (have_rows('specialized_tech_list')) : ?>
               <div class="technologies-list">
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/flutter-icon.svg" width="25" height="30"
-                      alt="Flutter Development Logo" />
+                <?php while (have_rows('specialized_tech_list')) : the_row(); 
+                  $tech_name = get_sub_field('tech_name');
+                  $tech_icon = get_sub_field('tech_icon');
+                ?>
+                  <div class="technologies-items d-flex">
+                    <div class="technologies-items-icon">
+                      <?php if ($tech_icon) : ?>
+                        <img src="<?php echo esc_url($tech_icon); ?>" width="30" height="30" alt="<?php echo esc_attr($tech_name); ?>" />
+                      <?php endif; ?>
+                    </div>
+                    <div class="technologies-items-title"><?php echo esc_html($tech_name); ?></div>
                   </div>
-                  <div class="technologies-items-title">Flutter</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/android-icon.svg" width="30" height="30"
-                      alt="Android Development Logo" />
-                  </div>
-                  <div class="technologies-items-title">Android</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/apple-icon.svg" width="26" height="30"
-                      alt="iOS App Development Logo" />
-                  </div>
-                  <div class="technologies-items-title">IOS</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/jscript-iocn.svg" width="30" height="30"
-                      alt="JavaScript Programming Language Logo" />
-                  </div>
-                  <div class="technologies-items-title">J. Script</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/react-icon.svg" width="30" height="30"
-                      alt="React Frontend Framework Logo" />
-                  </div>
-                  <div class="technologies-items-title">React</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/angular-icon.svg" width="30" height="30"
-                      alt="Angular Frontend Framework Logo" />
-                  </div>
-                  <div class="technologies-items-title">Angular</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/node-js-icon.svg" width="47" height="30"
-                      alt="Node.js Logo" />
-                  </div>
-                  <div class="technologies-items-title">Node.js</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/mongodb-only-icon.svg" width="30" height="30"
-                      alt="MongoDB Logo" />
-                  </div>
-                  <div class="technologies-items-title">MongoDB</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/adobe-xd-icon.svg" width="31" height="30"
-                      alt="Adobe XD UI/UX Design Tool Logo" />
-                  </div>
-                  <div class="technologies-items-title">Adobe XD</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/figma-icon.svg" width="20" height="30"
-                      alt="Figma UI/UX Design Tool Logo" />
-                  </div>
-                  <div class="technologies-items-title">Figma</div>
-                </div>
-                <div class="technologies-items d-flex">
-                  <div class="technologies-items-icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technologies-icon/adobe-illustrator-icon.svg" width="30" height="30"
-                      alt="Adobe Illustrator Design Tool Logo" />
-                  </div>
-                  <div class="technologies-items-title">Illustrator</div>
-                </div>
+                <?php endwhile; ?>
               </div>
-            </div>
+            <?php endif; ?>
           </div>
         </div>
       </div>
@@ -627,7 +520,7 @@ get_header(); ?>
                 <span class="highlight-text"> CoderScotch </span>
               </h2>
               <p class="section-description">
-                Lorem ipsum dolor sit amet consectetur. Elementum imperdiet amet malesuada nunc .
+                Trusted by growing businesses and enterprises, we combine deep technical expertise with a product-first approach to build reliable, secure, and scalable digital solutions that deliver measurable results.
               </p>
             </div>
             <a href="#" class="button button-secondary">
@@ -674,7 +567,7 @@ get_header(); ?>
                   <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/team-icon.svg" alt="Team Members" width="50" height="50">
                 </div>
                 <div class="stat-content">
-                  <h3 class="stat-number achievement-number">30+</h3>
+                  <h3 class="stat-number achievement-number">20+</h3>
                   <p class="stat-label">Team Members</p>
                 </div>
               </div>

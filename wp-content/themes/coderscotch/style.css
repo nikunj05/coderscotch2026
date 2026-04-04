@@ -8924,4 +8924,195 @@ img {
   }
 }
 
+
+/* Hiring Models Section */
+.hiring-models-section {
+  background-color: #ffffff;
+  color: #111111;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  overflow: hidden;
+  border-top: 1px solid #E6E6E6;
+}
+.hiring-models-section .section-title {
+  color: #111111;
+  margin-bottom: 80px !important;
+}
+.hiring-process-flow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto 60px;
+  padding: 0 50px;
+}
+.hiring-process-flow .process-line {
+  position: absolute;
+  top: 45px;
+  left: 50px;
+  right: 50px;
+  height: 1px;
+  border-top: 1px dashed #E6E6E6;
+  z-index: 1;
+}
+.hiring-process-flow .process-line::before,
+.hiring-process-flow .process-line::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  width: 10px;
+  height: 10px;
+  background: #00bec5;
+  border-radius: 50%;
+  opacity: 0.3;
+}
+.hiring-process-flow .process-line::before { left: -10px; }
+.hiring-process-flow .process-line::after { right: -10px; }
+
+.hiring-process-flow .process-step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.hiring-process-flow .process-step .step-marker {
+  width: 90px;
+  height: 90px;
+  background: #ffffff;
+  border: 1px solid #E6E6E6;
+  transform: rotate(45deg);
+  margin: 0 auto 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+.hiring-process-flow .process-step:hover .step-marker {
+  border-color: #00bec5;
+  background: rgba(0, 190, 197, 0.05);
+  transform: rotate(45deg) scale(1.1);
+  box-shadow: 0 20px 40px rgba(0, 190, 197, 0.15);
+}
+.hiring-process-flow .process-step .step-number {
+  transform: rotate(-45deg);
+  font-size: 32px;
+  font-weight: 700;
+  color: #00bec5;
+  font-family: "Sora", sans-serif;
+}
+.hiring-process-flow .process-step .step-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  max-width: 180px;
+  margin: 0 auto;
+  line-height: 1.4;
+  font-family: "Karla", sans-serif;
+}
+.hiring-models-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.hiring-model-card {
+  background: #ffffff;
+  border-radius: 30px;
+  padding: 45px 35px;
+  border: 1px solid #E6E6E6;
+  transition: all 0.4s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
+}
+.hiring-model-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+  border-color: #00bec5;
+}
+.hiring-model-card .model-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+  transition: transform 0.3s ease;
+}
+.hiring-model-card:hover .model-icon {
+  transform: scale(1.1);
+}
+
+/* Specific Card Colors */
+.monthly-model .model-icon, .hourly-model .model-icon, .yearly-model .model-icon { background: #e5f9f9; }
+.monthly-model .model-title, .hourly-model .model-title, .yearly-model .model-title { color: #008f94; }
+
+
+.hiring-model-card .model-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #292929;
+  font-family: "Sora", sans-serif;
+}
+.hiring-model-card .model-desc {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #666666;
+  margin: 0;
+}
+
+/* CTA Section */
+.hiring-cta-wrapper {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+/* FAQ Section */
+.hire-page-faq .container {
+  max-width: 1200px;
+}
+
+/* Responsiveness */
+@media (max-width: 1199px) {
+  .hiring-process-flow { padding: 0 20px; }
+  .hiring-process-flow .process-line { left: 40px; right: 40px; }
+}
+@media (max-width: 991px) {
+  .hiring-process-flow .process-line { display: none; }
+  .hiring-process-flow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 50px;
+    margin-bottom: 80px;
+    padding-left: 10%;
+  }
+  .hiring-process-flow .process-step {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    gap: 30px;
+  }
+  .hiring-process-flow .process-step .step-marker {
+    margin: 0;
+    width: 70px;
+    height: 70px;
+  }
+  .hiring-process-flow .process-step .step-number { font-size: 24px; }
+  .hiring-process-flow .process-step .step-title { max-width: none; font-size: 20px; }
+  .hiring-models-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+@media (max-width: 767px) {
+  .hiring-models-grid { grid-template-columns: 1fr; }
+  .hiring-models-section { padding-top: 60px; padding-bottom: 60px; }
+  .hiring-models-section .section-title { margin-bottom: 50px !important; }
+}
+
 /*# sourceMappingURL=style.css.map */
+

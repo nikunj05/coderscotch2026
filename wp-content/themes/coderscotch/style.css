@@ -1,3 +1,5 @@
+/* Merged from first + second uploaded CSS files on 2026-04-04 */
+
 /* ===== Karla Font Family  ===== */
 @font-face {
   font-family: "Karla";
@@ -279,6 +281,114 @@
   display: none;
 }
 
+.auto-scrolling-text-section {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  width: 100%;
+}
+.auto-scrolling-text-section .glass-bg-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  display: none !important;
+}
+.auto-scrolling-text-section .glass-bg-shapes .shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(0px);
+  opacity: 1;
+}
+.auto-scrolling-text-section .glass-bg-shapes .shape-1 {
+  width: 350px;
+  height: 350px;
+  background: linear-gradient(97.97deg, #86e2e5 0%, #c8efe5 127.17%);
+  top: -150px;
+  left: -100px;
+}
+.auto-scrolling-text-section .glass-bg-shapes .shape-2 {
+  width: 450px;
+  height: 220px;
+  background: linear-gradient(135deg, rgba(0, 190, 197, 0.3607843137) 0%, #dff0fc 100%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.auto-scrolling-text-section .glass-bg-shapes .shape-3 {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(120deg, #8fe8ca 0%, #dff7ee 100%);
+  bottom: -100px;
+  right: -100px;
+}
+.auto-scrolling-text-section .glass-content-wrapper {
+  width: 100%;
+  height: 100%;
+  background: rgba(198, 198, 198, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  position: relative;
+  z-index: 2;
+}
+.auto-scrolling-text-section .glass-content-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  display: none;
+}
+.auto-scrolling-text-section .glass-content-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), transparent, rgba(255, 255, 255, 0.3));
+  display: none;
+}
+.auto-scrolling-text-section .scrolling-text-wrapper {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding: 60px 0;
+}
+.auto-scrolling-text-section .scrolling-text-content {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: autoScrollTextAnimation 45s linear infinite;
+  will-change: transform;
+}
+.auto-scrolling-text-section .scrolling-text-item {
+  font-size: 80px;
+  font-weight: 700;
+  font-family: "Sora", sans-serif;
+  padding: 0px;
+  display: inline-block;
+  white-space: nowrap;
+  background: linear-gradient(90deg, #43CEA2 29.08%, #185A9D 70.92%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: 4px transparent;
+  -webkit-text-fill-color: #ffffff;
+  color: #ffffff;
+  letter-spacing: 2px;
+}
+
+@keyframes autoScrollTextAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
 .our-projects-service {
   margin-top: 0px;
   background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
@@ -680,11 +790,24 @@
 .mob-service-slider-two .service_two_thumb_slider .swiper-slide:hover:not(.swiper-slide-thumb-active) .mobile-service-card {
   border-color: #00bec5;
 }
+.mob-service-slider-two .feature-slide-item {
+  border: 1px solid #E5E5E5;
+  padding: 10px;
+  background: #f6f7f8;
+  border-radius: 30px;
+}
 .mob-service-slider-two .feature-slide-item .feature-slide-row {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
   gap: 30px;
+  background: #ffffff;
+  border-radius: 26px;
+  border: 0.5px solid #eeeeee;
+  padding: 14px;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02), 0 10px 20px rgba(0, 0, 0, 0.02), 0 25px 50px -12px rgba(0, 0, 0, 0.04);
+  z-index: 1;
 }
 .mob-service-slider-two .feature-slide-item .feature-slider-left {
   min-width: 470px;
@@ -717,6 +840,20 @@
   flex: 1;
   width: 100%;
   background: #ffffff;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+.mob-projects-service .mob-projects-service-list:hover .mob-projects-service-item {
+  background: rgba(0, 190, 197, 0.0509803922);
+}
+.mob-projects-service .mob-projects-service-list:hover .mob-projects-service-item .mob-projects-service-item-title {
+  color: #00bec5;
+}
+.mob-projects-service .mob-projects-service-list:hover .mob-projects-service-item .section-tag-button svg {
+  transform: rotate(45deg);
+}
+.mob-projects-service .mob-projects-service-list:hover .mob-projects-service-item .section-tag-button svg circle {
+  fill: #02969b !important;
 }
 .mob-projects-service .mob-projects-service-list .mob-projects-service-item {
   overflow: hidden;
@@ -724,12 +861,6 @@
   padding: 32px;
   border-radius: 20px;
   transition: all 0.3s ease-in-out;
-}
-.mob-projects-service .mob-projects-service-list .mob-projects-service-item:hover {
-  background: rgba(0, 190, 197, 0.0509803922);
-}
-.mob-projects-service .mob-projects-service-list .mob-projects-service-item:hover .mob-projects-service-item-title {
-  color: #00bec5;
 }
 .mob-projects-service .mob-projects-service-list .mob-projects-service-item .mob-projects-service-item-inner {
   display: flex;
@@ -864,6 +995,9 @@
   animation-delay: 1.5s;
 }
 
+.offered-another-services-section {
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+}
 .offered-another-services-section .other-services-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -3125,40 +3259,127 @@
     font-size: 26px;
   }
 }
+.healthcare-compliance-section {
+  position: relative;
+  overflow: hidden;
+}
+.healthcare-compliance-section::before {
+  content: "";
+  position: absolute;
+  top: -150px;
+  left: -150px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 190, 197, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+.healthcare-compliance-section::after {
+  content: "";
+  position: absolute;
+  bottom: -150px;
+  right: -150px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(67, 206, 162, 0.06) 0%, rgba(255, 255, 255, 0) 70%);
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+.healthcare-compliance-section .container {
+  position: relative;
+  z-index: 1;
+}
+.healthcare-compliance-section .light-compliance-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+@media (max-width: 991px) {
+  .healthcare-compliance-section .light-compliance-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.healthcare-compliance-section .light-compliance-grid .light-compliance-card {
+  background: #ffffff;
+  border: 1px solid #E5E5E5;
+  border-radius: 24px;
+  padding: 45px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.healthcare-compliance-section .light-compliance-grid .light-compliance-card:hover {
+  border-color: #00bec5;
+}
+.healthcare-compliance-section .light-compliance-grid .light-compliance-card:hover .card-icon {
+  background: rgba(0, 190, 197, 0.08);
+  border-color: rgba(0, 190, 197, 0.4);
+}
+.healthcare-compliance-section .light-compliance-grid .light-compliance-card:hover .card-icon svg {
+  stroke: #00bec5;
+  filter: drop-shadow(0 4px 6px rgba(0, 190, 197, 0.3));
+}
+.healthcare-compliance-section .light-compliance-grid .light-compliance-card .card-icon {
+  width: 75px;
+  height: 75px;
+  background: rgba(0, 190, 197, 0.09);
+  border: 1px solid rgba(0, 190, 197, 0.1);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  flex-shrink: 0;
+}
+.healthcare-compliance-section .light-compliance-grid .light-compliance-card .card-icon svg {
+  width: 40px;
+  height: 40px;
+  stroke: #111;
+  transition: all 0.4s ease;
+}
+.healthcare-compliance-section .light-compliance-grid .light-compliance-card .card-content .light-compliance-card-title {
+  font-size: 26px;
+  font-family: "Sora", sans-serif;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 12px;
+}
+.healthcare-compliance-section .light-compliance-grid .light-compliance-card .card-content .light-compliance-card-description {
+  font-size: 17px;
+  color: #292929;
+  margin: 0;
+}
+
 .healthcare-case-studies-cards {
   background: linear-gradient(180deg, #FFFFFF 0%, #F6F6F6 100%);
 }
 .healthcare-case-studies-cards .success-case-card {
   background: #ffffff;
-  border-radius: 32px;
+  border-radius: 24px;
   height: 100%;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid #EDEDED;
+  border: 1px solid #d5d7da;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
 }
 .healthcare-case-studies-cards .success-case-card:hover {
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06);
-  border-color: rgba(0, 190, 197, 0.2);
-}
-.healthcare-case-studies-cards .success-case-card:hover .card-visual img {
-  transform: scale(1.04);
-}
-.healthcare-case-studies-cards .success-case-card:hover .btn-proper {
-  background: #00bec5;
-  color: #fff;
   border-color: #00bec5;
 }
-.healthcare-case-studies-cards .success-case-card:hover .btn-proper span {
-  transform: translateX(5px);
+.healthcare-case-studies-cards .success-case-card:hover .card-visual img {
+  transform: scale(1.1);
 }
 .healthcare-case-studies-cards .success-case-card .card-visual {
   position: relative;
   overflow: hidden;
   aspect-ratio: 16/10;
-  margin: 12px;
+  margin: 10px;
   border-radius: 20px;
 }
 .healthcare-case-studies-cards .success-case-card .card-visual img {
@@ -3175,38 +3396,38 @@
   backdrop-filter: blur(10px);
   padding: 6px 16px;
   border-radius: 50px;
-  font-size: 11px;
-  font-weight: 800;
-  color: #111;
+  font-size: 13px;
+  font-weight: 700;
+  color: #111111;
   text-transform: uppercase;
   z-index: 2;
+  box-shadow: 0 0px 14px rgba(0, 0, 0, 0.25);
 }
 .healthcare-case-studies-cards .success-case-card .card-body-content {
-  padding: 15px 35px 35px;
+  padding: 5px 15px 20px;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 .healthcare-case-studies-cards .success-case-card .card-body-content .case-title {
   font-size: 26px;
-  font-weight: 800;
-  color: #111;
+  font-weight: 700;
+  color: #111111;
   margin-bottom: 12px;
-  line-height: 1.3;
   font-family: "Sora", sans-serif;
 }
 .healthcare-case-studies-cards .success-case-card .card-body-content .case-summary {
-  font-size: 15px;
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 30px;
+  font-size: 16px;
+  color: rgba(41, 41, 41, 0.6);
+  margin-bottom: auto;
 }
 .healthcare-case-studies-cards .success-case-card .card-body-content .case-metrics-row {
   display: flex;
-  gap: 30px;
-  margin-bottom: 35px;
-  padding-top: 25px;
-  border-top: 1px solid #f0f0f0;
+  gap: 32px;
+  margin-bottom: 0px;
+  padding-top: 24px;
+  margin-top: 24px;
+  border-top: 1px solid #E5E5E5;
 }
 .healthcare-case-studies-cards .success-case-card .card-body-content .case-metrics-row .metric-item {
   display: flex;
@@ -3214,10 +3435,10 @@
   gap: 12px;
 }
 .healthcare-case-studies-cards .success-case-card .card-body-content .case-metrics-row .metric-item .metric-icon {
-  width: 40px;
-  height: 40px;
-  background: rgba(0, 190, 197, 0.05);
-  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 190, 197, 0.09);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3231,18 +3452,17 @@
 .healthcare-case-studies-cards .success-case-card .card-body-content .case-metrics-row .metric-item .metric-info .m-val {
   display: block;
   font-size: 18px;
-  font-weight: 800;
-  color: #111;
-  line-height: 1;
+  font-weight: 700;
+  color: #111111;
+  font-family: "Sora", sans-serif;
   margin-bottom: 2px;
 }
 .healthcare-case-studies-cards .success-case-card .card-body-content .case-metrics-row .metric-item .metric-info .m-lab {
   display: block;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
-  color: #999;
+  color: rgba(41, 41, 41, 0.6);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 .healthcare-case-studies-cards .success-case-stories-load-more {
   margin-top: 50px;
@@ -3265,6 +3485,140 @@
     gap: 8px;
   }
 }
+.healthcare-why-choose-us {
+  background: #ffffff;
+}
+.healthcare-why-choose-us .healthcare-why-choose-us-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 164px;
+  column-gap: 32px;
+  padding-top: 104px;
+}
+@media (max-width: 991px) {
+  .healthcare-why-choose-us .healthcare-why-choose-us-row {
+    grid-template-columns: 1fr;
+  }
+}
+.healthcare-why-choose-us .healthcare-why-card {
+  border-radius: 20px;
+  padding: 32px 24px;
+  text-align: center;
+  position: relative;
+  height: 100%;
+  transition: all 0.4s ease;
+  border: 1px solid transparent;
+}
+.healthcare-why-choose-us .healthcare-why-card .icon-bubble {
+  position: absolute;
+  top: -104px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  z-index: 2;
+}
+.healthcare-why-choose-us .healthcare-why-card .icon-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 56px;
+  height: 56px;
+  border-radius: 3px;
+  z-index: -1;
+  transition: all 0.4s ease;
+}
+.healthcare-why-choose-us .healthcare-why-card .icon-bubble svg {
+  width: 40px;
+  height: 40px;
+}
+.healthcare-why-choose-us .healthcare-why-card .icon-bubble svg path {
+  transition: fill 0.4s ease;
+}
+.healthcare-why-choose-us .healthcare-why-card.experienced-developers {
+  background: #EBF3FF;
+}
+.healthcare-why-choose-us .healthcare-why-card.experienced-developers .icon-bubble,
+.healthcare-why-choose-us .healthcare-why-card.experienced-developers .icon-bubble::after {
+  background: #EBF3FF;
+}
+.healthcare-why-choose-us .healthcare-why-card.experienced-developers .icon-bubble svg path {
+  fill: #0066FF !important;
+}
+.healthcare-why-choose-us .healthcare-why-card.cost-effective-solutions {
+  background: #FFEFEB;
+}
+.healthcare-why-choose-us .healthcare-why-card.cost-effective-solutions .icon-bubble,
+.healthcare-why-choose-us .healthcare-why-card.cost-effective-solutions .icon-bubble::after {
+  background: #FFEFEB;
+}
+.healthcare-why-choose-us .healthcare-why-card.cost-effective-solutions .icon-bubble svg path {
+  fill: #FF5722 !important;
+}
+.healthcare-why-choose-us .healthcare-why-card.on-time-delivery {
+  background: #E5F8F1;
+}
+.healthcare-why-choose-us .healthcare-why-card.on-time-delivery .icon-bubble,
+.healthcare-why-choose-us .healthcare-why-card.on-time-delivery .icon-bubble::after {
+  background: #E5F8F1;
+}
+.healthcare-why-choose-us .healthcare-why-card.on-time-delivery .icon-bubble svg path {
+  fill: #00B87A !important;
+}
+.healthcare-why-choose-us .healthcare-why-card.confidentiality {
+  background: #F3E9FB;
+}
+.healthcare-why-choose-us .healthcare-why-card.confidentiality .icon-bubble,
+.healthcare-why-choose-us .healthcare-why-card.confidentiality .icon-bubble::after {
+  background: #F3E9FB;
+}
+.healthcare-why-choose-us .healthcare-why-card.confidentiality .icon-bubble svg path {
+  fill: #8A2BE2 !important;
+}
+.healthcare-why-choose-us .healthcare-why-card.customized-experiences {
+  background: #FDF6E5;
+}
+.healthcare-why-choose-us .healthcare-why-card.customized-experiences .icon-bubble,
+.healthcare-why-choose-us .healthcare-why-card.customized-experiences .icon-bubble::after {
+  background: #FDF6E5;
+}
+.healthcare-why-choose-us .healthcare-why-card.customized-experiences .icon-bubble svg path {
+  fill: #E6AC00 !important;
+}
+.healthcare-why-choose-us .healthcare-why-card.support-24-7 {
+  background: #E5F6F7;
+}
+.healthcare-why-choose-us .healthcare-why-card.support-24-7 .icon-bubble,
+.healthcare-why-choose-us .healthcare-why-card.support-24-7 .icon-bubble::after {
+  background: #E5F6F7;
+}
+.healthcare-why-choose-us .healthcare-why-card.support-24-7 .icon-bubble svg path {
+  fill: #00A8B5 !important;
+}
+.healthcare-why-choose-us .healthcare-why-card .healthcare-why-card-title {
+  font-size: 24px;
+  font-weight: 600;
+  font-family: "Sora", sans-serif;
+  color: #111111;
+  margin-bottom: 12px;
+}
+.healthcare-why-choose-us .healthcare-why-card .healthcare-why-card-description {
+  font-size: 17px;
+  color: #292929;
+  margin: 0;
+}
+
+.healthcare-contact-section {
+  background: linear-gradient(180deg, rgba(67, 206, 162, 0.05) 0%, rgba(246, 246, 246, 0.05) 100%);
+}
+
 body {
   margin: 0px;
   padding: 0px;
@@ -3983,7 +4337,7 @@ img {
 
 .common-banner-section {
   padding: 164px 0px 0px;
-  background: url("./assets/images/common-banner-bg.png") no-repeat;
+  background: url("./../assets/images/common-banner-bg.png") no-repeat;
   background-size: 100% 100%;
   overflow: hidden;
   height: auto;
@@ -5274,7 +5628,7 @@ img {
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  height: 230px;
+  height: 430px;
 }
 .case-studies-listing-section .case-studies-listing-content .case-studies-listing-grid .case-study-card .case-study-img-wrapper .case-study-card-img {
   border-radius: 12px;
@@ -6282,6 +6636,9 @@ img {
     padding: 32px 20px 20px 20px;
     border-radius: 15px;
   }
+  .auto-scrolling-text-section .scrolling-text-item {
+    font-size: 60px;
+  }
   .our-projects-service .our-projects-service-wrapper {
     flex-direction: column;
   }
@@ -6385,9 +6742,15 @@ img {
   .mob-service-slider-two .service_two_thumb_slider {
     margin-bottom: 40px;
   }
+  .mob-service-slider-two .feature-slide-item {
+    padding: 8px;
+    border-radius: 16px;
+  }
   .mob-service-slider-two .feature-slide-item .feature-slide-row {
     gap: 24px;
     flex-direction: column;
+    border-radius: 12px;
+    padding: 15px;
   }
   .mob-service-slider-two .feature-slide-item .feature-slider-left {
     width: 100%;
@@ -7588,6 +7951,17 @@ img {
   .coder-journey-section .our-achievement-section .achievement-container .achievement-item .achievement-text {
     font-size: 14px;
   }
+  .auto-scrolling-text-section {
+    background-size: 20px 20px, 20px 20px, 100% 100%, 100% 100%;
+  }
+  .auto-scrolling-text-section .scrolling-text-item {
+    font-size: 38px;
+    -webkit-text-stroke: 2px transparent;
+    letter-spacing: 1px;
+  }
+  .auto-scrolling-text-section .scrolling-text-wrapper {
+    padding: 35px 0;
+  }
   .our-projects-service .our-projects-service-list {
     border-radius: 10px;
     padding: 8px;
@@ -7799,6 +8173,13 @@ img {
   }
   .mob-service-slider-two .service_two_thumb_slider .swiper-slide .mobile-service-card .mobile-service-title {
     font-size: 16px;
+  }
+  .mob-service-slider-two .feature-slide-item {
+    border-radius: 10px;
+  }
+  .mob-service-slider-two .feature-slide-item .feature-slide-row {
+    border-radius: 8px;
+    padding: 10px;
   }
   .mob-service-slider-two .feature-slide-item .feature-slider-left {
     min-width: 100%;
@@ -8194,7 +8575,7 @@ img {
   }
   .case-studies-listing-section .case-studies-listing-content .case-studies-listing-grid .case-study-card .case-study-img-wrapper {
     border-radius: 10px;
-    height: 230px;
+    height: 430px;
   }
   .case-studies-listing-section .case-studies-listing-content .case-studies-listing-grid .case-study-card .case-study-img-wrapper .case-study-card-img {
     border-radius: 10px;
@@ -8924,6 +9305,7 @@ img {
   }
 }
 
+/*# sourceMappingURL=style.css.map */
 
 /* Hiring Models Section */
 .hiring-models-section {
@@ -9115,4 +9497,3 @@ img {
 }
 
 /*# sourceMappingURL=style.css.map */
-

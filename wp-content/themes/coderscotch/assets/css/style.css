@@ -8924,4 +8924,35 @@ img {
   }
 }
 
+
+/* AI Services Page Styles */
+.innovation-ai-tools-section {
+    background-color: #F4FAFB;
+}
+
+.innovation-ai-tools-section .innovationai-icon-box {
+    width: 80px;
+    height: 80px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 190, 197, 0.15);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.innovationai-card:hover .innovationai-icon-box {
+    border-color: #00BEC5;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 190, 197, 0.1);
+}
+
+.innovationai-card-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #0c2c35;
+}
+
 /*# sourceMappingURL=style.css.map */

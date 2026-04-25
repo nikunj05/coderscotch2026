@@ -8956,3 +8956,163 @@ img {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+/* Solutions Page Styles (Reference: WeDoWebApps) */
+.ratings-strip-section {
+    border-bottom: 1px solid #eee;
+    background: #fbfbfb;
+}
+.rating-item {
+    transition: transform 0.3s ease;
+}
+.rating-item:hover {
+    transform: translateY(-2px);
+}
+
+.feature-tabs-section .nav-pills .nav-link {
+    background: #fff;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+}
+.feature-tabs-section .nav-pills .nav-link.active {
+    background: linear-gradient(90deg, #00BEC5 0%, #43CEA2 100%);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 10px 20px rgba(0, 190, 197, 0.2);
+}
+.tab-image-container {
+    border: 8px solid #f0f0f0;
+    transition: transform 0.5s ease;
+}
+.tab-image-container:hover {
+    transform: perspective(1000px) rotateY(-5deg);
+}
+.feature-item-mini {
+    padding: 15px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+.feature-item-mini:hover {
+    border-color: #43CEA2;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.process-timeline-section .timeline-wrapper {
+    position: relative;
+}
+.process-timeline-section .timeline-content {
+    background: #fff;
+    border-radius: 0 12px 12px 0;
+    transition: all 0.3s ease;
+}
+.process-timeline-section .timeline-item:hover .timeline-content {
+    background: #f8fdfd;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.02);
+}
+.max-width-300 { max-width: 300px; }
+
+.standard-card {
+    transition: all 0.3s ease;
+    background: #1a1a1a;
+    z-index: 1;
+}
+.standard-card:hover {
+    background: #222;
+    border-color: #43CEA2 !important;
+    transform: translateY(-5px);
+}
+.standard-num {
+    font-size: 8rem;
+    font-weight: 800;
+    line-height: 1;
+    z-index: 0;
+}
+
+.categorized-faq-section .accordion-button:not(.collapsed) {
+    background-color: transparent;
+    color: #00BEC5;
+    box-shadow: none;
+}
+.categorized-faq-section .accordion-button:after {
+    background-size: 1rem;
+}
+.categorized-faq-section .nav-pills .nav-link {
+    background: transparent;
+    color: #666;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    padding: 10px 20px;
+    font-weight: 600;
+}
+.categorized-faq-section .nav-pills .nav-link.active {
+    color: #00BEC5;
+    border-bottom-color: #00BEC5;
+}
+
+
+/* Product Engineering Category Page Styles - Overrides */
+.industry-grid-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 190, 197, 0.08);
+  border: 1px solid rgba(0, 190, 197, 0.2);
+  border-radius: 12px;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+.theme-gradient-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(180deg, #00BEC5 0%, #009196 100%);
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+.shadow-hover-inset:hover {
+  /* Keeping the grid lines visible by removing lift and shadow */
+}
+.shadow-hover-inset:hover .industry-grid-icon {
+  position: relative;
+  background: transparent !important;
+  border: none !important;
+  z-index: 1;
+}
+.shadow-hover-inset:hover .industry-grid-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(180deg, #00BEC5 0%, #009196 100%) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+}
+.industry-grid-wrapper {
+  border-color: #eee !important;
+}
+.industry-grid-item {
+  height: 90px;
+}
+
+
+.industry-grid-item {
+  height: auto !important;
+  min-height: 90px;
+}
+

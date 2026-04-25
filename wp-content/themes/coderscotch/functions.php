@@ -148,13 +148,13 @@ add_action('widgets_init', 'coderscotch_widgets_init');
  */
 function coderscotch_scripts()
 {
-	wp_enqueue_style('coderscotch-style', get_stylesheet_uri(), array(), _S_VERSION);
+	wp_enqueue_style('coderscotch-style', get_stylesheet_uri(), array(), time());
 	
 	wp_enqueue_style('bootstrap.min', get_template_directory_uri() . '/assets/css/bootstrap.min.css',  false, '1.1', 'all');
 	wp_enqueue_style('slickcss', get_template_directory_uri() . '/assets/css/slick.css',  false, '1.2', 'all');
 	wp_enqueue_style('slickthemecss', get_template_directory_uri() . '/assets/css/slick-theme.css',  false, '1.2', 'all');
 	wp_enqueue_style('swiper-bundle', get_template_directory_uri() . '/assets/css/swiper-bundle.min.css',  false, '1.2', 'all');
-	wp_enqueue_style('mainstyle', get_template_directory_uri() . '/assets/css/style.css',  false, '1.1', 'all');
+	wp_enqueue_style('mainstyle', get_template_directory_uri() . '/assets/css/style.css',  false, time(), 'all');
 	wp_enqueue_style('custom', get_template_directory_uri() . '/assets/css/custom.css',  false, '1.1', 'all');
 	
 	wp_enqueue_script('jquery.min', get_template_directory_uri() . '/js/jquery.min.js',  array('jquery'), _S_VERSION, true);
@@ -1324,6 +1324,7 @@ function coderscotch_register_acf_fields() {
                     'value' => 'template-parts/product-engineering-template.php',
                 ),
             ),
+
         ),
         'menu_order' => 0,
         'position' => 'normal',
@@ -1621,5 +1622,7 @@ function coderscotch_register_acf_fields() {
         'active' => true,
         'description' => 'Dynamic fields for the Hire Page Template',
     ));
+
+
 }
 

@@ -14,7 +14,7 @@
 <!-- footer section Start -->
 <footer class="page-footer footer-contact-form position-relative section-space-t">
     <div class="container">
-      <?php if ( ! is_page_template( 'template-parts/contact.php' ) && ! is_page_template( 'template-parts/hire_page.php' ) ) : ?>
+      <?php if ( ! is_page_template( 'template-parts/contact.php' ) && ! is_page_template( 'template-parts/hire_page.php' ) && ! is_page_template( 'template-parts/ai-services.php' ) ) : ?>
       <div class="connect-section section-space80-b">
         <div class="heading_section text-center">
           <h2 class="section-title" data-aos="fade" data-aos-duration="800">
@@ -31,98 +31,7 @@
           </div>
         </div>
       </div>
-      <!-- FAQ Section Start -->
-      <section class="faq-accordion-section home-page-faq section-space80-b">
-        <div class="container">
-          <div class="heading_section text-center">
-            <h2 class="section-title">
-              Frequently Asked <span class="highlight-text">Questions</span>
-            </h2>
-            <p class="section-description">
-              Lorem ipsum dolor sit amet consectetur. Elementum imperdiet amet malesuada nunc integer ac sed amet. <br>
-              Enim nibh semper est tincidunt viverra pellentesque integer pulvinar.
-            </p>
-          </div>
-
-          <div class="faq-accordion" id="ecommerceFAQ">
-            <!-- FAQ Item 1 -->
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                  01. What do I Hire React developers from CoderScotch?
-                  <span class="accordion-icon"></span>
-                </button>
-              </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                data-bs-parent="#ecommerceFAQ">
-                <div class="accordion-body">
-                  Yes, we provide support and maintenance after the successful completion of your React project. Our
-                  after-sale services include bug fixes, upgrade of the framework, as well as monitoring and technical
-                  glitch resolutions to the enhancements to your React application.
-                </div>
-              </div>
-            </div>
-
-            <!-- FAQ Item 2 -->
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                  aria-expanded="true" aria-controls="collapseTwo">
-                  02. Do you offer maintenance & support services after project completion?
-                  <span class="accordion-icon"></span>
-                </button>
-              </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                data-bs-parent="#ecommerceFAQ">
-                <div class="accordion-body">
-                  Yes, we provide support and maintenance after the successful completion of your React project. Our
-                  after-sale services include bug fixes, upgrade of the framework, as well as monitoring and technical
-                  glitch resolutions to the enhancements to your React application.
-                </div>
-              </div>
-            </div>
-
-            <!-- FAQ Item 3 -->
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  03. What can I do to test my React Developers expertise?
-                  <span class="accordion-icon"></span>
-                </button>
-              </h2>
-              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                data-bs-parent="#ecommerceFAQ">
-                <div class="accordion-body">
-                  Yes, we provide support and maintenance after the successful completion of your React project. Our
-                  after-sale services include bug fixes, upgrade of the framework, as well as monitoring and technical
-                  glitch resolutions to the enhancements to your React application.
-                </div>
-              </div>
-            </div>
-
-            <!-- FAQ Item 4 -->
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingFour">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                  04. Can I migrate the existing web application into React?
-                  <span class="accordion-icon"></span>
-                </button>
-              </h2>
-              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                data-bs-parent="#ecommerceFAQ">
-                <div class="accordion-body">
-                  Yes, we provide support and maintenance after the successful completion of your React project. Our
-                  after-sale services include bug fixes, upgrade of the framework, as well as monitoring and technical
-                  glitch resolutions to the enhancements to your React application.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      
       <?php endif; ?>
       <!-- FAQ Section End -->
       <div class="office-address-wrapper">

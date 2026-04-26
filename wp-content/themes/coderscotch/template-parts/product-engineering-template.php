@@ -579,7 +579,7 @@ get_header(); ?>
   </section>
   <!-- Why Brands Trust section end -->
 
-  <!-- Digital Creations slider start -->
+ <!-- Digital Creations slider start -->
   <section class="digital-creations-section section-space-b">
     <div class="container">
       <div class="d-flex justify-content-between digital-creations-section-header">
@@ -628,25 +628,57 @@ get_header(); ?>
 
       <div class="swiper digital-creations-slider">
         <div class="swiper-wrapper">
-          <!-- Slide 1 -->
+          <?php
+          $args = array(
+              'post_type' => 'our_work',
+              'posts_per_page' => -1,
+              'offset' => 0,
+              'orderby' => 'ID',
+              'order' => 'DESC',
+              'post_status' => 'publish',
+              'suppress_filters' => true
+          );
+
+          // Filter by category if on a specific page
+          global $post;
+          if (isset($post->post_name) && $post->post_name === 'mobile-app-development-company') {
+              $args['tax_query'] = array(
+                  array(
+                      'taxonomy' => 'our_work_cat',
+                      'field'    => 'name',
+                      'terms'    => 'Mobile Application Development',
+                  ),
+              );
+          }
+          
+          $the_query = new WP_Query($args);
+
+          if ($the_query->have_posts()) :
+              while ($the_query->have_posts()) : $the_query->the_post();
+                  $post_id = get_the_ID();
+                  $thumbnail_url = get_the_post_thumbnail_url($post_id, 'full');
+                  $button_url = get_field('button_url', $post_id) ?: get_permalink();
+                  $tags = get_the_tags();
+          ?>
           <div class="swiper-slide">
             <div class="digital-creation-card">
               <div class="creation-image">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slider-image/portfolio-slider-img1.png" alt="Skinclusive Mobile App"
+                <img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php the_title_attribute(); ?>"
                   width="500" height="300">
               </div>
               <div class="creation-content">
-                <h3 class="creation-title">Skinclusive Mobile App</h3>
-                <p class="creation-desc">
-                  Lorem ipsum dolor sit amet consectetur. Scelerisque tempor turpis massa fringilla eros. Amet platea
-                  massa at id id viverra suspendisse est.
-                </p>
-                <div class="creation-tags">
-                  <span class="creation-tag">UI/UX Design</span>
-                  <span class="creation-tag">Mobile App Development</span>
-                  <span class="creation-tag">Online Appointment Booking</span>
+                <h3 class="creation-title"><?php the_title(); ?></h3>
+                <div class="creation-desc">
+                  <?php the_excerpt(); ?>
                 </div>
-                <a href="#" class="button button-secondary">
+                <?php if ($tags) : ?>
+                <div class="creation-tags">
+                  <?php foreach ($tags as $tag) : ?>
+                  <span class="creation-tag"><?php echo esc_html($tag->name); ?></span>
+                  <?php endforeach; ?>
+                </div>
+                <?php endif; ?>
+                <a href="<?php echo esc_url($button_url); ?>" class="button button-secondary">
                   <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="46" height="46" rx="10" fill="white"></rect>
                     <path
@@ -658,35 +690,11 @@ get_header(); ?>
               </div>
             </div>
           </div>
-          <!-- Slide 2 -->
-          <div class="swiper-slide">
-            <div class="digital-creation-card">
-              <div class="creation-image">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slider-image/portfolio-slider-img2.png" alt="Nike Air Force" width="500"
-                  height="300">
-              </div>
-              <div class="creation-content">
-                <h3 class="creation-title">Nike Air Force</h3>
-                <p class="creation-desc">
-                  Lorem ipsum dolor sit amet consectetur. Scelerisque tempor turpis massa fringilla eros. Amet platea
-                  massa at id id viverra suspendisse est.
-                </p>
-                <div class="creation-tags">
-                  <span class="creation-tag">E-Commerce</span>
-                  <span class="creation-tag">Mobile Framework</span>
-                </div>
-                <a href="#" class="button button-secondary">
-                  <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="46" height="46" rx="10" fill="white"></rect>
-                    <path
-                      d="M28.625 18V26.125C28.625 26.2908 28.5591 26.4497 28.4419 26.5669C28.3247 26.6842 28.1657 26.75 28 26.75C27.8342 26.75 27.6753 26.6842 27.558 26.5669C27.4408 26.4497 27.375 26.2908 27.375 26.125V19.5086L18.4422 28.4422C18.3249 28.5595 18.1658 28.6253 18 28.6253C17.8341 28.6253 17.6751 28.5595 17.5578 28.4422C17.4405 28.3249 17.3746 28.1659 17.3746 28C17.3746 27.8341 17.4405 27.6751 17.5578 27.5578L26.4914 18.625H19.875C19.7092 18.625 19.5502 18.5592 19.433 18.4419C19.3158 18.3247 19.25 18.1658 19.25 18C19.25 17.8342 19.3158 17.6753 19.433 17.5581C19.5502 17.4408 19.7092 17.375 19.875 17.375H28C28.1657 17.375 28.3247 17.4408 28.4419 17.5581C28.5591 17.6753 28.625 17.8342 28.625 18Z"
-                      fill="#00BEC5"></path>
-                  </svg>
-                  View Case Study
-                </a>
-              </div>
-            </div>
-          </div>
+          <?php
+              endwhile;
+              wp_reset_postdata();
+          endif;
+          ?>
         </div>
       </div>
     </div>

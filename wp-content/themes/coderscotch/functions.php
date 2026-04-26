@@ -1854,6 +1854,34 @@ function coderscotch_register_acf_fields() {
                     'name' => 'cat_cta_btn_link',
                     'type' => 'url',
                 ),
+                // FAQs Tab
+                array(
+                    'key' => 'field_cat_faq_tab',
+                    'label' => 'FAQs',
+                    'type' => 'tab',
+                ),
+                array(
+                    'key' => 'field_cat_faq_list',
+                    'label' => 'FAQ List',
+                    'name' => 'questions_list',
+                    'type' => 'repeater',
+                    'layout' => 'block',
+                    'button_label' => 'Add FAQ',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_cat_faq_question',
+                            'label' => 'Question',
+                            'name' => 'questions',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_cat_faq_answer',
+                            'label' => 'Answer',
+                            'name' => 'answer',
+                            'type' => 'textarea',
+                        ),
+                    ),
+                ),
             ),
             'location' => array(
                 array(

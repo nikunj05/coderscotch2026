@@ -38,7 +38,7 @@ $cta_btn_link = get_field('cat_cta_btn_link', $cat_id) ?: get_permalink( get_pag
         <div class="connect-section">
           <div class="heading_section text-left">
             <h1 class="section-title">
-              <?php single_cat_title(); ?>
+              <?php echo get_field('title2'); ?>
             </h1>
             <div class="section-description">
               <?php echo category_description(); ?>
@@ -368,7 +368,107 @@ $cta_btn_link = get_field('cat_cta_btn_link', $cat_id) ?: get_permalink( get_pag
     </div>
   </section>
 
-  <!-- Why Choose Coder Scotch Section Start (Bento Design) -->
+  
+   <!-- client review section start -->
+  <section class="home-client-review-section section-space-b section-space80-t">
+    <div class="container">
+      <div class="heading_section text-center">
+        <h2 class="section-title" data-aos="fade" data-aos-duration="800">
+          Take A Look At Some Of <br />
+          <span class="highlight-text"> Our Amazing Past Clients Review</span>
+        </h2>
+      </div>
+
+      <div class="client-review-grid">
+        <!-- Column 1 -->
+        <div class="review-col">
+          <div class="review-scroll-track">
+            <?php
+                if (have_rows('testimonials')) :
+                    while (have_rows('testimonials')) : the_row(); ?>
+                        
+            <!-- Set 1 -->
+            <div class="client-review-card">
+              <div class="card-body">
+                <p><?= get_sub_field('client_review'); ?></p>
+              </div>
+              <div class="card-footer">
+                <div class="user-info">
+                  <div class="user-name"><?= get_sub_field('testimonials_name'); ?> <img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18"
+                      height="18" alt="verified" class="verified-icon"></div>
+                  <div class="user-role"><?= get_sub_field('job_title'); ?></div>
+                </div>
+                <div class="user-image">
+                  <img src="<?= get_sub_field('testimonials_image'); ?>" width="40" height="40" alt="Kathryn Murphy">
+                </div>
+              </div>
+            </div>
+            <?php endwhile;
+                endif;
+            ?>
+          </div>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="review-col">
+          <div class="review-scroll-track">
+            <?php
+                if (have_rows('testimonials')) :
+                    while (have_rows('testimonials')) : the_row(); ?>
+                        
+            <!-- Set 1 -->
+            <div class="client-review-card">
+              <div class="card-body">
+                <p><?= get_sub_field('client_review'); ?></p>
+              </div>
+              <div class="card-footer">
+                <div class="user-info">
+                  <div class="user-name"><?= get_sub_field('testimonials_name'); ?> <img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18"
+                      height="18" alt="verified" class="verified-icon"></div>
+                  <div class="user-role"><?= get_sub_field('job_title'); ?></div>
+                </div>
+                <div class="user-image">
+                  <img src="<?= get_sub_field('testimonials_image'); ?>" width="40" height="40" alt="Kathryn Murphy">
+                </div>
+              </div>
+            </div>
+            <?php endwhile;
+                endif;
+            ?>
+          </div>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="review-col">
+          <div class="review-scroll-track">
+            <?php
+                if (have_rows('testmonials_repeater', 'options')) :
+                    while (have_rows('testmonials_repeater', 'options')) : the_row(); ?>
+            <div class="client-review-card">
+              <div class="card-body">
+                <p><?= get_sub_field('client_review'); ?></p>
+              </div>
+              <div class="card-footer">
+                <div class="user-info">
+                  <div class="user-name"><?= get_sub_field('client_name'); ?> <img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18"
+                      height="18" alt="verified" class="verified-icon"></div>
+                  <div class="user-role"><?= get_sub_field('client_job_title'); ?></div>
+                </div>
+                <div class="user-image">
+                  <img src="<?= get_sub_field('client_photo'); ?>" width="40" height="40" alt="<?= get_sub_field('client_name'); ?>">
+                </div>
+              </div>
+            </div>
+            <?php endwhile;
+                endif;
+            ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- client review section end -->
+   <!-- Why Choose Coder Scotch Section Start (Bento Design) -->
   <section class="section section-space-tb bento-section position-relative overflow-hidden">
     <div class="container">
       <div class="heading_section text-center mb-5">
@@ -418,6 +518,145 @@ $cta_btn_link = get_field('cat_cta_btn_link', $cat_id) ?: get_permalink( get_pag
     </div>
   </section>
   <!-- Why Choose Coder Scotch Section End -->
+  <section class="faq-accordion-section section-space-tb">
+    <div class="container">
+        <div class="heading_section text-center">
+            <h2 class="section-title">
+                Frequently Asked <span class="highlight-text">Questions</span>
+            </h2>
+        </div>
+        <div class="faq-accordion" id="aiServicesFAQ">
+            <?php
+            if (have_rows('questions_list', $cat_id)) :
+                $index = 1;
+                while (have_rows('questions_list', $cat_id)) : the_row(); ?>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading<?= $index ?>">
+                        <button class="accordion-button <?= $index === 1 ? '' : 'collapsed' ?>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?= $index ?>" aria-expanded="<?= $index === 1 ? 'true' : 'false' ?>" aria-controls="collapse<?= $index ?>">
+                            <?= $index < 10 ? '0' . $index : $index ?>. <?= get_sub_field('questions'); ?>
+                            <span class="accordion-icon"></span>
+                        </button>
+                    </h2>
+                    <div id="collapse<?= $index ?>" class="accordion-collapse collapse <?= $index === 1 ? 'show' : '' ?>" aria-labelledby="heading<?= $index ?>" data-bs-parent="#aiServicesFAQ">
+                        <div class="accordion-body">
+                            <?= get_sub_field('answer'); ?>
+                        </div>
+                    </div>
+                </div>
+            <?php $index++;
+                endwhile;
+            endif; ?>
+        </div>
+    </div>
+</section>
+<!-- Digital Creations slider start -->
+  <section class="digital-creations-section section-space-b">
+    <div class="container">
+      <div class="d-flex justify-content-between digital-creations-section-header">
+        <div class="heading_section text-start mb-0">
+          <h2 class="section-title" data-aos="fade" data-aos-duration="800">
+            Showcasing Our <span class="highlight-text"> Finest Digital Creations </span>
+          </h2>
+          <p class="section-description mb-0" data-aos="fade" data-aos-duration="800">
+            We help businesses reinvent and accelerate their digital identity by providing premium software <br>
+            development solutions in Europe and around different parts of the world.
+          </p>
+        </div>
+        <div class="digital-slider-nav d-flex">
+          <div class="digital-button-prev">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M2.48674 10.4421L8.23199 16.1873C8.3492 16.3045 8.50817 16.3704 8.67393 16.3704C8.83969 16.3704 8.99866 16.3045 9.11587 16.1873C9.23308 16.0701 9.29893 15.9111 9.29893 15.7454C9.29893 15.5796 9.23308 15.4206 9.11587 15.3034L4.43736 10.6249L17.0708 10.6255C17.2367 10.6255 17.3957 10.5596 17.513 10.4423C17.6303 10.325 17.6962 10.166 17.6962 10.0001C17.6962 9.83427 17.6303 9.67521 17.513 9.55793C17.3957 9.44066 17.2367 9.37477 17.0708 9.37477L4.43737 9.37532L9.11587 4.69682C9.23308 4.57961 9.29893 4.42064 9.29893 4.25488C9.29893 4.08912 9.23308 3.93014 9.11587 3.81293C8.99866 3.69572 8.83969 3.62988 8.67393 3.62988C8.50817 3.62988 8.3492 3.69572 8.23199 3.81293L2.48674 9.55818C2.36953 9.67539 2.30369 9.83436 2.30369 10.0001C2.30369 10.1659 2.36953 10.3249 2.48674 10.4421Z"
+                fill="url(#paint0_linear_430_1855)" />
+              <defs>
+                <linearGradient id="paint0_linear_430_1855" x1="6.0224" y1="6.02252" x2="13.9776" y2="13.9777"
+                  gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#43CEA2" />
+                  <stop offset="1" stop-color="#185A9D" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+          </div>
+          <div class="digital-button-next">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M17.5133 10.4421L11.768 16.1873C11.6508 16.3045 11.4918 16.3704 11.3261 16.3704C11.1603 16.3704 11.0013 16.3045 10.8841 16.1873C10.7669 16.0701 10.7011 15.9111 10.7011 15.7454C10.7011 15.5796 10.7669 15.4206 10.8841 15.3034L15.5626 10.6249L2.92918 10.6255C2.76333 10.6255 2.60427 10.5596 2.48699 10.4423C2.36971 10.325 2.30383 10.166 2.30383 10.0001C2.30383 9.83427 2.36972 9.67521 2.48699 9.55793C2.60427 9.44066 2.76333 9.37477 2.92918 9.37477L15.5626 9.37532L10.8841 4.69682C10.7669 4.57961 10.7011 4.42064 10.7011 4.25488C10.7011 4.08912 10.7669 3.93014 10.8841 3.81293C11.0013 3.69572 11.1603 3.62988 11.3261 3.62988C11.4918 3.62988 11.6508 3.69572 11.768 3.81293L17.5133 9.55818C17.6305 9.67539 17.6963 9.83436 17.6963 10.0001C17.6963 10.1659 17.6305 10.3249 17.5133 10.4421Z"
+                fill="url(#paint0_linear_430_1853)" />
+              <defs>
+                <linearGradient id="paint0_linear_430_1853" x1="13.9776" y1="6.02252" x2="6.0224" y2="13.9777"
+                  gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#43CEA2" />
+                  <stop offset="1" stop-color="#185A9D" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper digital-creations-slider">
+        <div class="swiper-wrapper">
+          <?php
+          $args = array(
+              'post_type' => 'our_work',
+              'posts_per_page' => -1,
+              'offset' => 0,
+              'orderby' => 'ID',
+              'order' => 'DESC',
+              'post_status' => 'publish',
+              'suppress_filters' => true
+          );
+          $the_query = new WP_Query($args);
+
+          if ($the_query->have_posts()) :
+              while ($the_query->have_posts()) : $the_query->the_post();
+                  $post_id = get_the_ID();
+                  $thumbnail_url = get_the_post_thumbnail_url($post_id, 'full');
+                  $button_url = get_field('button_url', $post_id) ?: get_permalink();
+                  $tags = get_the_tags();
+          ?>
+          <div class="swiper-slide">
+            <div class="digital-creation-card">
+              <div class="creation-image">
+                <img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php the_title_attribute(); ?>"
+                  width="500" height="300">
+              </div>
+              <div class="creation-content">
+                <h3 class="creation-title"><?php the_title(); ?></h3>
+                <div class="creation-desc">
+                  <?php the_excerpt(); ?>
+                </div>
+                <?php if ($tags) : ?>
+                <div class="creation-tags">
+                  <?php foreach ($tags as $tag) : ?>
+                  <span class="creation-tag"><?php echo esc_html($tag->name); ?></span>
+                  <?php endforeach; ?>
+                </div>
+                <?php endif; ?>
+                <a href="<?php echo esc_url($button_url); ?>" class="button button-secondary">
+                  <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="46" height="46" rx="10" fill="white"></rect>
+                    <path
+                      d="M28.625 18V26.125C28.625 26.2908 28.5591 26.4497 28.4419 26.5669C28.3247 26.6842 28.1657 26.75 28 26.75C27.8342 26.75 27.6753 26.6842 27.558 26.5669C27.4408 26.4497 27.375 26.2908 27.375 26.125V19.5086L18.4422 28.4422C18.3249 28.5595 18.1658 28.6253 18 28.6253C17.8341 28.6253 17.6751 28.5595 17.5578 28.4422C17.4405 28.3249 17.3746 28.1659 17.3746 28C17.3746 27.8341 17.4405 27.6751 17.5578 27.5578L26.4914 18.625H19.875C19.7092 18.625 19.5502 18.5592 19.433 18.4419C19.3158 18.3247 19.25 18.1658 19.25 18C19.25 17.8342 19.3158 17.6753 19.433 17.5581C19.5502 17.4408 19.7092 17.375 19.875 17.375H28C28.1657 17.375 28.3247 17.4408 28.4419 17.5581C28.5591 17.6753 28.625 17.8342 28.625 18Z"
+                      fill="#00BEC5"></path>
+                  </svg>
+                  View Case Study
+                </a>
+              </div>
+            </div>
+          </div>
+          <?php
+              endwhile;
+              wp_reset_postdata();
+          endif;
+          ?>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Digital Creations slider end -->
 
 
 

@@ -68,31 +68,31 @@ get_header();
             <!-- Card 1 -->
             <div class="tech-feature-card">
               <div class="card-icon-box">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon1.svg" width="40" height="40" alt="MVP">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon1.svg" width="40" height="40" alt="Concept">
               </div>
               <div class="card-content">
-                <h4 class="tech-card-title">MVP to Production-ready platforms</h4>
-                <p class="tech-card-description">We take your concept from a lean MVP to a robust, production-grade system designed for the long haul.</p>
+                <h4 class="tech-card-title">Concept-to-Market Speed</h4>
+                <p class="tech-card-description">We bridge the gap between complex ideas and functional prototypes, getting your product in front of users faster.</p>
               </div>
             </div>
             <!-- Card 2 -->
             <div class="tech-feature-card">
               <div class="card-icon-box">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon2.svg" width="40" height="40" alt="Architecture">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon2.svg" width="40" height="40" alt="Architect">
               </div>
               <div class="card-content">
-                <h4 class="tech-card-title">Scalable architecture & clean code</h4>
-                <p class="tech-card-description">We build systems that grow with you. Clean, maintainable code is our baseline, not an afterthought.</p>
+                <h4 class="tech-card-title">Cloud-Native Architecture</h4>
+                <p class="tech-card-description">High-availability systems designed to handle millions of requests while remaining cost-effective and secure.</p>
               </div>
             </div>
             <!-- Card 3 -->
             <div class="tech-feature-card">
               <div class="card-icon-box">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon3.svg" width="40" height="40" alt="AI">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon3.svg" width="40" height="40" alt="Intelligence">
               </div>
               <div class="card-content">
-                <h4 class="tech-card-title">AI-powered and data-driven solutions</h4>
-                <p class="tech-card-description">Integrating intelligent workflows and automation to keep your business ahead of the curve.</p>
+                <h4 class="tech-card-title">Intelligence-Driven Apps</h4>
+                <p class="tech-card-description">We embed machine learning and predictive analytics directly into your product's core workflows.</p>
               </div>
             </div>
             <!-- Card 4 -->
@@ -231,7 +231,7 @@ get_header();
                     <div class="row g-4 g-lg-5 mt-2">
                       <!-- Web -->
                       <div class="col-md-4">
-                        <h5 class="f18 cs_QuicksandBold color_green mb-4">Web Development</h5>
+                        <h5 class="f18 cs_SoraBold color_green mb-4">Web Development</h5>
                         <div class="tech-item mb-4">
                           <div class="d-flex align-items-center mb-1">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="16" height="16" class="me-2" alt="check" />
@@ -250,7 +250,7 @@ get_header();
 
                       <!-- Mobile -->
                       <div class="col-md-4">
-                        <h5 class="f18 cs_QuicksandBold color_green mb-4">Mobile Apps</h5>
+                        <h5 class="f18 cs_SoraBold color_green mb-4">Mobile Apps</h5>
                         <div class="tech-item mb-4">
                           <div class="d-flex align-items-center mb-1">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="16" height="16" class="me-2" alt="check" />
@@ -269,7 +269,7 @@ get_header();
 
                       <!-- Backend -->
                       <div class="col-md-4">
-                        <h5 class="f18 cs_QuicksandBold color_green mb-4">Backend & Cloud</h5>
+                        <h5 class="f18 cs_SoraBold color_green mb-4">Backend & Cloud</h5>
                         <div class="tech-item mb-4">
                           <div class="d-flex align-items-center mb-1">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="16" height="16" class="me-2" alt="check" />
@@ -368,6 +368,39 @@ get_header();
       </div>
     </div>
   </section>
+  
+  <!-- Final CTA Section Start (Relocated) -->
+  <section class="section pt-3 pb-5 bg-white">
+    <div class="container">
+      <div class="cta-split-wrapper">
+        <!-- Left Panel: Content + Gradient -->
+        <div class="cta-left-panel text-white">
+          <div class="position-relative z-index-1">
+            <h2 class="f40 cs_SoraBold mb-3 ">Have a product idea? <br>Let’s build it together.</h2>
+            <p class="f18 opacity-90 mb-0 max-width-600">Speak to our product experts today and get a free technical consultation and roadmap for your project.</p>
+          </div>
+        </div>
+
+        <!-- Right Panel: CTA Button + White -->
+        <div class="cta-right-panel">
+          <a href="<?php echo get_permalink( get_page_by_path('contact-us') ); ?>" class="button button-primary">
+            Speak to our expert
+            <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 23C0 10.2975 10.2975 0 23 0C35.7025 0 46 10.2975 46 23C46 35.7025 35.7025 46 23 46C10.2975 46 0 35.7025 0 23Z" fill="url(#paint0_linear_split_cta)" />
+              <path d="M28.625 18V26.125C28.625 26.2908 28.5591 26.4497 28.4419 26.5669C28.3247 26.6842 28.1657 26.75 28 26.75C27.8342 26.75 27.6753 26.6842 27.558 26.5669C27.4408 26.4497 27.375 26.2908 27.375 26.125V19.5086L18.4422 28.4422C18.3249 28.5595 18.1658 28.6253 18 28.6253C17.8341 28.6253 17.6751 28.5595 17.5578 28.4422C17.4405 28.3249 17.3746 28.1659 17.3746 28C17.3746 27.8341 17.4405 27.6751 17.5578 27.5578L26.4914 18.625H19.875C19.7092 18.625 19.5502 18.5592 19.433 18.4419C19.3158 18.3247 19.25 18.1658 19.25 18C19.25 17.8342 19.3158 17.6753 19.433 17.5581C19.5502 17.4408 19.7092 17.375 19.875 17.375H28C28.1657 17.375 28.3247 17.4408 28.4419 17.5581C28.5591 17.6753 28.625 17.8342 28.625 18Z" fill="white" />
+              <defs>
+                <linearGradient id="paint0_linear_split_cta" x1="7.80357" y1="5.75" x2="61.8887" y2="67.3571" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#00BEC5" />
+                  <stop offset="1" stop-color="#43CEA2" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Industries Section Start -->
   <section class="section section-space-tb bg-white">
     <div class="container">
@@ -401,11 +434,11 @@ get_header();
               $icon_path = get_template_directory_uri() . '/assets/images/icon/' . $industry['icon'];
           ?>
             <div class="col-lg-4 col-md-6 border-bottom border-end">
-              <div class="industry-grid-item p-4 d-flex align-items-center transition-all bg-white shadow-hover-inset">
+              <div class="industry-grid-item p-4 d-flex align-items-center transition-all">
                 <div class="industry-grid-icon me-3">
-                  <div class="theme-gradient-icon" style="-webkit-mask-image: url('<?php echo $icon_path; ?>'); mask-image: url('<?php echo $icon_path; ?>');"></div>
+                  <div class="theme-gradient-icon dynamic-mask" style="--icon-url: url('<?php echo $icon_path; ?>');"></div>
                 </div>
-                <h4 class="f18 cs_QuicksandBold text-dark mb-0"><?php echo $industry['name']; ?></h4>
+                <h4 class="f20 cs_Sora text-dark mb-0"><?php echo $industry['name']; ?></h4>
               </div>
             </div>
           <?php endforeach; ?>
@@ -414,93 +447,63 @@ get_header();
     </div>
   </section>
 
-  <!-- Industries Section End -->
-
-  <!-- Our Approach Section Start -->
-  <section class="section section-space-tb bg-light-soft">
+  <!-- Why Choose Coder Scotch Section Start (Bento Design) -->
+  <section class="section section-space-tb bento-section position-relative overflow-hidden">
     <div class="container">
       <div class="heading_section text-center mb-5">
-        <h2 class="section-title">Our <span class="highlight-text"> Approach </span></h2>
-        <p class="section-description mx-auto mw-740">A robust delivery framework focused on transparency and excellence.</p>
+        <h2 class="section-title ">Why Choose <span class="highlight-text"> Coder Scotch? </span></h2>
+        <p class="section-description mx-auto mw-740">We combine engineering excellence with business strategy to deliver products that win.</p>
       </div>
-      
-      <div class="row g-4 justify-content-center">
-        <div class="col-lg-10">
-          <div class="row g-4">
-            <!-- Step 1 -->
-            <div class="col-md-6">
-              <div class="tech-feature-card h-100 bg-white border-0 shadow-sm p-4 rounded-4 d-flex align-items-start">
-                <div class="card-icon-box me-3 flex-shrink-0 bg-sky p-3 rounded-3">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon1.svg" width="32" height="32" alt="Discovery">
-                </div>
-                <div class="card-content">
-                  <h4 class="tech-card-title cs_QuicksandBold f20 text-dark mb-2">01. Discovery & Planning</h4>
-                  <p class="tech-card-description small-text opacity-75 mb-0">We align technology with your business goals through deep market research and strategic roadmapping.</p>
-                </div>
-              </div>
-            </div>
 
-            <!-- Step 2 -->
-            <div class="col-md-6">
-              <div class="tech-feature-card h-100 bg-white border-0 shadow-sm p-4 rounded-4 d-flex align-items-start">
-                <div class="card-icon-box me-3 flex-shrink-0 bg-sky p-3 rounded-3">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon2.svg" width="32" height="32" alt="Design">
-                </div>
-                <div class="card-content">
-                  <h4 class="tech-card-title cs_QuicksandBold f20 text-dark mb-2">02. UI/UX Design</h4>
-                  <p class="tech-card-description small-text opacity-75 mb-0">Our designers create intuitive, user-centric interfaces that enhance engagement and define your brand identity.</p>
-                </div>
-              </div>
+      <div class="bento-grid row g-4 mt-5">
+        <!-- Item 1: SaaS (Large) -->
+        <div class="col-lg-8 col-md-12">
+          <div class="bento-card h-100 p-4 p-md-5">
+            <div class="bento-number position-absolute top-0 end-0 p-4">01</div>
+            <div class="bento-content">
+              <h4 class="cs_SoraBold ">Startup Ownership DNA</h4>
+              <p class="mw-600">We don't just act as vendors; we build with the same urgency and ownership as a founder. Our team understands the hustle required to scale from zero to one.</p>
             </div>
+          </div>
+        </div>
 
-            <!-- Step 3 -->
-            <div class="col-md-6">
-              <div class="tech-feature-card h-100 bg-white border-0 shadow-sm p-4 rounded-4 d-flex align-items-start">
-                <div class="card-icon-box me-3 flex-shrink-0 bg-sky p-3 rounded-3">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon3.svg" width="32" height="32" alt="Dev">
-                </div>
-                <div class="card-content">
-                  <h4 class="tech-card-title cs_QuicksandBold f20 text-dark mb-2">03. Development & Integration</h4>
-                  <p class="tech-card-description small-text opacity-75 mb-0">We build scalable architectures using modern tech stacks, ensuring seamless integration with your existing systems.</p>
-                </div>
-              </div>
+        <!-- Item 2: Architecture (Small) -->
+        <div class="col-lg-4 col-md-6">
+          <div class="bento-card h-100 p-4">
+            <div class="bento-number position-absolute top-0 end-0 p-4">02</div>
+            <div class="bento-content">
+              <h4 class="cs_SoraBold ">Zero Technical Debt</h4>
+              <p>We write code that lasts. Our modular engineering approach ensures your system evolves without costly future rewrites.</p>
             </div>
+          </div>
+        </div>
 
-            <!-- Step 4 -->
-            <div class="col-md-6">
-              <div class="tech-feature-card h-100 bg-white border-0 shadow-sm p-4 rounded-4 d-flex align-items-start">
-                <div class="card-icon-box me-3 flex-shrink-0 bg-sky p-3 rounded-3">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon4.svg" width="32" height="32" alt="Testing">
-                </div>
-                <div class="card-content">
-                  <h4 class="tech-card-title cs_QuicksandBold f20 text-dark mb-2">04. Testing & Quality Assurance</h4>
-                  <p class="tech-card-description small-text opacity-75 mb-0">Rigorous automated and manual testing to guarantee a bug-free, secure, and high-performance product.</p>
-                </div>
-              </div>
+        <!-- Item 3: Agile (Small) -->
+        <div class="col-lg-4 col-md-6">
+          <div class="bento-card h-100 p-4">
+            <div class="bento-number position-absolute top-0 end-0 p-4">03</div>
+            <div class="bento-content">
+              <h4 class="cs_SoraBold ">Transparent Engineering</h4>
+              <p>No black boxes. You get real-time access to our bi-weekly sprints, code repositories, and architectural decisions.</p>
             </div>
+          </div>
+        </div>
 
-            <!-- Step 5 -->
-            <div class="col-md-6">
-              <div class="tech-feature-card h-100 bg-white border-0 shadow-sm p-4 rounded-4 d-flex align-items-start">
-                <div class="card-icon-box me-3 flex-shrink-0 bg-sky p-3 rounded-3">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon5.svg" width="32" height="32" alt="Launch">
-                </div>
-                <div class="card-content">
-                  <h4 class="tech-card-title cs_QuicksandBold f20 text-dark mb-2">05. Launch & Scaling</h4>
-                  <p class="tech-card-description small-text opacity-75 mb-0">Continuous monitoring and post-launch support to ensure your product scales effortlessly with your user base.</p>
-                </div>
-              </div>
+        <!-- Item 4: AI (Large/Medium) -->
+        <div class="col-lg-8 col-md-12">
+          <div class="bento-card h-100 p-4 p-md-5">
+            <div class="bento-number position-absolute top-0 end-0 p-4">04</div>
+            <div class="bento-content">
+              <h4 class="cs_SoraBold ">Product Growth Roadmap</h4>
+              <p class="mw-600">We don't just ship and leave. We provide the technical strategy to scale your user base from 1k to 1M, ensuring stability at every milestone.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- Our Approach Section End -->
-  <!-- Our Approach Section End -->
-  
+  <!-- Why Choose Coder Scotch Section End -->
 
-</main><!-- #main -->
 
   <!-- Slider Initialization Script -->
   <script>
@@ -526,5 +529,10 @@ get_header();
       }
     });
   </script>
+
+  <!-- Final CTA Section End -->
+
+
+</main><!-- #main -->
 
 <?php get_footer(); ?>

@@ -177,7 +177,7 @@ endif; ?>
                   <div class="cs_workingApproachBox">
                      <img src="<?= get_sub_field('working_image', $id); ?>" alt="<?= get_sub_field('working_name', $id); ?>" title="<?= get_sub_field('working_name', $id); ?>" width="100%" />
                      <div class="p-3 p-md-4">
-                        <div class="cs_QuicksandBold f18 pb-2 color_green"><?= get_sub_field('working_name', $id); ?></div>
+                        <div class="cs_SoraBold f18 pb-2 color_green"><?= get_sub_field('working_name', $id); ?></div>
                         <div class="f16 cs_MuliSemiBold"><?= get_sub_field('working_info', $id); ?>
                         </div>
                      </div>

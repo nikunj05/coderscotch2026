@@ -2992,7 +2992,7 @@
 .healthcare-navigator-wrapper .navigator-sidebar-list .nav-link .nav-label {
   font-size: 16px;
   font-weight: 600;
-  color: #444;
+  color: #292929;
   font-family: "Sora", sans-serif;
   transition: all 0.3s ease;
 }
@@ -3089,11 +3089,11 @@
 }
 .healthcare-navigator-wrapper .healthcare-content-display .feature-checklist li {
   position: relative;
-  padding-left: 36px;
+  padding-left: 15px;
   margin-bottom: 15px;
   font-size: 16px;
   font-weight: 600;
-  color: #292929;
+  color: rgba(41, 41, 41, 0.6);
 }
 .healthcare-navigator-wrapper .healthcare-content-display .feature-checklist li::before {
   content: "";
@@ -9114,5 +9114,231 @@ img {
 .industry-grid-item {
   height: auto !important;
   min-height: 90px;
+}
+
+
+/* Font Size Utilities */
+.f18 { font-size: 18px !important; }
+.f20 { font-size: 20px !important; }
+.f40 { font-size: 40px !important; }
+
+/* Sora Font Utilities */
+/* Bento Grid Styles */
+.bento-card {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  border: 1px solid rgba(0, 190, 197, 0.1) !important;
+}
+.bento-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 190, 197, 0.12) !important;
+  border-color: rgba(0, 190, 197, 0.3) !important;
+}
+.bento-number {
+  font-family: 'Outfit', sans-serif;
+  color: #00BEC5;
+  line-height: 1;
+  user-select: none;
+  font-size: 5rem;
+  position: absolute;
+  right: 10px;
+  top: -10px;
+  opacity: 0.1;
+  transition: all 0.5s ease;
+}
+.bento-card:hover .bento-number {
+  opacity: 0.2;
+  transform: scale(1.1);
+}
+.mw-600 {
+  max-width: 600px;
+}
+
+/* CTA Overrides */
+.cta-brand-gradient {
+  background: linear-gradient(135deg, #00BEC5 0%, #43CEA2 100%) !important;
+}
+
+/* Dynamic Icon Mask via Variable */
+.theme-gradient-icon.dynamic-mask {
+  -webkit-mask-image: var(--icon-url);
+  mask-image: var(--icon-url);
+}
+
+/* High Contrast CTA Button */
+.button-cta-white {
+  background: #ffffff !important;
+  color: #00BEC5 !important;
+  padding: 8px 24px 8px 8px !important;
+  border-radius: 12px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+  transition: all 0.3s ease !important;
+}
+
+.button-cta-white:hover {
+  background: #f8f8f8 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.button-cta-white svg rect {
+  fill: #00BEC5 !important;
+}
+
+.button-cta-white svg path {
+  fill: #ffffff !important;
+}
+
+
+/* Split CTA Layout */
+.cta-split-wrapper {
+  display: flex;
+  border-radius: 40px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid transparent;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cta-split-wrapper:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 190, 197, 0.25);
+  background-image: linear-gradient(#f6f6f6, #f6f6f6), linear-gradient(135deg, #00BEC5 0%, #43CEA2 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.cta-left-panel {
+  background: linear-gradient(135deg, #00BEC5 0%, #43CEA2 100%);
+  padding: 60px 80px;
+  flex: 1;
+  position: relative;
+}
+
+.cta-right-panel {
+  background: #f6f6f6;
+  padding: 60px;
+  width: 30%;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 991px) {
+  .cta-split-wrapper {
+    flex-direction: column;
+  }
+  .cta-left-panel, .cta-right-panel {
+    width: 100%;
+    padding: 40px;
+    text-align: center;
+  }
+}
+
+
+.cs_Sora {
+  font-family: 'Sora', sans-serif;
+  font-weight: 400;
+}
+.cs_SoraBold {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+}
+.cs_SoraExtraBold {
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+}
+
+
+/* Custom Heading Color */
+.heading_section .section-title {
+  color: #292929 !important;
+}
+
+
+.healthcare-navigator-wrapper .healthcare-content-display .card-header-flex .display-title {
+  color: #292929 !important;
+}
+
+
+
+
+
+/* Premium Industry Grid Hover */
+.industry-grid-item {
+  position: relative;
+  background: #ffffff;
+  z-index: 1;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.industry-grid-item:hover {
+  background: #f6fdfd !important;
+  box-shadow: inset 0 0 0 1px #00BEC5;
+  z-index: 5;
+}
+
+.industry-grid-wrapper .row.g-0 > div {
+  border-color: #eee !important;
+}
+
+
+
+
+/* Premium Bento Grid Overhaul */
+.bento-section {
+  background-color: #f8fbfb !important;
+}
+
+.bento-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 190, 197, 0.08) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02) !important;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+  border-radius: 24px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bento-card:hover {
+  transform: translateY(-10px) !important;
+  box-shadow: 0 30px 60px rgba(0, 190, 197, 0.12) !important;
+  border-color: rgba(0, 190, 197, 0.3) !important;
+}
+
+.bento-card .bento-number {
+  font-family: 'Sora', sans-serif !important;
+  font-size: 120px !important;
+  font-weight: 800 !important;
+  background: linear-gradient(180deg, rgba(0, 190, 197, 0.08) 0%, rgba(0, 190, 197, 0) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.bento-card h4 {
+  font-size: 26px !important;
+  letter-spacing: -0.02em !important;
+  color: #1a1a1a !important;
+  line-height: 1.3 !important;
+  margin-bottom: 16px !important;
+}
+
+.bento-card p {
+  font-size: 17px !important;
+  line-height: 1.7 !important;
+  color: #555555 !important;
+  margin: 0 !important;
+}
+
+.bento-card .bento-content {
+  position: relative;
+  z-index: 2;
 }
 

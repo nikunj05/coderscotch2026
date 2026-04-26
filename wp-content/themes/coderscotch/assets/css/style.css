@@ -9057,70 +9057,135 @@ img {
 }
 
 
-/* Product Engineering Category Page Styles - Overrides */
-.industry-grid-icon {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 190, 197, 0.08);
-  border: 1px solid rgba(0, 190, 197, 0.2);
-  border-radius: 12px;
-  flex-shrink: 0;
-  transition: all 0.3s ease;
-}
-.theme-gradient-icon {
-  display: block;
-  width: 24px;
-  height: 24px;
-  background: linear-gradient(180deg, #00BEC5 0%, #009196 100%);
-  -webkit-mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
-}
-.shadow-hover-inset:hover {
-  /* Keeping the grid lines visible by removing lift and shadow */
-}
-.shadow-hover-inset:hover .industry-grid-icon {
-  position: relative;
-  background: transparent !important;
-  border: none !important;
-  z-index: 1;
-}
-.shadow-hover-inset:hover .industry-grid-icon::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 12px;
-  padding: 1px;
-  background: linear-gradient(180deg, #00BEC5 0%, #009196 100%) border-box;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  z-index: -1;
-}
-.industry-grid-wrapper {
-  border-color: #eee !important;
-}
-.industry-grid-item {
-  height: 90px;
-}
-
-
-.industry-grid-item {
-  height: auto !important;
-  min-height: 90px;
-}
-
-
 /* Font Size Utilities */
+
 .f18 { font-size: 18px !important; }
 .f20 { font-size: 20px !important; }
 .f40 { font-size: 40px !important; }
+
+/* Multiple Industries Section */
+.technologies-use-section {
+  padding-bottom: 40px;
+  background: linear-gradient(180deg, rgba(67, 206, 162, 0.05) 0%, rgba(246, 246, 246, 0.05) 100%);
+}
+.technologies-use-section .technologies-tab {
+  max-width: 940px;
+  margin: 0 auto;
+}
+.technologies-use-section .technologies-tab .technologies-tab-nav::-webkit-scrollbar {
+  display: none;
+}
+.technologies-use-section .technologies-tab .technologies-tab-nav .category-tabs {
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.technologies-use-section .technologies-tab .technologies-tab-nav .category-tabs .nav-link {
+  font-size: 20px;
+  color: rgba(17, 17, 17, 0.6);
+  padding: 12px 20px;
+  font-weight: 400;
+  background: rgba(255, 255, 255, 0.5019607843);
+  border-radius: 50px;
+  font-family: "Sora", sans-serif;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+.technologies-use-section .technologies-tab .technologies-tab-nav .category-tabs .nav-link .tech-link-title {
+  color: rgba(17, 17, 17, 0.6);
+  transition: all 0.3s ease-in-out, background 0.5s ease-in-out;
+}
+.technologies-use-section .technologies-tab .technologies-tab-nav .category-tabs .nav-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 0.8px;
+  box-sizing: border-box;
+  border-radius: inherit;
+  background: linear-gradient(92.31deg, #00bec5 0.15%, #005c5f 98.95%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+}
+.technologies-use-section .technologies-tab .technologies-tab-nav .category-tabs .nav-link.active, .technologies-use-section .technologies-tab .technologies-tab-nav .category-tabs .nav-link:hover {
+  background-color: #ffffff;
+}
+.technologies-use-section .technologies-tab .technologies-tab-nav .category-tabs .nav-link.active .tech-link-title, .technologies-use-section .technologies-tab .technologies-tab-nav .category-tabs .nav-link:hover .tech-link-title {
+  background: linear-gradient(90deg, #43cea2 29.08%, #185a9d 70.92%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.technologies-use-section .technologies-tab .technologies-tab-nav .category-tabs .nav-link.active::before, .technologies-use-section .technologies-tab .technologies-tab-nav .category-tabs .nav-link:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+.technologies-use-section .technologies-tab-details {
+  background: linear-gradient(360deg, #ffffff 0.57%, rgba(246, 246, 246, 0) 80.69%);
+  border-radius: 0 0 50px 50px;
+  margin-top: 50px;
+  position: relative;
+}
+.technologies-use-section .technologies-tab-details::before {
+  content: "";
+  position: absolute;
+  inset: 0px 0px 0px 0px;
+  padding: 0.5px 1px 1px 1px;
+  box-sizing: border-box;
+  border-radius: inherit;
+  background: linear-gradient(360deg, #00bec5 8.57%, rgba(246, 246, 246, 0) 60.69%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.technologies-use-section .technologies-tab-details .technologies-tab-content {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 80px 0 80px 0;
+}
+.technologies-use-section .technologies-tab-details .technologies-tab-content .tab-pane.active {
+  animation: slideBottomUp 0.6s ease forwards;
+  transform-origin: bottom center;
+}
+@keyframes slideBottomUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.technologies-use-section.mobapp-we-are-specialized {
+  padding-bottom: 0px;
+}
+.technologies-use-section.mobapp-we-are-specialized .technologies-tab {
+  max-width: 100%;
+}
+.technologies-use-section.mobapp-we-are-specialized .technologies-tab .technologies-tab-nav .category-tabs .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 30px;
+  cursor: default;
+}
+.technologies-use-section.mobapp-we-are-specialized .technologies-tab .technologies-tab-nav .category-tabs .nav-link::before {
+  display: none;
+}
+.technologies-use-section.mobapp-we-are-specialized .technologies-tab-details {
+  margin-top: 0px;
+  background: linear-gradient(180deg, #ffffff 0.57%, rgba(246, 246, 246, 0) 80.69%);
+  border-radius: 50px 50px 0 0;
+}
+.technologies-use-section.mobapp-we-are-specialized .technologies-tab-details::before {
+  background: linear-gradient(180deg, #00bec5 8.57%, rgba(246, 246, 246, 0) 60.69%);
+}
 
 /* Sora Font Utilities */
 /* Bento Grid Styles */
@@ -9158,11 +9223,6 @@ img {
   background: linear-gradient(135deg, #00BEC5 0%, #43CEA2 100%) !important;
 }
 
-/* Dynamic Icon Mask via Variable */
-.theme-gradient-icon.dynamic-mask {
-  -webkit-mask-image: var(--icon-url);
-  mask-image: var(--icon-url);
-}
 
 /* High Contrast CTA Button */
 .button-cta-white {
@@ -9267,24 +9327,6 @@ img {
 
 
 
-/* Premium Industry Grid Hover */
-.industry-grid-item {
-  position: relative;
-  background: #ffffff;
-  z-index: 1;
-  transition: all 0.3s ease;
-  height: 100%;
-}
-
-.industry-grid-item:hover {
-  background: #f6fdfd !important;
-  box-shadow: inset 0 0 0 1px #00BEC5;
-  z-index: 5;
-}
-
-.industry-grid-wrapper .row.g-0 > div {
-  border-color: #eee !important;
-}
 
 
 
@@ -9337,8 +9379,44 @@ img {
   margin: 0 !important;
 }
 
+
 .bento-card .bento-content {
   position: relative;
   z-index: 2;
+}
+
+@media (max-width: 991px) {
+  .technologies-use-section.mobapp-we-are-specialized .technologies-tab .technologies-tab-nav .category-tabs {
+    flex-wrap: wrap;
+    justify-content: center !important;
+  }
+  .technologies-use-section.mobapp-we-are-specialized .technologies-tab .technologies-tab-nav .category-tabs .nav-link {
+    padding: 15px 20px;
+  }
+  .technologies-use-section.mobapp-we-are-specialized .technologies-tab-details {
+    border-radius: 32px 32px 0 0;
+  }
+  .technologies-use-section.mobapp-we-are-specialized .technologies-tab-details .technologies-tab-content {
+    padding-bottom: 0px;
+  }
+}
+
+@media (max-width: 767px) {
+  .technologies-use-section.mobapp-we-are-specialized .technologies-tab .technologies-tab-nav .category-tabs {
+    gap: 8px;
+  }
+  .technologies-use-section.mobapp-we-are-specialized .technologies-tab .technologies-tab-nav .category-tabs .nav-link {
+    padding: 10px;
+  }
+  .technologies-use-section.mobapp-we-are-specialized .technologies-tab .technologies-tab-nav .category-tabs .nav-link img {
+    width: 24px;
+    height: 24px;
+  }
+  .technologies-use-section.mobapp-we-are-specialized .technologies-tab-details {
+    border-radius: 18px 18px 0 0;
+  }
+  .technologies-use-section.mobapp-we-are-specialized .technologies-tab-details .technologies-tab-content {
+    padding-bottom: 0px;
+  }
 }
 

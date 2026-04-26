@@ -17,11 +17,11 @@ get_header();
         <div class="connect-section">
           <div class="heading_section text-left">
             <h1 class="section-title">
-              Product Engineering <span class="highlight-text"> Services </span>
+              <?php single_cat_title(); ?>
             </h1>
-            <p class="section-description">
-              At Coder Scotch, we help startups, enterprises, and ISVs turn ideas into scalable, high-performance digital products. From concept to launch and beyond, we deliver end-to-end product engineering with a strong focus on speed, scalability, and long-term success.
-            </p>
+            <div class="section-description">
+              <?php echo category_description(); ?>
+            </div>
           </div>
           <div class="banner-btn-group d-flex align-items-center mt-4">
             <a href="#" class="button button-primary">
@@ -59,7 +59,7 @@ get_header();
             </p>
           </div>
           <div class="tech-main-image-wrapper mt-4">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technological-focus-img.png" width="570" height="440" alt="Product Engineering" class="technological-focus-img rounded-4 shadow-lg">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/technological-focus-img.png" width="570" height="440" alt="<?php single_cat_title(); ?>" class="technological-focus-img rounded-4 shadow-lg">
           </div>
         </div>
 
@@ -116,7 +116,7 @@ get_header();
   <section class="section-space-tb healthcare-service-mosaic bg-white">
     <div class="container">
       <div class="heading_section text-center mb-5">
-        <h2 class="section-title">Our Product Engineering <span class="highlight-text"> Capabilities </span></h2>
+        <h2 class="section-title">Our <?php single_cat_title(); ?> <span class="highlight-text"> Capabilities </span></h2>
       </div>
 
       <div class="healthcare-navigator-wrapper mt-5">
@@ -401,47 +401,115 @@ get_header();
     </div>
   </section>
 
-  <!-- Industries Section Start -->
-  <section class="section section-space-tb bg-white">
-    <div class="container">
-      <div class="heading_section text-center mb-5">
-        <h2 class="section-title">Industries <span class="highlight-text"> We Serve </span></h2>
-        <p class="section-description mx-auto mw-740">We are architects of innovation across industries. Our profound expertise in crafting industry-specific solutions redefines excellence.</p>
-      </div>
 
-      <div class="industry-grid-wrapper border-top border-start">
-        <div class="row g-0">
-          <?php
-          $industries = [
-              ['name' => 'Healthcare', 'icon' => 'specialized-ser-icon2.svg'],
-              ['name' => 'Fintech', 'icon' => 'specialized-ser-icon3.svg'],
-              ['name' => 'Retail', 'icon' => 'bag-icon.svg'],
-             
-              ['name' => 'Banking', 'icon' => 'medal-icon.svg'],
-              ['name' => 'Supply Chain', 'icon' => 'specialized-ser-icon6.svg'],
-              ['name' => 'Transportation', 'icon' => 'specialized-ser-icon7.svg'],
-              ['name' => 'ECommerce', 'icon' => 'specialized-ser-icon4.svg'],
-              ['name' => 'Real Estate', 'icon' => 'key-icon.svg'],
-              
-              ['name' => 'Automotive', 'icon' => 'specialized-ser-icon5.svg'],
-             
-              ['name' => 'Oil & Gas', 'icon' => 'specialized-ser-icon1.svg'],
-              ['name' => 'Education', 'icon' => 'student-cap-icon.svg'],
-              ['name' => 'AI and ML', 'icon' => 'coding-icon.svg'],
-          ];
 
-          foreach ($industries as $industry) :
-              $icon_path = get_template_directory_uri() . '/assets/images/icon/' . $industry['icon'];
-          ?>
-            <div class="col-lg-4 col-md-6 border-bottom border-end">
-              <div class="industry-grid-item p-4 d-flex align-items-center transition-all">
-                <div class="industry-grid-icon me-3">
-                  <div class="theme-gradient-icon dynamic-mask" style="--icon-url: url('<?php echo $icon_path; ?>');"></div>
-                </div>
-                <h4 class="f20 cs_Sora text-dark mb-0"><?php echo $industry['name']; ?></h4>
-              </div>
-            </div>
-          <?php endforeach; ?>
+  <!-- Industries We Serve Section Start -->
+  <section class="mobapp-we-are-specialized technologies-use-section section-space-t">
+    <div class="technologies-use-inner section-space-b">
+      <div class="container">
+        <div class="heading_section text-center">
+          <h2 class="section-title">
+            <span class="highlight-text"> Custom AI Agents </span> for Multiple Industries
+          </h2>
+          <p class="section-description">
+            Discover the innovative technologies that power our cutting-edge digital solutions at CoderScotch.
+          </p>
+        </div>
+        <div class="technologies-tab">
+          <div class="technologies-tab-nav we-are-specialized-tab">
+            <ul class="nav nav-pills justify-content-center category-tabs">
+              <li class="nav-item">
+                <button class="nav-link">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/specialized-ser-icon2.svg" alt="health-fitness" width="32" height="32">
+                  <span class="tech-link-title"> Health & Fitness </span>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/specialized-ser-icon1.svg" alt="manufacturing" width="32" height="32">
+                  <span class="tech-link-title">Manufacturing</span>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/specialized-ser-icon6.svg" alt="e-commerce" width="32" height="32">
+                  <span class="tech-link-title"> E-Commerce </span>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/specialized-ser-icon4.svg" alt="finance-banking" width="32"
+                    height="32">
+                  <span class="tech-link-title"> Finance & Banking </span>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/automotive-icon.svg" alt="automotive" width="32" height="32">
+                  <span class="tech-link-title"> Automotive </span>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/media-entertainment-icon.svg" alt="media-entertainment" width="32"
+                    height="32">
+                  <span class="tech-link-title"> Media & Entertainment </span>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/information-services-icon.svg" alt="information-services" width="32"
+                    height="32">
+                  <span class="tech-link-title"> Information Services </span>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/specialized-ser-icon7.svg" alt="real-estate" width="32" height="32">
+                  <span class="tech-link-title"> Real Estate </span>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/travel-hospitality-icon.svg" alt="real-estate" width="32" height="32">
+                  <span class="tech-link-title"> Travel & Hospitality </span>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/specialized-ser-icon3.svg" alt="education" width="32" height="32">
+                  <span class="tech-link-title"> Education </span>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/specialized-ser-icon5.svg" alt="food-beverages" width="32" height="32">
+                  <span class="tech-link-title"> Food & Beverages </span>
+                </button>
+              </li>
+
+              <li class="nav-item">
+                <button class="nav-link">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/telecommunication-icon.svg" alt="telecommunication" width="32"
+                    height="32">
+                  <span class="tech-link-title"> Telecommunication </span>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/logistics-transportation-icon.svg" alt="logistics-transportation"
+                    width="32" height="32">
+                  <span class="tech-link-title"> Logistics & Transportation </span>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/sales-marketing-icon.svg" alt="sales-marketing" width="32" height="32">
+                  <span class="tech-link-title"> Sales and Marketing </span>
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -505,30 +573,6 @@ get_header();
   <!-- Why Choose Coder Scotch Section End -->
 
 
-  <!-- Slider Initialization Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      if (typeof Swiper !== 'undefined') {
-        new Swiper('.industry-slider', {
-          slidesPerView: 1,
-          spaceBetween: 24,
-          loop: true,
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-          },
-          breakpoints: {
-            768: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 3,
-            }
-          }
-        });
-      }
-    });
-  </script>
 
   <!-- Final CTA Section End -->
 

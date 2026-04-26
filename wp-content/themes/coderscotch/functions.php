@@ -1623,6 +1623,247 @@ function coderscotch_register_acf_fields() {
         'description' => 'Dynamic fields for the Hire Page Template',
     ));
 
-
+    // Register Dynamic Fields for Categories
+    acf_add_local_field_group(array(
+        'key' => 'group_category_design',
+        'title' => 'Category Design Fields',
+        'fields' => array(
+            // Banner Tab
+            array(
+                'key' => 'field_cat_banner_tab',
+                'label' => 'Banner',
+                'type' => 'tab',
+            ),
+            array(
+                'key' => 'field_cat_banner_image',
+                'label' => 'Banner Image',
+                'name' => 'cat_banner_image',
+                'type' => 'image',
+                'return_format' => 'url',
+            ),
+            // Technical Focus Tab
+            array(
+                'key' => 'field_cat_tech_tab',
+                'label' => 'Technical Focus',
+                'type' => 'tab',
+            ),
+            array(
+                'key' => 'field_cat_tech_title',
+                'label' => 'Section Title',
+                'name' => 'cat_tech_title',
+                'type' => 'text',
+                'default_value' => 'Build Products That Scale',
+            ),
+            array(
+                'key' => 'field_cat_tech_description',
+                'label' => 'Section Description',
+                'name' => 'cat_tech_description',
+                'type' => 'textarea',
+                'default_value' => 'We don’t just write code — we engineer products that solve real business problems.',
+            ),
+            array(
+                'key' => 'field_cat_tech_image',
+                'label' => 'Main Image',
+                'name' => 'cat_tech_image',
+                'type' => 'image',
+                'return_format' => 'url',
+            ),
+            array(
+                'key' => 'field_cat_tech_cards',
+                'label' => 'Focus Cards',
+                'name' => 'cat_tech_cards',
+                'type' => 'repeater',
+                'layout' => 'block',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_cat_tech_card_icon',
+                        'label' => 'Icon',
+                        'name' => 'icon',
+                        'type' => 'image',
+                        'return_format' => 'url',
+                    ),
+                    array(
+                        'key' => 'field_cat_tech_card_title',
+                        'label' => 'Title',
+                        'name' => 'title',
+                        'type' => 'text',
+                    ),
+                    array(
+                        'key' => 'field_cat_tech_card_description',
+                        'label' => 'Description',
+                        'name' => 'description',
+                        'type' => 'textarea',
+                    ),
+                ),
+            ),
+            // Capabilities Tab
+            array(
+                'key' => 'field_cat_cap_tab',
+                'label' => 'Capabilities',
+                'type' => 'tab',
+            ),
+            array(
+                'key' => 'field_cat_cap_title',
+                'label' => 'Section Title',
+                'name' => 'cat_cap_title',
+                'type' => 'text',
+                'default_value' => 'Our Capabilities',
+            ),
+            array(
+                'key' => 'field_cat_cap_items',
+                'label' => 'Capability Tabs',
+                'name' => 'cat_cap_items',
+                'type' => 'repeater',
+                'layout' => 'block',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_cat_cap_item_label',
+                        'label' => 'Tab Label',
+                        'name' => 'label',
+                        'type' => 'text',
+                    ),
+                    array(
+                        'key' => 'field_cat_cap_item_icon',
+                        'label' => 'Icon',
+                        'name' => 'icon',
+                        'type' => 'image',
+                        'return_format' => 'url',
+                    ),
+                    array(
+                        'key' => 'field_cat_cap_item_title',
+                        'label' => 'Display Title',
+                        'name' => 'title',
+                        'type' => 'text',
+                    ),
+                    array(
+                        'key' => 'field_cat_cap_item_tagline',
+                        'label' => 'Tagline',
+                        'name' => 'tagline',
+                        'type' => 'text',
+                    ),
+                    array(
+                        'key' => 'field_cat_cap_item_summary',
+                        'label' => 'Summary',
+                        'name' => 'summary',
+                        'type' => 'textarea',
+                    ),
+                    array(
+                        'key' => 'field_cat_cap_item_checklist',
+                        'label' => 'Checklist',
+                        'name' => 'checklist',
+                        'type' => 'repeater',
+                        'sub_fields' => array(
+                            array(
+                                'key' => 'field_cat_cap_item_check_text',
+                                    'label' => 'Check Item',
+                                    'name' => 'item',
+                                    'type' => 'text',
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+                // Bento Tab
+                array(
+                    'key' => 'field_cat_bento_tab',
+                    'label' => 'Why Choose (Bento)',
+                    'type' => 'tab',
+                ),
+                array(
+                    'key' => 'field_cat_bento_title',
+                    'label' => 'Bento Section Title',
+                    'name' => 'cat_bento_title',
+                    'type' => 'text',
+                    'default_value' => 'Why Choose Coder Scotch?',
+                ),
+                array(
+                    'key' => 'field_cat_bento_description',
+                    'label' => 'Bento Section Description',
+                    'name' => 'cat_bento_description',
+                    'type' => 'textarea',
+                    'default_value' => 'We combine engineering excellence with business strategy.',
+                ),
+                array(
+                    'key' => 'field_cat_bento_items',
+                    'label' => 'Bento Cards',
+                    'name' => 'cat_bento_items',
+                    'type' => 'repeater',
+                    'layout' => 'block',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_cat_bento_item_number',
+                            'label' => 'Number',
+                            'name' => 'number',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_cat_bento_item_title',
+                            'label' => 'Title',
+                            'name' => 'title',
+                            'type' => 'text',
+                        ),
+                        array(
+                            'key' => 'field_cat_bento_item_description',
+                            'label' => 'Description',
+                            'name' => 'description',
+                            'type' => 'textarea',
+                        ),
+                        array(
+                            'key' => 'field_cat_bento_item_size',
+                            'label' => 'Size',
+                            'name' => 'size',
+                            'type' => 'select',
+                            'choices' => array(
+                                'col-lg-8' => 'Large (8 Columns)',
+                                'col-lg-4' => 'Small (4 Columns)',
+                            ),
+                            'default_value' => 'col-lg-4',
+                        ),
+                    ),
+                ),
+                // CTA Tab
+                array(
+                    'key' => 'field_cat_cta_tab',
+                    'label' => 'Final CTA',
+                    'type' => 'tab',
+                ),
+                array(
+                    'key' => 'field_cat_cta_title',
+                    'label' => 'CTA Title',
+                    'name' => 'cat_cta_title',
+                    'type' => 'text',
+                    'default_value' => 'Have a product idea? <br>Let’s build it together.',
+                ),
+                array(
+                    'key' => 'field_cat_cta_description',
+                    'label' => 'CTA Description',
+                    'name' => 'cat_cta_description',
+                    'type' => 'textarea',
+                    'default_value' => 'Speak to our product experts today and get a free technical consultation and roadmap for your project.',
+                ),
+                array(
+                    'key' => 'field_cat_cta_btn_text',
+                    'label' => 'Button Text',
+                    'name' => 'cat_cta_btn_text',
+                    'type' => 'text',
+                    'default_value' => 'Speak to our expert',
+                ),
+                array(
+                    'key' => 'field_cat_cta_btn_link',
+                    'label' => 'Button Link',
+                    'name' => 'cat_cta_btn_link',
+                    'type' => 'url',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'taxonomy',
+                        'operator' => '==',
+                        'value' => 'category',
+                    ),
+                ),
+            ),
+        ));
 }
 

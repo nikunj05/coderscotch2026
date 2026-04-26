@@ -649,6 +649,14 @@ get_header(); ?>
                       'terms'    => 'Mobile Application Development',
                   ),
               );
+          } else if(isset($post->post_name) && $post->post_name === 'web-development'){
+            $args['tax_query'] = array(
+                  array(
+                      'taxonomy' => 'our_work_cat',
+                      'field'    => 'name',
+                      'terms'    => 'Web Application Development',
+                  ),
+              );
           }
           
           $the_query = new WP_Query($args);

@@ -60,86 +60,33 @@ get_header(); ?>
   </section>
   <!-- Banner Section End -->
 
-  <!-- Product Engineering Services slider section start -->
+  <!-- Product Engineering Services section start -->
   <?php if (have_rows('engineering_services')) : ?>
-    <section class="mob-service-slider-two section-space-t">
+    <section class="healthcare-compliance-section engineering-services-section section-space-t">
       <div class="container">
-        <!-- mob serive slider thumb -->
-        <div class="swiper serviceSlider overflow-visible lg:block hidden service_two_thumb_slider">
-          <div class="swiper-wrapper overflow-visible ">
-            <?php while (have_rows('engineering_services')) : the_row(); 
-              $icon = get_sub_field('icon');
-              $title = get_sub_field('title');
-            ?>
-              <div class="swiper-slide">
-                <div class="mobile-service-card">
-                  <div class="mobile-service-header">
-                    <div class="mobile-service-icon">
-                      <?php if ($icon) : ?>
-                        <img src="<?php echo esc_url($icon); ?>" alt="<?php echo esc_attr($title); ?>" width="40" height="40" />
-                      <?php endif; ?>
-                    </div>
-                    <div class="mobile-service-action">
-                      <a href="#" class="mobile-service-link section-tag-button">
-                        <div class="section-tag">
-                          <div class="section-tag-circle">
-                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <circle cx="12.5" cy="12.5" r="12.5" fill="#00BEC5"></circle>
-                              <path
-                                d="M16.5107 8.85377L11.3547 8.85377C11.2182 8.85614 11.088 8.91205 10.9923 9.00945C10.8966 9.10685 10.8429 9.23796 10.8429 9.37452C10.8429 9.51109 10.8966 9.64219 10.9923 9.73959C11.088 9.83699 11.2182 9.8929 11.3547 9.89528L15.2534 9.89528L8.77671 16.3719C8.67904 16.4696 8.62417 16.6021 8.62417 16.7402C8.62417 16.8784 8.67904 17.0108 8.77671 17.1085C8.87439 17.2062 9.00687 17.261 9.145 17.261C9.28313 17.261 9.41561 17.2062 9.51328 17.1085L15.9899 10.6318L15.9899 14.5305C15.9887 14.5997 16.0013 14.6684 16.027 14.7326C16.0526 14.7968 16.0907 14.8553 16.1392 14.9046C16.1877 14.954 16.2455 14.9931 16.3093 15.0199C16.3731 15.0466 16.4415 15.0604 16.5107 15.0604C16.5799 15.0604 16.6483 15.0466 16.7121 15.0199C16.7759 14.9931 16.8337 14.954 16.8822 14.9046C16.9306 14.8553 16.9688 14.7968 16.9944 14.7326C17.0201 14.6684 17.0327 14.5997 17.0314 14.5305L17.0314 9.37452C17.0314 9.23642 16.9766 9.10397 16.8789 9.00632C16.7812 8.90866 16.6488 8.85379 16.5107 8.85377Z"
-                                fill="white"></path>
-                            </svg>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                  <h3 class="mobile-service-title"><?php echo esc_html(str_replace(array('{', '}'), '', $title)); ?></h3>
+        <div class="light-compliance-grid">
+          <?php while (have_rows('engineering_services')) : the_row(); ?>
+            <div class="light-compliance-card">
+              <div class="card-icon">
+                <?php if ($icon = get_sub_field('icon')) : ?>
+                  <img src="<?php echo esc_url($icon); ?>" alt="<?php echo esc_attr(wp_strip_all_tags(get_sub_field('title'))); ?>" width="40" height="40" />
+                <?php endif; ?>
+              </div>
+              <div class="card-content">
+                <h3 class="light-compliance-card-title">
+                  <?php 
+                    $title = get_sub_field('title');
+                    $title = str_replace('{', '<span class="highlight-text">', $title);
+                    $title = str_replace('}', '</span>', $title);
+                    echo wp_kses($title, array('span' => array('class' => array())));
+                  ?>
+                </h3>
+                <div class="light-compliance-card-description">
+                  <?php echo wp_kses_post(get_sub_field('description')); ?>
                 </div>
               </div>
-            <?php endwhile; ?>
-          </div>
-        </div>
-
-        <?php reset_rows(); ?>
-
-        <!-- mob serive slider -->
-        <div class="swiper serviceSlider2 md:mb-10">
-          <div class="swiper-wrapper">
-            <?php while (have_rows('engineering_services')) : the_row(); ?>
-              <div class="swiper-slide">
-                <div class="feature-slide-item">
-                  <div class="feature-slide-row">
-                    <div class="feature-slider-left">
-                      <div class="feature-slide-image">
-                        <?php if ($image = get_sub_field('main_image')) : ?>
-                          <img src="<?php echo esc_url($image); ?>" width="470" height="300" 
-                            alt="<?php echo esc_attr(get_sub_field('title')); ?>" class="mob-service-slider" />
-                        <?php endif; ?>
-                      </div>
-                    </div>
-                    <div class="feature-slider-right">
-                      <div class="feature-slide-content">
-                        <div class="heading_section text-left">
-                          <h3 class="section-title">
-                            <?php 
-                              $title = get_sub_field('title');
-                              $title = str_replace('{', '<span class="highlight-text">', $title);
-                              $title = str_replace('}', '</span>', $title);
-                              echo wp_kses($title, array('span' => array('class' => array())));
-                            ?>
-                          </h3>
-                          <p class="section-description">
-                            <?php echo wp_kses_post(get_sub_field('description')); ?>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <?php endwhile; ?>
-          </div>
+            </div>
+          <?php endwhile; ?>
         </div>
       </div>
     </section>
@@ -159,7 +106,7 @@ get_header(); ?>
                 </p>
               </div>
               <div class="mob-projects-service-item-icon">
-                <a href="#" class="section-tag-button">
+                <a href="<?php echo get_permalink( get_page_by_path('contact-us') ); ?>" class="section-tag-button">
                   <div class="section-tag">
                     <div class="section-tag-circle">
                       <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">

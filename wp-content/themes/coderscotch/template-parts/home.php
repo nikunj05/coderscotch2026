@@ -175,7 +175,7 @@ get_header();
                 <div class="home-service-tab-content align-items-center">
                   <div class="home-service-tab-content-left">
                     <div class="service-content-left">
-                      <h3 class="service-title"><?php echo esc_html(get_field('title2', $acf_term_id)); ?></h3>
+                      <h3 class="service-title"><?php echo wp_kses_post(get_field('title2', $acf_term_id)); ?></h3>
 
                       <p class="service-description">
                         <?php echo wp_kses_post(wp_trim_words($term->description, 100)); ?>

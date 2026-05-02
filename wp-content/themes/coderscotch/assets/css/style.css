@@ -9306,4 +9306,97 @@ img {
   }
 }
 
+.hiring-models-section {
+  background: linear-gradient(180deg, rgba(67, 206, 162, 0.05) 0%, rgba(246, 246, 246, 0.05) 100%);
+}
+.hiring-models-section .hiring-models-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  row-gap: 40px;
+}
+.hiring-models-section .hiring-model-card {
+  height: 100%;
+}
+.hiring-models-section .hiring-model-card .model-card-inner {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease-in-out;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.hiring-models-section .hiring-model-card:hover .model-card-inner {
+  background: rgba(0, 190, 197, 0.0509803922);
+}
+.hiring-models-section .hiring-model-card:hover .model-card-inner .model-icon {
+  background: #ffffff;
+}
+.hiring-models-section .hiring-model-card .model-card-inner .model-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 190, 197, 0.0509803922);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: all 0.3s ease-in-out;
+}
+.hiring-models-section .hiring-model-card .model-card-inner .model-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #292929;
+  margin-bottom: 12px;
+  font-family: "Sora", sans-serif;
+}
+.hiring-models-section .hiring-model-card .model-card-inner .model-desc {
+  font-size: 18px;
+  color: rgba(17, 17, 17, 0.6);
+  margin-bottom: 0;
+}
+
+@media (max-width: 991px) {
+  .hiring-models-section .hiring-models-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    row-gap: 24px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hiring-models-section .hiring-models-grid {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 15px;
+    row-gap: 15px;
+  }
+  .hiring-models-section .hiring-model-card .model-card-inner {
+    padding: 15px;
+  }
+  .hiring-models-section .hiring-model-card .model-card-inner .model-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+  }
+  .hiring-models-section .hiring-model-card .model-card-inner .model-icon img {
+    width: 28px;
+  }
+  .hiring-models-section .hiring-model-card .model-card-inner .model-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .hiring-models-section .hiring-model-card .model-card-inner .model-desc {
+    font-size: 14px;
+  }
+}
+
+.crm-platform-image {
+  border-radius: 24px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+  border: 1px solid #e0e0e0;
+}
+
 /*# sourceMappingURL=style.css.map */

@@ -118,7 +118,7 @@ get_header(); ?>
       <section class="crm-platform-section section-space-tb <?php echo esc_attr($bg_type); ?>">
         <div class="container">
           <div class="row align-items-center">
-            <div class="col-lg-6 <?php echo $is_even ? 'order-lg-2' : ''; ?>" data-aos="<?php echo $is_even ? 'fade-left' : 'fade-right'; ?>">
+            <div class="col-lg-7 <?php echo $is_even ? 'order-lg-2' : ''; ?>" data-aos="<?php echo $is_even ? 'fade-left' : 'fade-right'; ?>">
               <div class="heading_section text-left">
                 <h2 class="section-title">
                   <?php 
@@ -139,10 +139,10 @@ get_header(); ?>
                 <?php endif; ?>
               </div>
             </div>
-            <div class="col-lg-6 <?php echo $is_even ? 'order-lg-1' : ''; ?>" data-aos="<?php echo $is_even ? 'fade-right' : 'fade-left'; ?>">
+            <div class="col-lg-5 <?php echo $is_even ? 'order-lg-1' : ''; ?>" data-aos="<?php echo $is_even ? 'fade-right' : 'fade-left'; ?>">
               <div class="feature-image-wrapper text-center p-4">
                 <?php if ($image = get_sub_field('image')) : ?>
-                  <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr(strip_tags(get_sub_field('title'))); ?>" class="img-fluid" style="border-radius: 24px; box-shadow: 0 30px 60px rgba(0,0,0,0.05); border: 1px solid #e0e0e0;">
+                  <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr(strip_tags(get_sub_field('title'))); ?>" class="img-fluid crm-platform-image">
                 <?php endif; ?>
               </div>
             </div>

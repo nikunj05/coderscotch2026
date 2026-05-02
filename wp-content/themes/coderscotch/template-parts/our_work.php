@@ -68,13 +68,7 @@ get_header();
                     $card_class = ($count % 2 == 0) ? 'case-study-card small-card' : 'case-study-card big-card';
                 ?>
           <div class="<?php echo $card_class; ?>">
-            <div class="case-study-card-tags">
-              <div class="case-study-card-tags-inner">
-                <span class="case-study-card-tag">UI/UX Design</span>
-                <span class="case-study-card-tag">App Development</span>
-                <span class="case-study-card-tag">Online Shopping</span>
-              </div>
-            </div>
+            
             <div class="case-study-img-wrapper">
               <img src="<?=$url_img?>" width="646" height="230"
                 alt="<?=the_title();?>" class="case-study-card-img">
@@ -93,6 +87,20 @@ get_header();
                 </div> -->
               </div>
               <p class="case-study-card-desc"><?=the_excerpt();?></p>
+            </div>
+            <?php 
+              $tags = get_the_tags();
+            ?>
+            <div class="case-study-card-tags">
+              <div class="case-study-card-tags-inner">
+                <?php
+                if ($tags) {
+                    foreach ($tags as $tag) {
+                        echo '<span class="case-study-card-tag">' . $tag->name . '</span> ';
+                    }
+                }
+                ?>
+              </div>
             </div>
           </div>
           <?php 

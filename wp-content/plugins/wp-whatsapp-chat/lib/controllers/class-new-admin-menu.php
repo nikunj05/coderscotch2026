@@ -84,6 +84,7 @@ class New_Admin_Menu {
 			return;
 		}
 
+		wp_deregister_style( 'colors' );
 		wp_deregister_style( 'wp-admin' );
 		wp_enqueue_style( 'admin-bar' );
 		wp_enqueue_style( 'admin-menu' );
@@ -148,26 +149,18 @@ class New_Admin_Menu {
 		);
 		add_submenu_page(
 			$menu_slug,
-			esc_html__( 'Settings', 'wp-whatsapp-chat' ),
-			esc_html__( 'Settings', 'wp-whatsapp-chat' ),
+			esc_html__( 'Customize', 'wp-whatsapp-chat' ),
+			esc_html__( 'Customize', 'wp-whatsapp-chat' ),
 			'manage_options',
-			"{$menu_slug}&tab=settings",
+			"{$menu_slug}&tab=customize",
 			'__return_null'
 		);
 		add_submenu_page(
 			$menu_slug,
-			esc_html__( 'Theme', 'wp-whatsapp-chat' ),
-			esc_html__( 'Theme', 'wp-whatsapp-chat' ),
+			esc_html__( 'Analytics', 'wp-whatsapp-chat' ),
+			esc_html__( 'Analytics', 'wp-whatsapp-chat' ),
 			'manage_options',
-			"{$menu_slug}&tab=theme",
-			'__return_null'
-		);
-		add_submenu_page(
-			$menu_slug,
-			esc_html__( 'Suggestions', 'wp-whatsapp-chat' ),
-			esc_html__( 'Suggestions', 'wp-whatsapp-chat' ),
-			'manage_options',
-			"{$menu_slug}&tab=suggestions",
+			"{$menu_slug}&tab=analytics",
 			'__return_null'
 		);
 	}

@@ -23,9 +23,8 @@ class Contacts {
 		->setDefaultEntities(
 			array(
 				array(
-					'allowDelete' => false,
-					'phone'       => qlwapp_format_phone( $button['phone'] ),
-					'message'     => qlwapp_replacements_vars( $button['message'] ),
+					'phone'   => qlwapp_format_phone( $button['phone'] ),
+					'message' => qlwapp_replacements_vars( $button['message'] ),
 				),
 			)
 		)
@@ -52,6 +51,13 @@ class Contacts {
 	}
 
 	public function delete( int $id ) {
+		$all_contacts = $this->get_all();
+
+		// Prevent deletion when only one contact remains
+		if ( count( $all_contacts ) <= 1 ) {
+			return false;
+		}
+
 		return $this->repository->delete( $id );
 	}
 
@@ -83,24 +89,8 @@ class Contacts {
 		}
 	}
 
-	public function order_contact( $a, $b ) {
-
-		if ( ! isset( $a['order'] ) || ! isset( $b['order'] ) ) {
-			return 0;
-		}
-
-		if ( $a['order'] == $b['order'] ) {
-			return 0;
-		}
-
-		return ( $a['order'] < $b['order'] ) ? -1 : 1;
-	}
-
-	// TODO: Delete after frontend refactor
 	public function get_contacts_reorder() {
-		$contacts = $this->get_contacts();
-		uasort( $contacts, array( $this, 'order_contact' ) );
-		return $contacts;
+		return $this->get_all();
 	}
 
 	public function get_contacts() {
@@ -142,7 +132,9 @@ class Contacts {
 				$contact['phone'] = qlwapp_format_phone( $button['phone'] );
 			}
 
-			if ( ! is_admin() ) {
+			// Only replace variables on frontend (not in admin or REST API admin requests).
+			$is_rest_admin = defined( 'REST_REQUEST' ) && REST_REQUEST && is_user_logged_in();
+			if ( ! is_admin() && ! $is_rest_admin ) {
 				$contact['message'] = qlwapp_replacements_vars( $contact['message'] );
 			}
 

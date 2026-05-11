@@ -570,7 +570,7 @@ function wpcf7r_qs_date( $atts ) {
 		'wpcf7-redirect'
 	);
 
-	return gmdate( $atts['format'], time() );
+	return esc_html( gmdate( sanitize_text_field( $atts['format'] ), time() ) );
 }
 
 /**
@@ -908,4 +908,22 @@ function wpcf7_get_languages_list() {
 		'es' => __( 'Spanish', 'wpcf7-redirect' ),
 		'tw' => __( 'Twi', 'wpcf7-redirect' ),
 	);
+}
+
+/**
+ * Unserialize the data.
+ *
+ * @param string|array $data form data.
+ * @return string|array
+ */
+function wpcf7r_safe_unserialize( $data ) {
+	if ( is_serialized( $data ) ) {
+		$unserialize_data = unserialize( $data, array( 'allowed_classes' => false ) ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize
+
+		// If the result is an instance of __PHP_Incomplete_Class (due to missing class definitions),
+		// fallback to returning the original serialized string to prevent data loss.
+		$data = $unserialize_data instanceof __PHP_Incomplete_Class ? $data : $unserialize_data;
+	}
+
+	return $data;
 }

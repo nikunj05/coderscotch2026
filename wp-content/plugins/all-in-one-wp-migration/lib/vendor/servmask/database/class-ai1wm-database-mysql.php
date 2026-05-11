@@ -32,6 +32,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Ai1wm_Database_Mysql extends Ai1wm_Database {
 
 	/**
+	 * Check whether table has auto increment attribute
+	 *
+	 * @param  string  $table_name Table name
+	 * @return boolean
+	 */
+	public function has_auto_increment( $table_name ) {
+		return stripos( $this->get_create_table( $table_name ), 'AUTO_INCREMENT' ) !== false;
+	}
+
+	/**
 	 * Run MySQL query
 	 *
 	 * @param  string $input SQL query
@@ -97,7 +107,14 @@ class Ai1wm_Database_Mysql extends Ai1wm_Database {
 	 * @return string
 	 */
 	public function server_info() {
-		return mysql_get_server_info( $this->wpdb->dbh );
+		static $cached_result = null;
+
+		// Cache server info on first call
+		if ( $cached_result === null ) {
+			$cached_result = mysql_get_server_info( $this->wpdb->dbh );
+		}
+
+		return $cached_result;
 	}
 
 	/**

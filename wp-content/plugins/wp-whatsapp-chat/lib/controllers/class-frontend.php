@@ -20,17 +20,25 @@ class Frontend {
 		add_action(
 			'qlwapp_load',
 			function () {
-				add_action( 'wp_enqueue_scripts', array( __CLASS__, 'add_assets' ) );
+				add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_frontend' ), 20 );
 				add_action( 'wp_footer', array( __CLASS__, 'add_app' ) );
 				add_shortcode( 'whatsapp', array( __CLASS__, 'do_shortcode' ) );
 			},
 			10
 		);
+		add_filter( 'litespeed_optm_js_defer_exc', array( __CLASS__, 'litespeed_exclude' ) );
+		add_filter( 'litespeed_optm_js_exc', array( __CLASS__, 'litespeed_exclude' ) );
+		add_filter( 'litespeed_optm_css_exc', array( __CLASS__, 'litespeed_exclude' ) );
+	}
+
+	public static function litespeed_exclude( $excludes ) {
+		$excludes[] = 'wp-whatsapp-chat/build/frontend';
+		return $excludes;
 	}
 
 	public function display() {
 
-		$is_elementor_library = isset( $_GET['post_type'] ) && $_GET['post_type'] === 'elementor_library' && isset( $_GET['render_mode'] ) && $_GET['render_mode'] === 'template-preview';
+		$is_elementor_library = isset( $_GET['post_type'] ) && 'elementor_library' === $_GET['post_type'] && isset( $_GET['render_mode'] ) && 'template-preview' === $_GET['render_mode'];
 
 		if ( $is_elementor_library ) {
 			return;
@@ -42,7 +50,6 @@ class Frontend {
 
 		do_action( 'qlwapp_load' );
 	}
-
 
 	public static function register_scripts() {
 
@@ -64,12 +71,20 @@ class Frontend {
 		);
 	}
 
-	public static function add_assets() {
+	public static function enqueue_frontend() {
+		$display    = Models_Display::instance()->get();
+		$is_visible = Entity_Visibility::instance()->is_show_view( $display );
+
+		if ( ! $is_visible ) {
+			return;
+		}
+
 		wp_enqueue_script( 'qlwapp-frontend' );
 		wp_enqueue_style( 'qlwapp-frontend' );
 	}
 
 	public static function add_app() {
+
 		$button  = Models_Button::instance()->get();
 		$display = Models_Display::instance()->get();
 		$box     = Models_Box::instance()->get();
@@ -81,10 +96,16 @@ class Frontend {
 			return;
 		}
 
+		// Intentional: this enqueue is necessary for shortcode rendering and as a fallback
+		// when enqueue_frontend() (hooked on wp_enqueue_scripts) hasn't run yet.
+		// WordPress deduplicates assets, so there is no double-loading.
+		wp_enqueue_script( 'qlwapp-frontend' );
+		wp_enqueue_style( 'qlwapp-frontend' );
+
 		// Filter the contacts based on the display settings.
 		$contacts = array_values(
 			array_filter(
-				Models_Contacts::instance()->get_contacts_reorder(),
+				Models_Contacts::instance()->get_all(),
 				function ( $contact ) {
 					if ( ! isset( $contact['display'] ) ) {
 						return true;
@@ -105,7 +126,7 @@ class Frontend {
 		$scheme_json   = wp_json_encode( $scheme );
 
 		?>
-		<div 
+		<div
 			class="qlwapp"
 			style="<?php echo esc_attr( $style ); ?>"
 			data-contacts="<?php echo esc_attr( $contacts_json ); ?>"
@@ -114,7 +135,7 @@ class Frontend {
 			data-box="<?php echo esc_attr( $box_json ); ?>"
 			data-scheme="<?php echo esc_attr( $scheme_json ); ?>"
 		>
-			<?php if ( ! empty( $box['footer'] ) ) : ?>
+			<?php if ( isset( $button['box'], $box['footer'] ) && 'yes' === $button['box'] && ! empty( $box['footer'] ) ) : ?>
 				<div class="qlwapp-footer">
 					<?php echo wpautop( wp_kses_post( $box['footer'] ) ); ?>
 				</div>
@@ -153,6 +174,10 @@ class Frontend {
 	}
 
 	public static function do_shortcode( $atts, $content = null ) {
+
+		wp_enqueue_script( 'qlwapp-frontend' );
+		wp_enqueue_style( 'qlwapp-frontend' );
+
 		$button             = Models_Button::instance()->get();
 		$button['text']     = $content;
 		$button['position'] = '';

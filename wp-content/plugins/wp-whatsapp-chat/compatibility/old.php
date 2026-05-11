@@ -138,6 +138,9 @@ class QLWAPP_Compatibility {
 		if ( isset( $qlwapp['button']['rounded'] ) && $qlwapp['button']['rounded'] == 1 ) {
 			$qlwapp['button']['rounded'] = 'yes';
 		}
+		if ( isset( $qlwapp['button']['layout'] ) && ! in_array( $qlwapp['button']['layout'], array( 'button', 'bubble' ), true ) ) {
+			$qlwapp['button']['layout'] = 'button';
+		}
 		if ( isset( $qlwapp['button']['developer'] ) && $qlwapp['button']['developer'] == 1 ) {
 			$qlwapp['button']['developer'] = 'yes';
 		}
@@ -217,7 +220,7 @@ class QLWAPP_Compatibility {
 		// objects
 		$qlwapp['button']   = $models_button->get();
 		$qlwapp['box']      = $models_box->get();
-		$qlwapp['contacts'] = $models_contacts->get_contacts_reorder();
+		$qlwapp['contacts'] = $models_contacts->get_all();
 		$qlwapp['display']  = $models_display->get();
 		$qlwapp['scheme']   = $models_scheme->get();
 

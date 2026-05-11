@@ -34,7 +34,9 @@ class Box {
 			$result = $admin->getProperties();
 		}
 
-		if ( ! is_admin() ) {
+		// Only replace variables on frontend (not in admin or REST API admin requests).
+		$is_rest_admin = defined( 'REST_REQUEST' ) && REST_REQUEST && is_user_logged_in();
+		if ( ! is_admin() && ! $is_rest_admin ) {
 			$result['header'] = qlwapp_replacements_vars( $result['header'] );
 			$result['footer'] = qlwapp_replacements_vars( $result['footer'] );
 		}
@@ -63,6 +65,9 @@ class Box {
 		}
 		if ( isset( $settings['lazy_load'] ) ) {
 			$settings['lazy_load'] = wp_kses_post( $settings['lazy_load'] );
+		}
+		if ( isset( $settings['allow_outside_close'] ) ) {
+			$settings['allow_outside_close'] = wp_kses_post( $settings['allow_outside_close'] );
 		}
 		if ( isset( $settings['auto_delay_open'] ) ) {
 			$settings['auto_delay_open'] = wp_kses_post( $settings['auto_delay_open'] );

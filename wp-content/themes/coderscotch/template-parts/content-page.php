@@ -43,8 +43,8 @@
 <section class="tech-focus-section section-space-tb bg-sky">
 	<div class="container">
 		<p class="section-description">
-					 <?php echo wp_kses_post(get_the_content()); ?>
-					</p>
+			<?php echo wp_kses_post(get_the_content()); ?>
+		</p>
 	</div>
 </section>
 

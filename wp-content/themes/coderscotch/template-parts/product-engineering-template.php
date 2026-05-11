@@ -526,6 +526,55 @@ get_header(); ?>
   </section>
   <!-- Why Brands Trust section end -->
 
+  <!-- FAQ Section Start -->
+  <section class="faq-accordion-section section-space-tb">
+    <div class="container">
+      <div class="heading_section text-center">
+        <h2 class="section-title">
+          <?php 
+          $faq_title = get_field('product_faq_title');
+          if ($faq_title) {
+              $faq_title = str_replace('{', '<span class="highlight-text">', $faq_title);
+              $faq_title = str_replace('}', '</span>', $faq_title);
+              echo wp_kses($faq_title, array('span' => array('class' => array())));
+          } else {
+              echo 'Frequently Asked <span class="highlight-text"> Questions </span>';
+          }
+          ?>
+        </h2>
+        <p class="section-description">
+          <?php 
+          $faq_desc = get_field('product_faq_description');
+          echo $faq_desc ? wp_kses_post($faq_desc) : 'Find answers to common queries about our product engineering process.'; 
+          ?>
+        </p>
+      </div>
+
+      <?php if (have_rows('product_faq_list')) : ?>
+      <div class="faq-accordion" id="productFAQ">
+        <?php $f = 1; while (have_rows('product_faq_list')) : the_row(); ?>
+          <div class="accordion-item <?php echo $f == 1 ? 'open' : ''; ?>">
+            <h2 class="accordion-header" id="heading<?php echo $f; ?>">
+              <button class="accordion-button <?php echo $f == 1 ? '' : 'collapsed'; ?>" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapse<?php echo $f; ?>" aria-expanded="<?php echo $f == 1 ? 'true' : 'false'; ?>" aria-controls="collapse<?php echo $f; ?>">
+                <?php echo str_pad($f, 2, '0', STR_PAD_LEFT); ?>. <?php the_sub_field('question'); ?>
+                <span class="accordion-icon"></span>
+              </button>
+            </h2>
+            <div id="collapse<?php echo $f; ?>" class="accordion-collapse collapse <?php echo $f == 1 ? 'show' : ''; ?>" aria-labelledby="heading<?php echo $f; ?>"
+              data-bs-parent="#productFAQ">
+              <div class="accordion-body">
+                <?php the_sub_field('answer'); ?>
+              </div>
+            </div>
+          </div>
+        <?php $f++; endwhile; ?>
+      </div>
+      <?php endif; ?>
+    </div>
+  </section>
+  <!-- FAQ Section End -->
+
  <!-- Digital Creations slider start -->
   <section class="digital-creations-section section-space-b">
     <div class="container">

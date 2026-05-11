@@ -68,7 +68,7 @@ define( 'NONCE_SALT',       '8,VN+8Nf[[khl*>>::_@xp=IT y{5psBot+_Hp.@sbge++UnIIp
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix = 'wp_';
+$table_prefix = 'cswpnik2026_';
 
 /**
  * For developers: WordPress debugging mode.
@@ -83,6 +83,8 @@ $table_prefix = 'wp_';
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
 define( 'WP_DEBUG', false );
+//define('WP_DEBUG_LOG', true);
+//define('WP_DEBUG_DISPLAY', true);
 
 /* Add any custom values between this line and the "stop editing" line. */
 

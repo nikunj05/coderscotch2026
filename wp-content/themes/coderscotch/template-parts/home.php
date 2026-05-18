@@ -238,7 +238,7 @@ get_header();
         <div class="our-achievement-section">
           <div class="achievement-container">
             <div class="achievement-item">
-              <span class="achievement-number">25+</span>
+              <span class="achievement-number">20+</span>
               <span class="achievement-text">Team Members</span>
             </div>
 
@@ -248,12 +248,12 @@ get_header();
             </div>
 
             <div class="achievement-item">
-              <span class="achievement-number">200+</span>
+              <span class="achievement-number">30+</span>
               <span class="achievement-text">Happy Clients</span>
             </div>
 
             <div class="achievement-item">
-              <span class="achievement-number">325+</span>
+              <span class="achievement-number">45+</span>
               <span class="achievement-text">Completed Projects</span>
             </div>
           </div>

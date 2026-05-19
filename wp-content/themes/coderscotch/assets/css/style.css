@@ -5793,7 +5793,7 @@ img {
 .faq-accordion-section .faq-accordion .accordion-button {
   padding: 24px;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.4;
   color: #111111;
   background-color: transparent;
@@ -5833,7 +5833,7 @@ img {
 .faq-accordion-section .faq-accordion .accordion-body {
   padding: 0 24px 24px 24px;
   font-size: 18px;
-  color: rgba(41, 41, 41, 0.6);
+  color: #333333;
 }
 
 /* FAQ Section End */

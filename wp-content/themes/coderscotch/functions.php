@@ -148,8 +148,7 @@ add_action('widgets_init', 'coderscotch_widgets_init');
  */
 function coderscotch_scripts()
 {
-	wp_enqueue_style('coderscotch-style', get_stylesheet_uri(), array(), time());
-	
+
 	wp_enqueue_style('bootstrap.min', get_template_directory_uri() . '/assets/css/bootstrap.min.css',  false, '1.1', 'all');
 	wp_enqueue_style('slickcss', get_template_directory_uri() . '/assets/css/slick.css',  false, '1.2', 'all');
 	wp_enqueue_style('slickthemecss', get_template_directory_uri() . '/assets/css/slick-theme.css',  false, '1.2', 'all');
@@ -202,6 +201,9 @@ require get_template_directory() . '/inc/customizer.php';
 if (defined('JETPACK__VERSION')) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+
+
 // function add_menu_list_item_class($classes, $item, $args)
 // {
 // 	if (property_exists($args, 'list_item_class')) {

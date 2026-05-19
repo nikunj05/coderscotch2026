@@ -1,0 +1,485 @@
+{
+    "key": "group_hire_page",
+    "title": "Hire Page Fields",
+    "fields": [
+        {
+            "key": "field_hire_banner_tab",
+            "label": "Banner",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_hire_banner_title",
+            "label": "Banner Title",
+            "name": "hire_banner_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Use curly brackets for highlights, e.g. Looking For {React Developers?}",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Looking For {React Developers?}",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_hire_banner_description",
+            "label": "Banner Description",
+            "name": "hire_banner_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "At CoderScotch, we combine passion and precision to deliver outstanding digital solutions. Our commitment to excellence drives us to exceed expectations.",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": ""
+        },
+        {
+            "key": "field_hire_intro_tab",
+            "label": "Introduction",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_hire_intro_title",
+            "label": "Intro Title",
+            "name": "hire_intro_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Use curly brackets for highlights, e.g. {Hire React Developers} from Coder Scotch",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "{Hire React Developers} from Coder Scotch",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_hire_intro_description",
+            "label": "Intro Description",
+            "name": "hire_intro_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "At Coder Scotch, we specialize in providing top-tier developers who are skilled, experienced, and ready to tackle your unique challenges. Here’s why you should choose our team for your next project.",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": ""
+        },
+        {
+            "key": "field_hire_intro_image",
+            "label": "Intro Illustration\/Image",
+            "name": "hire_intro_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_hire_intro_checklist",
+            "label": "Intro Checklist",
+            "name": "hire_intro_checklist",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "button_label": "Add Checklist Item",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": []
+        },
+        {
+            "key": "field_hire_services_tab",
+            "label": "Expert Services",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_hire_services_title",
+            "label": "Services Title",
+            "name": "hire_services_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Use curly brackets for highlights, e.g. {Expert React Developers} Services to Your Success",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "{Expert React Developers} Services to Your Success",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_hire_services_description",
+            "label": "Services Description",
+            "name": "hire_services_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "We help businesses reinvent and accelerate their digital identity by providing premium software development solutions in Europe and around different parts of the world.",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": ""
+        },
+        {
+            "key": "field_hire_services_list",
+            "label": "Services List",
+            "name": "hire_services_list",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add Service",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": []
+        },
+        {
+            "key": "field_hire_models_tab",
+            "label": "Hiring Models",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_hiring_models_title",
+            "label": "Section Title",
+            "name": "hiring_models_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Our Hiring Models",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_hiring_process_steps",
+            "label": "Hiring Process Steps",
+            "name": "hiring_process_steps",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "button_label": "Add Step",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": []
+        },
+        {
+            "key": "field_hiring_models_list",
+            "label": "Hiring Models Cards",
+            "name": "hiring_models_list",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add Model",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": []
+        },
+        {
+            "key": "field_hiring_cta_text",
+            "label": "CTA Button Text",
+            "name": "hiring_cta_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Hire Laravel Developer Now",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_hiring_cta_link",
+            "label": "CTA Button Link",
+            "name": "hiring_cta_link",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_hire_faqs_tab",
+            "label": "FAQs",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_hire_faq_title",
+            "label": "FAQ Section Title",
+            "name": "faq_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Use curly brackets for highlights, e.g. Frequently Asked {Questions}",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Frequently Asked {Questions}",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_hire_faq_description",
+            "label": "FAQ Section Description",
+            "name": "faq_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Get clear answers to the most common questions about our Laravel development services and how we can help your business grow.",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": ""
+        },
+        {
+            "key": "field_hire_faq_list",
+            "label": "FAQ List",
+            "name": "faq_list",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add FAQ Item",
+            "default_value": [
+                {
+                    "field_hire_faq_question": "Why should I hire a dedicated Laravel developer from CoderScotch?",
+                    "field_hire_faq_answer": "Our Laravel developers are experts in the framework, ensuring your application is built with security, scalability, and performance in mind. We provide dedicated support and follow clean coding standards to ensure a future-ready product."
+                },
+                {
+                    "field_hire_faq_question": "How do we handle project communication and updates?",
+                    "field_hire_faq_answer": "We use agile methodologies and tools like Jira, Trello, and Slack. You’ll receive regular updates and have access to our developers for seamless communication throughout the development cycle."
+                },
+                {
+                    "field_hire_faq_question": "Can I migrate my existing PHP application to Laravel?",
+                    "field_hire_faq_answer": "Absolutely. Our experts specialize in migrating legacy systems to Laravel, optimizing the codebase and ensuring data integrity while minimizing downtime."
+                },
+                {
+                    "field_hire_faq_question": "Do you provide post-launch maintenance and support?",
+                    "field_hire_faq_answer": "Yes, we offer comprehensive post-launch support, including regular updates, security monitoring, bug fixes, and feature enhancements to keep your Laravel application running at its best."
+                },
+                {
+                    "field_hire_faq_question": "How do you ensure the security of Laravel applications?",
+                    "field_hire_faq_answer": "We leverage Laravel's built-in security features like CSRF protection, secure authentication, and data encryption. Additionally, we perform regular security audits and follow OWASP best practices."
+                }
+            ],
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": []
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "template-parts\/hire_page.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "Dynamic fields for the Hire Page Template",
+    "show_in_rest": false,
+    "modified": 1779187806,
+    "local_file": "C:xampphtdocscs2025\/wp-content\/themes\/coderscotch\/acf-json\/group_hire_page.json"
+}

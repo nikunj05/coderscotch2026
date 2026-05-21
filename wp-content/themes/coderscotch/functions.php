@@ -148,8 +148,7 @@ add_action('widgets_init', 'coderscotch_widgets_init');
  */
 function coderscotch_scripts()
 {
-	wp_enqueue_style('coderscotch-style', get_stylesheet_uri(), array(), time());
-	
+
 	wp_enqueue_style('bootstrap.min', get_template_directory_uri() . '/assets/css/bootstrap.min.css',  false, '1.1', 'all');
 	wp_enqueue_style('slickcss', get_template_directory_uri() . '/assets/css/slick.css',  false, '1.2', 'all');
 	wp_enqueue_style('slickthemecss', get_template_directory_uri() . '/assets/css/slick-theme.css',  false, '1.2', 'all');
@@ -202,6 +201,9 @@ require get_template_directory() . '/inc/customizer.php';
 if (defined('JETPACK__VERSION')) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+
+
 // function add_menu_list_item_class($classes, $item, $args)
 // {
 // 	if (property_exists($args, 'list_item_class')) {
@@ -1371,5 +1373,68 @@ function coderscotch_register_acf_fields() {
                 ),
             ),
         ));
-}
 
+    // Register Dynamic Fields for Home Page FAQs
+    acf_add_local_field_group(array(
+        'key' => 'group_home_page_faqs',
+        'title' => 'Home Page FAQs',
+        'fields' => array(
+            array(
+                'key' => 'field_home_faq_tab',
+                'label' => 'FAQs',
+                'type' => 'tab',
+            ),
+            array(
+                'key' => 'field_home_faq_title',
+                'label' => 'FAQ Section Title',
+                'name' => 'home_faq_title',
+                'type' => 'text',
+                'instructions' => 'Use curly brackets for highlights, e.g. Frequently Asked {Questions}',
+                'default_value' => 'Frequently Asked {Questions}',
+            ),
+            array(
+                'key' => 'field_home_faq_description',
+                'label' => 'FAQ Section Description',
+                'name' => 'home_faq_description',
+                'type' => 'textarea',
+                'default_value' => 'Find answers to common queries about our services and process.',
+            ),
+            array(
+                'key' => 'field_home_faq_list',
+                'label' => 'FAQ List',
+                'name' => 'home_faq_list',
+                'type' => 'repeater',
+                'layout' => 'block',
+                'button_label' => 'Add FAQ Item',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_home_faq_question',
+                        'label' => 'Question',
+                        'name' => 'question',
+                        'type' => 'text',
+                    ),
+                    array(
+                        'key' => 'field_home_faq_answer',
+                        'label' => 'Answer',
+                        'name' => 'answer',
+                        'type' => 'textarea',
+                    ),
+                ),
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'template-parts/home.php',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'normal',
+        'style' => 'default',
+        'active' => true,
+        'description' => 'FAQ fields for the Home Page Template',
+    ));
+}

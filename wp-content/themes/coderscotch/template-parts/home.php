@@ -25,7 +25,7 @@ get_header();
         <img src="<?php echo get_template_directory_uri(); ?>/assets/images/client-image5.svg" alt="client image" class="client-images" width="34"
           height="34" />
       </div>
-      <div class="trusted-client-content">Trusted by 200+ Clients</div>
+      <div class="trusted-client-content">Trusted by Industry Leaders</div>
     </div>
     <div class="heading_section">
       <h1 class="section-title" data-aos="fade" data-aos-duration="800">
@@ -37,7 +37,7 @@ get_header();
       </p>
     </div>
     <div class="banner-card-box" data-aos="fade" data-aos-duration="800">
-      <div class="banner-card-box-items d-flex align-items-center justify-content-center">
+      <a target="_blank" href="https://www.google.com/search?q=coder+scotch+technologies&rlz=1C1RXQR_enIN1087IN1089&oq=coder+scotch+technologies&gs_lcrp=EgZjaHJvbWUqCggAEAAY4wIYgAQyCggAEAAY4wIYgAQyDQgBEC4YrwEYxwEYgAQyCAgCEAAYFhgeMggIAxAAGBYYHjINCAQQABiGAxiABBiKBTINCAUQABiGAxiABBiKBTINCAYQABiGAxiABBiKBTIGCAcQRRg90gEHMjE0ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8&sei=3AgMap-uD72y4-EPqq7O-Aw" class="banner-card-box-items d-flex align-items-center justify-content-center">
         <div class="banner-card-box-items-img">
           <img src="<?php echo get_template_directory_uri(); ?>/assets/images/google-box-icon.svg" width="36" height="32" alt="Google Reviews Rating Icon" />
         </div>
@@ -48,8 +48,8 @@ get_header();
           <img src="<?php echo get_template_directory_uri(); ?>/assets/images/fill-star.svg" alt="star icon" width="21" height="21" />
           <img src="<?php echo get_template_directory_uri(); ?>/assets/images/fill-star.svg" alt="star icon" width="21" height="21" />
         </div>
-      </div>
-      <div class="banner-card-box-items d-flex align-items-center justify-content-center">
+      </a>
+      <a target="_blank" href="https://clutch.co/profile/coder-scotch-technologies" class="banner-card-box-items d-flex align-items-center justify-content-center">
         <div class="banner-card-box-items-img">
           <img src="<?php echo get_template_directory_uri(); ?>/assets/images/clutch-box-icon.svg" width="91" height="26" alt="Clutch Reviews Rating Icon" />
         </div>
@@ -60,8 +60,8 @@ get_header();
           <img src="<?php echo get_template_directory_uri(); ?>/assets/images/fill-star.svg" alt="star icon" width="21" height="21" />
           <img src="<?php echo get_template_directory_uri(); ?>/assets/images/fill-star.svg" alt="star icon" width="21" height="21" />
         </div>
-      </div>
-      <div class="banner-card-box-items d-flex align-items-center justify-content-center">
+      </a>
+      <a target="_blank" href="https://www.upwork.com/freelancers/nikunjgoriya5" class="banner-card-box-items d-flex align-items-center justify-content-center">
         <div class="banner-card-box-items-img">
           <img src="<?php echo get_template_directory_uri(); ?>/assets/images/upwork-box-icon.svg" width="31" height="22" alt="Upwork Reviews Rating Icon" />
         </div>
@@ -72,7 +72,7 @@ get_header();
           <img src="<?php echo get_template_directory_uri(); ?>/assets/images/fill-star.svg" alt="star icon" width="21" height="21" />
           <img src="<?php echo get_template_directory_uri(); ?>/assets/images/fill-star.svg" alt="star icon" width="21" height="21" />
         </div>
-      </div>
+      </a>
     </div>
 
     <div class="banner-button-with-animation-line d-flex align-items-center" data-aos="fade"
@@ -238,7 +238,7 @@ get_header();
         <div class="our-achievement-section">
           <div class="achievement-container">
             <div class="achievement-item">
-              <span class="achievement-number">25+</span>
+              <span class="achievement-number">20+</span>
               <span class="achievement-text">Team Members</span>
             </div>
 
@@ -248,12 +248,12 @@ get_header();
             </div>
 
             <div class="achievement-item">
-              <span class="achievement-number">200+</span>
+              <span class="achievement-number">30+</span>
               <span class="achievement-text">Happy Clients</span>
             </div>
 
             <div class="achievement-item">
-              <span class="achievement-number">325+</span>
+              <span class="achievement-number">45+</span>
               <span class="achievement-text">Completed Projects</span>
             </div>
           </div>
@@ -539,6 +539,7 @@ get_header();
     </div>
   </section>
   <!-- client review section end -->
+
   <!-- Blogs Section Start -->
   <section class="ourblogs-and-news-section section-space-tb">
     <div class="container">
@@ -609,4 +610,54 @@ get_header();
     </div>
   </section>
 <!--Our Blog ENDS-->
+
+  <!-- FAQ Section Start -->
+  <section class="faq-accordion-section section-space-tb">
+    <div class="container">
+      <div class="heading_section text-center">
+        <h2 class="section-title">
+          <?php 
+          $faq_title = get_field('home_faq_title');
+          if ($faq_title) {
+              $faq_title = str_replace('{', '<span class="highlight-text">', $faq_title);
+              $faq_title = str_replace('}', '</span>', $faq_title);
+              echo wp_kses($faq_title, array('span' => array('class' => array())));
+          } else {
+              echo 'Frequently Asked <span class="highlight-text"> Questions </span>';
+          }
+          ?>
+        </h2>
+        <p class="section-description">
+          <?php 
+          $faq_desc = get_field('home_faq_description');
+          echo $faq_desc ? wp_kses_post($faq_desc) : 'Find answers to common queries about our services and process.'; 
+          ?>
+        </p>
+      </div>
+
+      <?php if (have_rows('home_faq_list')) : ?>
+      <div class="faq-accordion" id="homeFAQ">
+        <?php $f = 1; while (have_rows('home_faq_list')) : the_row(); ?>
+          <div class="accordion-item <?php echo $f == 1 ? 'open' : ''; ?>">
+            <h2 class="accordion-header" id="headingFAQ<?php echo $f; ?>">
+              <button class="accordion-button <?php echo $f == 1 ? '' : 'collapsed'; ?>" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseFAQ<?php echo $f; ?>" aria-expanded="<?php echo $f == 1 ? 'true' : 'false'; ?>" aria-controls="collapseFAQ<?php echo $f; ?>">
+                <?php echo str_pad($f, 2, '0', STR_PAD_LEFT); ?>. <?php the_sub_field('question'); ?>
+                <span class="accordion-icon"></span>
+              </button>
+            </h2>
+            <div id="collapseFAQ<?php echo $f; ?>" class="accordion-collapse collapse <?php echo $f == 1 ? 'show' : ''; ?>" aria-labelledby="headingFAQ<?php echo $f; ?>"
+              data-bs-parent="#homeFAQ">
+              <div class="accordion-body">
+                <?php the_sub_field('answer'); ?>
+              </div>
+            </div>
+          </div>
+        <?php $f++; endwhile; ?>
+      </div>
+      <?php endif; ?>
+    </div>
+  </section>
+  <!-- FAQ Section End -->
+
 <?php get_footer(); ?>

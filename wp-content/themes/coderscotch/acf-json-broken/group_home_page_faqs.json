@@ -1,0 +1,105 @@
+{
+    "key": "group_home_page_faqs",
+    "title": "Home Page FAQs",
+    "fields": [
+        {
+            "key": "field_home_faq_tab",
+            "label": "FAQs",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_home_faq_title",
+            "label": "FAQ Section Title",
+            "name": "home_faq_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Use curly brackets for highlights, e.g. Frequently Asked {Questions}",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Frequently Asked {Questions}",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_home_faq_description",
+            "label": "FAQ Section Description",
+            "name": "home_faq_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Find answers to common queries about our services and process.",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": ""
+        },
+        {
+            "key": "field_home_faq_list",
+            "label": "FAQ List",
+            "name": "home_faq_list",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add FAQ Item",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": []
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "template-parts\/home.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "FAQ fields for the Home Page Template",
+    "show_in_rest": false,
+    "modified": 1779187806,
+    "local_file": "C:xampphtdocscs2025\/wp-content\/themes\/coderscotch\/acf-json\/group_home_page_faqs.json"
+}

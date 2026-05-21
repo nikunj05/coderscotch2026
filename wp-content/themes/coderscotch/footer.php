@@ -320,7 +320,7 @@
                   </div>
                 </div>
                 <div class="client-reviews-card-box">
-                  <div class="client-reviews-card-box-items d-flex align-items-center justify-content-center">
+                  <a target="_blank" href="https://www.upwork.com/freelancers/nikunjgoriya5" class="client-reviews-card-box-items d-flex align-items-center justify-content-center">
                     <div class="client-reviews-card-box-items-img">
                       <img src="<?php echo get_template_directory_uri(); ?>/assets/images/upwork-ft-box-icon.svg" width="88" height="26"
                         alt="Upwork Top Rated Developer Badge" />
@@ -332,8 +332,8 @@
                       <img src="<?php echo get_template_directory_uri(); ?>/assets/images/fill-star.svg" alt="star icon" width="20" height="20">
                       <img src="<?php echo get_template_directory_uri(); ?>/assets/images/fill-star.svg" alt="star icon" width="20" height="20">
                     </div>
-                  </div>
-                  <div class="client-reviews-card-box-items d-flex align-items-center justify-content-center">
+                  </a>
+                  <a target="_blank" href="https://www.google.com/search?q=coder+scotch+technologies&rlz=1C1RXQR_enIN1087IN1089&oq=coder+scotch+technologies&gs_lcrp=EgZjaHJvbWUqCggAEAAY4wIYgAQyCggAEAAY4wIYgAQyDQgBEC4YrwEYxwEYgAQyCAgCEAAYFhgeMggIAxAAGBYYHjINCAQQABiGAxiABBiKBTINCAUQABiGAxiABBiKBTINCAYQABiGAxiABBiKBTIGCAcQRRg90gEHMjE0ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8&sei=3AgMap-uD72y4-EPqq7O-Aw" class="client-reviews-card-box-items d-flex align-items-center justify-content-center">
                     <div class="client-reviews-card-box-items-img">
                       <img src="<?php echo get_template_directory_uri(); ?>/assets/images/google-ft-box-icon.svg" width="99" height="26"
                         alt="Google Customer Reviews Badge" />
@@ -345,8 +345,8 @@
                       <img src="<?php echo get_template_directory_uri(); ?>/assets/images/fill-star.svg" alt="star icon" width="20" height="20">
                       <img src="<?php echo get_template_directory_uri(); ?>/assets/images/fill-star.svg" alt="star icon" width="20" height="20">
                     </div>
-                  </div>
-                  <div class="client-reviews-card-box-items d-flex align-items-center justify-content-center">
+                  </a>
+                  <a target="_blank" href="https://clutch.co/profile/coder-scotch-technologies" class="client-reviews-card-box-items d-flex align-items-center justify-content-center">
                     <div class="client-reviews-card-box-items-img">
                       <img src="<?php echo get_template_directory_uri(); ?>/assets/images/clutch-ft-box-icon.svg" width="94" height="26"
                         alt="Clutch B2B Reviews and Ratings Badge" />
@@ -358,7 +358,7 @@
                       <img src="<?php echo get_template_directory_uri(); ?>/assets/images/fill-star.svg" alt="star icon" width="20" height="20">
                       <img src="<?php echo get_template_directory_uri(); ?>/assets/images/fill-star.svg" alt="star icon" width="20" height="20">
                     </div>
-                  </div>
+                  </a>
                 </div>
               </div>
             </div>

@@ -18,7 +18,7 @@ if (!$featured_img) {
               <span class="highlight-text"> Coder Scotch </span>
             </h1>
             <p class="section-description" data-aos="fade" data-aos-duration="800">
-              <?= the_content(); ?> 
+             <?= strip_tags(get_the_content(), '<a><strong><em><ul><ol><li><br>'); ?>
             </p>
 
           </div>

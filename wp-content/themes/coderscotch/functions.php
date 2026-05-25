@@ -242,6 +242,7 @@ if (function_exists('acf_add_options_page')) {
 	acf_add_options_page();
 }
 
+
 register_nav_menus([
   'header_menu' => __('Header Menu', 'theme'),
 ]);
@@ -686,6 +687,56 @@ function create_custom_post_type_3()
 	register_post_type('career', $args); // Register Post type
 }
 add_action('init', 'create_custom_post_type_3');
+
+function create_industries_post_type()
+{
+	$supports = array(
+		'title',
+		'editor',
+		'thumbnail',
+		'excerpt',
+		'custom-fields',
+		'revisions',
+	);
+
+	$labels = array(
+		'name' => _x('Industries', 'plural'),
+		'singular_name' => _x('Industry', 'singular'),
+		'menu_name' => _x('Industries', 'admin menu'),
+		'name_admin_bar' => _x('Industries', 'admin bar'),
+		'add_new' => _x('Add New', 'add new'),
+		'add_new_item' => __('Add New Industry'),
+		'new_item' => __('New Industry'),
+		'edit_item' => __('Edit Industry'),
+		'view_item' => __('View Industry'),
+		'all_items' => __('All Industries'),
+		'search_items' => __('Search Industries'),
+		'not_found' => __('No Industries found.'),
+	);
+
+	$args = array(
+		'supports' => $supports,
+		'labels' => $labels,
+		'description' => 'Holds our Industries and specific data',
+		'public' => true,
+		'show_ui' => true,
+		'show_in_menu' => true,
+		'show_in_nav_menus' => true,
+		'show_in_admin_bar' => true,
+		'can_export' => true,
+		'capability_type' => 'post',
+		'show_in_rest' => true,
+		'query_var' => true,
+		'rewrite' => array('slug' => 'industries'),
+		'has_archive' => true,
+		'hierarchical' => false,
+		'menu_position' => 6,
+		'menu_icon' => 'dashicons-building',
+	);
+
+	register_post_type('industries', $args);
+}
+add_action('init', 'create_industries_post_type');
 
 function mytheme_custom_excerpt_length($length) {
     global $post;

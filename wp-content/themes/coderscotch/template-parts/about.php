@@ -220,6 +220,134 @@ if (!$featured_img) {
     </div>
   </section>
   <!-- Technological Focus section end -->
+
+  <!-- Home Leadership/Team Section Start -->
+  <section class="home-leadership-section section-space-tb">
+    <div class="container">
+      <div class="heading_section text-center">
+        <h2 class="section-title" data-aos="fade" data-aos-duration="800">
+          <?php 
+          $leader_title = get_field('about_leadership_title');
+          if ($leader_title) {
+              $leader_title = str_replace('{', '<span class="highlight-text">', $leader_title);
+              $leader_title = str_replace('}', '</span>', $leader_title);
+              echo wp_kses($leader_title, array('span' => array('class' => array())));
+          } else {
+              echo 'Meet Our <span class="highlight-text"> Leadership Team </span>';
+          }
+          ?>
+        </h2>
+        <p class="section-description" data-aos="fade" data-aos-duration="800">
+          <?php 
+          $leader_desc = get_field('about_leadership_description');
+          echo $leader_desc ? wp_kses_post($leader_desc) : 'Our experts bring decades of combined experience to drive innovation and success.'; 
+          ?>
+        </p>
+      </div>
+
+      <div class="leadership-grid">
+        <?php 
+        $members = [];
+        if (have_rows('about_leadership_list')) {
+            while (have_rows('about_leadership_list')) {
+                the_row();
+                $members[] = [
+                    'photo' => get_sub_field('photo'),
+                    'name' => get_sub_field('name'),
+                    'role' => get_sub_field('role'),
+                    'description' => get_sub_field('description'),
+                    'linkedin_url' => get_sub_field('linkedin_url'),
+                ];
+            }
+        }
+        
+        $mock_members = [
+            [
+                'photo' => '',
+                'name' => 'Sarah Jenkins',
+                'role' => 'Lead Full-Stack Developer',
+                'description' => 'Sarah is a seasoned engineer specializing in modern cloud architectures, PHP, and JavaScript.',
+                'linkedin_url' => 'https://linkedin.com',
+            ],
+            [
+                'photo' => '',
+                'name' => 'Michael Chang',
+                'role' => 'UI/UX Designer',
+                'description' => 'Michael designs premium, user-centric interfaces that make digital products feel beautiful and alive.',
+                'linkedin_url' => 'https://linkedin.com',
+            ],
+            [
+                'photo' => '',
+                'name' => 'Emily Rodriguez',
+                'role' => 'QA Engineering Lead',
+                'description' => 'Emily leads our quality assurance team, ensuring every software delivery is robust and performant.',
+                'linkedin_url' => 'https://linkedin.com',
+            ],
+            [
+                'photo' => '',
+                'name' => 'Alex Mercer',
+                'role' => 'DevOps Engineer',
+                'description' => 'Alex manages our CI/CD pipelines, cloud infrastructure, and server reliability systems.',
+                'linkedin_url' => 'https://linkedin.com',
+            ],
+            [
+                'photo' => '',
+                'name' => 'Sophia Patel',
+                'role' => 'Project Manager',
+                'description' => 'Sophia coordinates development sprints and ensures projects are delivered on time and within scope.',
+                'linkedin_url' => 'https://linkedin.com',
+            ]
+        ];
+
+        while (count($members) < 6 && !empty($mock_members)) {
+            $members[] = array_shift($mock_members);
+        }
+
+        $members = array_slice($members, 0, 6);
+
+        foreach ($members as $member) :
+          $photo = $member['photo'];
+          $name = $member['name'];
+          $role = $member['role'];
+          $desc = $member['description'];
+          $linkedin = $member['linkedin_url'];
+        ?>
+          <div class="leadership-card" data-aos="fade-up" data-aos-duration="800">
+            <div class="member-image-wrapper">
+              <?php if ($photo) : ?>
+                <img src="<?php echo esc_url($photo); ?>" alt="<?php echo esc_attr($name); ?>" class="member-image" width="300" height="300" loading="lazy">
+              <?php else : ?>
+                <div class="member-image d-flex align-items-center justify-content-center" style="background: #e9ecef; width: 100%; height: 100%;">
+                  <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#ced4da" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                  </svg>
+                </div>
+              <?php endif; ?>
+              
+              <?php if ($linkedin) : ?>
+                <div class="member-social-overlay">
+                  <a href="<?php echo esc_url($linkedin); ?>" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr($name); ?> LinkedIn Profile">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.8v8.37h2.8v-4.87c0-.25.05-.5.12-.69a1 1 0 0 1 .93-.68c.55 0 1 .43 1 1v5.24h2.8M6.5 8.37a1.37 1.37 0 1 0 0-2.75 1.37 1.37 0 0 0 0 2.75M8 18.5V10.13H5V18.5h3Z"/>
+                    </svg>
+                  </a>
+                </div>
+              <?php endif; ?>
+            </div>
+            
+            <div class="member-info">
+              <h3 class="member-name"><?php echo esc_html($name); ?></h3>
+              <span class="member-role"><?php echo esc_html($role); ?></span>
+              <p class="member-bio"><?php echo esc_html($desc); ?></p>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </div>
+  </section>
+  <!-- Home Leadership/Team Section End -->
+
   <!-- client review section start -->
   <section class="home-client-review-section section-space-b section-space80-t">
     <div class="container">

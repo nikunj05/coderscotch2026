@@ -1772,4 +1772,207 @@ function coderscotch_register_acf_fields() {
         'description' => '',
         'show_in_rest' => 0,
     ));
+
+    /* ================================================================
+       INDUSTRY POST TYPE — Field Group
+    ================================================================ */
+    acf_add_local_field_group(array(
+        'key'   => 'group_industries_page',
+        'title' => 'Industry',
+        'fields' => array(
+
+            // ── BANNER TAB ──────────────────────────────────────────
+            array( 'key' => 'field_ind_banner_tab', 'label' => 'Banner', 'type' => 'tab', 'placement' => 'top', 'endpoint' => 0 ),
+            array(
+                'key'   => 'field_ind_banner_description',
+                'label' => 'Banner Description',
+                'name'  => 'ind_banner_description',
+                'type'  => 'textarea',
+                'instructions' => 'Shown below the page title in the hero banner.',
+                'rows'  => 3,
+            ),
+            array(
+                'key'           => 'field_ind_banner_btn_label',
+                'label'         => 'Banner Button Label',
+                'name'          => 'ind_banner_btn_label',
+                'type'          => 'text',
+                'default_value' => 'Speak to our experts',
+            ),
+
+            // ── INTRO TAB ───────────────────────────────────────────
+            array( 'key' => 'field_ind_intro_tab', 'label' => 'Intro Section', 'type' => 'tab', 'placement' => 'top', 'endpoint' => 0 ),
+            array(
+                'key'          => 'field_ind_intro_title',
+                'label'        => 'Intro Section Title',
+                'name'         => 'ind_intro_title',
+                'type'         => 'text',
+                'instructions' => 'Use curly brackets {} to highlight part of the title. e.g. Empower Learning With Our {EdTech Expertise}',
+                'placeholder'  => 'e.g. Empower Learning With Our {EdTech Expertise}',
+            ),
+            array(
+                'key'   => 'field_ind_intro_description',
+                'label' => 'Intro Description',
+                'name'  => 'ind_intro_description',
+                'type'  => 'textarea',
+                'rows'  => 4,
+            ),
+            array(
+                'key'          => 'field_ind_intro_features',
+                'label'        => 'Intro Features List',
+                'name'         => 'ind_intro_features',
+                'type'         => 'repeater',
+                'instructions' => 'Add up to 4 feature bullet points shown on the left column.',
+                'max'          => 4,
+                'layout'       => 'block',
+                'button_label' => 'Add Feature',
+                'sub_fields'   => array(
+                    array( 'key' => 'field_ind_feature_title', 'label' => 'Feature Title', 'name' => 'feature_title', 'type' => 'text', 'placeholder' => 'e.g. AI-driven Performance Tracking' ),
+                    array( 'key' => 'field_ind_feature_desc',  'label' => 'Feature Description', 'name' => 'feature_desc', 'type' => 'textarea', 'rows' => 2 ),
+                ),
+            ),
+            array( 'key' => 'field_ind_stat1_number', 'label' => 'Stat 1 — Number', 'name' => 'ind_stat1_number', 'type' => 'text', 'placeholder' => '50M+', 'wrapper' => array('width' => '25') ),
+            array( 'key' => 'field_ind_stat1_label',  'label' => 'Stat 1 — Label',  'name' => 'ind_stat1_label',  'type' => 'text', 'placeholder' => 'Active Learners', 'wrapper' => array('width' => '25') ),
+            array( 'key' => 'field_ind_stat2_number', 'label' => 'Stat 2 — Number', 'name' => 'ind_stat2_number', 'type' => 'text', 'placeholder' => '15+', 'wrapper' => array('width' => '25') ),
+            array( 'key' => 'field_ind_stat2_label',  'label' => 'Stat 2 — Label',  'name' => 'ind_stat2_label',  'type' => 'text', 'placeholder' => 'Years of Industry', 'wrapper' => array('width' => '25') ),
+            array( 'key' => 'field_ind_clutch_badge_label', 'label' => 'Clutch Badge Label', 'name' => 'ind_clutch_badge_label', 'type' => 'text', 'placeholder' => 'Top EdTech Developer' ),
+            array( 'key' => 'field_ind_clutch_description', 'label' => 'Clutch Card Description', 'name' => 'ind_clutch_description', 'type' => 'text' ),
+
+            // ── SOLUTIONS TAB ───────────────────────────────────────
+            array( 'key' => 'field_ind_solutions_tab', 'label' => 'Solutions Section', 'type' => 'tab', 'placement' => 'top', 'endpoint' => 0 ),
+            array(
+                'key'          => 'field_ind_solutions_title',
+                'label'        => 'Solutions Section Title',
+                'name'         => 'ind_solutions_title',
+                'type'         => 'text',
+                'instructions' => 'Use curly brackets {} to highlight part of the title.',
+                'placeholder'  => 'e.g. Full Suite of {Educational Solutions}',
+            ),
+            array( 'key' => 'field_ind_solutions_description', 'label' => 'Solutions Section Description', 'name' => 'ind_solutions_description', 'type' => 'textarea', 'rows' => 2 ),
+            array(
+                'key'          => 'field_ind_solutions_list',
+                'label'        => 'Solution Cards',
+                'name'         => 'ind_solutions_list',
+                'type'         => 'repeater',
+                'instructions' => 'Add solution cards (emoji icon, title, description).',
+                'layout'       => 'block',
+                'button_label' => 'Add Solution Card',
+                'sub_fields'   => array(
+                    array( 'key' => 'field_ind_sol_icon',  'label' => 'Icon (emoji)', 'name' => 'sol_icon',  'type' => 'text', 'placeholder' => '📚', 'wrapper' => array('width' => '15') ),
+                    array( 'key' => 'field_ind_sol_title', 'label' => 'Title',        'name' => 'sol_title', 'type' => 'text', 'placeholder' => 'e.g. Learning Management System', 'wrapper' => array('width' => '35') ),
+                    array( 'key' => 'field_ind_sol_desc',  'label' => 'Description',  'name' => 'sol_desc',  'type' => 'textarea', 'rows' => 2, 'wrapper' => array('width' => '50') ),
+                ),
+            ),
+
+            // ── EXCELLENCE TAB ──────────────────────────────────────
+            array( 'key' => 'field_ind_excellence_tab', 'label' => 'Excellence Section', 'type' => 'tab', 'placement' => 'top', 'endpoint' => 0 ),
+            array( 'key' => 'field_ind_excellence_title', 'label' => 'Excellence Section Title', 'name' => 'ind_excellence_title', 'type' => 'text', 'instructions' => 'Use curly brackets {} to highlight part.', 'placeholder' => 'e.g. Our Service {Excellence Standards}' ),
+            array( 'key' => 'field_ind_excellence_description', 'label' => 'Excellence Section Description', 'name' => 'ind_excellence_description', 'type' => 'textarea', 'rows' => 2 ),
+            array(
+                'key'          => 'field_ind_excellence_list',
+                'label'        => 'Excellence Boxes',
+                'name'         => 'ind_excellence_list',
+                'type'         => 'repeater',
+                'max'          => 3,
+                'layout'       => 'table',
+                'button_label' => 'Add Excellence Box',
+                'sub_fields'   => array(
+                    array( 'key' => 'field_ind_exc_title', 'label' => 'Title',       'name' => 'exc_title', 'type' => 'text',     'placeholder' => 'e.g. Centralized Control' ),
+                    array( 'key' => 'field_ind_exc_desc',  'label' => 'Description', 'name' => 'exc_desc',  'type' => 'textarea', 'rows' => 2 ),
+                ),
+            ),
+
+            // ── TECH STACK TAB ──────────────────────────────────────
+            array( 'key' => 'field_ind_tech_tab', 'label' => 'Tech Stack Section', 'type' => 'tab', 'placement' => 'top', 'endpoint' => 0 ),
+            array( 'key' => 'field_ind_tech_title',       'label' => 'Tech Stack Section Title', 'name' => 'ind_tech_title',       'type' => 'text',     'instructions' => 'Use curly brackets {} to highlight part.', 'placeholder' => 'e.g. Technology {We Leverage}' ),
+            array( 'key' => 'field_ind_tech_description', 'label' => 'Tech Stack Description',   'name' => 'ind_tech_description', 'type' => 'textarea', 'rows' => 2 ),
+            array(
+                'key'          => 'field_ind_tech_categories',
+                'label'        => 'Technology Categories',
+                'name'         => 'ind_tech_categories',
+                'type'         => 'repeater',
+                'instructions' => 'Add tech categories. Technologies should be comma-separated.',
+                'layout'       => 'block',
+                'button_label' => 'Add Tech Category',
+                'sub_fields'   => array(
+                    array( 'key' => 'field_ind_tech_cat_name',  'label' => 'Category Name',                   'name' => 'tech_cat_name',  'type' => 'text', 'placeholder' => 'e.g. Frontend', 'wrapper' => array('width' => '30') ),
+                    array( 'key' => 'field_ind_tech_cat_items', 'label' => 'Technologies (comma-separated)',  'name' => 'tech_cat_items', 'type' => 'text', 'placeholder' => 'React.js, Next.js, Vue.js', 'wrapper' => array('width' => '70') ),
+                ),
+            ),
+
+            // ── IMPLEMENTATION GUIDE TAB ────────────────────────────
+            array( 'key' => 'field_ind_challenges_tab', 'label' => 'Implementation Guide', 'type' => 'tab', 'placement' => 'top', 'endpoint' => 0 ),
+            array( 'key' => 'field_ind_challenges_title',       'label' => 'Section Title',       'name' => 'ind_challenges_title',       'type' => 'text',     'instructions' => 'Use curly brackets {} to highlight part.', 'placeholder' => 'e.g. Strategic {Implementation Guide}' ),
+            array( 'key' => 'field_ind_challenges_description', 'label' => 'Section Description', 'name' => 'ind_challenges_description', 'type' => 'textarea', 'rows' => 2 ),
+            array(
+                'key'          => 'field_ind_challenges_list',
+                'label'        => 'Challenge Tabs',
+                'name'         => 'ind_challenges_list',
+                'type'         => 'repeater',
+                'instructions' => 'Each tab has an emoji icon, tab label, panel title, intro text, and up to 5 steps.',
+                'layout'       => 'block',
+                'button_label' => 'Add Challenge Tab',
+                'sub_fields'   => array(
+                    array( 'key' => 'field_ind_chal_icon',        'label' => 'Tab Icon (emoji)', 'name' => 'chal_icon',        'type' => 'text',     'placeholder' => '🤖', 'wrapper' => array('width' => '15') ),
+                    array( 'key' => 'field_ind_chal_tab_label',   'label' => 'Tab Label',        'name' => 'chal_tab_label',   'type' => 'text',     'placeholder' => 'e.g. AI Implementation', 'wrapper' => array('width' => '35') ),
+                    array( 'key' => 'field_ind_chal_panel_title', 'label' => 'Panel Title',      'name' => 'chal_panel_title', 'type' => 'text',     'placeholder' => 'How to implement AI in e-learning?' ),
+                    array( 'key' => 'field_ind_chal_panel_intro', 'label' => 'Panel Intro',      'name' => 'chal_panel_intro', 'type' => 'textarea', 'rows' => 2 ),
+                    array(
+                        'key'          => 'field_ind_chal_steps',
+                        'label'        => 'Steps',
+                        'name'         => 'chal_steps',
+                        'type'         => 'repeater',
+                        'max'          => 5,
+                        'layout'       => 'block',
+                        'button_label' => 'Add Step',
+                        'sub_fields'   => array(
+                            array( 'key' => 'field_ind_step_title', 'label' => 'Step Bold Title', 'name' => 'step_title', 'type' => 'text', 'placeholder' => 'e.g. Analyze Learning Patterns', 'wrapper' => array('width' => '40') ),
+                            array( 'key' => 'field_ind_step_desc',  'label' => 'Step Description','name' => 'step_desc',  'type' => 'text', 'placeholder' => 'Short description', 'wrapper' => array('width' => '60') ),
+                        ),
+                    ),
+                ),
+            ),
+
+            // ── FAQ TAB ─────────────────────────────────────────────
+            array( 'key' => 'field_ind_faq_tab', 'label' => 'FAQ', 'type' => 'tab', 'placement' => 'top', 'endpoint' => 0 ),
+            array( 'key' => 'field_ind_faq_title',       'label' => 'FAQ Section Title',       'name' => 'industries_faq_title',       'type' => 'text',     'instructions' => 'Use curly brackets {} to highlight, e.g. Frequently Asked {Questions}', 'placeholder' => 'Frequently Asked {Questions}' ),
+            array( 'key' => 'field_ind_faq_description', 'label' => 'FAQ Section Description', 'name' => 'industries_faq_description', 'type' => 'textarea', 'rows' => 2 ),
+            array(
+                'key'          => 'field_ind_faq_list',
+                'label'        => 'FAQ List',
+                'name'         => 'industries_faq_list',
+                'type'         => 'repeater',
+                'layout'       => 'table',
+                'button_label' => 'Add FAQ',
+                'sub_fields'   => array(
+                    array( 'key' => 'field_ind_faq_question', 'label' => 'Question', 'name' => 'question', 'type' => 'text',     'wrapper' => array('width' => '40') ),
+                    array( 'key' => 'field_ind_faq_answer',   'label' => 'Answer',   'name' => 'answer',   'type' => 'textarea', 'rows' => 3, 'wrapper' => array('width' => '60') ),
+                ),
+            ),
+
+            // ── CTA TAB ─────────────────────────────────────────────
+            array( 'key' => 'field_ind_cta_tab', 'label' => 'CTA Section', 'type' => 'tab', 'placement' => 'top', 'endpoint' => 0 ),
+            array( 'key' => 'field_ind_cta_title',     'label' => 'CTA Title',        'name' => 'ind_cta_title',     'type' => 'text',     'instructions' => 'Use curly brackets {} to highlight. e.g. Ready to shape the {future of learning?}', 'placeholder' => 'Ready to shape the {future of learning?}' ),
+            array( 'key' => 'field_ind_cta_subtitle',  'label' => 'CTA Sub-title',    'name' => 'ind_cta_subtitle',  'type' => 'textarea', 'rows' => 3 ),
+            array( 'key' => 'field_ind_cta_btn_label', 'label' => 'CTA Button Label', 'name' => 'ind_cta_btn_label', 'type' => 'text',     'default_value' => 'Contact Us' ),
+
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'industries',
+                ),
+            ),
+        ),
+        'menu_order'          => 0,
+        'position'            => 'normal',
+        'style'               => 'default',
+        'label_placement'     => 'top',
+        'instruction_placement' => 'label',
+        'hide_on_screen'      => '',
+        'active'              => true,
+        'description'         => 'All fields for Industry post type template sections.',
+        'show_in_rest'        => 0,
+    ));
 }

@@ -334,6 +334,7 @@ class CS_Header_Menu_Walker extends Walker_Nav_Menu {
   private $tab_content = '';
   private $pane_open   = false;
   private $first_tab_id = null;
+  private $is_single_column = false;
 
   public function start_lvl(&$output, $depth = 0, $args = null) {
     // DO NOTHING — we manually handle markup
@@ -352,7 +353,10 @@ class CS_Header_Menu_Walker extends Walker_Nav_Menu {
     ========================*/
     if ($depth === 0) {
 
-      $output .= '<li class="nav-item'. ($has_children ? ' menu-item has-submenu' : '') .'">';
+      $this->is_single_column = (strtolower(trim($item->title)) === 'industries');
+      $inline_style = $this->is_single_column ? ' style="position: relative;"' : '';
+
+      $output .= '<li class="nav-item'. ($has_children ? ' menu-item has-submenu' : '') . '"' . $inline_style . '>';
 
       $href = $has_children ? 'javascript:void(0)' : $item->url;
 
@@ -374,14 +378,23 @@ class CS_Header_Menu_Walker extends Walker_Nav_Menu {
         $this->pane_open   = false;
         $this->first_tab_id = null;
 
-        $output .= '
-          <div class="header_submenu submenu">
-            <div class="submenu-inner">
-              <div class="submenu-inner-grid">
-
-                <div class="submenu-col services-col">
+        if ($this->is_single_column) {
+          $output .= '
+            <div class="header_submenu submenu single-column-dropdown">
+              <div class="submenu-inner">
+                <div class="submenu-col services-col" style="width: 100%; border-right: none; padding-right: 0;">
                   <h4 class="submenu-title">'. esc_html($item->title) .'</h4>
-                  <ul class="submenu-list nav flex-column" role="tablist">';
+                  <ul class="submenu-list nav flex-column">';
+        } else {
+          $output .= '
+            <div class="header_submenu submenu">
+              <div class="submenu-inner">
+                <div class="submenu-inner-grid">
+
+                  <div class="submenu-col services-col">
+                    <h4 class="submenu-title">'. esc_html($item->title) .'</h4>
+                    <ul class="submenu-list nav flex-column" role="tablist">';
+        }
       }
 
       return;
@@ -402,6 +415,22 @@ class CS_Header_Menu_Walker extends Walker_Nav_Menu {
         'icon-dm'    => get_template_directory_uri() . '/assets/images/service-card-icon5.svg',
         'icon-all'   => get_template_directory_uri() . '/assets/images/service-card-icon1.svg',
       ];
+
+      if ($this->is_single_column) {
+        $url = !empty($item->url) ? $item->url : '#';
+        $output .= '<li class="nav-item">';
+        $output .= '<a href="'. esc_url($url) .'" class="submenu-link">';
+        $icon_url = '';
+        foreach ((array) $item->classes as $cls) {
+          if (isset($icon_map[$cls])) { $icon_url = $icon_map[$cls]; break; }
+        }
+        if ($icon_url) {
+          $output .= '<img src="'. esc_url($icon_url) .'" class="submenu-icon" width="24" height="24" alt="'. esc_attr($item->title) .' Icon">';
+        }
+        $output .= esc_html($item->title);
+        $output .= '</a></li>' . "\n";
+        return;
+      }
 
       // tab id must come from URL like #product-engineering
       $tab_id = ltrim((string) $item->url, '#');
@@ -473,24 +502,32 @@ class CS_Header_Menu_Walker extends Walker_Nav_Menu {
     // CLOSE MEGA WRAPPER at end of top level item
     if ($depth === 0 && $has_children) {
 
-      // close last open pane
-      if ($this->pane_open) {
-        $this->tab_content .= "</ul></div>\n";
-        $this->pane_open = false;
-      }
-
-      // close LEFT column, open RIGHT column beside it, print tab panes
-      $output .= '
+      if ($this->is_single_column) {
+        $output .= '
                   </ul>
                 </div>
-
-                <div class="submenu-col industry-col tab-content">'
-                  . $this->tab_content .
-                '</div>
-
               </div>
-            </div>
-          </div>';
+            </div>';
+      } else {
+        // close last open pane
+        if ($this->pane_open) {
+          $this->tab_content .= "</ul></div>\n";
+          $this->pane_open = false;
+        }
+
+        // close LEFT column, open RIGHT column beside it, print tab panes
+        $output .= '
+                    </ul>
+                  </div>
+
+                  <div class="submenu-col industry-col tab-content">'
+                    . $this->tab_content .
+                  '</div>
+
+                </div>
+              </div>
+            </div>';
+      }
     }
 
     if ($depth === 0) {

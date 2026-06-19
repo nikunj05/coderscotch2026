@@ -70,16 +70,13 @@ $(document).ready(function () {
     $(this).css("--x", x + "px");
     $(this).css("--y", y + "px");
   });
-
   // Hamburger menu
   function burgAnimation() {
-    const $burger = $(".svgburg");
-    if (!$burger.length) return;
+    const $toggler = $(".navbar-toggler");
+    if (!$toggler.length) return;
 
-    $burger.on("click", function () {
-      $(".path1").toggleClass("cross");
-      $(".path2").toggleClass("cross");
-      $(".mline").toggleClass("hide");
+    $toggler.on("click", function () {
+      $toggler.toggleClass("is-active");
     });
   }
   burgAnimation();
@@ -111,8 +108,7 @@ $(document).ready(function () {
         $navbarCollapse.removeClass("show");
       }
 
-      $(".path1, .path2").removeClass("cross");
-      $(".mline").removeClass("hide");
+      $navbarToggler.removeClass("is-active");
     }
   });
 
@@ -335,7 +331,7 @@ $(document).ready(function () {
 
   // Case Studies Load More Logic
   const $section = $(".case-studies-listing-section");
-  if ($section.length) {
+  if ($section.length && !$section.find(".case-studies-swiper").length) {
     const limit = 8;
 
     function updateView() {
@@ -724,6 +720,33 @@ $(document).ready(function () {
     });
   }
 
+  // Case Studies Slider
+  if ($(".case-studies-swiper").length) {
+    new Swiper(".case-studies-swiper", {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      loop: true,
+      autoplay: {
+        delay: 3500,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: ".case-studies-button-next",
+        prevEl: ".case-studies-button-prev",
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 30,
+        },
+        1200: {
+          slidesPerView: 2,
+          spaceBetween: 30,
+        }
+      },
+    });
+  }
+
   // Case Study Detail page animation
   const connectorSection = document.querySelector(".challenge-solution-connector");
 
@@ -782,3 +805,107 @@ $(document).ready(function () {
     }
   }
 });
+
+// Lazy Load Google reCAPTCHA on interaction
+(function () {
+  if (typeof coderscotch_recaptcha_lazy !== "undefined") {
+    let recaptchaLoaded = false;
+
+    function initLazyRecaptcha() {
+      // Define wpcf7_recaptcha global variable
+      window.wpcf7_recaptcha = {
+        sitekey: coderscotch_recaptcha_lazy.sitekey,
+        actions: coderscotch_recaptcha_lazy.actions
+      };
+
+      // Load Google Recaptcha script
+      const script = document.createElement("script");
+      script.src = coderscotch_recaptcha_lazy.recaptcha_url;
+      script.async = true;
+      script.defer = true;
+      script.onload = function () {
+        // Run the CF7 recaptcha logic
+        if (typeof grecaptcha !== "undefined") {
+          const sitekey = window.wpcf7_recaptcha.sitekey;
+          const actions = window.wpcf7_recaptcha.actions;
+          const homepageAction = actions.homepage;
+          const contactformAction = actions.contactform;
+
+          const executeRecaptcha = (options) => {
+            const { action, func, params } = options;
+            grecaptcha.execute(sitekey, { action: action }).then((token) => {
+              const event = new CustomEvent("wpcf7grecaptchaexecuted", {
+                detail: { action: action, token: token }
+              });
+              document.dispatchEvent(event);
+            }).then(() => {
+              if (typeof func === "function") {
+                func(...params);
+              }
+            }).catch((err) => console.error(err));
+          };
+
+          grecaptcha.ready(() => {
+            executeRecaptcha({ action: homepageAction });
+          });
+
+          document.addEventListener("change", (e) => {
+            executeRecaptcha({ action: contactformAction });
+          });
+
+          if (typeof wpcf7 !== "undefined" && typeof wpcf7.submit === "function") {
+            const originalSubmit = wpcf7.submit;
+            wpcf7.submit = (form, args = {}) => {
+              executeRecaptcha({ action: contactformAction, func: originalSubmit, params: [form, args] });
+            };
+          }
+
+          document.addEventListener("wpcf7grecaptchaexecuted", (e) => {
+            const responseFields = document.querySelectorAll('form.wpcf7-form input[name="_wpcf7_recaptcha_response"]');
+            for (let i = 0; i < responseFields.length; i++) {
+              responseFields[i].value = e.detail.token;
+            }
+          });
+        }
+      };
+      document.head.appendChild(script);
+    }
+
+    function triggerRecaptchaLoad() {
+      if (recaptchaLoaded) return;
+      recaptchaLoaded = true;
+
+      // Remove event listeners
+      window.removeEventListener("scroll", triggerRecaptchaLoad);
+      window.removeEventListener("mousemove", triggerRecaptchaLoad);
+      window.removeEventListener("mousedown", triggerRecaptchaLoad);
+      window.removeEventListener("touchstart", triggerRecaptchaLoad);
+      window.removeEventListener("keydown", triggerRecaptchaLoad);
+
+      // Remove input/textarea focus listeners
+      const inputs = document.querySelectorAll(".wpcf7-form input, .wpcf7-form textarea, .wpcf7-form select");
+      inputs.forEach(input => {
+        input.removeEventListener("focus", triggerRecaptchaLoad);
+      });
+
+      initLazyRecaptcha();
+    }
+
+    // Set up listeners for general user interaction
+    window.addEventListener("scroll", triggerRecaptchaLoad, { passive: true });
+    window.addEventListener("mousemove", triggerRecaptchaLoad, { passive: true });
+    window.addEventListener("mousedown", triggerRecaptchaLoad, { passive: true });
+    window.addEventListener("touchstart", triggerRecaptchaLoad, { passive: true });
+    window.addEventListener("keydown", triggerRecaptchaLoad, { passive: true });
+
+    // Set up listeners for form elements specifically
+    const setupFormListeners = () => {
+      const inputs = document.querySelectorAll(".wpcf7-form input, .wpcf7-form textarea, .wpcf7-form select");
+      inputs.forEach(input => {
+        input.addEventListener("focus", triggerRecaptchaLoad, { passive: true });
+      });
+    };
+    setupFormListeners();
+    window.addEventListener("load", setupFormListeners);
+  }
+})();

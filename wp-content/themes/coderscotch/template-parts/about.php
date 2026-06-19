@@ -13,11 +13,11 @@ if (!$featured_img) {
       <div class="banner-section-content">
         <div class="connect-section">
           <div class="heading_section text-center">
-            <h1 class="section-title" data-aos="fade" data-aos-duration="800">
+            <h1 class="section-title">
               About
               <span class="highlight-text"> Coder Scotch </span>
             </h1>
-            <p class="section-description" data-aos="fade" data-aos-duration="800">
+            <p class="section-description">
              <?= strip_tags(get_the_content(), '<a><strong><em><ul><ol><li><br>'); ?>
             </p>
 

@@ -1,9 +1,9 @@
 === Redirection for Contact Form 7 ===
-Tags: cf7 redirect, redirect cf7, contact form 7 MailChimp, redirect to URL, contact form 7 paypal
+Tags: contact form 7, cf7 redirect, redirect, mailchimp, webhook
 Contributors: codeinwp, themeisle, yuvalsabar, regevlio
 Requires at least: 5.2.0
-Tested up to: 6.9
-Stable tag: 3.2.9
+Tested up to: 7.0
+Stable tag: 3.2.10
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -158,6 +158,15 @@ Please follow the reporting protocols outlined on our [Security Page](https://th
 5. Save Entries Action
 
 == Changelog ==
+
+#####   Version 3.2.10 (2026-05-12)
+
+- Fixed fatal error occuring when using conditional logic module
+- Fixed default dropdown selection
+- Update dependencies
+
+
+
 
 #####   Version 3.2.9 (2026-02-10)
 

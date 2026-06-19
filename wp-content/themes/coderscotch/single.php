@@ -79,18 +79,64 @@ while (have_posts()) : the_post();
             endif;
             ?>
 
-            <!-- Author Bio Section Start -->
-            <div class="blog-author-box mt-5 p-4 d-flex align-items-center">
-              <div class="author-avatar me-4">
-                <?php echo get_avatar(get_the_author_meta('ID'), 100, '', '', ['class' => 'rounded-circle shadow-sm border border-2 border-white']); ?>
-              </div>
-              <div class="author-info">
-                <h4 class="author-label text-uppercase mb-1" style="font-size: 0.8rem; letter-spacing: 1px; color: #00BEC5; font-weight: 700;">About The Author</h4>
-                <h3 class="author-name mb-2" style="font-weight: 700;"><a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php echo esc_html($full_name); ?></a></h3>
-                <p class="author-bio mb-0" style="color: #626262; line-height: 1.6;"><?php echo get_the_author_meta('description'); ?></p>
-              </div>
+            <!-- Share & Author Section Start -->
+            <div class="blog-share-box mt-5 p-4 rounded-4 d-flex flex-column flex-md-row align-items-center justify-content-between mb-4" style="background-color: #f8f9fa;">
+                <p class="mb-3 mb-md-0 fw-medium" style="color: #333; font-size: 1.1rem;">Found this post insightful? Don't forget to share it with your network!</p>
+                <div class="share-icons d-flex gap-3">
+                    <?php
+                    $post_url = urlencode(get_permalink());
+                    $post_title = urlencode(get_the_title());
+                    ?>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $post_url; ?>" target="_blank" class="share-icon-link d-flex align-items-center justify-content-center rounded-circle border border-dark text-dark" style="width: 40px; height: 40px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#333'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#333';">
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg>
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?url=<?php echo $post_url; ?>&text=<?php echo $post_title; ?>" target="_blank" class="share-icon-link d-flex align-items-center justify-content-center rounded-circle border border-dark text-dark" style="width: 40px; height: 40px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#333'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#333';">
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $post_url; ?>&title=<?php echo $post_title; ?>" target="_blank" class="share-icon-link d-flex align-items-center justify-content-center rounded-circle border border-dark text-dark" style="width: 40px; height: 40px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#333'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#333';">
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+                    </a>
+                    <a href="https://pinterest.com/pin/create/button/?url=<?php echo $post_url; ?>&description=<?php echo $post_title; ?>" target="_blank" class="share-icon-link d-flex align-items-center justify-content-center rounded-circle border border-dark text-dark" style="width: 40px; height: 40px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#333'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#333';">
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0a8 8 0 0 0-2.915 15.452c-.07-.633-.134-1.606.027-2.297.146-.625.938-3.977.938-3.977s-.239-.479-.239-1.187c0-1.113.645-1.943 1.448-1.943.682 0 1.012.512 1.012 1.127 0 .686-.437 1.712-.663 2.663-.188.796.4 1.446 1.185 1.446 1.422 0 2.515-1.5 2.515-3.664 0-1.915-1.377-3.254-3.342-3.254-2.276 0-3.612 1.707-3.612 3.471 0 .688.265 1.425.595 1.826a.24.24 0 0 1 .056.23c-.061.252-.196.796-.222.907-.035.146-.116.177-.268.107-1-.465-1.624-1.926-1.624-3.1 0-2.523 1.834-4.84 5.286-4.84 2.775 0 4.932 1.977 4.932 4.62 0 2.757-1.739 4.976-4.151 4.976-.811 0-1.573-.421-1.834-.919l-.498 1.902c-.181.695-.669 1.566-.995 2.097A8 8 0 1 0 8 0z"/></svg>
+                    </a>
+                </div>
             </div>
-            <!-- Author Bio Section End -->
+
+            <?php
+            global $post;
+            $author_id = $post->post_author;
+            $custom_avatar = get_field('custom_avatar', 'user_' . $author_id);
+            $author_linkedin = get_user_meta($author_id, 'linkedin_url', true);
+            $author_desc = get_the_author_meta('description', $author_id);
+            ?>
+            <div class="blog-author-box p-4 p-md-5 rounded-4" style="background-color: #B5EFCE;">
+              <div class="d-flex flex-column flex-md-row align-items-md-center mb-3">
+                  <div class="author-avatar me-md-4 mb-3 mb-md-0 flex-shrink-0">
+                    <?php if ($custom_avatar) : ?>
+                        <img src="<?php echo esc_url($custom_avatar); ?>" alt="<?php echo esc_attr($full_name); ?>" class="rounded-circle shadow-sm border border-2 border-white" style="width: 80px; height: 80px; object-fit: cover;">
+                    <?php else : ?>
+                        <?php echo get_avatar($author_id, 80, '', '', ['class' => 'rounded-circle shadow-sm border border-2 border-white']); ?>
+                    <?php endif; ?>
+                  </div>
+                  <div class="author-info">
+                    <p class="author-label mb-1" style="color: #4a4a4a; font-size: 1rem;">Written by</p>
+                    <div class="d-flex align-items-center">
+                        <h3 class="author-name mb-0" style="font-weight: 700; color: #1a1a1a; font-size: 1.5rem;"><a href="<?php echo get_author_posts_url($author_id); ?>" class="text-dark text-decoration-none"><?php echo esc_html($full_name); ?></a></h3>
+                        <?php if (!empty($author_linkedin) && $author_linkedin !== 'https://www.linkedin.com/') : ?>
+                            <a href="<?php echo esc_url($author_linkedin); ?>" target="_blank" class="ms-3 d-flex align-items-center justify-content-center rounded-circle border border-dark text-dark" style="width: 32px; height: 32px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#333'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#333';" title="LinkedIn">
+                                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                  </div>
+              </div>
+              <?php if (!empty($author_desc)) : ?>
+              <div class="author-bio-content mt-3" style="color: #2c3e32; font-size: 1.05rem; line-height: 1.7;">
+                  <?php echo wp_kses_post(nl2br($author_desc)); ?>
+              </div>
+              <?php endif; ?>
+            </div>
+            <!-- Share & Author Section End -->
 
           </div>
         </div>

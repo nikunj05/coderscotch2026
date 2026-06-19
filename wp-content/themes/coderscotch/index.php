@@ -19,10 +19,10 @@ $banner_desc = 'At CoderScotch, we combine passion and precision to deliver outs
     <div class="banner-section-content">
       <div class="connect-section">
         <div class="heading_section text-center">
-          <h1 class="section-title" data-aos="fade" data-aos-duration="800">
+          <h1 class="section-title">
             <?php echo $banner_title; ?>
           </h1>
-          <p class="section-description" data-aos="fade" data-aos-duration="800">
+          <p class="section-description">
             <?php echo $banner_desc; ?>
           </p>
         </div>

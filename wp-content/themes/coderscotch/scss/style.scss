@@ -2595,3 +2595,19 @@ img {
 
 // MObile Responsive View Css
 @import "responsive";
+
+/* Custom override to position the single-column dropdown (Industries) properly without overlapping the header menu text */
+@media (min-width: 992px) {
+  .header .navbar-nav .nav-item.has-submenu .header_submenu.single-column-dropdown {
+    left: 0;
+    transform: translateY(70px) translateX(0);
+    width: 320px;
+    max-width: 320px;
+  }
+  .header .navbar-nav .nav-item.has-submenu:hover .header_submenu.single-column-dropdown,
+  .header .navbar-nav .nav-item.has-submenu.sub-menu-opened .header_submenu.single-column-dropdown {
+    transform: translateY(35px) translateX(0) !important;
+    opacity: 1;
+    visibility: visible;
+  }
+}

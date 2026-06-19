@@ -1,0 +1,30 @@
+config.php 
+=======
+# WordPress Core
+/wp-admin/
+/wp-includes/
+
+# WordPress Content (keep themes/plugins/uploads ignored as needed)
+/wp-content/cache/
+/wp-content/upgrade/
+/wp-content/uploads/
+/wp-content/backup-db/
+/wp-content/backups/
+/wp-content/blogs.dir/
+/wp-content/advanced-cache.php
+/wp-content/wp-cache-config.php
+/wp-content/plugins/hello.php
+
+# Ignore plugins (optional)
+/wp-content/plugins/*
+
+# Ignore themes except custom theme
+/wp-content/themes/*
+!/wp-content/themes/your-theme-name/
+
+# Keep mu-plugins if needed
+!/wp-content/mu-plugins/
+
+# WordPress config
+wp-config.php
+>>>>>>> 254b7f0c8377f23da168ff1448eb88ac1f37b198

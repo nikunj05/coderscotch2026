@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+ 
+# WordPress admin/system pages
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+Disallow: /wp-login.php
+ 
+# Internal/search/query pages
+Disallow: /?s=
+Disallow: /*?s=
+Disallow: /search/
+Disallow: /*?replytocom=
+
+# System folders
+Disallow: /cgi-bin/
+
+Sitemap: https://coderscotch.com/sitemap_index.xml

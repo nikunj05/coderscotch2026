@@ -17,7 +17,7 @@ get_header();
           </div>
         </div>
         <div class="contact-us-banner-image-box">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/images/contact-us-banner-image.svg" alt="case studies banner img" width="1170" height="167"
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/images/contact-us-banner-image.png" alt="case studies banner img" width="1170" height="167"
             class="contact-us-banner-image">
         </div>
       </div>

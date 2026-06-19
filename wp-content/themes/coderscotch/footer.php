@@ -27,7 +27,7 @@
         </div>
         <div class="contact-with-form-section home-page-contact-form">
           <div class="contact-form-wrapper">
-            <?php echo do_shortcode('[contact-form-7 id="c7c8386" title="Contact Form - Home Page"]'); ?>
+            <?php echo do_shortcode('[contact-form-7 id="e7145ac" title="Contact Us - Footer"]'); ?>
           </div>
         </div>
       </div>
@@ -206,7 +206,7 @@
                       <div class="footer-card-separetion-line"></div>
                       <ul class="footer-social-media">
                         <li>
-                          <a href="https://www.facebook.com/coderscotch/">
+                          <a href="https://www.facebook.com/coderscotch/" target="_blank" rel="noopener noreferrer">
                             <svg width="10" height="18" viewBox="0 0 10 18" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
                               <path
@@ -216,7 +216,7 @@
                           </a>
                         </li>
                         <li>
-                          <a href="https://www.instagram.com/coderscotch/">
+                          <a href="https://www.instagram.com/coderscotch/" target="_blank" rel="noopener noreferrer">
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
                               <path
@@ -226,7 +226,7 @@
                           </a>
                         </li>
                         <li>
-                          <a href="https://www.linkedin.com/company/coder-scotch-technologies">
+                          <a href="https://www.linkedin.com/company/coder-scotch-technologies" target="_blank" rel="noopener noreferrer">
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
                               <path fill-rule="evenodd" clip-rule="evenodd"
@@ -236,7 +236,7 @@
                           </a>
                         </li>
                         <li>
-                          <a href="https://x.com/coderscotch">
+                          <a href="https://x.com/coderscotch" target="_blank" rel="noopener noreferrer">
                             <svg width="19" height="19" viewBox="0 0 19 19" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
                               <g clip-path="url(#clip0_1528_5856)">
@@ -253,7 +253,7 @@
                           </a>
                         </li>
                         <li>
-                          <a href="https://dribbble.com/coderscotch">
+                          <a href="https://dribbble.com/coderscotch" target="_blank" rel="noopener noreferrer">
                             <svg width="19" height="20" viewBox="0 0 19 19" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
                               <path fill-rule="evenodd" clip-rule="evenodd"

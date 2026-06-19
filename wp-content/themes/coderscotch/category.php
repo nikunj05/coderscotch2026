@@ -38,7 +38,7 @@ $cta_btn_link = get_field('cat_cta_btn_link', $cat_id) ?: get_permalink( get_pag
         <div class="connect-section">
           <div class="heading_section text-left">
             <h1 class="section-title">
-              <?php echo get_field('title2'); ?>
+              <?php echo get_field('title2', $cat_id); ?>
             </h1>
             <div class="section-description">
               <?php echo category_description(); ?>
@@ -550,7 +550,7 @@ $cta_btn_link = get_field('cat_cta_btn_link', $cat_id) ?: get_permalink( get_pag
     </div>
 </section>
 <!-- Digital Creations slider start -->
-  <section class="digital-creations-section section-space-b">
+  <section class="digital-creations-section section-space-tb">
     <div class="container">
       <div class="d-flex justify-content-between digital-creations-section-header">
         <div class="heading_section text-start mb-0">

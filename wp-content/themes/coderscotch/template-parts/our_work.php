@@ -7,11 +7,11 @@ get_header();
       <div class="banner-section-content">
         <div class="connect-section">
           <div class="heading_section text-center">
-            <h1 class="section-title" data-aos="fade" data-aos-duration="800">
+            <h1 class="section-title">
               Successfully executed
               <span class="highlight-text"> Projects </span>
             </h1>
-            <p class="section-description" data-aos="fade" data-aos-duration="800">
+            <p class="section-description">
              <?= get_post_meta($post->ID, '_custom_text', true); ?>
             </p>
 
@@ -36,7 +36,7 @@ get_header();
           </a>
         </div>
         <div class="case-studies-listing-banner">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/images/case-studies-listing-banner-img.svg" alt="case studies banner img" width="1170"
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/images/case-studies-listing-banner-img.png" alt="case studies banner img" width="1170"
             height="277" class="case-studies-listing-banner-img">
         </div>
       </div>

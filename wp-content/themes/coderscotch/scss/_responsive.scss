@@ -386,26 +386,13 @@
       padding: 0px;
       border: none;
 
-      .path1,
-      .path2 {
-        stroke-dasharray: 104;
-        stroke-dashoffset: -71;
-        transition: 1s all ease;
-      }
-
-      .cross {
-        stroke-dashoffset: 68;
-      }
-
-      .mline {
-        stroke-dasharray: 41;
-        stroke-dashoffset: -82;
-        transition: 1s all ease;
-      }
-
-      .hide {
-        stroke-dasharray: 43;
-        stroke-dashoffset: 130;
+      &.is-active {
+        .burger-lines {
+          display: none;
+        }
+        .cross-lines {
+          display: block !important;
+        }
       }
 
       .svgburg {
@@ -546,7 +533,17 @@
               box-shadow: none;
             }
 
+            .submenu-inner-grid {
+              display: flex;
+              flex-direction: column;
+              gap: 0px;
+            }
+
             .submenu-col {
+              &.promo-col {
+                display: none !important;
+              }
+
               &.services-col {
                 min-width: 300px;
               }
@@ -1552,6 +1549,7 @@
             }
 
             .submenu-inner-grid {
+              display: flex;
               flex-direction: column;
               gap: 0px;
             }

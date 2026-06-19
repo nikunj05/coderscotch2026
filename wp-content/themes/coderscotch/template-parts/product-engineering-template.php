@@ -26,7 +26,7 @@ get_header(); ?>
 
           </div>
           <a href="<?php echo get_permalink( get_page_by_path('contact-us') ); ?>" class="button button-primary">
-            Speak to our expert
+            <?php echo esc_html(get_field('prod_eng_banner_btn_label') ?: 'Speak to our expert'); ?>
             <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M0 23C0 10.2975 10.2975 0 23 0C35.7025 0 46 10.2975 46 23C46 35.7025 35.7025 46 23 46C10.2975 46 0 35.7025 0 23Z"
@@ -62,14 +62,14 @@ get_header(); ?>
 
   <!-- Product Engineering Services section start -->
   <?php if (have_rows('engineering_services')) : ?>
-    <section class="healthcare-compliance-section engineering-services-section section-space-t">
+    <section class="healthcare-compliance-section engineering-services-section section-space-t section-space-b">
       <div class="container">
         <div class="light-compliance-grid">
           <?php while (have_rows('engineering_services')) : the_row(); ?>
             <div class="light-compliance-card">
               <div class="card-icon">
                 <?php if ($icon = get_sub_field('icon')) : ?>
-                  <img src="<?php echo esc_url($icon); ?>" alt="<?php echo esc_attr(wp_strip_all_tags(get_sub_field('title'))); ?>" width="40" height="40" />
+                  <img src="<?php echo esc_url($icon); ?>" alt="<?php echo esc_attr(wp_strip_all_tags(get_sub_field('title'))); ?>" width="30" height="30" />
                 <?php endif; ?>
               </div>
               <div class="card-content">
@@ -91,66 +91,6 @@ get_header(); ?>
       </div>
     </section>
   <?php endif; ?>
-
-  <!-- mob service contact box section start -->
-  <section class="mob-projects-service section-space-b">
-    <div class="container">
-      <div class="mob-projects-service-wrapper">
-        <div class="mob-projects-service-list">
-          <div class="mob-projects-service-item">
-            <div class="mob-projects-service-item-inner">
-              <div class="mob-projects-service-item-content">
-                <h3 class="mob-projects-service-item-title">Start Your Project</h3>
-                <p class="mob-projects-service-item-description">Turn your idea into a scalable product. 
-                  <br> Build, optimize, and launch faster with our expert team.
-                </p>
-              </div>
-              <div class="mob-projects-service-item-icon">
-                <a href="<?php echo get_permalink( get_page_by_path('contact-us') ); ?>" class="section-tag-button">
-                  <div class="section-tag">
-                    <div class="section-tag-circle">
-                      <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12.5" cy="12.5" r="12.5" fill="#00BEC5" />
-                        <path
-                          d="M16.5107 8.85377L11.3547 8.85377C11.2182 8.85614 11.088 8.91205 10.9923 9.00945C10.8966 9.10685 10.8429 9.23796 10.8429 9.37452C10.8429 9.51109 10.8966 9.64219 10.9923 9.73959C11.088 9.83699 11.2182 9.8929 11.3547 9.89528L15.2534 9.89528L8.77671 16.3719C8.67904 16.4696 8.62417 16.6021 8.62417 16.7402C8.62417 16.8784 8.67904 17.0108 8.77671 17.1085C8.87439 17.2062 9.00687 17.261 9.145 17.261C9.28313 17.261 9.41561 17.2062 9.51328 17.1085L15.9899 10.6318L15.9899 14.5305C15.9887 14.5997 16.0013 14.6684 16.027 14.7326C16.0526 14.7968 16.0907 14.8553 16.1392 14.9046C16.1877 14.954 16.2455 14.9931 16.3093 15.0199C16.3731 15.0466 16.4415 15.0604 16.5107 15.0604C16.5799 15.0604 16.6483 15.0466 16.7121 15.0199C16.7759 14.9931 16.8337 14.954 16.8822 14.9046C16.9306 14.8553 16.9688 14.7968 16.9944 14.7326C17.0201 14.6684 17.0327 14.5997 17.0314 14.5305L17.0314 9.37452C17.0314 9.23642 16.9766 9.10397 16.8789 9.00632C16.7812 8.90866 16.6488 8.85379 16.5107 8.85377Z"
-                          fill="white" />
-                      </svg>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="mob-projects-service-list">
-          <div class="mob-projects-service-item">
-            <div class="mob-projects-service-item-inner">
-              <div class="mob-projects-service-item-content">
-                <h3 class="mob-projects-service-item-title">Other Services</h3>
-                <p class="mob-projects-service-item-description">Discover services built to accelerate your growth.
-                  <br> From product engineering to AI, we help you scale efficiently.
-                </p>
-              </div>
-              <div class="mob-projects-service-item-icon">
-                <a href="#" class="section-tag-button">
-                  <div class="section-tag">
-                    <div class="section-tag-circle">
-                      <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12.5" cy="12.5" r="12.5" fill="#00BEC5" />
-                        <path
-                          d="M16.5107 8.85377L11.3547 8.85377C11.2182 8.85614 11.088 8.91205 10.9923 9.00945C10.8966 9.10685 10.8429 9.23796 10.8429 9.37452C10.8429 9.51109 10.8966 9.64219 10.9923 9.73959C11.088 9.83699 11.2182 9.8929 11.3547 9.89528L15.2534 9.89528L8.77671 16.3719C8.67904 16.4696 8.62417 16.6021 8.62417 16.7402C8.62417 16.8784 8.67904 17.0108 8.77671 17.1085C8.87439 17.2062 9.00687 17.261 9.145 17.261C9.28313 17.261 9.41561 17.2062 9.51328 17.1085L15.9899 10.6318L15.9899 14.5305C15.9887 14.5997 16.0013 14.6684 16.027 14.7326C16.0526 14.7968 16.0907 14.8553 16.1392 14.9046C16.1877 14.954 16.2455 14.9931 16.3093 15.0199C16.3731 15.0466 16.4415 15.0604 16.5107 15.0604C16.5799 15.0604 16.6483 15.0466 16.7121 15.0199C16.7759 14.9931 16.8337 14.954 16.8822 14.9046C16.9306 14.8553 16.9688 14.7968 16.9944 14.7326C17.0201 14.6684 17.0327 14.5997 17.0314 14.5305L17.0314 9.37452C17.0314 9.23642 16.9766 9.10397 16.8789 9.00632C16.7812 8.90866 16.6488 8.85379 16.5107 8.85377Z"
-                          fill="white" />
-                      </svg>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Project Key Points section start -->
   <section class="mob-project-key-points section-space-tb">
@@ -342,71 +282,11 @@ get_header(); ?>
     </div>
   </section>
   <!-- connect with us section end -->
+   
 
   <!-- mobapp We are Specialized section start -->
   <section class="mobapp-we-are-specialized technologies-use-section section-space-t">
     <div class="technologies-use-inner max-width-95">
-      <div class="container">
-        <div class="heading_section text-center">
-          <h2 class="section-title">
-            Sorts of Apps
-            <span class="highlight-text"> We are Specialized In</span>
-          </h2>
-          <p class="section-description">
-            Discover the innovative technologies that power our cutting-edge digital solutions at Coder Scotch.
-          </p>
-        </div>
-        <div class="technologies-tab section-space80-b">
-          <div class="technologies-tab-nav we-are-specialized-tab">
-            <ul class="nav nav-pills justify-content-center category-tabs">
-              <li class="nav-item">
-                <button class="nav-link">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/specialized-ser-icon1.svg" alt="manufacturing" width="32" height="32">
-                  <span class="tech-link-title">Manufacturing</span>
-                </button>
-              </li>
-              <li class="nav-item">
-                <button class="nav-link">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/specialized-ser-icon2.svg" alt="health-fitness" width="32" height="32">
-                  <span class="tech-link-title"> Health & Fitness </span>
-                </button>
-              </li>
-              <li class="nav-item">
-                <button class="nav-link">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/specialized-ser-icon3.svg" alt="education" width="32" height="32">
-                  <span class="tech-link-title"> Education </span>
-                </button>
-              </li>
-              <li class="nav-item">
-                <button class="nav-link">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/specialized-ser-icon4.svg" alt="finance-banking" width="32"
-                    height="32">
-                  <span class="tech-link-title"> Finance & Banking </span>
-                </button>
-              </li>
-              <li class="nav-item">
-                <button class="nav-link">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/specialized-ser-icon5.svg" alt="food-beverages" width="32" height="32">
-                  <span class="tech-link-title"> Food & Beverages </span>
-                </button>
-              </li>
-              <li class="nav-item">
-                <button class="nav-link">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/specialized-ser-icon6.svg" alt="e-commerce" width="32" height="32">
-                  <span class="tech-link-title"> E-Commerce </span>
-                </button>
-              </li>
-              <li class="nav-item">
-                <button class="nav-link">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/specialized-ser-icon7.svg" alt="real-estate" width="32" height="32">
-                  <span class="tech-link-title"> Real Estate </span>
-                </button>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
       <div class="technologies-tab-details">
         <div class="container">
           <div class="technologies-tab-content section-space80-t">
@@ -454,6 +334,7 @@ get_header(); ?>
     </div>
   </section>
   <!-- we are specialized in section end -->
+   
 
   <!-- Why Brands Trust section start -->
   <section class="why-brands-trust-section section-space-tb">
@@ -525,67 +406,32 @@ get_header(); ?>
     </div>
   </section>
   <!-- Why Brands Trust section end -->
-
-  <!-- FAQ Section Start -->
-  <section class="faq-accordion-section section-space-tb">
-    <div class="container">
-      <div class="heading_section text-center">
-        <h2 class="section-title">
-          <?php 
-          $faq_title = get_field('product_faq_title');
-          if ($faq_title) {
-              $faq_title = str_replace('{', '<span class="highlight-text">', $faq_title);
-              $faq_title = str_replace('}', '</span>', $faq_title);
-              echo wp_kses($faq_title, array('span' => array('class' => array())));
-          } else {
-              echo 'Frequently Asked <span class="highlight-text"> Questions </span>';
-          }
-          ?>
-        </h2>
-        <p class="section-description">
-          <?php 
-          $faq_desc = get_field('product_faq_description');
-          echo $faq_desc ? wp_kses_post($faq_desc) : 'Find answers to common queries about our product engineering process.'; 
-          ?>
-        </p>
-      </div>
-
-      <?php if (have_rows('product_faq_list')) : ?>
-      <div class="faq-accordion" id="productFAQ">
-        <?php $f = 1; while (have_rows('product_faq_list')) : the_row(); ?>
-          <div class="accordion-item <?php echo $f == 1 ? 'open' : ''; ?>">
-            <h2 class="accordion-header" id="heading<?php echo $f; ?>">
-              <button class="accordion-button <?php echo $f == 1 ? '' : 'collapsed'; ?>" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapse<?php echo $f; ?>" aria-expanded="<?php echo $f == 1 ? 'true' : 'false'; ?>" aria-controls="collapse<?php echo $f; ?>">
-                <?php echo str_pad($f, 2, '0', STR_PAD_LEFT); ?>. <?php the_sub_field('question'); ?>
-                <span class="accordion-icon"></span>
-              </button>
-            </h2>
-            <div id="collapse<?php echo $f; ?>" class="accordion-collapse collapse <?php echo $f == 1 ? 'show' : ''; ?>" aria-labelledby="heading<?php echo $f; ?>"
-              data-bs-parent="#productFAQ">
-              <div class="accordion-body">
-                <?php the_sub_field('answer'); ?>
-              </div>
-            </div>
-          </div>
-        <?php $f++; endwhile; ?>
-      </div>
-      <?php endif; ?>
-    </div>
-  </section>
-  <!-- FAQ Section End -->
-
- <!-- Digital Creations slider start -->
+    <!-- Digital Creations slider start -->
   <section class="digital-creations-section section-space-b">
     <div class="container">
       <div class="d-flex justify-content-between digital-creations-section-header">
         <div class="heading_section text-start mb-0">
           <h2 class="section-title" data-aos="fade" data-aos-duration="800">
-            Showcasing Our <span class="highlight-text"> Finest Digital Creations </span>
+            <?php 
+            $dc_title = get_field('digital_creations_section_title');
+            if ($dc_title) {
+                $dc_title = str_replace('{', '<span class="highlight-text">', $dc_title);
+                $dc_title = str_replace('}', '</span>', $dc_title);
+                echo wp_kses($dc_title, array('span' => array('class' => array())));
+            } else {
+                echo 'Showcasing Our <span class="highlight-text"> Finest Digital Creations </span>';
+            }
+            ?>
           </h2>
           <p class="section-description mb-0" data-aos="fade" data-aos-duration="800">
-            We help businesses reinvent and accelerate their digital identity by providing premium software <br>
-            development solutions in Europe and around different parts of the world.
+            <?php 
+            $dc_desc = get_field('digital_creations_section_description');
+            if ($dc_desc) {
+                echo wp_kses_post($dc_desc);
+            } else {
+                echo 'We help businesses reinvent and accelerate their digital identity by providing premium software <br> development solutions in Europe and around different parts of the world.';
+            }
+            ?>
           </p>
         </div>
         <div class="digital-slider-nav d-flex">
@@ -637,22 +483,32 @@ get_header(); ?>
 
           // Filter by category if on a specific page
           global $post;
-          if (isset($post->post_name) && $post->post_name === 'mobile-app-development-company') {
-              $args['tax_query'] = array(
-                  array(
-                      'taxonomy' => 'our_work_cat',
-                      'field'    => 'name',
-                      'terms'    => 'Mobile Application Development',
-                  ),
-              );
-          } else if(isset($post->post_name) && $post->post_name === 'web-development'){
-            $args['tax_query'] = array(
-                  array(
-                      'taxonomy' => 'our_work_cat',
-                      'field'    => 'name',
-                      'terms'    => 'Web Application Development',
-                  ),
-              );
+          if (isset($post->post_name)) {
+              if ($post->post_name === 'mobile-app-development-company') {
+                  $args['tax_query'] = array(
+                      array(
+                          'taxonomy' => 'our_work_cat',
+                          'field'    => 'name',
+                          'terms'    => 'Mobile Application Development',
+                      ),
+                  );
+              } else if ($post->post_name === 'saas-product-development-company') {
+                  $args['tax_query'] = array(
+                      array(
+                          'taxonomy' => 'our_work_cat',
+                          'field'    => 'name',
+                          'terms'    => 'SAAS',
+                      ),
+                  );
+              } else if ($post->post_name === 'web-development') {
+                  $args['tax_query'] = array(
+                      array(
+                          'taxonomy' => 'our_work_cat',
+                          'field'    => 'name',
+                          'terms'    => 'Web Application Development',
+                      ),
+                  );
+              }
           }
           
           $the_query = new WP_Query($args);
@@ -665,7 +521,7 @@ get_header(); ?>
                   $tags = get_the_tags();
           ?>
           <div class="swiper-slide">
-            <div class="digital-creation-card">
+            <a target="_blank" href="<?php echo esc_url($button_url); ?>" class="digital-creation-card">
               <div class="creation-image">
                 <img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php the_title_attribute(); ?>"
                   width="500" height="300">
@@ -682,17 +538,9 @@ get_header(); ?>
                   <?php endforeach; ?>
                 </div>
                 <?php endif; ?>
-                <a href="<?php echo esc_url($button_url); ?>" class="button button-secondary">
-                  <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="46" height="46" rx="10" fill="white"></rect>
-                    <path
-                      d="M28.625 18V26.125C28.625 26.2908 28.5591 26.4497 28.4419 26.5669C28.3247 26.6842 28.1657 26.75 28 26.75C27.8342 26.75 27.6753 26.6842 27.558 26.5669C27.4408 26.4497 27.375 26.2908 27.375 26.125V19.5086L18.4422 28.4422C18.3249 28.5595 18.1658 28.6253 18 28.6253C17.8341 28.6253 17.6751 28.5595 17.5578 28.4422C17.4405 28.3249 17.3746 28.1659 17.3746 28C17.3746 27.8341 17.4405 27.6751 17.5578 27.5578L26.4914 18.625H19.875C19.7092 18.625 19.5502 18.5592 19.433 18.4419C19.3158 18.3247 19.25 18.1658 19.25 18C19.25 17.8342 19.3158 17.6753 19.433 17.5581C19.5502 17.4408 19.7092 17.375 19.875 17.375H28C28.1657 17.375 28.3247 17.4408 28.4419 17.5581C28.5591 17.6753 28.625 17.8342 28.625 18Z"
-                      fill="#00BEC5"></path>
-                  </svg>
-                  View Case Study
-                </a>
+                
               </div>
-            </div>
+            </a>
           </div>
           <?php
               endwhile;
@@ -701,8 +549,238 @@ get_header(); ?>
           ?>
         </div>
       </div>
+
+      <!-- Load More / CTA Button -->
+      <div class="case-studies-load-more text-center">
+        <a href="<?php echo esc_url(get_permalink( get_page_by_path('our-work') )); ?>" class="button button-secondary mx-auto">
+          <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="46" height="46" rx="10" fill="white"></rect>
+            <path
+              d="M28.625 18V26.125C28.625 26.2908 28.5591 26.4497 28.4419 26.5669C28.3247 26.6842 28.1657 26.75 28 26.75C27.8342 26.75 27.6753 26.6842 27.558 26.5669C27.4408 26.4497 27.375 26.2908 27.375 26.125V19.5086L18.4422 28.4422C18.3249 28.5595 18.1658 28.6253 18 28.6253C17.8341 28.6253 17.6751 28.5595 17.5578 28.4422C17.4405 28.3249 17.3746 28.1659 17.3746 28C17.3746 27.8341 17.4405 27.6751 17.5578 27.5578L26.4914 18.625H19.875C19.7092 18.625 19.5502 18.5592 19.433 18.4419C19.3158 18.3247 19.25 18.1658 19.25 18C19.25 17.8342 19.3158 17.6753 19.433 17.5581C19.5502 17.4408 19.7092 17.375 19.875 17.375H28C28.1657 17.375 28.3247 17.4408 28.4419 17.5581C28.5591 17.6753 28.625 17.8342 28.625 18Z"
+              fill="#00BEC5"></path>
+          </svg>
+          View Portfolio
+        </a>
+      </div>
     </div>
   </section>
   <!-- Digital Creations slider end -->
+
+  <!-- Hiring Models Section Start -->
+  <?php 
+  $hiring_post_id = get_the_ID();
+  if (!have_rows('solutions_hiring_list', $hiring_post_id)) {
+      $hiring_post_id = 2576; // Fallback to SaaS page
+  }
+  ?>
+  <section class="hiring-models-section section-space-tb">
+    <div class="container">
+      <div class="heading_section text-center">
+        <h2 class="section-title">
+          <?php 
+          $hiring_title = get_field('solutions_hiring_title', $hiring_post_id);
+          if ($hiring_title) {
+              $hiring_title = str_replace('{', '<span class="highlight-text">', $hiring_title);
+              $hiring_title = str_replace('}', '</span>', $hiring_title);
+              echo wp_kses($hiring_title, array('span' => array('class' => array())));
+          } else {
+              echo 'Our <span class="highlight-text"> Hiring Models </span>';
+          }
+          ?>
+        </h2>
+        <?php 
+        $hiring_desc = get_field('solutions_hiring_description', $hiring_post_id);
+        if ($hiring_desc) : 
+            $hiring_desc = str_replace('{', '<span class="highlight-text">', $hiring_desc);
+            $hiring_desc = str_replace('}', '</span>', $hiring_desc);
+            ?>
+            <p class="section-description">
+              <?php echo wp_kses_post($hiring_desc); ?>
+            </p>
+        <?php else : ?>
+            <p class="section-description">
+              Choose the engagement model that best fits your product requirements, budget, and timeline. <br>
+              Our flexible hiring models ensure seamless collaboration, transparent pricing, and maximum efficiency.
+            </p>
+        <?php endif; ?>
+      </div>
+
+      <?php if (have_rows('solutions_hiring_list', $hiring_post_id)) : ?>
+      <div class="hiring-models-grid">
+        <?php while (have_rows('solutions_hiring_list', $hiring_post_id)) : the_row(); ?>
+          <div class="hiring-model-card <?php the_sub_field('model_type'); ?>">
+            <div class="model-card-inner">
+              <div class="model-icon">
+                <?php if ($icon = get_sub_field('icon')) : ?>
+                  <img src="<?php echo esc_url($icon); ?>" alt="<?php echo esc_attr(get_sub_field('title')); ?>" width="40" height="40">
+                <?php endif; ?>
+              </div>
+              <h3 class="model-title"><?php the_sub_field('title'); ?></h3>
+              <p class="model-desc"><?php the_sub_field('description'); ?></p>
+            </div>
+          </div>
+        <?php endwhile; ?>
+      </div>
+      <?php endif; ?>
+
+      <?php if ($cta_text = get_field('solutions_hiring_cta_text', $hiring_post_id)) : ?>
+      <div class="hiring-cta-wrapper text-center mt-5">
+        <a href="<?php echo esc_url(get_field('solutions_hiring_cta_link', $hiring_post_id) ?: get_permalink( get_page_by_path('contact-us') )); ?>" class="button button-primary mx-auto">
+          <?php echo esc_html($cta_text); ?>
+          <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 23C0 10.2975 10.2975 0 23 0C35.7025 0 46 10.2975 46 23C46 35.7025 35.7025 46 23 46C10.2975 46 0 35.7025 0 23Z" fill="url(#paint0_linear_507_314)"></path>
+            <path d="M28.625 18V26.125C28.625 26.2908 28.5591 26.4497 28.4419 26.5669C28.3247 26.6842 28.1657 26.75 28 26.75C27.8342 26.75 27.6753 26.6842 27.558 26.5669C27.4408 26.4497 27.375 26.2908 27.375 26.125V19.5086L18.4422 28.4422C18.3249 28.5595 18.1658 28.6253 18 28.6253C17.8341 28.6253 17.6751 28.5595 17.5578 28.4422C17.4405 28.3249 17.3746 28.1659 17.3746 28C17.3746 27.8341 17.4405 27.6751 17.5578 27.5578L26.4914 18.625H19.875C19.7092 18.625 19.5502 18.5592 19.433 18.4419C19.3158 18.3247 19.25 18.1658 19.25 18C19.25 17.8342 19.3158 17.6753 19.433 17.5581C19.5502 17.4408 19.7092 17.375 19.875 17.375H28C28.1657 17.375 28.3247 17.4408 28.4419 17.5581C28.5591 17.6753 28.625 17.8342 28.625 18Z" fill="white"></path>
+            <defs><linearGradient id="paint0_linear_507_314" x1="7.80357" y1="5.75" x2="61.8887" y2="67.3571" gradientUnits="userSpaceOnUse"><stop stop-color="#00BEC5"></stop><stop offset="1" stop-color="#43CEA2"></stop></linearGradient></defs>
+          </svg>
+        </a>
+      </div>
+      <?php endif; ?>
+    </div>
+  </section>
+  <!-- Hiring Models Section End -->
+
+  <!-- What Happens After You Reach Out Section Start -->
+  <section class="what-happens-section section-space-tb">
+    <div class="container">
+      <div class="heading_section text-center">
+        <h2 class="section-title">
+          <?php 
+          $process_title = get_field('process_section_title');
+          if ($process_title) {
+              $process_title = str_replace('{', '<span class="highlight-text">', $process_title);
+              $process_title = str_replace('}', '</span>', $process_title);
+              echo wp_kses($process_title, array('span' => array('class' => array())));
+          } else {
+              echo 'What Happens After You <span class="highlight-text"> Reach Out </span>';
+          }
+          ?>
+        </h2>
+        <?php 
+        $process_desc = get_field('process_section_description');
+        if ($process_desc) : 
+            $process_desc = str_replace('{', '<span class="highlight-text">', $process_desc);
+            $process_desc = str_replace('}', '</span>', $process_desc);
+            ?>
+            <p class="section-description">
+              <?php echo wp_kses_post($process_desc); ?>
+            </p>
+        <?php else : ?>
+            <p class="section-description">
+              Here's how we turn your SaaS idea into a subscription-ready MVP — through a clear, transparent process focused on speed, scalability, and real user validation.
+            </p>
+        <?php endif; ?>
+      </div>
+
+      <?php 
+      $process_steps = get_field('process_steps_repeater');
+      if ($process_steps) : ?>
+        <div class="process-steps-grid">
+          <?php $s = 1; foreach ($process_steps as $step) : 
+              $step_title = $step['step_title'];
+              $step_desc = $step['step_description'];
+          ?>
+            <div class="process-step-item">
+              <div class="step-number-circle"><?php echo str_pad($s, 2, '0', STR_PAD_LEFT); ?></div>
+              <h3 class="step-item-title"><?php echo esc_html($step_title); ?></h3>
+              <p class="step-item-desc"><?php echo esc_html($step_desc); ?></p>
+            </div>
+          <?php $s++; endforeach; ?>
+        </div>
+      <?php else : ?>
+        <!-- Hardcoded fallback steps if ACF is not filled -->
+        <div class="process-steps-grid">
+          <div class="process-step-item">
+            <div class="step-number-circle">01</div>
+            <h3 class="step-item-title">Discovery & Business Context</h3>
+            <p class="step-item-desc">
+              Within one business day, we contact you to schedule a short discovery call. Before the meeting, you'll receive a focused questionnaire covering your target users, core problem, pricing model, and integration needs. This allows us to quickly understand your business and technical goals.
+            </p>
+          </div>
+          <div class="process-step-item">
+            <div class="step-number-circle">02</div>
+            <h3 class="step-item-title">MVP Blueprint & Product Scope</h3>
+            <p class="step-item-desc">
+              Based on your input, we prepare a tailored SaaS MVP Blueprint that outlines your core features, user roles, data flows, and system architecture. You receive a clear functional scope designed for fast validation and long-term scalability.
+            </p>
+          </div>
+          <div class="process-step-item">
+            <div class="step-number-circle">03</div>
+            <h3 class="step-item-title">Walkthrough & Project Proposal</h3>
+            <p class="step-item-desc">
+              During the call, we review the Blueprint together, refine priorities, and align on the product direction. You then receive a complete project proposal with milestones, responsibilities, and delivery stages — giving you full clarity on how your SaaS MVP will be built and launched.
+            </p>
+          </div>
+        </div>
+      <?php endif; ?>
+
+      <?php 
+      $cta_text = get_field('process_cta_text') ?: 'START MY MVP';
+      $cta_link = get_field('process_cta_link') ?: get_permalink(get_page_by_path('contact-us'));
+      ?>
+      <div class="process-cta-wrapper text-center">
+        <a href="<?php echo esc_url($cta_link); ?>" class="button button-secondary mx-auto">
+          <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="46" height="46" rx="10" fill="white"></rect>
+            <path
+              d="M28.625 18V26.125C28.625 26.2908 28.5591 26.4497 28.4419 26.5669C28.3247 26.6842 28.1657 26.75 28 26.75C27.8342 26.75 27.6753 26.6842 27.558 26.5669C27.4408 26.4497 27.375 26.2908 27.375 26.125V19.5086L18.4422 28.4422C18.3249 28.5595 18.1658 28.6253 18 28.6253C17.8341 28.6253 17.6751 28.5595 17.5578 28.4422C17.4405 28.3249 17.3746 28.1659 17.3746 28C17.3746 27.8341 17.4405 27.6751 17.5578 27.5578L26.4914 18.625H19.875C19.7092 18.625 19.5502 18.5592 19.433 18.4419C19.3158 18.3247 19.25 18.1658 19.25 18C19.25 17.8342 19.3158 17.6753 19.433 17.5581C19.5502 17.4408 19.7092 17.375 19.875 17.375H28C28.1657 17.375 28.3247 17.4408 28.4419 17.5581C28.5591 17.6753 28.625 17.8342 28.625 18Z"
+              fill="#00BEC5"></path>
+          </svg>
+          <?php echo esc_html($cta_text); ?>
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- What Happens After You Reach Out Section End -->
+
+  <!-- FAQ Section Start -->
+  <section class="faq-accordion-section section-space-tb">
+    <div class="container">
+      <div class="heading_section text-center">
+        <h2 class="section-title">
+          <?php 
+          $faq_title = get_field('product_faq_title');
+          if ($faq_title) {
+              $faq_title = str_replace('{', '<span class="highlight-text">', $faq_title);
+              $faq_title = str_replace('}', '</span>', $faq_title);
+              echo wp_kses($faq_title, array('span' => array('class' => array())));
+          } else {
+              echo 'Frequently Asked <span class="highlight-text"> Questions </span>';
+          }
+          ?>
+        </h2>
+        <p class="section-description">
+          <?php 
+          $faq_desc = get_field('product_faq_description');
+          echo $faq_desc ? wp_kses_post($faq_desc) : 'Find answers to common queries about our product engineering process.'; 
+          ?>
+        </p>
+      </div>
+
+      <?php if (have_rows('product_faq_list')) : ?>
+      <div class="faq-accordion" id="productFAQ">
+        <?php $f = 1; while (have_rows('product_faq_list')) : the_row(); ?>
+          <div class="accordion-item <?php echo $f == 1 ? 'open' : ''; ?>">
+            <h2 class="accordion-header" id="heading<?php echo $f; ?>">
+              <button class="accordion-button <?php echo $f == 1 ? '' : 'collapsed'; ?>" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapse<?php echo $f; ?>" aria-expanded="<?php echo $f == 1 ? 'true' : 'false'; ?>" aria-controls="collapse<?php echo $f; ?>">
+                <?php echo str_pad($f, 2, '0', STR_PAD_LEFT); ?>. <?php the_sub_field('question'); ?>
+                <span class="accordion-icon"></span>
+              </button>
+            </h2>
+            <div id="collapse<?php echo $f; ?>" class="accordion-collapse collapse <?php echo $f == 1 ? 'show' : ''; ?>" aria-labelledby="heading<?php echo $f; ?>"
+              data-bs-parent="#productFAQ">
+              <div class="accordion-body">
+                <?php the_sub_field('answer'); ?>
+              </div>
+            </div>
+          </div>
+        <?php $f++; endwhile; ?>
+      </div>
+      <?php endif; ?>
+    </div>
+  </section>
+  <!-- FAQ Section End -->
+
+
 
 <?php get_footer(); ?>

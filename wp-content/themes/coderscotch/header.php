@@ -18,71 +18,10 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-  <meta name="description"
-    content="Top Laravel web, app, and software development company in south africa. Expert solutions for scalable, high-performance applications." />
-  <link rel="canonical" href="https://coderscotch.com" />
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Coder Scotch | Laravel & React Native Development Experts" />
-  <meta property="og:description"
-    content="Stay ahead with Coder Scotch. We specialize in stunning React Native designs and scalable Laravel applications for mobile and web." />
-  <meta property="og:url" content="https://coderscotch.com" />
-  <meta property="og:site_name" content="coderscotch.com" />
-  <meta property="article:publisher" content="https://www.facebook.com/coderscotch/" />
-  <meta property="article:modified_time" content="2025-09-22T05:45:52+00:00" />
-  <meta property="og:image"
-    content="https://coderscotch.com/wp-content/uploads/2023/03/103551-mobile-app-development.png" />
-  <meta property="og:image:width" content="640" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:type" content="image/png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Coder Scotch: Experts in Laravel & React Native Mobile App Development" />
-  <meta name="twitter:description"
-    content="Explore innovative mobile app designs and robust backend solutions with Coder Scotch. Specializing in React Native and Laravel development." />
-  <meta name="keywords"
-    content="laravel development, react native, web development, app development, software development, product engineering, cloud services, AI, ML, CoderScotch, mobile app development, digital marketing" />
   <meta name="author" content="Coder Scotch" />
-  <meta name="robots" content="index, follow" />
+
 
   <!-- Structured Data (JSON-LD) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Coder Scotch",
-    "url": "https://coderscotch.com",
-    "logo": "https://coderscotch.com/assets/images/coderscotch-logo.svg",
-    "description": "Top Laravel web, app, and software development company in South Africa. Expert solutions for scalable, high-performance applications.",
-    "sameAs": [
-      "https://www.facebook.com/coderscotch/",
-      "https://www.linkedin.com/company/coderscotch"
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Pretoria",
-      "addressCountry": "South Africa"
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "customer service",
-      "email": "info@coderscotch.com"
-    }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "url": "https://coderscotch.com",
-    "name": "Coder Scotch",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://coderscotch.com/search?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
   <?php wp_head(); ?>
 	
 <!-- Google tag (gtag.js) -->
@@ -100,12 +39,61 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MPZG2SZ9');</script>
-<!-- End Google Tag Manager -->
 </head>
-<script type="text/javascript">
-	var $ = jQuery;
-</script>
 <body>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://coderscotch.com/#/schema/organization",
+    "name": "Coder Scotch Technologies",
+    "url": "https://coderscotch.com/",
+    "description": "Coder Scotch is a custom web development company and custom mobile app development company helping businesses build scalable websites, web apps, mobile apps, and SaaS products worldwide.",
+    "logo": "https://coderscotch.com/wp-content/uploads/2026/02/New-Coderscotch-Logo-Black.png",
+    "sameAs": [
+      "https://www.linkedin.com/company/coder-scotch-technologies/",
+      "https://www.facebook.com/coderscotch/",
+      "https://www.instagram.com/coderscotch/",
+      "https://x.com/coderscotch",
+      "https://www.upwork.com/freelancers/nikunjgoriya5",
+      "https://clutch.co/profile/coder-scotch-technologies",
+      "https://dribbble.com/coderscotch"
+    ],
+    "foundingDate": "2018",
+    "numberOfEmployees": 25,
+    "areaServed": [
+        { "@type": "Country", "name": "United States" },
+        { "@type": "Country", "name": "United Kingdom" },
+        { "@type": "Place", "name": "Europe" },
+        { "@type": "Place", "name": "Middle East" }
+    ],  
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+1-832-814-0101",
+      "contactType": "customer support",
+      "email": "info@coderscotch.com"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Nikunj Goriya",
+      "url": "https://www.linkedin.com/in/nikunj-goriya-b7718b188/"
+    },
+    "address": [{
+        "@type": "PostalAddress",
+        "streetAddress": "1500 Broadway",
+        "postalCode": "10036",
+        "addressCountry": "NY"
+      },
+      {
+        "@type": "PostalAddress",
+        "streetAddress": "A-1217, Titanium Business Park, Makarba",
+        "addressLocality": "Ahmedabad",
+        "addressRegion": "Gujarat",
+        "postalCode": "380015",
+        "addressCountry": "IN"
+      }]
+  }
+</script>
 	<!-- Header Start -->
   <header class="header">
     <div class="container">
@@ -116,16 +104,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               width="184" height="17" />
           </a>
       	
-      	<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
-            <svg class="svgburg" width="40" height="40" viewBox="0 0 50 48" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path class="path1" d="M1.5 7L27.5 33C27.5 33 30.5 36 36.5 40.5C42.5 45 48 33.5 41.5 33C35 32.5 2 33 2 33"
-                stroke="#00BEC5" stroke-width="3"></path>
-              <path class="path2" d="M2 33L28 7C28 7 33.5 1 37 1C40.5 1 43 6.20692 40 7C37 7.79308 1 7 1 7"
-                stroke="#00BEC5" stroke-width="3"></path>
-              <path class="mline" d="M1.5 20H28.5" stroke="#00BEC5" stroke-width="3"></path>
+            <svg class="svgburg" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g class="burger-lines">
+                <path d="M 5 12 L 35 12" stroke="#00BEC5" stroke-width="3" stroke-linecap="round"></path>
+                <path d="M 5 20 L 35 20" stroke="#00BEC5" stroke-width="3" stroke-linecap="round"></path>
+                <path d="M 5 28 L 35 28" stroke="#00BEC5" stroke-width="3" stroke-linecap="round"></path>
+              </g>
+              <g class="cross-lines" style="display: none;">
+                <path d="M 10 10 L 30 30" stroke="#00BEC5" stroke-width="3" stroke-linecap="round"></path>
+                <path d="M 10 30 L 30 10" stroke="#00BEC5" stroke-width="3" stroke-linecap="round"></path>
+              </g>
             </svg>
           </button>
           <div class="collapse navbar-collapse navigation-barmenu" id="navbarSupportedContent">

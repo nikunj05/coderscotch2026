@@ -6,6 +6,10 @@
  */
 
 get_header();
+
+$category = get_queried_object();
+$cat_id = 'category_' . $category->term_id;
+$banner_image = get_field('cat_banner_image', $cat_id) ?: get_template_directory_uri() . '/assets/images/product-engineering-banner.png';
 ?>
 
 <main id="primary" class="site-main">
@@ -40,7 +44,7 @@ get_header();
           </div>
         </div>
         <div class="common-banner-bottom-image">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/images/product-engineering-banner.png" alt="Product Engineering banner image" width="405" height="453" class="common-banner-bottom-image">
+          <img src="<?php echo esc_url($banner_image); ?>" alt="<?php echo esc_attr(single_cat_title('', false)); ?> banner image" width="405" height="453" class="common-banner-bottom-image">
         </div>
       </div>
     </div>

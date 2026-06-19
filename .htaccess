@@ -373,3 +373,12 @@ RewriteRule . /index.php [L]
 </IfModule>
 
 # END WordPress
+
+# BEGIN Custom Browser Caching
+<IfModule mod_headers.c>
+    # Caching static assets for 1 Year (31536000 seconds) with immutable flag
+    <FilesMatch "(?i)\.(ico|pdf|flv|jpg|jpeg|png|gif|webp|svg|js|css|swf|woff|woff2|otf|ttf|gz)$">
+        Header set Cache-Control "max-age=31536000, public, immutable"
+    </FilesMatch>
+</IfModule>
+# END Custom Browser Caching

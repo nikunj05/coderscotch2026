@@ -10,7 +10,7 @@
 
 if (!defined('_S_VERSION')) {
 	// Replace the version number of the theme on each release.
-	define('_S_VERSION', '1.0.0');
+	define('_S_VERSION', '1.0.1');
 }
 
 /**
@@ -156,7 +156,12 @@ function coderscotch_scripts()
 	wp_enqueue_style('mainstyle', get_template_directory_uri() . '/assets/css/style.css',  false, time(), 'all');
 	wp_enqueue_style('custom', get_template_directory_uri() . '/assets/css/custom.css',  false, '1.1', 'all');
 	
-	wp_enqueue_script('jquery.min', get_template_directory_uri() . '/js/jquery.min.js',  array('jquery'), _S_VERSION, true);
+	// Deregister WordPress default jQuery and register our custom version in the footer
+	wp_deregister_script('jquery');
+	wp_register_script('jquery', get_template_directory_uri() . '/js/jquery.min.js', array(), '3.7.1', true);
+	wp_enqueue_script('jquery');
+	wp_add_inline_script('jquery', 'window.$ = window.jQuery;', 'after');
+	
 	wp_enqueue_script('bootstrapbundlemin', get_template_directory_uri() . '/js/bootstrap.bundle.js',  array('jquery'), _S_VERSION, true);
 	wp_enqueue_script('aos', get_template_directory_uri() . '/js/aos.js',  array('jquery'), _S_VERSION, true);
 
@@ -165,15 +170,39 @@ function coderscotch_scripts()
 	wp_enqueue_script('ScrollTrigger', get_template_directory_uri() . '/js/ScrollTrigger.min.js',  array('jquery'), _S_VERSION, true);
 	wp_enqueue_script('SplitType', get_template_directory_uri() . '/js/SplitType.min.js',  array('jquery'), _S_VERSION, true);
 	wp_enqueue_script('swiper-bundle', get_template_directory_uri() . '/js/swiper-bundle.min.js',  array('jquery'), _S_VERSION, true);
-	wp_enqueue_script('gsap', get_template_directory_uri() . '/js/gsap.js',  array('jquery'), _S_VERSION, true);
+	wp_enqueue_script('gsap-custom', get_template_directory_uri() . '/js/gsap.js',  array('jquery'), _S_VERSION, true);
 
-	wp_enqueue_script('main', get_template_directory_uri() . '/js/main.js',  array('jquery'), _S_VERSION, true);
+	wp_enqueue_script('main', get_template_directory_uri() . '/js/main.js',  array('jquery'), time(), true);
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
 	}
 }
 add_action('wp_enqueue_scripts', 'coderscotch_scripts');
+
+/**
+ * Defer Non-Critical JavaScript
+ */
+function coderscotch_defer_js($tag, $handle) {
+    // Array of script handles to defer
+    $defer_scripts = array(
+        'aos', 
+        'slick.min', 
+        'gsap', 
+        'ScrollTrigger', 
+        'SplitType', 
+        'swiper-bundle', 
+        'gsap-custom', 
+        'main'
+    );
+    
+    if (in_array($handle, $defer_scripts)) {
+        return str_replace(' src', ' defer="defer" src', $tag);
+    }
+    return $tag;
+}
+add_filter('script_loader_tag', 'coderscotch_defer_js', 10, 2);
+
 
 /**
  * Implement the Custom Header feature.
@@ -524,6 +553,18 @@ class CS_Header_Menu_Walker extends Walker_Nav_Menu {
                     . $this->tab_content .
                   '</div>
 
+                  <div class="submenu-col promo-col">
+                    <div class="menu-promo-card">
+                      <div class="promo-badge">Featured</div>
+                      <h4 class="promo-title">Looking for a Technology Partner?</h4>
+                      <p class="promo-desc">Let\'s build high-performing software customized for your business goals.</p>
+                      <a href="' . esc_url(get_permalink(get_page_by_path('contact-us'))) . '" class="promo-btn">
+                        Get in Touch
+                        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 10 H16 M12 6 L16 10 L12 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </a>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>';
@@ -764,7 +805,7 @@ function create_industries_post_type()
 		'capability_type' => 'post',
 		'show_in_rest' => true,
 		'query_var' => true,
-		'rewrite' => array('slug' => 'industries'),
+		'rewrite' => array('slug' => 'industry'),
 		'has_archive' => true,
 		'hierarchical' => false,
 		'menu_position' => 6,
@@ -1531,6 +1572,16 @@ function coderscotch_register_acf_fields() {
         'key' => 'group_product_engineering_page',
         'title' => 'Product Engineering Page',
         'fields' => array(
+            // ── BANNER TAB ──────────────────────────────────────────
+            array( 'key' => 'field_prod_eng_banner_tab', 'label' => 'Banner', 'type' => 'tab', 'placement' => 'top', 'endpoint' => 0 ),
+            array(
+                'key'           => 'field_prod_eng_banner_btn_label',
+                'label'         => 'Banner Button Label',
+                'name'          => 'prod_eng_banner_btn_label',
+                'type'          => 'text',
+                'default_value' => 'Speak to our expert',
+            ),
+            array( 'key' => 'field_prod_eng_services_tab', 'label' => 'Services', 'type' => 'tab', 'placement' => 'top', 'endpoint' => 0 ),
             array(
                 'key' => 'field_engineering_services',
                 'label' => 'Engineering Services',
@@ -1748,6 +1799,156 @@ function coderscotch_register_acf_fields() {
                         'preview_size' => 'thumbnail',
                     ),
                 ),
+            ),
+            array(
+                'key' => 'field_process_tab',
+                'label' => 'Reach Out Process',
+                'type' => 'tab',
+            ),
+            array(
+                'key' => 'field_process_section_title',
+                'label' => 'Section Title',
+                'name' => 'process_section_title',
+                'type' => 'text',
+                'instructions' => 'Use curly brackets for highlights, e.g. What Happens After You {Reach Out}',
+                'default_value' => 'What Happens After You {Reach Out}',
+            ),
+            array(
+                'key' => 'field_process_section_description',
+                'label' => 'Section Description',
+                'name' => 'process_section_description',
+                'type' => 'textarea',
+                'default_value' => "Here's how we turn your SaaS idea into a subscription-ready MVP — through a clear, transparent process focused on speed, scalability, and real user validation.",
+            ),
+            array(
+                'key' => 'field_process_steps_repeater',
+                'label' => 'Process Steps',
+                'name' => 'process_steps_repeater',
+                'type' => 'repeater',
+                'button_label' => 'Add Step',
+                'layout' => 'block',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_process_step_title',
+                        'label' => 'Step Title',
+                        'name' => 'step_title',
+                        'type' => 'text',
+                    ),
+                    array(
+                        'key' => 'field_process_step_description',
+                        'label' => 'Step Description',
+                        'name' => 'step_description',
+                        'type' => 'textarea',
+                    ),
+                ),
+            ),
+            array(
+                'key' => 'field_process_cta_text',
+                'label' => 'CTA Button Text',
+                'name' => 'process_cta_text',
+                'type' => 'text',
+                'default_value' => 'START MY MVP',
+            ),
+            array(
+                'key' => 'field_process_cta_link',
+                'label' => 'CTA Button Link',
+                'name' => 'process_cta_link',
+                'type' => 'url',
+            ),
+            array(
+                'key' => 'field_digital_creations_tab',
+                'label' => 'Digital Creations',
+                'type' => 'tab',
+            ),
+            array(
+                'key' => 'field_digital_creations_section_title',
+                'label' => 'Section Title',
+                'name' => 'digital_creations_section_title',
+                'type' => 'text',
+                'instructions' => 'Use curly brackets for highlights, e.g. Showcasing Our {Finest Digital Creations}',
+                'default_value' => 'Showcasing Our {Finest Digital Creations}',
+            ),
+            array(
+                'key' => 'field_digital_creations_section_description',
+                'label' => 'Section Description',
+                'name' => 'digital_creations_section_description',
+                'type' => 'textarea',
+                'default_value' => 'We help businesses reinvent and accelerate their digital identity by providing premium software development solutions in Europe and around different parts of the world.',
+            ),
+            array(
+                'key' => 'field_solutions_hiring_tab',
+                'label' => 'Hiring Models',
+                'type' => 'tab',
+            ),
+            array(
+                'key' => 'field_solutions_hiring_title',
+                'label' => 'Hiring Section Title',
+                'name' => 'solutions_hiring_title',
+                'type' => 'text',
+                'instructions' => 'Use curly brackets for highlights, e.g. Our {Hiring Models}',
+                'default_value' => 'Our {Hiring Models}',
+            ),
+            array(
+                'key' => 'field_solutions_hiring_description',
+                'label' => 'Hiring Section Description',
+                'name' => 'solutions_hiring_description',
+                'type' => 'textarea',
+                'default_value' => "Choose the engagement model that best fits your product requirements, budget, and timeline.\nOur flexible hiring models ensure seamless collaboration, transparent pricing, and maximum efficiency.",
+            ),
+            array(
+                'key' => 'field_solutions_hiring_list',
+                'label' => 'Hiring Models List',
+                'name' => 'solutions_hiring_list',
+                'type' => 'repeater',
+                'button_label' => 'Add Row',
+                'layout' => 'table',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_sol_hiring_type',
+                        'label' => 'Model Type (for class)',
+                        'name' => 'model_type',
+                        'type' => 'select',
+                        'choices' => array(
+                            'hourly-model' => 'Hourly',
+                            'monthly-model' => 'Monthly',
+                            'fixed-model' => 'Fixed',
+                        ),
+                        'default_value' => 'hourly-model',
+                    ),
+                    array(
+                        'key' => 'field_sol_hiring_icon',
+                        'label' => 'Icon',
+                        'name' => 'icon',
+                        'type' => 'image',
+                        'return_format' => 'url',
+                        'preview_size' => 'thumbnail',
+                    ),
+                    array(
+                        'key' => 'field_sol_hiring_title',
+                        'label' => 'Title',
+                        'name' => 'title',
+                        'type' => 'text',
+                    ),
+                    array(
+                        'key' => 'field_sol_hiring_description',
+                        'label' => 'Description',
+                        'name' => 'description',
+                        'type' => 'textarea',
+                    ),
+                ),
+            ),
+            array(
+                'key' => 'field_solutions_hiring_cta_text',
+                'label' => 'CTA Text',
+                'name' => 'solutions_hiring_cta_text',
+                'type' => 'text',
+                'default_value' => 'Hire Dedicated Developers Now',
+            ),
+            array(
+                'key' => 'field_solutions_hiring_cta_link',
+                'label' => 'CTA Link',
+                'name' => 'solutions_hiring_cta_link',
+                'type' => 'text',
             ),
             array(
                 'key' => 'field_product_faq_tab',
@@ -2013,3 +2214,272 @@ function coderscotch_register_acf_fields() {
         'show_in_rest'        => 0,
     ));
 }
+
+/**
+ * Defer non-critical CSS to remove render-blocking styles.
+ */
+function coderscotch_defer_non_critical_css($tag, $handle, $href, $media) {
+    if (is_admin()) {
+        return $tag;
+    }
+    
+    // Critical stylesheets to keep render-blocking for instant styling above-the-fold
+    $critical_handles = array('bootstrap.min', 'mainstyle');
+    
+    if (in_array($handle, $critical_handles)) {
+        return $tag;
+    }
+    
+    // Load other stylesheets asynchronously using the print onload technique
+    $tag = str_replace("media='all'", "media='print' onload=\"this.media='all'\"", $tag);
+    $tag = str_replace("media='screen'", "media='print' onload=\"this.media='all'\"", $tag);
+    return $tag;
+}
+add_filter('style_loader_tag', 'coderscotch_defer_non_critical_css', 10, 4);
+
+/**
+ * Dequeue Contact Form 7 Google reCAPTCHA scripts on load to lazy-load them on user interaction.
+ */
+function coderscotch_dequeue_cf7_recaptcha() {
+    if ( ! class_exists( 'WPCF7_RECAPTCHA' ) ) {
+        return;
+    }
+    
+    // We dequeue if the CF7 reCAPTCHA scripts are registered or enqueued.
+    if ( wp_script_is( 'wpcf7-recaptcha', 'enqueued' ) || wp_script_is( 'wpcf7-recaptcha', 'registered' ) ) {
+        $service = WPCF7_RECAPTCHA::get_instance();
+        if ( $service && $service->is_active() ) {
+            $sitekey = $service->get_sitekey();
+            wp_dequeue_script( 'google-recaptcha' );
+            wp_dequeue_script( 'wpcf7-recaptcha' );
+
+            // Pass key data to our theme's javascript so we can load them on interaction
+            wp_localize_script( 'main', 'coderscotch_recaptcha_lazy', array(
+                'sitekey' => $sitekey,
+                'recaptcha_url' => add_query_arg(
+                    array( 'render' => $sitekey ),
+                    apply_filters( 'wpcf7_use_recaptcha_net', false ) 
+                        ? 'https://www.recaptcha.net/recaptcha/api.js' 
+                        : 'https://www.google.com/recaptcha/api.js'
+                ),
+                'actions' => apply_filters( 'wpcf7_recaptcha_actions', array(
+                    'homepage' => 'homepage',
+                    'contactform' => 'contactform',
+                ) ),
+            ) );
+        }
+    }
+}
+add_action( 'wp_enqueue_scripts', 'coderscotch_dequeue_cf7_recaptcha', 99 );
+
+/**
+ * Defer non-critical enqueued scripts to reduce main-thread work and speed up page load.
+ */
+function coderscotch_defer_scripts( $tag, $handle, $src ) {
+    if ( is_admin() ) {
+        return $tag;
+    }
+    
+    // Non-critical handles to defer
+    $defer_handles = array(
+        'bootstrapbundlemin',
+        'aos',
+        'slick.min',
+        'gsap',
+        'ScrollTrigger',
+        'SplitType',
+        'swiper-bundle',
+        'gsap-custom',
+        'main',
+        'comment-reply'
+    );
+    
+    if ( in_array( $handle, $defer_handles ) ) {
+        // Add defer attribute if not already present
+        if ( false === strpos( $tag, 'defer' ) ) {
+            $tag = str_replace( ' src=', ' defer src=', $tag );
+        }
+    }
+    
+    return $tag;
+}
+add_filter( 'script_loader_tag', 'coderscotch_defer_scripts', 10, 3 );
+// function coderscotch_dynamic_faq_schema() {
+ 
+//     // Only run on frontend single pages/posts
+//     if (is_admin() || !is_singular()) {
+//         return;
+//     }
+ 
+//     $post_id = get_queried_object_id();
+ 
+//     if (!$post_id) {
+//         return;
+//     }
+ 
+//     $faq_items = [];
+ 
+//     // Check if ACF is active and FAQ repeater exists
+//     if (function_exists('have_rows') && have_rows('faq_schema_items', $post_id)) {
+ 
+//         while (have_rows('faq_schema_items', $post_id)) {
+//             the_row();
+ 
+//             $question = get_sub_field('faq_question');
+//             $answer   = get_sub_field('faq_answer');
+ 
+//             $question = trim(wp_strip_all_tags($question));
+//             $answer   = trim(wp_strip_all_tags($answer));
+ 
+//             if (!empty($question) && !empty($answer)) {
+//                 $faq_items[] = [
+//                     '@type' => 'Question',
+//                     'name'  => $question,
+//                     'acceptedAnswer' => [
+//                         '@type' => 'Answer',
+//                         'text'  => $answer,
+//                     ],
+//                 ];
+//             }
+//         }
+//     }
+ 
+//     // Do not output empty FAQ schema
+//     if (empty($faq_items)) {
+//         return;
+//     }
+ 
+//     $schema = [
+//         '@context'   => 'https://schema.org',
+//         '@type'      => 'FAQPage',
+//         '@id'        => trailingslashit(get_permalink($post_id)) . '#faq',
+//         'url'        => get_permalink($post_id),
+//         'inLanguage' => get_bloginfo('language'),
+//         'name'       => get_the_title($post_id) . ' FAQs',
+//         'mainEntity' => $faq_items,
+//     ];
+ 
+//     echo "\n<script type=\"application/ld+json\">\n";
+//     echo wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+//     echo "\n</script>\n";
+// }
+// add_action('wp_head', 'coderscotch_dynamic_faq_schema', 30);
+
+add_action('wp_head', 'coderscotch_dynamic_faq_schema', 30);
+
+function coderscotch_dynamic_faq_schema() {
+    if (is_admin() || !is_singular()) {
+        return;
+    }
+
+    if (!function_exists('get_field')) {
+        return;
+    }
+
+    $post_id = get_queried_object_id();
+
+    $faq_fields = [
+        'home_faq_list',
+        'product_faq_list',
+        'solutions_faq_list',
+        //'industries_faq_list'
+    ];
+
+    $faqs = [];
+
+    foreach ($faq_fields as $field_name) {
+        $field_faqs = get_field($field_name, $post_id);
+
+        if (!empty($field_faqs) && is_array($field_faqs)) {
+            $faqs = array_merge($faqs, $field_faqs);
+        }
+    }
+
+    if (empty($faqs)) {
+        return;
+    }
+
+    $main_entity = [];
+
+    foreach ($faqs as $faq) {
+        $question = !empty($faq['question']) ? wp_strip_all_tags($faq['question']) : '';
+        $answer   = !empty($faq['answer']) ? $faq['answer'] : '';
+
+        if (empty($question) || empty($answer)) {
+            continue;
+        }
+
+        $answer = apply_filters('the_content', $answer);
+        $answer = wp_strip_all_tags($answer);
+
+        $main_entity[] = [
+            '@type' => 'Question',
+            'name' => $question,
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => $answer
+            ]
+        ];
+    }
+
+    if (empty($main_entity)) {
+        return;
+    }
+
+    $schema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'FAQPage',
+        '@id' => trailingslashit(get_permalink($post_id)) . '#faq',
+        'url' => get_permalink($post_id),
+        'mainEntity' => $main_entity
+    ];
+
+    echo "\n<script type='application/ld+json'>" . wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "</script>\n";
+}
+
+
+/**
+ * Add Custom Avatar field to User Profiles via ACF
+ */
+add_action('acf/init', 'coderscotch_register_acf_user_avatar');
+function coderscotch_register_acf_user_avatar() {
+    if( function_exists('acf_add_local_field_group') ):
+        acf_add_local_field_group(array(
+            'key' => 'group_user_custom_avatar',
+            'title' => 'Author Profile Settings',
+            'fields' => array(
+                array(
+                    'key' => 'field_user_custom_avatar',
+                    'label' => 'Custom Profile Photo',
+                    'name' => 'custom_avatar',
+                    'type' => 'image',
+                    'instructions' => 'Upload a square image (e.g. 500x500px) to override the default Gravatar on your author profile.',
+                    'return_format' => 'url',
+                    'preview_size' => 'thumbnail',
+                    'library' => 'all',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'user_form',
+                        'operator' => '==',
+                        'value' => 'all',
+                    ),
+                ),
+            ),
+            'menu_order' => 0,
+            'position' => 'normal',
+            'style' => 'default',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label',
+            'hide_on_screen' => '',
+            'active' => true,
+            'description' => '',
+        ));
+    endif;
+}
+
+
+
+

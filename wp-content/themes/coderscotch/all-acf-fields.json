@@ -655,7 +655,7 @@
                 {
                     "param": "page_template",
                     "operator": "==",
-                    "value": "template-parts\/about.php"
+                    "value": "template-parts/about.php"
                 }
             ]
         ],
@@ -862,7 +862,7 @@
                 {
                     "param": "post_template",
                     "operator": "==",
-                    "value": "template-parts\/career.php"
+                    "value": "template-parts/career.php"
                 }
             ]
         ],
@@ -2147,6 +2147,13 @@
                     "operator": "==",
                     "value": "category"
                 }
+            ],
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "services"
+                }
             ]
         ],
         "menu_order": 0,
@@ -2264,7 +2271,7 @@
                 {
                     "param": "post_template",
                     "operator": "==",
-                    "value": "template-parts\/contact.php"
+                    "value": "template-parts/contact.php"
                 }
             ]
         ],
@@ -2733,28 +2740,28 @@
                 {
                     "param": "post_template",
                     "operator": "==",
-                    "value": "template-parts\/laraveldev.php"
+                    "value": "template-parts/laraveldev.php"
                 }
             ],
             [
                 {
                     "param": "post_template",
                     "operator": "==",
-                    "value": "template-parts\/react_native.php"
+                    "value": "template-parts/react_native.php"
                 }
             ],
             [
                 {
                     "param": "post_template",
                     "operator": "==",
-                    "value": "template-parts\/reactjs.php"
+                    "value": "template-parts/reactjs.php"
                 }
             ],
             [
                 {
                     "param": "post_template",
                     "operator": "==",
-                    "value": "template-parts\/hire_page.php"
+                    "value": "template-parts/hire_page.php"
                 }
             ]
         ],
@@ -2945,7 +2952,7 @@
             {
                 "ID": 0,
                 "key": "field_hire_intro_image",
-                "label": "Intro Illustration\/Image",
+                "label": "Intro Illustration/Image",
                 "name": "hire_intro_image",
                 "aria-label": "",
                 "prefix": "acf",
@@ -3819,7 +3826,7 @@
                 {
                     "param": "page_template",
                     "operator": "==",
-                    "value": "template-parts\/hire_page.php"
+                    "value": "template-parts/hire_page.php"
                 }
             ]
         ],
@@ -4022,7 +4029,7 @@
                 {
                     "param": "page_template",
                     "operator": "==",
-                    "value": "template-parts\/home.php"
+                    "value": "template-parts/home.php"
                 }
             ]
         ],
@@ -4433,7 +4440,7 @@
                 {
                     "param": "post_template",
                     "operator": "==",
-                    "value": "template-parts\/home.php"
+                    "value": "template-parts/home.php"
                 }
             ]
         ],
@@ -7117,7 +7124,7 @@
                 {
                     "param": "page_template",
                     "operator": "==",
-                    "value": "template-parts\/product-engineering-template.php"
+                    "value": "template-parts/product-engineering-template.php"
                 }
             ]
         ],
@@ -8315,14 +8322,14 @@
                 {
                     "param": "post_template",
                     "operator": "==",
-                    "value": "template-parts\/services.php"
+                    "value": "template-parts/services.php"
                 }
             ],
             [
                 {
                     "param": "post_template",
                     "operator": "==",
-                    "value": "template-parts\/ai-services.php"
+                    "value": "template-parts/ai-services.php"
                 }
             ]
         ],
@@ -9381,7 +9388,7 @@
                 {
                     "param": "page_template",
                     "operator": "==",
-                    "value": "template-parts\/solutions-template.php"
+                    "value": "template-parts/solutions-template.php"
                 }
             ]
         ],

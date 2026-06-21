@@ -101,120 +101,161 @@ get_header();
 <!-- Banner Section End -->
 
 <!-- Home Service slider section start -->
-  <?php
-    $terms = get_terms(array(
-      'taxonomy'   => 'category',
-      'hide_empty' => false,
-      'orderby'    => 'term_id',
-      'order'      => 'DESC',
+<?php
+  $slugs = array(
+    'product-engineering',
+    'digital-marketing',
+    'generative-ai-solutions',
+    'mobile-app-development',
+    'e-commerce-development',
+    'ui-ux-designs'
+  );
+
+  $home_services = array();
+  foreach ($slugs as $slug) {
+    $posts = get_posts(array(
+      'post_type' => 'services',
+      'name' => $slug,
+      'posts_per_page' => 1,
+      'post_status' => 'publish'
     ));
-
-
-    // Filter categories that should show on home page
-    $home_categories = array();
-    if (!empty($terms) && !is_wp_error($terms)) {
-      foreach ($terms as $term) {
-        if (get_field('show_on_home_page_services', 'category_' . $term->term_id) === "Yes") {
-          $home_categories[] = $term;
-        }
-      }
+    if (!empty($posts)) {
+      $home_services[] = $posts[0];
     }
-    ?>
+  }
+  ?>
 
-    <section class="services-slider-section">
-      <div class="container">
-        <div class="services-slider-inner">
+  <section class="services-slider-section">
+    <div class="container">
+      <!-- New Section Header -->
+      <div class="heading_section text-center mb-5">
+        <h2 class="section-title">Innovative <span class="highlight-text">Services</span> We Offer</h2>
+        <p class="section-description mx-auto mw-740">We build high-performance digital products and scalable marketing engines designed to solve complex business problems and accelerate your growth.</p>
+      </div>
 
-          <!-- Tabs Nav -->
-          <div class="services-tabs-nav-wrapper">
-            <ul class="nav nav-pills services-tabs-nav justify-content-center" id="services-tab-dynamic" role="tablist">
-              <?php
-              $n = 0;
-              foreach ($home_categories as $term) :
-                $n++;
-                $isActive = ($n === 1);
-                $term_id = $term->term_id;
-              ?>
-                <li class="nav-item" role="presentation">
-                  <button
-                    class="nav-link <?php echo $isActive ? 'active' : ''; ?>"
-                    id="home-service-<?php echo $term_id; ?>-tab"
-                    data-bs-toggle="pill"
-                    data-bs-target="#home-service-<?php echo $term_id; ?>"
-                    type="button"
-                    role="tab"
-                    aria-controls="home-service-<?php echo $term_id; ?>"
-                    aria-selected="<?php echo $isActive ? 'true' : 'false'; ?>">
-                    <?php echo esc_html($term->name); ?>
-                  </button>
-                </li>
-              <?php endforeach; ?>
-            </ul>
+      <div class="services-slider-inner">
+        <div class="row g-4 g-lg-5 text-start">
+          
+          <!-- Left Side: Vertical Tabs Nav -->
+          <div class="col-lg-4 col-md-5">
+            <div class="services-tabs-nav-wrapper">
+              <ul class="nav nav-pills services-tabs-nav flex-column" id="services-tab-dynamic" role="tablist" aria-orientation="vertical">
+                <?php
+                $n = 0;
+                foreach ($home_services as $post_obj) :
+                  $n++;
+                  $isActive = ($n === 1);
+                  $post_id = $post_obj->ID;
+                  $tab_label = get_field('title2', $post_id) ?: $post_obj->post_title;
+                  // Strip HTML tags for tab button labels
+                  $tab_label = wp_strip_all_tags($tab_label);
+                ?>
+                  <li class="nav-item" role="presentation">
+                    <button
+                      class="nav-link <?php echo $isActive ? 'active' : ''; ?>"
+                      id="home-service-<?php echo $post_id; ?>-tab"
+                      data-bs-toggle="pill"
+                      data-bs-target="#home-service-<?php echo $post_id; ?>"
+                      type="button"
+                      role="tab"
+                      aria-controls="home-service-<?php echo $post_id; ?>"
+                      aria-selected="<?php echo $isActive ? 'true' : 'false'; ?>">
+                      <?php echo esc_html($tab_label); ?>
+                    </button>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
           </div>
 
+          <!-- Right Side: Tab Content Panel -->
+          <div class="col-lg-8 col-md-7">
+            <div class="tab-content services-tab-content" id="services-tabContent-dynamic">
+              <?php
+              $m = 0;
+              foreach ($home_services as $post_obj) :
+                $m++;
+                $isActive = ($m === 1);
+                $post_id = $post_obj->ID;
+                
+                // Dynamic title
+                $service_title = get_field('title2', $post_id) ?: get_field('banner_title', $post_id) ?: $post_obj->post_title;
 
+                // Dynamic description logic
+                $service_desc = get_field('banner_text2', $post_id) ?: get_field('cat_tech_description', $post_id) ?: $post_obj->post_content;
+                $service_desc = wp_trim_words($service_desc, 60);
 
-          <!-- Tab Content -->
-          <div class="tab-content services-tab-content" id="services-tabContent-dynamic">
-            <?php
-            $m = 0;
-            foreach ($home_categories as $term) :
-              $m++;
-              $isActive = ($m === 1);
-              $term_id = $term->term_id;
-              $acf_term_id = 'category_' . $term_id;
-            ?>
-              <div
-                class="tab-pane fade <?php echo $isActive ? 'show active' : ''; ?>"
-                id="home-service-<?php echo $term_id; ?>"
-                role="tabpanel"
-                aria-labelledby="home-service-<?php echo $term_id; ?>-tab"
-                tabindex="0">
+                // Sub-services features
+                $features = array();
+                if (have_rows('small_services_boxes', $post_id)) {
+                    while (have_rows('small_services_boxes', $post_id)) {
+                        the_row();
+                        $features[] = array(
+                            'icon'  => get_sub_field('icon'),
+                            'title' => get_sub_field('title')
+                        );
+                    }
+                } elseif (have_rows('service_box', $post_id)) {
+                    while (have_rows('service_box', $post_id)) {
+                        the_row();
+                        $features[] = array(
+                            'icon'  => get_sub_field('service_box_image'),
+                            'title' => get_sub_field('service_box_title')
+                        );
+                    }
+                }
+              ?>
+                <div
+                  class="tab-pane fade <?php echo $isActive ? 'show active' : ''; ?>"
+                  id="home-service-<?php echo $post_id; ?>"
+                  role="tabpanel"
+                  aria-labelledby="home-service-<?php echo $post_id; ?>-tab"
+                  tabindex="0">
 
-                <div class="home-service-tab-content align-items-center">
-                  <div class="home-service-tab-content-left">
-                    <div class="service-content-left">
-                      <h3 class="service-title"><?php echo wp_kses_post(get_field('title2', $acf_term_id)); ?></h3>
+                  <div class="home-service-tab-content">
 
-                      <p class="service-description">
-                        <?php echo wp_kses_post(wp_trim_words($term->description, 100)); ?>
-                      </p>
+                    <!-- 1. Full-width title -->
+                    <h3 class="service-title"><?php echo wp_kses($service_title, array('span' => array('class' => array()), 'br' => array())); ?></h3>
 
-                      <a href="<?php echo esc_url(get_term_link($term)); ?>" class="button button-secondary">
-                        <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <rect width="46" height="46" rx="10" fill="white"></rect>
-                          <path d="M28.625 18V26.125C28.625 26.2908 28.5591 26.4497 28.4419 26.5669C28.3247 26.6842 28.1657 26.75 28 26.75C27.8342 26.75 27.6753 26.6842 27.558 26.5669C27.4408 26.4497 27.375 26.2908 27.375 26.125V19.5086L18.4422 28.4422C18.3249 28.5595 18.1658 28.6253 18 28.6253C17.8341 28.6253 17.6751 28.5595 17.5578 28.4422C17.4405 28.3249 17.3746 28.1659 17.3746 28C17.3746 27.8341 17.4405 27.6751 17.5578 27.5578L26.4914 18.625H19.875C19.7092 18.625 19.5502 18.5592 19.433 18.4419C19.3158 18.3247 19.25 18.1658 19.25 18C19.25 17.8342 19.3158 17.6753 19.433 17.5581C19.5502 17.4408 19.7092 17.375 19.875 17.375H28C28.1657 17.375 28.3247 17.4408 28.4419 17.5581C28.5591 17.6753 28.625 17.8342 28.625 18Z" fill="#00BEC5"></path>
-                        </svg>
+                    <!-- 2. Short description -->
+                    <p class="service-description">
+                      <?php echo wp_kses_post($service_desc); ?>
+                    </p>
+
+                    <!-- 3. 4 Feature boxes -->
+                    <?php if (!empty($features)) : ?>
+                    <div class="service-process-diagram">
+                      <?php $count = 0; foreach ($features as $f) : if (empty($f['title'])) continue; if ($count >= 4) break; $count++; ?>
+                        <div class="process-step-card">
+                          <h4 class="step-title"><?php echo esc_html($f['title']); ?></h4>
+                        </div>
+                      <?php endforeach; ?>
+                    </div>
+                    <?php endif; ?>
+
+                    <!-- 4. CTA button -->
+                    <div class="service-cta">
+                      <a href="<?php echo esc_url(get_permalink($post_id)); ?>" class="button button-secondary service-btn">
+                        <span class="btn-icon">
+                          <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="46" height="46" rx="10" fill="rgba(0,190,197,0.1)"></rect>
+                            <path d="M28.625 18V26.125C28.625 26.2908 28.5591 26.4497 28.4419 26.5669C28.3247 26.6842 28.1657 26.75 28 26.75C27.8342 26.75 27.6753 26.6842 27.558 26.5669C27.4408 26.4497 27.375 26.2908 27.375 26.125V19.5086L18.4422 28.4422C18.3249 28.5595 18.1658 28.6253 18 28.6253C17.8341 28.6253 17.6751 28.5595 17.5578 28.4422C17.4405 28.3249 17.3746 28.1659 17.3746 28C17.3746 27.8341 17.4405 27.6751 17.5578 27.5578L26.4914 18.625H19.875C19.7092 18.625 19.5502 18.5592 19.433 18.4419C19.3158 18.3247 19.25 18.1658 19.25 18C19.25 17.8342 19.3158 17.6753 19.433 17.5581C19.5502 17.4408 19.7092 17.375 19.875 17.375H28C28.1657 17.375 28.3247 17.4408 28.4419 17.5581C28.5591 17.6753 28.625 17.8342 28.625 18Z" fill="#00BEC5"></path>
+                          </svg>
+                        </span>
                         Know More
                       </a>
                     </div>
-                  </div>
 
-                  <div class="home-service-tab-content-right">
-                    <div class="service-process-diagram">
-                      <?php if (have_rows('small_services_boxes', $acf_term_id)) : ?>
-                        <?php while (have_rows('small_services_boxes', $acf_term_id)) : the_row(); ?>
-                          <div class="process-step-card">
-                            <div class="step-icon">
-                              <img src="<?php echo esc_url(get_sub_field('icon')); ?>"
-                                alt="<?php echo esc_attr(get_sub_field('title')); ?>"
-                                width="32" height="32">
-                            </div>
-                            <h4 class="step-title"><?php echo esc_html(get_sub_field('title')); ?></h4>
-                          </div>
-                        <?php endwhile; ?>
-                      <?php endif; ?>
-                    </div>
                   </div>
-
                 </div>
-              </div>
-            <?php endforeach; ?>
+              <?php endforeach; ?>
+            </div>
           </div>
-
+          
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
 
 

@@ -34,7 +34,41 @@ if (have_posts()) : while (have_posts()) : the_post();
 
         // Capabilities
         $cap_title = get_field('cat_cap_title') ?: 'Our ' . get_the_title() . ' <span class="highlight-text"> Capabilities </span>';
-        $cap_items = get_field('cat_cap_items');
+        $service_slug = $post->post_name;
+       
+        $cap_items = array();
+        
+        $pages_args = array(
+            'post_type'      => 'page',
+            'posts_per_page' => -1,
+            'meta_query'     => array(
+                array(
+                    'key'     => 'service_type',
+                    'value'   => $post_id,
+                    'compare' => '='
+                )
+            )
+        );
+        
+        $pages_query = new WP_Query($pages_args);
+          //echo "<pre>";
+          //print_r($pages_query);
+          //exit;
+
+        if ($pages_query->have_posts()) {
+            while ($pages_query->have_posts()) {
+              
+
+                $pages_query->the_post();
+                $cap_items[] = array(
+                    'label'     => get_the_title(),
+                    'link'      => get_permalink(),
+                    'tagline'   => get_field('tagline') ?: '',
+                    'summary' => wp_strip_all_tags(apply_filters('the_content', get_the_content()))
+                );
+            }
+            wp_reset_postdata();
+        }
 
         // Bento
         $bento_title = get_field('cat_bento_title') ?: 'Why Choose <span class="highlight-text"> Coder Scotch? </span>';
@@ -212,153 +246,29 @@ if (have_posts()) : while (have_posts()) : the_post();
                     </div>
                     <div class="card-hidden-content">
                       <p class="summary-text"><?php echo esc_html($item['summary']); ?></p>
-                      <?php if( !empty($item['checklist']) ): ?>
-                        <div class="checklist-grid mt-3">
-                          <?php foreach( $item['checklist'] as $check ): ?>
-                            <div class="check-item d-flex align-items-start">
-                              <svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle>
-                                <path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                              </svg>
-                              <span><?php echo esc_html($check['item']); ?></span>
-                            </div>
-                          <?php endforeach; ?>
-                        </div>
-                      <?php endif; ?>
-                      <?php if ($has_link) : ?>
-                        <div class="mt-3 card-action-btn">
-                          <span class="button button-primary py-2 px-4 d-inline-block text-decoration-none" style="font-size: 14px; border-radius: 6px; padding: 8px 16px;">
+                      <div class="mt-3 card-action-btn">
+                        <?php if ($post_id == 3274) : ?>
+                          <span class="button button-primary py-2 px-4 d-inline-block text-decoration-none">
                             Hire Developers
                           </span>
-                        </div>
-                      <?php endif; ?>
+                        <?php else : ?>
+                          <span class="button button-secondary d-inline-flex align-items-center">
+                            <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg" class="me-2">
+                              <rect width="46" height="46" rx="10" fill="white" />
+                              <path
+                                d="M28.625 18V26.125C28.625 26.2908 28.5591 26.4497 28.4419 26.5669C28.3247 26.6842 28.1657 26.75 28 26.75C27.8342 26.75 27.6753 26.6842 27.558 26.5669C27.4408 26.4497 27.375 26.2908 27.375 26.125V19.5086L18.4422 28.4422C18.3249 28.5595 18.1658 28.6253 18 28.6253C17.8341 28.6253 17.6751 28.5595 17.5578 28.4422C17.4405 28.3249 17.3746 28.1659 17.3746 28C17.3746 27.8341 17.4405 27.6751 17.5578 27.5578L26.4914 18.625H19.875C19.7092 18.625 19.5502 18.5592 19.433 18.4419C19.3158 18.3247 19.25 18.1658 19.25 18C19.25 17.8342 19.3158 17.6753 19.433 17.5581C19.5502 17.4408 19.7092 17.375 19.875 17.375H28C28.1657 17.375 28.3247 17.4408 28.4419 17.5581C28.5591 17.6753 28.625 17.8342 28.625 18Z"
+                                fill="#00BEC5" />
+                            </svg>
+                            Know more
+                          </span>
+                        <?php endif; ?>
+                      </div>
                     </div>
                   </<?php echo $has_link ? 'a' : 'div'; ?>>
                 <?php 
                   endforeach; 
-                elseif ($is_product_engineering): 
-                  // Hardcoded fallback for Product Engineering
+                endif; 
                 ?>
-                  <!-- Strategy -->
-                  <div class="hover-grid-card">
-                    <div class="card-visible-content">
-                      <div class="service-icon-box">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon1.svg" alt="Strategy">
-                      </div>
-                      <h3 class="display-title">Product Strategy & Discovery</h3>
-                      <p class="tagline">Validating Ideas, Reducing Risks</p>
-                    </div>
-                    <div class="card-hidden-content">
-                      <p class="summary-text">We validate your idea, define the roadmap, and align technology with business goals to reduce risks and accelerate time-to-market.</p>
-                      <div class="checklist-grid mt-3">
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Idea Validation & Market Research</span></div>
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Technical Audit & Constraint Mapping</span></div>
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Strategic Product Roadmap</span></div>
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Business Goal Alignment</span></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Design -->
-                  <div class="hover-grid-card">
-                    <div class="card-visible-content">
-                      <div class="service-icon-box">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon2.svg" alt="Design">
-                      </div>
-                      <h3 class="display-title">UI/UX Design</h3>
-                      <p class="tagline">Intuitive & Engaging Experiences</p>
-                    </div>
-                    <div class="card-hidden-content">
-                      <p class="summary-text">Clean, modern, and intuitive designs focused on user experience and engagement using industry-leading tools like Figma.</p>
-                      <div class="checklist-grid mt-3">
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>User Experience (UX) Architecture</span></div>
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Visual Interface (UI) Design</span></div>
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Interactive Prototyping</span></div>
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>User Testing & Feedback Loops</span></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Dev -->
-                  <div class="hover-grid-card">
-                    <div class="card-visible-content">
-                      <div class="service-icon-box">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon3.svg" alt="Dev">
-                      </div>
-                      <h3 class="display-title">Web & Mobile Development</h3>
-                      <p class="tagline">Modern Tech Stacks, High Performance</p>
-                    </div>
-                    <div class="card-hidden-content">
-                      <p class="summary-text">We build high-quality applications using modern tech stacks for web, mobile, and backend systems.</p>
-                      <div class="checklist-grid mt-3">
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>React / Next.js / Laravel</span></div>
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>React Native / Flutter Mobile Apps</span></div>
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Node.js / Express Backend</span></div>
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>AWS / Vercel Cloud Hosting</span></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- AI -->
-                  <div class="hover-grid-card">
-                    <div class="card-visible-content">
-                      <div class="service-icon-box">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon4.svg" alt="AI">
-                      </div>
-                      <h3 class="display-title">AI & Automation Integration</h3>
-                      <p class="tagline">Intelligent Products, Smarter Workflows</p>
-                    </div>
-                    <div class="card-hidden-content">
-                      <p class="summary-text">Leverage AI to enhance product capabilities and automate complex clinical or business processes.</p>
-                      <div class="checklist-grid mt-3">
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>AI Agents & Workflow Automation</span></div>
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Data Analytics & Real-time Insights</span></div>
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Predictive Systems & ML Models</span></div>
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Generative AI Integration</span></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Cloud -->
-                  <div class="hover-grid-card">
-                    <div class="card-visible-content">
-                      <div class="service-icon-box">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon5.svg" alt="Cloud">
-                      </div>
-                      <h3 class="display-title">Cloud & DevOps</h3>
-                      <p class="tagline">Secure, Scalable & Optimized</p>
-                    </div>
-                    <div class="card-hidden-content">
-                      <p class="summary-text">Secure, scalable, and optimized infrastructure to ensure your product performs under any load.</p>
-                      <div class="checklist-grid mt-3">
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>AWS, Vercel & DigitalOcean Hosting</span></div>
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Automated CI/CD Pipelines</span></div>
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Infrastructure as Code (IaC)</span></div>
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Performance & Security Optimization</span></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Maintenance -->
-                  <div class="hover-grid-card">
-                    <div class="card-visible-content">
-                      <div class="service-icon-box">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon1.svg" alt="Maintenance">
-                      </div>
-                      <h3 class="display-title">Maintenance & Scaling</h3>
-                      <p class="tagline">Long-term Success & Growth</p>
-                    </div>
-                    <div class="card-hidden-content">
-                      <p class="summary-text">We support your product post-launch with continuous improvements, active monitoring, and scaling for growth.</p>
-                      <div class="checklist-grid mt-3">
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>24/7 Monitoring & Incident Response</span></div>
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Regular Security Updates & Patching</span></div>
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Feature Enhancements & Optimization</span></div>
-                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Scalability Audits & Implementation</span></div>
-                      </div>
-                    </div>
-                  </div>
-                <?php endif; ?>
               </div>
             </div>
           </section>

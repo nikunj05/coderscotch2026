@@ -13,7 +13,7 @@ if (have_posts()) : while (have_posts()) : the_post();
     $is_product_engineering = is_single('product-engineering');
     
     // Check if the service post uses the new premium category-style layout fields
-    $has_category_style = $is_product_engineering || get_field('cat_cap_items') || get_field('cat_tech_cards') || get_field('cat_bento_items');
+    $has_category_style = $is_product_engineering || is_single('hire-dedicated-developers') || get_field('cat_cap_items') || get_field('cat_tech_cards') || get_field('cat_bento_items');
 
     if ($has_category_style) :
         // =========================================================================
@@ -75,7 +75,13 @@ if (have_posts()) : while (have_posts()) : the_post();
                       ?>
                     </h1>
                     <div class="section-description">
-                      <?php the_content(); ?>
+                      <?php 
+                      $desc = get_the_content();
+                      if (empty($desc)) {
+                          $desc = get_field('banner_text2') ?: get_field('cat_tech_description');
+                      }
+                      echo wp_kses_post($desc);
+                      ?>
                     </div>
                   </div>
                   <div class="banner-btn-group d-flex align-items-center mt-4">
@@ -189,286 +195,169 @@ if (have_posts()) : while (have_posts()) : the_post();
                 <h2 class="section-title"><?php echo $cap_title; ?></h2>
               </div>
 
-              <div class="healthcare-navigator-wrapper mt-5">
-                <div class="row gt-0">
-                  <div class="col-lg-4">
-                    <div class="navigator-sidebar-list nav flex-column nav-pills" id="product-pills-tab" role="tablist" aria-orientation="vertical">
-                      <?php 
-                      if( $cap_items ): 
-                        foreach( $cap_items as $index => $item ): 
-                      ?>
-                        <button class="nav-link <?php echo $index === 0 ? 'active' : ''; ?>" id="pills-tab-<?php echo $index; ?>" data-bs-toggle="pill" data-bs-target="#pills-content-<?php echo $index; ?>" type="button" role="tab" aria-controls="pills-content-<?php echo $index; ?>" aria-selected="<?php echo $index === 0 ? 'true' : 'false'; ?>">
-                          <span class="nav-number"><?php echo sprintf('%02d', $index + 1); ?></span>
-                          <span class="nav-label"><?php echo esc_html($item['label']); ?></span>
-                          <span class="nav-accent"></span>
-                        </button>
-                      <?php 
-                        endforeach; 
-                      elseif ($is_product_engineering): 
-                        // Hardcoded tabs fallback for Product Engineering
-                      ?>
-                        <button class="nav-link active" id="pills-strategy-tab" data-bs-toggle="pill" data-bs-target="#pills-strategy" type="button" role="tab" aria-controls="pills-strategy" aria-selected="true">
-                          <span class="nav-number">01</span>
-                          <span class="nav-label">Product Strategy & Discovery</span>
-                          <span class="nav-accent"></span>
-                        </button>
-                        <button class="nav-link" id="pills-design-tab" data-bs-toggle="pill" data-bs-target="#pills-design" type="button" role="tab" aria-controls="pills-design" aria-selected="false">
-                          <span class="nav-number">02</span>
-                          <span class="nav-label">UI/UX Design</span>
-                          <span class="nav-accent"></span>
-                        </button>
-                        <button class="nav-link" id="pills-dev-tab" data-bs-toggle="pill" data-bs-target="#pills-dev" type="button" role="tab" aria-controls="pills-dev" aria-selected="false">
-                          <span class="nav-number">03</span>
-                          <span class="nav-label">Web & Mobile Development</span>
-                          <span class="nav-accent"></span>
-                        </button>
-                        <button class="nav-link" id="pills-ai-tab" data-bs-toggle="pill" data-bs-target="#pills-ai" type="button" role="tab" aria-controls="pills-ai" aria-selected="false">
-                          <span class="nav-number">04</span>
-                          <span class="nav-label">AI & Automation Integration</span>
-                          <span class="nav-accent"></span>
-                        </button>
-                        <button class="nav-link" id="pills-cloud-tab" data-bs-toggle="pill" data-bs-target="#pills-cloud" type="button" role="tab" aria-controls="pills-cloud" aria-selected="false">
-                          <span class="nav-number">05</span>
-                          <span class="nav-label">Cloud & DevOps</span>
-                          <span class="nav-accent"></span>
-                        </button>
-                        <button class="nav-link" id="pills-maintenance-tab" data-bs-toggle="pill" data-bs-target="#pills-maintenance" type="button" role="tab" aria-controls="pills-maintenance" aria-selected="false">
-                          <span class="nav-number">06</span>
-                          <span class="nav-label">Maintenance & Scaling</span>
-                          <span class="nav-accent"></span>
-                        </button>
-                      <?php endif; ?>
+              <div class="capabilities-hover-grid mt-5">
+                <?php 
+                if( $cap_items ): 
+                  foreach( $cap_items as $index => $item ): 
+                    $icon_index = ($index % 5) + 1; // 1 to 5 for service-card-icon
+                ?>
+                  <div class="hover-grid-card">
+                    <div class="card-visible-content">
+                      <div class="service-icon-box">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon<?php echo $icon_index; ?>.svg" alt="Icon">
+                      </div>
+                      <h3 class="display-title"><?php echo esc_html($item['label']); ?></h3>
+                      <p class="tagline"><?php echo esc_html($item['tagline']); ?></p>
                     </div>
-                  </div>
-
-                  <div class="col-lg-8">
-                    <div class="tab-content healthcare-content-display h-100" id="product-pills-tabContent">
-                      <?php 
-                      if( $cap_items ): 
-                        foreach( $cap_items as $index => $item ): 
-                      ?>
-                        <div class="tab-pane fade <?php echo $index === 0 ? 'show active' : ''; ?> h-100" id="pills-content-<?php echo $index; ?>" role="tabpanel" aria-labelledby="pills-tab-<?php echo $index; ?>">
-                          <div class="content-card glass-premium">
-                            <div class="card-header-flex">
-                              <div class="service-icon-box">
-                                <img src="<?php echo esc_url($item['icon']); ?>" alt="<?php echo esc_attr($item['title']); ?>">
-                              </div>
-                              <div class="header-text">
-                                <h3 class="display-title"><?php echo esc_html($item['title']); ?></h3>
-                                <p class="tagline"><?php echo esc_html($item['tagline']); ?></p>
-                              </div>
+                    <div class="card-hidden-content">
+                      <p class="summary-text"><?php echo esc_html($item['summary']); ?></p>
+                      <?php if( !empty($item['checklist']) ): ?>
+                        <div class="checklist-grid mt-3">
+                          <?php foreach( $item['checklist'] as $check ): ?>
+                            <div class="check-item d-flex align-items-start">
+                              <svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle>
+                                <path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                              </svg>
+                              <span><?php echo esc_html($check['item']); ?></span>
                             </div>
-                            <div class="card-body-content">
-                              <p class="summary-text"><?php echo esc_html($item['summary']); ?></p>
-                              <?php if( !empty($item['checklist']) ): ?>
-                                <ul class="feature-checklist list-unstyled mt-3">
-                                  <?php foreach( $item['checklist'] as $check ): ?>
-                                    <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> <?php echo esc_html($check['item']); ?></li>
-                                  <?php endforeach; ?>
-                                </ul>
-                              <?php endif; ?>
-                            </div>
-                          </div>
+                          <?php endforeach; ?>
                         </div>
-                      <?php 
-                        endforeach; 
-                      elseif ($is_product_engineering): 
-                        // Hardcoded content fallback for Product Engineering
-                      ?>
-                        <!-- Tab 1: Strategy -->
-                        <div class="tab-pane fade show active h-100" id="pills-strategy" role="tabpanel" aria-labelledby="pills-strategy-tab">
-                          <div class="content-card glass-premium">
-                            <div class="card-header-flex">
-                              <div class="service-icon-box">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon1.svg" alt="Strategy">
-                              </div>
-                              <div class="header-text">
-                                <h3 class="display-title">Product Strategy & Discovery</h3>
-                                <p class="tagline">Validating Ideas, Reducing Risks</p>
-                              </div>
-                            </div>
-                            <div class="card-body-content">
-                              <p class="summary-text">We validate your idea, define the roadmap, and align technology with business goals to reduce risks and accelerate time-to-market.</p>
-                              <ul class="feature-checklist list-unstyled mt-3">
-                                <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> Idea Validation & Market Research</li>
-                                <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> Technical Audit & Constraint Mapping</li>
-                                <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> Strategic Product Roadmap</li>
-                                <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> Business Goal Alignment</li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-
-                        <!-- Tab 2: Design -->
-                        <div class="tab-pane fade h-100" id="pills-design" role="tabpanel" aria-labelledby="pills-design-tab">
-                          <div class="content-card glass-premium">
-                            <div class="card-header-flex">
-                              <div class="service-icon-box">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon2.svg" alt="Design">
-                              </div>
-                              <div class="header-text">
-                                <h3 class="display-title">UI/UX Design</h3>
-                                <p class="tagline">Intuitive & Engaging Experiences</p>
-                              </div>
-                            </div>
-                            <div class="card-body-content">
-                              <p class="summary-text">Clean, modern, and intuitive designs focused on user experience and engagement using industry-leading tools like Figma.</p>
-                              <ul class="feature-checklist list-unstyled mt-3">
-                                <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> User Experience (UX) Architecture</li>
-                                <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> Visual Interface (UI) Design</li>
-                                <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> Interactive Prototyping</li>
-                                <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> User Testing & Feedback Loops</li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-
-                        <!-- Tab 3: Dev -->
-                        <div class="tab-pane fade h-100" id="pills-dev" role="tabpanel" aria-labelledby="pills-dev-tab">
-                          <div class="content-card glass-premium">
-                            <div class="card-header-flex">
-                              <div class="service-icon-box">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon3.svg" alt="Dev">
-                              </div>
-                              <div class="header-text">
-                                <h3 class="display-title">Web & Mobile Development</h3>
-                                <p class="tagline">Modern Tech Stacks, High Performance</p>
-                              </div>
-                            </div>
-                            <div class="card-body-content">
-                              <p class="summary-text">We build high-quality applications using modern tech stacks for web, mobile, and backend systems.</p>
-                              <div class="row g-4 g-lg-5 mt-2">
-                                <div class="col-md-4">
-                                  <h5 class="f18 cs_SoraBold color_green mb-4">Web Development</h5>
-                                  <div class="tech-item mb-4">
-                                    <div class="d-flex align-items-center mb-1">
-                                      <img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="16" height="16" class="me-2" alt="check" />
-                                      <span class="f16 cs_MuliBold text-dark">React / Next.js</span>
-                                    </div>
-                                    <p class="small-text mb-0 ps-4 opacity-75">High-speed SSR & static site generation</p>
-                                  </div>
-                                  <div class="tech-item">
-                                    <div class="d-flex align-items-center mb-1">
-                                      <img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="16" height="16" class="me-2" alt="check" />
-                                      <span class="f16 cs_MuliBold text-dark">Laravel / PHP</span>
-                                    </div>
-                                    <p class="small-text mb-0 ps-4 opacity-75">Secure, robust, and scalable backends</p>
-                                  </div>
-                                </div>
-                                <div class="col-md-4">
-                                  <h5 class="f18 cs_SoraBold color_green mb-4">Mobile Apps</h5>
-                                  <div class="tech-item mb-4">
-                                    <div class="d-flex align-items-center mb-1">
-                                      <img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="16" height="16" class="me-2" alt="check" />
-                                      <span class="f16 cs_MuliBold text-dark">React Native</span>
-                                    </div>
-                                    <p class="small-text mb-0 ps-4 opacity-75">Native performance for iOS & Android</p>
-                                  </div>
-                                  <div class="tech-item">
-                                    <div class="d-flex align-items-center mb-1">
-                                      <img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="16" height="16" class="me-2" alt="check" />
-                                      <span class="f16 cs_MuliBold text-dark">Flutter</span>
-                                    </div>
-                                    <p class="small-text mb-0 ps-4 opacity-75">Rich, expressive UIs from one codebase</p>
-                                  </div>
-                                </div>
-                                <div class="col-md-4">
-                                  <h5 class="f18 cs_SoraBold color_green mb-4">Backend & Cloud</h5>
-                                  <div class="tech-item mb-4">
-                                    <div class="d-flex align-items-center mb-1">
-                                      <img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="16" height="16" class="me-2" alt="check" />
-                                      <span class="f16 cs_MuliBold text-dark">Node.js / Express</span>
-                                    </div>
-                                    <p class="small-text mb-0 ps-4 opacity-75">Fast, scalable event-driven services</p>
-                                  </div>
-                                  <div class="tech-item">
-                                    <div class="d-flex align-items-center mb-1">
-                                      <img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="16" height="16" class="me-2" alt="check" />
-                                      <span class="f16 cs_MuliBold text-dark">AWS / Vercel</span>
-                                    </div>
-                                    <p class="small-text mb-0 ps-4 opacity-75">Serverless & globally optimized hosting</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <!-- Tab 4: AI -->
-                        <div class="tab-pane fade h-100" id="pills-ai" role="tabpanel" aria-labelledby="pills-ai-tab">
-                          <div class="content-card glass-premium">
-                            <div class="card-header-flex">
-                              <div class="service-icon-box">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon4.svg" alt="AI">
-                              </div>
-                              <div class="header-text">
-                                <h3 class="display-title">AI & Automation Integration</h3>
-                                <p class="tagline">Intelligent Products, Smarter Workflows</p>
-                              </div>
-                            </div>
-                            <div class="card-body-content">
-                              <p class="summary-text">Leverage AI to enhance product capabilities and automate complex clinical or business processes.</p>
-                              <ul class="feature-checklist list-unstyled mt-3">
-                                <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> AI Agents & Workflow Automation</li>
-                                <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> Data Analytics & Real-time Insights</li>
-                                <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> Predictive Systems & ML Models</li>
-                                <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> Generative AI Integration</li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-
-                        <!-- Tab 5: Cloud -->
-                        <div class="tab-pane fade h-100" id="pills-cloud" role="tabpanel" aria-labelledby="pills-cloud-tab">
-                          <div class="content-card glass-premium">
-                            <div class="card-header-flex">
-                              <div class="service-icon-box">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon5.svg" alt="Cloud">
-                              </div>
-                              <div class="header-text">
-                                <h3 class="display-title">Cloud & DevOps</h3>
-                                <p class="tagline">Secure, Scalable & Optimized</p>
-                              </div>
-                            </div>
-                            <div class="card-body-content">
-                              <p class="summary-text">Secure, scalable, and optimized infrastructure to ensure your product performs under any load.</p>
-                              <ul class="feature-checklist list-unstyled mt-3">
-                                <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> AWS, Vercel & DigitalOcean Hosting</li>
-                                <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> Automated CI/CD Pipelines</li>
-                                <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> Infrastructure as Code (IaC)</li>
-                                <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> Performance & Security Optimization</li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-
-                        <!-- Tab 6: Maintenance -->
-                        <div class="tab-pane fade h-100" id="pills-maintenance" role="tabpanel" aria-labelledby="pills-maintenance-tab">
-                          <div class="content-card glass-premium">
-                            <div class="card-header-flex">
-                              <div class="service-icon-box">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon1.svg" alt="Maintenance">
-                              </div>
-                              <div class="header-text">
-                                <h3 class="display-title">Maintenance & Scaling</h3>
-                                <p class="tagline">Long-term Success & Growth</p>
-                              </div>
-                            </div>
-                            <div class="card-body-content">
-                              <p class="summary-text">We support your product post-launch with continuous improvements, active monitoring, and scaling for growth.</p>
-                              <ul class="feature-checklist list-unstyled mt-3">
-                                <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> 24/7 Monitoring & Incident Response</li>
-                                <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> Regular Security Updates & Patching</li>
-                                <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> Feature Enhancements & Optimization</li>
-                                <li class="mb-2 d-flex align-items-start"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user-verified-icon.svg" width="18" height="18" class="me-2 mt-1" alt="check" /> Scalability Audits & Implementation</li>
-                              </ul>
-                            </div>
-                          </div>
+                      <?php endif; ?>
+                      <?php if (!empty($item['link'])) : ?>
+                        <div class="mt-3 card-action-btn">
+                          <a href="<?php echo esc_url($item['link']); ?>" class="button button-primary py-2 px-4 d-inline-block text-decoration-none" style="font-size: 14px; border-radius: 6px; padding: 8px 16px;">
+                            Hire Developers
+                          </a>
                         </div>
                       <?php endif; ?>
                     </div>
                   </div>
-                </div>
+                <?php 
+                  endforeach; 
+                elseif ($is_product_engineering): 
+                  // Hardcoded fallback for Product Engineering
+                ?>
+                  <!-- Strategy -->
+                  <div class="hover-grid-card">
+                    <div class="card-visible-content">
+                      <div class="service-icon-box">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon1.svg" alt="Strategy">
+                      </div>
+                      <h3 class="display-title">Product Strategy & Discovery</h3>
+                      <p class="tagline">Validating Ideas, Reducing Risks</p>
+                    </div>
+                    <div class="card-hidden-content">
+                      <p class="summary-text">We validate your idea, define the roadmap, and align technology with business goals to reduce risks and accelerate time-to-market.</p>
+                      <div class="checklist-grid mt-3">
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Idea Validation & Market Research</span></div>
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Technical Audit & Constraint Mapping</span></div>
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Strategic Product Roadmap</span></div>
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Business Goal Alignment</span></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Design -->
+                  <div class="hover-grid-card">
+                    <div class="card-visible-content">
+                      <div class="service-icon-box">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon2.svg" alt="Design">
+                      </div>
+                      <h3 class="display-title">UI/UX Design</h3>
+                      <p class="tagline">Intuitive & Engaging Experiences</p>
+                    </div>
+                    <div class="card-hidden-content">
+                      <p class="summary-text">Clean, modern, and intuitive designs focused on user experience and engagement using industry-leading tools like Figma.</p>
+                      <div class="checklist-grid mt-3">
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>User Experience (UX) Architecture</span></div>
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Visual Interface (UI) Design</span></div>
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Interactive Prototyping</span></div>
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>User Testing & Feedback Loops</span></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Dev -->
+                  <div class="hover-grid-card">
+                    <div class="card-visible-content">
+                      <div class="service-icon-box">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon3.svg" alt="Dev">
+                      </div>
+                      <h3 class="display-title">Web & Mobile Development</h3>
+                      <p class="tagline">Modern Tech Stacks, High Performance</p>
+                    </div>
+                    <div class="card-hidden-content">
+                      <p class="summary-text">We build high-quality applications using modern tech stacks for web, mobile, and backend systems.</p>
+                      <div class="checklist-grid mt-3">
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>React / Next.js / Laravel</span></div>
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>React Native / Flutter Mobile Apps</span></div>
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Node.js / Express Backend</span></div>
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>AWS / Vercel Cloud Hosting</span></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- AI -->
+                  <div class="hover-grid-card">
+                    <div class="card-visible-content">
+                      <div class="service-icon-box">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon4.svg" alt="AI">
+                      </div>
+                      <h3 class="display-title">AI & Automation Integration</h3>
+                      <p class="tagline">Intelligent Products, Smarter Workflows</p>
+                    </div>
+                    <div class="card-hidden-content">
+                      <p class="summary-text">Leverage AI to enhance product capabilities and automate complex clinical or business processes.</p>
+                      <div class="checklist-grid mt-3">
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>AI Agents & Workflow Automation</span></div>
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Data Analytics & Real-time Insights</span></div>
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Predictive Systems & ML Models</span></div>
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Generative AI Integration</span></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Cloud -->
+                  <div class="hover-grid-card">
+                    <div class="card-visible-content">
+                      <div class="service-icon-box">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon5.svg" alt="Cloud">
+                      </div>
+                      <h3 class="display-title">Cloud & DevOps</h3>
+                      <p class="tagline">Secure, Scalable & Optimized</p>
+                    </div>
+                    <div class="card-hidden-content">
+                      <p class="summary-text">Secure, scalable, and optimized infrastructure to ensure your product performs under any load.</p>
+                      <div class="checklist-grid mt-3">
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>AWS, Vercel & DigitalOcean Hosting</span></div>
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Automated CI/CD Pipelines</span></div>
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Infrastructure as Code (IaC)</span></div>
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Performance & Security Optimization</span></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Maintenance -->
+                  <div class="hover-grid-card">
+                    <div class="card-visible-content">
+                      <div class="service-icon-box">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon1.svg" alt="Maintenance">
+                      </div>
+                      <h3 class="display-title">Maintenance & Scaling</h3>
+                      <p class="tagline">Long-term Success & Growth</p>
+                    </div>
+                    <div class="card-hidden-content">
+                      <p class="summary-text">We support your product post-launch with continuous improvements, active monitoring, and scaling for growth.</p>
+                      <div class="checklist-grid mt-3">
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>24/7 Monitoring & Incident Response</span></div>
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Regular Security Updates & Patching</span></div>
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Feature Enhancements & Optimization</span></div>
+                        <div class="check-item d-flex align-items-start"><svg class="me-2 mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#e0f9fa"></circle><path d="M16 8L10 14L8 12" stroke="#00bec5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Scalability Audits & Implementation</span></div>
+                      </div>
+                    </div>
+                  </div>
+                <?php endif; ?>
               </div>
             </div>
           </section>
@@ -959,11 +848,17 @@ if (have_posts()) : while (have_posts()) : the_post();
                     <?php the_title(); ?>
                   </h1>
                   <div class="section-description">
-                    <?php the_content(); ?>
+                    <?php 
+                    $desc = get_the_content();
+                    if (empty($desc)) {
+                        $desc = get_field('banner_text2') ?: get_field('cat_tech_description');
+                    }
+                    echo wp_kses_post($desc);
+                    ?>
                   </div>
 
                 </div>
-                <a href="#" class="button button-primary">
+                <a href="<?php echo esc_url(get_permalink(get_page_by_path('contact-us'))); ?>" class="button button-primary">
                   Speak to our expert
                   <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -983,8 +878,12 @@ if (have_posts()) : while (have_posts()) : the_post();
                 </a>
               </div>
               <div class="common-banner-bottom-image">
-                <img src="<?= get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>" alt="<?php the_title(); ?>" width="405"
-                  height="453" class="common-banner-bottom-image">
+                <?php 
+                $thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+                if ($thumb_url) :
+                ?>
+                  <img src="<?= esc_url($thumb_url); ?>" alt="<?php the_title(); ?>" width="405" height="453" class="common-banner-bottom-image">
+                <?php endif; ?>
               </div>
             </div>
           </div>
@@ -995,20 +894,66 @@ if (have_posts()) : while (have_posts()) : the_post();
            <div class="container-fluid">
               <div class="section-top-content text-center">
                  <h2><?= the_title(); ?></h2>
-                 <p><?= the_content(); ?></p>
+                 <p><?php 
+                    $desc = get_the_content();
+                    if (empty($desc)) {
+                        $desc = get_field('banner_text2') ?: get_field('cat_tech_description');
+                    }
+                    echo wp_kses_post($desc);
+                 ?></p>
               </div>
               <div class="serviceboxwrapper">
                  <div class="serviceboxlist">
-                    <?php if (have_rows('service_box')) :
-                       while (have_rows('service_box')) : the_row(); ?>
-                          <div class="serviceboxcol">
-                             <div class="serviceboxitem">
-                                <img src="<?= get_sub_field('service_box_image'); ?>" width="50" height="50" alt="<?= get_sub_field('service_box_title'); ?>" />
-                                <h3><?= get_sub_field('service_box_title'); ?></h3>
-                                <p><?= get_sub_field('service_box_info'); ?></p>
-                             </div>
-                          </div>
-                    <?php endwhile;
+                    <?php 
+                    $boxes = get_field('small_services_boxes');
+                    $service_boxes = get_field('service_box');
+                    if (is_array($boxes) && !empty($boxes)) :
+                       foreach ($boxes as $box) : 
+                           $box_title = isset($box['title']) ? $box['title'] : '';
+                           $box_icon = isset($box['icon']) ? $box['icon'] : '';
+                           $box_link = isset($box['link']) ? $box['link'] : '';
+                           ?>
+                           <div class="serviceboxcol">
+                              <?php if (!empty($box_link)) : ?>
+                                 <a href="<?= esc_url($box_link); ?>" class="serviceboxitem-link text-decoration-none" style="color: inherit;">
+                              <?php endif; ?>
+                              <div class="serviceboxitem">
+                                 <?php if (!empty($box_icon)) : ?>
+                                    <img src="<?= esc_url($box_icon); ?>" width="50" height="50" alt="<?= esc_attr($box_title); ?>" />
+                                 <?php else: ?>
+                                    <img src="<?= get_template_directory_uri(); ?>/assets/images/service-card-icon1.svg" width="50" height="50" alt="<?= esc_attr($box_title); ?>" />
+                                 <?php endif; ?>
+                                 <h3><?= esc_html($box_title); ?></h3>
+                              </div>
+                              <?php if (!empty($box_link)) : ?>
+                                 </a>
+                              <?php endif; ?>
+                           </div>
+                       <?php endforeach;
+                    elseif (is_array($service_boxes) && !empty($service_boxes)) :
+                       foreach ($service_boxes as $box) : 
+                           $box_title = isset($box['service_box_title']) ? $box['service_box_title'] : '';
+                           $box_image = isset($box['service_box_image']) ? $box['service_box_image'] : '';
+                           $box_info = isset($box['service_box_info']) ? $box['service_box_info'] : '';
+                           $box_link = isset($box['link']) ? $box['link'] : '';
+                           if (is_numeric($box_image)) {
+                               $box_image = wp_get_attachment_url($box_image);
+                           }
+                           ?>
+                           <div class="serviceboxcol">
+                              <?php if (!empty($box_link)) : ?>
+                                 <a href="<?= esc_url($box_link); ?>" class="serviceboxitem-link text-decoration-none" style="color: inherit;">
+                              <?php endif; ?>
+                              <div class="serviceboxitem">
+                                 <img src="<?= esc_url($box_image); ?>" width="50" height="50" alt="<?= esc_attr($box_title); ?>" />
+                                 <h3><?= esc_html($box_title); ?></h3>
+                                 <p><?= esc_html($box_info); ?></p>
+                              </div>
+                              <?php if (!empty($box_link)) : ?>
+                                 </a>
+                              <?php endif; ?>
+                           </div>
+                       <?php endforeach;
                     endif; ?>
                  </div>
               </div>

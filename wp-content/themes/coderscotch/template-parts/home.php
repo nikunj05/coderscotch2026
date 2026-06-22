@@ -25,7 +25,7 @@ get_header();
         <img src="<?php echo get_template_directory_uri(); ?>/assets/images/client-image5.svg" alt="client image" class="client-images" width="34"
           height="34" />
       </div>
-      <div class="trusted-client-content">Trusted by Industry Leaders</div>
+      <div class="trusted-client-content">Trusted by Businesses, Startups & Industry Leaders</div>
     </div>
     <div class="heading_section">
       <h1 class="section-title">
@@ -105,10 +105,9 @@ get_header();
   $slugs = array(
     'product-engineering',
     'digital-marketing',
-    'generative-ai-solutions',
-    'mobile-app-development',
+    'ai-and-automation',
     'e-commerce-development',
-    'ui-ux-designs'
+    'hire-dedicated-developers'
   );
 
   $home_services = array();
@@ -129,8 +128,21 @@ get_header();
     <div class="container">
       <!-- New Section Header -->
       <div class="heading_section text-center mb-5">
-        <h2 class="section-title">Innovative <span class="highlight-text">Services</span> We Offer</h2>
-        <p class="section-description mx-auto mw-740">We build high-performance digital products and scalable marketing engines designed to solve complex business problems and accelerate your growth.</p>
+        <h2 class="section-title">
+        <?php 
+          $kp_title = get_field('services_section_title');
+          if ($kp_title) {
+              $kp_title = str_replace('{', '<span class="highlight-text">', $kp_title);
+              $kp_title = str_replace('}', '</span>', $kp_title);
+              echo wp_kses($kp_title, array('span' => array('class' => array())));
+          } else {
+              echo 'Project Key Points';
+          }
+          ?>  
+       </h2>
+        <p class="section-description mx-auto">
+          <?php echo get_field('service_section_description'); ?>
+        </p>
       </div>
 
       <div class="services-slider-inner">
@@ -187,20 +199,23 @@ get_header();
 
                 // Sub-services features
                 $features = array();
-                if (have_rows('small_services_boxes', $post_id)) {
-                    while (have_rows('small_services_boxes', $post_id)) {
-                        the_row();
+                $small_boxes = get_field('small_services_boxes', $post_id);
+                $service_boxes = get_field('service_box', $post_id);
+
+                if (is_array($small_boxes) && !empty($small_boxes)) {
+                    foreach ($small_boxes as $box) {
                         $features[] = array(
-                            'icon'  => get_sub_field('icon'),
-                            'title' => get_sub_field('title')
+                            'icon'  => isset($box['icon']) ? $box['icon'] : '',
+                            'title' => isset($box['title']) ? $box['title'] : '',
+                            'link'  => isset($box['link']) ? $box['link'] : ''
                         );
                     }
-                } elseif (have_rows('service_box', $post_id)) {
-                    while (have_rows('service_box', $post_id)) {
-                        the_row();
+                } elseif (is_array($service_boxes) && !empty($service_boxes)) {
+                    foreach ($service_boxes as $box) {
                         $features[] = array(
-                            'icon'  => get_sub_field('service_box_image'),
-                            'title' => get_sub_field('service_box_title')
+                            'icon'  => isset($box['service_box_image']) ? $box['service_box_image'] : '',
+                            'title' => isset($box['service_box_title']) ? $box['service_box_title'] : '',
+                            'link'  => isset($box['link']) ? $box['link'] : ''
                         );
                     }
                 }
@@ -222,13 +237,19 @@ get_header();
                       <?php echo wp_kses_post($service_desc); ?>
                     </p>
 
-                    <!-- 3. 4 Feature boxes -->
+                    <!-- 3. Feature boxes -->
                     <?php if (!empty($features)) : ?>
-                    <div class="service-process-diagram">
-                      <?php $count = 0; foreach ($features as $f) : if (empty($f['title'])) continue; if ($count >= 4) break; $count++; ?>
-                        <div class="process-step-card">
-                          <h4 class="step-title"><?php echo esc_html($f['title']); ?></h4>
-                        </div>
+                    <div class="service-process-diagram flex-wrap gap-3">
+                      <?php $count = 0; foreach ($features as $f) : if (empty($f['title'])) continue; if ($count >= 6) break; $count++; ?>
+                        <?php if (!empty($f['link'])): ?>
+                          <a href="<?php echo esc_url($f['link']); ?>" class="process-step-card text-decoration-none">
+                            <h4 class="step-title"><?php echo esc_html($f['title']); ?></h4>
+                          </a>
+                        <?php else: ?>
+                          <div class="process-step-card">
+                            <h4 class="step-title"><?php echo esc_html($f['title']); ?></h4>
+                          </div>
+                        <?php endif; ?>
                       <?php endforeach; ?>
                     </div>
                     <?php endif; ?>

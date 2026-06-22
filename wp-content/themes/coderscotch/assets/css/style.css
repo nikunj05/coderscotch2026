@@ -12142,6 +12142,201 @@ html, body {
   margin-left: 1.5rem;
   margin-bottom: 1.5rem;
 }
+    font-size: 21px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+}
+
+.home-tech-section .tech-list-col {
+    display: flex;
+    align-items: center;
+}
+
+.home-tech-section .tech-list-inline {
+    line-height: 2.3;
+}
+
+.home-tech-section .tech-item {
+    font-family: "Sora", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.25s ease-in-out;
+    display: inline-block;
+    cursor: default;
+    letter-spacing: -0.01em;
+}
+
+.home-tech-section .tech-item:hover {
+    color: #00bec5;
+    text-shadow: 0 0 10px rgba(0, 190, 197, 0.4);
+}
+
+/* Pipe Separator Styling */
+.home-tech-section .tech-item:not(:last-child)::after {
+    content: "|";
+    margin-left: 18px;
+    margin-right: 18px;
+    color: rgba(255, 255, 255, 0.15);
+    font-weight: 300;
+    display: inline-block;
+    pointer-events: none;
+    text-shadow: none !important;
+}
+
+/* Responsive Overrides */
+@media (max-width: 991.98px) {
+    .home-tech-section {
+        padding-top: 80px !important;
+        padding-bottom: 80px !important;
+    }
+    .home-tech-section .tech-row {
+        grid-template-columns: 280px 1fr;
+        padding: 24px 0;
+    }
+    .home-tech-section .tech-category-title {
+        font-size: 19px;
+    }
+    .home-tech-section .tech-item {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .home-tech-section {
+        padding-top: 60px !important;
+        padding-bottom: 60px !important;
+    }
+    .home-tech-section .section-title {
+        font-size: 32px;
+    }
+    .home-tech-section .tech-row {
+        grid-template-columns: 1fr;
+        padding: 20px 0;
+        align-items: flex-start;
+    }
+    .home-tech-section .tech-category-col {
+        padding-right: 0;
+        margin-bottom: 12px;
+    }
+    .home-tech-section .tech-category-title {
+        font-size: 18px;
+    }
+    .home-tech-section .tech-item {
+        font-size: 15px;
+    }
+    .home-tech-section .tech-item:not(:last-child)::after {
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+}
+
+/* ==============================================================
+   Blog Detail Content Typography & Styling Improvements
+   ============================================================== */
+.blog-detail-conetnt-box {
+  /* Wrapper styles */
+}
+
+.blog-detail-conetnt-box p,
+.blog-detail-conetnt-box li,
+.blog-detail-conetnt-box blockquote {
+  font-family: 'Karla', sans-serif;
+  color: #4a4a4a;
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.8;
+}
+
+.blog-detail-conetnt-box p {
+  margin-bottom: 1.5rem;
+}
+
+.blog-detail-conetnt-box h2,
+.blog-detail-conetnt-box h3,
+.blog-detail-conetnt-box h4,
+.blog-detail-conetnt-box h5,
+.blog-detail-conetnt-box h6 {
+  color: #1a1a1a;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.blog-detail-conetnt-box h2 {
+  font-size: 2rem;
+  border-bottom: 2px solid rgba(0, 190, 197, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.blog-detail-conetnt-box h3 {
+  font-size: 1.5rem;
+}
+
+/* Lists */
+.blog-detail-conetnt-box ul,
+.blog-detail-conetnt-box ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.blog-detail-conetnt-box ul li,
+.blog-detail-conetnt-box ol li {
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.blog-detail-conetnt-box ul {
+  list-style-type: none;
+}
+
+.blog-detail-conetnt-box ul li::before {
+  content: '•';
+  color: #00BEC5;
+  font-weight: bold;
+  position: absolute;
+  left: -1rem;
+}
+
+/* Blockquotes */
+.blog-detail-conetnt-box blockquote {
+  margin: 2rem 0;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(to right, rgba(0, 190, 197, 0.05), transparent);
+  border-left: 4px solid #00BEC5;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: #333;
+  border-radius: 0 8px 8px 0;
+}
+
+.blog-detail-conetnt-box blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Images */
+.blog-detail-conetnt-box img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.blog-detail-conetnt-box .alignleft {
+  float: left;
+  margin-right: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.blog-detail-conetnt-box .alignright {
+  float: right;
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
 
 .blog-detail-conetnt-box .aligncenter {
   display: block;
@@ -12154,4 +12349,104 @@ html, body {
 .blog-detail-conetnt-box strong,
 .blog-detail-conetnt-box b {
   color: #1a1a1a;
+}
+
+/* ----------------------------------------------------
+   CAPABILITIES / MOSAIC SECTION (HOVER GRID)
+---------------------------------------------------- */
+.healthcare-service-mosaic.bg-white {
+  background-color: #f8f9fa !important;
+}
+
+.capabilities-hover-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.hover-grid-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  padding: 40px;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+}
+
+.hover-grid-card .card-hidden-content {
+  margin-top: 24px;
+}
+
+/* Hover interactions */
+.hover-grid-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0, 190, 197, 0.08);
+  border-color: rgba(0, 190, 197, 0.2);
+}
+
+/* Typography & Icons */
+.hover-grid-card .service-icon-box {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  background: rgba(0, 190, 197, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.hover-grid-card .service-icon-box img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.hover-grid-card .display-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.hover-grid-card .tagline {
+  font-size: 15px;
+  color: #00bec5;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.hover-grid-card .summary-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Checklist Grid */
+.hover-grid-card .checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 20px;
+}
+
+.hover-grid-card .check-item {
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+@media (max-width: 991px) {
+  .capabilities-hover-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hover-grid-card .checklist-grid {
+    grid-template-columns: 1fr;
+  }
 }

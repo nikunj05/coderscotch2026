@@ -12450,3 +12450,5 @@ html, body {
     grid-template-columns: 1fr;
   }
 }
+
+.hover-grid-card .display-title { font-family: "Sora", sans-serif !important; }

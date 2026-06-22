@@ -101,7 +101,7 @@ if (have_posts()) : while (have_posts()) : the_post();
                   </div>
                 </div>
                 <div class="common-banner-bottom-image">
-                  <img src="<?php echo esc_url($banner_image); ?>" alt="<?php the_title_attribute(); ?> banner image" width="405" height="453" class="common-banner-bottom-image">
+                  <img src="<?php echo esc_url($banner_image); ?>" alt="<?php the_title_attribute(); ?> banner image" class="common-banner-bottom-image" style="width: 100%; height: auto;">
                 </div>
               </div>
             </div>
@@ -201,7 +201,8 @@ if (have_posts()) : while (have_posts()) : the_post();
                   foreach( $cap_items as $index => $item ): 
                     $icon_index = ($index % 5) + 1; // 1 to 5 for service-card-icon
                 ?>
-                  <div class="hover-grid-card">
+                  <?php $has_link = !empty($item['link']); ?>
+                  <<?php echo $has_link ? 'a href="' . esc_url($item['link']) . '"' : 'div'; ?> class="hover-grid-card" <?php echo $has_link ? 'style="display:block; text-decoration:none; color:inherit;"' : ''; ?>>
                     <div class="card-visible-content">
                       <div class="service-icon-box">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon<?php echo $icon_index; ?>.svg" alt="Icon">
@@ -224,15 +225,15 @@ if (have_posts()) : while (have_posts()) : the_post();
                           <?php endforeach; ?>
                         </div>
                       <?php endif; ?>
-                      <?php if (!empty($item['link'])) : ?>
+                      <?php if ($has_link) : ?>
                         <div class="mt-3 card-action-btn">
-                          <a href="<?php echo esc_url($item['link']); ?>" class="button button-primary py-2 px-4 d-inline-block text-decoration-none" style="font-size: 14px; border-radius: 6px; padding: 8px 16px;">
+                          <span class="button button-primary py-2 px-4 d-inline-block text-decoration-none" style="font-size: 14px; border-radius: 6px; padding: 8px 16px;">
                             Hire Developers
-                          </a>
+                          </span>
                         </div>
                       <?php endif; ?>
                     </div>
-                  </div>
+                  </<?php echo $has_link ? 'a' : 'div'; ?>>
                 <?php 
                   endforeach; 
                 elseif ($is_product_engineering): 

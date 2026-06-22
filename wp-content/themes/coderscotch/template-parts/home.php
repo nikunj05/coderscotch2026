@@ -102,26 +102,20 @@ get_header();
 
 <!-- Home Service slider section start -->
 <?php
-  $slugs = array(
-    'product-engineering',
-    'digital-marketing',
-    'ai-and-automation',
-    'e-commerce-development',
-    'hire-dedicated-developers'
-  );
-
-  $home_services = array();
-  foreach ($slugs as $slug) {
-    $posts = get_posts(array(
-      'post_type' => 'services',
-      'name' => $slug,
-      'posts_per_page' => 1,
-      'post_status' => 'publish'
-    ));
-    if (!empty($posts)) {
-      $home_services[] = $posts[0];
-    }
-  }
+  $home_services = get_posts(array(
+    'post_type'      => 'services',
+    'posts_per_page' => -1,
+    'post_status'    => 'publish',
+    'meta_query'     => array(
+      array(
+        'key'     => 'show_on_home_page_services',
+        'value'   => 'Yes',
+        'compare' => '='
+      )
+    ),
+    'orderby'        => 'menu_order',
+    'order'          => 'ASC'
+  ));
   ?>
 
   <section class="services-slider-section">
@@ -136,12 +130,12 @@ get_header();
               $kp_title = str_replace('}', '</span>', $kp_title);
               echo wp_kses($kp_title, array('span' => array('class' => array())));
           } else {
-              echo 'Project Key Points';
+              echo 'Innovative <span class="highlight-text">Services</span> We Offer';
           }
           ?>  
        </h2>
         <p class="section-description mx-auto">
-          <?php echo get_field('service_section_description'); ?>
+          <?php echo get_field('service_section_description') ?: 'We build high-performance digital products and scalable marketing engines designed to solve complex business problems and accelerate your growth.'; ?>
         </p>
       </div>
 
@@ -293,7 +287,7 @@ get_header();
         </div>
         <div class="reveal-type about-us-description">
           <p class="word">
-            <?= get_field('info', $id); ?>
+            <?= get_field('about_coder_scotch_description'); ?>
           </p>
         </div>
         <div class="our-achievement-section">
@@ -327,7 +321,7 @@ get_header();
                 d="M28.625 18V26.125C28.625 26.2908 28.5591 26.4497 28.4419 26.5669C28.3247 26.6842 28.1657 26.75 28 26.75C27.8342 26.75 27.6753 26.6842 27.558 26.5669C27.4408 26.4497 27.375 26.2908 27.375 26.125V19.5086L18.4422 28.4422C18.3249 28.5595 18.1658 28.6253 18 28.6253C17.8341 28.6253 17.6751 28.5595 17.5578 28.4422C17.4405 28.3249 17.3746 28.1659 17.3746 28C17.3746 27.8341 17.4405 27.6751 17.5578 27.5578L26.4914 18.625H19.875C19.7092 18.625 19.5502 18.5592 19.433 18.4419C19.3158 18.3247 19.25 18.1658 19.25 18C19.25 17.8342 19.3158 17.6753 19.433 17.5581C19.5502 17.4408 19.7092 17.375 19.875 17.375H28C28.1657 17.375 28.3247 17.4408 28.4419 17.5581C28.5591 17.6753 28.625 17.8342 28.625 18Z"
                 fill="#00BEC5" />
             </svg>
-            Know More
+            Let’s Discuss Your Project
           </a>
         </div>
       </div>

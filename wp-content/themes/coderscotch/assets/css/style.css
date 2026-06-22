@@ -12449,6 +12449,11 @@ html, body {
   .hover-grid-card .checklist-grid {
     grid-template-columns: 1fr;
   }
+
+  .services-slider-section .services-slider-inner .services-tab-content .home-service-tab-content .service-process-diagram,
+  .services-slider-section .services-slider-inner .services-tab-content .home-service-tab-content-right .service-process-diagram {
+    grid-template-columns: 1fr;
+  }
 }
 
 .hover-grid-card .display-title { font-family: "Sora", sans-serif !important; }

@@ -51,14 +51,9 @@ if (have_posts()) : while (have_posts()) : the_post();
         );
         
         $pages_query = new WP_Query($pages_args);
-          //echo "<pre>";
-          //print_r($pages_query);
-          //exit;
 
         if ($pages_query->have_posts()) {
             while ($pages_query->have_posts()) {
-              
-
                 $pages_query->the_post();
                 $cap_items[] = array(
                     'label'     => get_the_title(),
@@ -238,9 +233,7 @@ if (have_posts()) : while (have_posts()) : the_post();
                   <?php $has_link = !empty($item['link']); ?>
                   <<?php echo $has_link ? 'a href="' . esc_url($item['link']) . '"' : 'div'; ?> class="hover-grid-card" <?php echo $has_link ? 'style="display:block; text-decoration:none; color:inherit;"' : ''; ?>>
                     <div class="card-visible-content">
-                      <div class="service-icon-box">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service-card-icon<?php echo $icon_index; ?>.svg" alt="Icon">
-                      </div>
+                      
                       <h3 class="display-title"><?php echo esc_html($item['label']); ?></h3>
                       <p class="tagline"><?php echo esc_html($item['tagline']); ?></p>
                     </div>

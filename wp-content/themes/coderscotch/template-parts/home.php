@@ -314,7 +314,7 @@ get_header();
           </div>
         </div>
         <div class="aboutus-section-action">
-          <a href="<?= get_permalink($id); ?>" class="button button-secondary">
+          <a href="<?php echo get_permalink( get_page_by_path('contact-us') ); ?>" class="button button-secondary">
             <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="46" height="46" rx="10" fill="white" />
               <path

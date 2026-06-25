@@ -2483,3 +2483,5 @@ function coderscotch_register_acf_user_avatar() {
 
 
 
+
+require_once get_template_directory() . '/inc/acf-case-study-images.php';

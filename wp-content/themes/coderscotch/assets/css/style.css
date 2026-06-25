@@ -12457,3 +12457,215 @@ html, body {
 }
 
 .hover-grid-card .display-title { font-family: "Sora", sans-serif !important; }
+
+
+/* Redesigned Offered Services Section */
+.offered-services-section .row {
+  align-items: center;
+}
+.offered-services-main-img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+@media (min-width: 992px) {
+  .offered-services-main-img {
+    margin-bottom: 0;
+  }
+}
+.offered-services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.offered-services-list-item {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 190, 197, 0.1);
+  border-radius: 16px;
+  padding: 20px 24px;
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+.offered-services-list-item:hover {
+  background: rgba(0, 190, 197, 0.15);
+  transform: translateY(-2px);
+}
+.service-number-circle {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: #00BEC5;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.service-content {
+  flex-grow: 1;
+}
+.service-content .service-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #292929;
+  margin-bottom: 6px;
+  font-family: "Sora", sans-serif;
+}
+.service-content .service-description {
+  font-size: 15px;
+  color: rgba(41, 41, 41, 0.7);
+  margin: 0;
+  line-height: 1.5;
+}
+
+
+/* Redesigned Challenges and Solutions */
+.challenge-modern-box {
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+}
+.challenge-modern-box.challenge-side {
+  background: #ffffff;
+}
+.challenge-modern-box.solution-side {
+  background: #00BEC5;
+}
+.project-challenge-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .project-challenge-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* =========================================================
+   MVP TECHNOLOGIES SECTION
+   ========================================================= */
+.mvp-tech-card {
+  background: #ffffff;
+  border: 1px solid #E5E7EB;
+  border-radius: 20px;
+  padding: 30px;
+  height: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+.mvp-tech-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: var(--cs-cyan);
+}
+.mvp-tech-category {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mvp-tech-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 190, 197, 0.1);
+  color: var(--cs-cyan);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.mvp-tech-list {
+  color: #4B5563;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+}
+.mvp-tech-pill {
+  display: inline-block;
+  background: #F3F4F6;
+  color: #374151;
+  padding: 5px 12px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 4px 2px;
+}
+
+/* =========================================================
+   MVP TECHNOLOGIES LIST VIEW
+   ========================================================= */
+.tech-list-wrapper {
+  padding: 20px 0;
+}
+.tech-list-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.tech-list-row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 25px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  align-items: center;
+}
+.tech-list-row:last-child {
+  border-bottom: none;
+}
+.tech-list-left {
+  flex: 0 0 35%;
+  max-width: 35%;
+  padding-right: 20px;
+}
+.tech-list-right {
+  flex: 0 0 65%;
+  max-width: 65%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+}
+.tech-list-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+.tech-list-item {
+  font-size: 16px;
+  color: #4B5563;
+  font-weight: 500;
+}
+.tech-list-divider {
+  color: #D1D5DB;
+  font-size: 16px;
+}
+@media (max-width: 768px) {
+  .tech-list-left, .tech-list-right {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .tech-list-left {
+    margin-bottom: 15px;
+  }
+}
+/* =========================================================
+   MVP TECH DETAILS SECTION
+   ========================================================= */
+.mvp-tech-details {
+  border-radius: 40px;
+  background: #fff;
+  padding-bottom: 20px;
+}

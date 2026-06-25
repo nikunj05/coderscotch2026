@@ -61,9 +61,28 @@ get_header(); ?>
   <!-- Banner Section End -->
 
   <!-- Product Engineering Services section start -->
-  <?php if (have_rows('engineering_services')) : ?>
-    <section class="healthcare-compliance-section engineering-services-section section-space-t section-space-b">
-      <div class="container">
+  <section class="healthcare-compliance-section engineering-services-section section-space-t section-space-b">
+    <div class="container">
+      <div class="heading_section text-center mb-5">
+        <h2 class="section-title" data-aos="fade" data-aos-duration="800">
+          <?php 
+          $eng_title = get_field('engineering_services_title');
+          if ($eng_title) {
+              $eng_title = str_replace('{', '<span class="highlight-text">', $eng_title);
+              $eng_title = str_replace('}', '</span>', $eng_title);
+              echo wp_kses($eng_title, array('span' => array('class' => array())));
+          } else {
+              echo 'Our <span class="highlight-text"> Engineering Services </span>';
+          }
+          ?>
+        </h2>
+        <?php if ($eng_desc = get_field('engineering_services_description')) : ?>
+          <p class="section-description" data-aos="fade" data-aos-duration="800">
+            <?php echo wp_kses_post($eng_desc); ?>
+          </p>
+        <?php endif; ?>
+      </div>
+      <?php if (have_rows('engineering_services')) : ?>
         <div class="light-compliance-grid">
           <?php while (have_rows('engineering_services')) : the_row(); ?>
             <div class="light-compliance-card">
@@ -88,9 +107,9 @@ get_header(); ?>
             </div>
           <?php endwhile; ?>
         </div>
-      </div>
-    </section>
-  <?php endif; ?>
+      <?php endif; ?>
+    </div>
+  </section>
 
   <!-- Project Key Points section start -->
   <section class="mob-project-key-points section-space-tb">
@@ -284,14 +303,16 @@ get_header(); ?>
   <!-- connect with us section end -->
    
 
-  <!-- mobapp We are Specialized section start -->
+  <!-- MVP Technologies Section Start -->
+
+
   <section class="mobapp-we-are-specialized technologies-use-section section-space-t">
     <div class="technologies-use-inner max-width-95">
-      <div class="technologies-tab-details">
+      <div class="technologies-tab-details mvp-tech-details">
         <div class="container">
           <div class="technologies-tab-content section-space80-t">
             
-            <div class="heading_section text-center">
+            <div class="heading_section text-center mb-5">
               <h2 class="section-title">
                 <?php 
                 $tech_title = get_field('specialized_tech_title');
@@ -300,7 +321,7 @@ get_header(); ?>
                     $tech_title = str_replace('}', '</span>', $tech_title);
                     echo wp_kses($tech_title, array('span' => array('class' => array())));
                 } else {
-                    echo '<span class="highlight-text"> Technologies We Use For</span> ' . get_the_title();
+                    echo 'Technologies We Use For <span class="highlight-text">MVP Development</span>';
                 }
                 ?>
               </h2>
@@ -308,32 +329,82 @@ get_header(); ?>
                 <p class="section-description">
                   <?php echo wp_kses_post($tech_desc); ?>
                 </p>
+              <?php else: ?>
+                <p class="section-description">
+                  We choose the technology stack based on your product goals, timeline, budget, scalability needs, and long-term roadmap. Our focus is not only to launch fast, but to build an MVP that can evolve into a stable full product.
+                </p>
               <?php endif; ?>
             </div>
 
-            <?php if (have_rows('specialized_tech_list')) : ?>
-              <div class="technologies-list">
-                <?php while (have_rows('specialized_tech_list')) : the_row(); 
-                  $tech_name = get_sub_field('tech_name');
-                  $tech_icon = get_sub_field('tech_icon');
-                ?>
-                  <div class="technologies-items d-flex">
-                    <div class="technologies-items-icon">
-                      <?php if ($tech_icon) : ?>
-                        <img src="<?php echo esc_url($tech_icon); ?>" width="30" height="30" alt="<?php echo esc_attr($tech_name); ?>" />
-                      <?php endif; ?>
-                    </div>
-                    <div class="technologies-items-title"><?php echo esc_html($tech_name); ?></div>
+            <div class="tech-list-wrapper">
+              <?php
+              $tech_categories = [
+                [
+                  'name' => 'Frontend',
+                  'icon' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>',
+                  'techs' => ['React.js', 'Next.js', 'Vue.js', 'Angular', 'Tailwind CSS']
+                ],
+                [
+                  'name' => 'Backend',
+                  'icon' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"></path></svg>',
+                  'techs' => ['Laravel', 'Node.js', 'Python', 'Django', 'FastAPI']
+                ],
+                [
+                  'name' => 'Mobile',
+                  'icon' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>',
+                  'techs' => ['React Native', 'Flutter']
+                ],
+                [
+                  'name' => 'Database',
+                  'icon' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>',
+                  'techs' => ['MySQL', 'PostgreSQL', 'MongoDB', 'Firebase', 'Supabase', 'Redis']
+                ],
+                [
+                  'name' => 'Cloud & DevOps',
+                  'icon' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path></svg>',
+                  'techs' => ['AWS', 'DigitalOcean', 'Vercel', 'Google Cloud', 'Docker', 'GitHub Actions', 'CI/CD']
+                ],
+                [
+                  'name' => 'AI & Automation',
+                  'icon' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>',
+                  'techs' => ['OpenAI', 'LLM integrations', 'AI agents', 'LangChain', 'custom ML models', 'automation APIs']
+                ],
+                [
+                  'name' => 'Payments & Integrations',
+                  'icon' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>',
+                  'techs' => ['Stripe', 'PayPal', 'Razorpay', 'Apple Pay', 'Checkout.com', 'third-party APIs']
+                ]
+              ];
+
+              echo '<div class="tech-list-container">';
+              foreach ($tech_categories as $cat):
+              ?>
+                <div class="tech-list-row">
+                  <div class="tech-list-left">
+                    <h3 class="tech-list-title"><?php echo $cat['name']; ?></h3>
                   </div>
-                <?php endwhile; ?>
+                  <div class="tech-list-right">
+                    <?php 
+                      $count = count($cat['techs']);
+                      foreach ($cat['techs'] as $index => $tech): 
+                    ?>
+                      <span class="tech-list-item"><?php echo $tech; ?></span>
+                      <?php if ($index < $count - 1): ?>
+                        <span class="tech-list-divider">|</span>
+                      <?php endif; ?>
+                    <?php endforeach; ?>
+                  </div>
+                </div>
+              <?php endforeach; ?>
               </div>
-            <?php endif; ?>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- we are specialized in section end -->
+  <!-- MVP Technologies Section End -->
    
 
   <!-- Why Brands Trust section start -->
@@ -569,9 +640,6 @@ get_header(); ?>
   <!-- Hiring Models Section Start -->
   <?php 
   $hiring_post_id = get_the_ID();
-  if (!have_rows('solutions_hiring_list', $hiring_post_id)) {
-      $hiring_post_id = 2576; // Fallback to SaaS page
-  }
   ?>
   <section class="hiring-models-section section-space-tb">
     <div class="container">

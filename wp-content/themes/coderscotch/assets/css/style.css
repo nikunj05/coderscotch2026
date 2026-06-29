@@ -2710,7 +2710,7 @@
   background: #ffffff;
 }
 .intelligent-agents-section .premium-numbered-list {
-  max-width: 1000px;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -10829,7 +10829,7 @@ img {
 
 /* 6. Strategic Implementation Guide: fresh soft light teal-gray backdrop */
 .section-challenges {
-    background: #f4fafb !important;
+    background: #ffffff !important;
 }
 
 /* 7. FAQ Section: pure crisp white backdrop to alternate */
@@ -12542,7 +12542,7 @@ html, body {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 24px;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 @media (min-width: 768px) {
@@ -12611,7 +12611,7 @@ html, body {
   padding: 20px 0;
 }
 .tech-list-container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 .tech-list-row {
@@ -12696,4 +12696,134 @@ html, body {
 .fintech-abstract-bg.shape-1 { top: 10%; right: 5%; animation: floatElement 8s ease-in-out infinite reverse; }
 .fintech-abstract-bg.shape-2 { bottom: 10%; left: -5%; animation: floatElement 10s ease-in-out infinite; }
 .glow-orb { position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(0,190,197,0.15) 0%, rgba(0,190,197,0) 70%); border-radius: 50%; pointer-events: none; z-index: 0; }
+
+
+
+/* Fintech Custom Inline Styles Extracted */
+.section-payment-solutions { background: linear-gradient(180deg, #f4f9f9 0%, #ffffff 100%) !important; }
+.techstack-mvp-section { background: #f8fcfc; }
+.techstack-mvp-container { border: 1px solid rgba(0, 190, 197, 0.3); border-radius: 40px; max-width: 1200px; box-shadow: 0 10px 40px rgba(0,0,0,0.02); }
+.techstack-mvp-title { font-size: 2.2rem; }
+.text-theme-cyan { color: #00BEC5; }
+.techstack-mvp-desc { max-width: 800px; line-height: 1.8; }
+.techstack-list-row { border-color: rgba(0,0,0,0.05) !important; }
+.techstack-list-text { font-weight: 500; font-size: 15px; }
+.timeline-center-line { width: 2px; background: linear-gradient(180deg, rgba(0,190,197,0) 0%, rgba(0,190,197,0.3) 15%, rgba(0,190,197,0.3) 85%, rgba(0,190,197,0) 100%); }
+.timeline-node-circle { width: 80px; height: 80px; background: #fff; color: #00BEC5; border: 6px solid #f2fbfb; position: relative; z-index: 2; }
+.sticky-sidebar-col { top: 120px; z-index: 10; }
+
+
+.tech-list-wrapper { display: flex; flex-wrap: wrap; row-gap: 8px; }
+.tech-list-item { display: inline-block; }
+.tech-list-item:not(:last-child)::after { content: '|'; opacity: 0.25; margin-left: 1rem; margin-right: 1rem; font-weight: 300; }
+
+
+
+/* Fintech Borderless List Feature */
+.fintech-list-feature { display: flex; align-items: flex-start; padding-bottom: 2rem; border-bottom: 1px solid rgba(0,0,0,0.05); height: 100%; transition: all 0.3s ease; }
+.fintech-list-feature:hover { border-bottom-color: rgba(0, 190, 197, 0.4); }
+.fintech-feature-icon { flex-shrink: 0; margin-right: 1.5rem; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(0, 190, 197, 0.08); color: #00BEC5; font-size: 28px; transition: all 0.3s ease; }
+.fintech-list-feature:hover .fintech-feature-icon { background: rgba(0, 190, 197, 0.15); transform: translateY(-3px); }
+.fintech-feature-title { font-weight: 700; font-size: 1.25rem; margin-bottom: 0.5rem; color: #111; }
+.fintech-feature-desc { color: #666; margin-bottom: 0; line-height: 1.6; }
+
+
+
+/* Banking Dark Mode Minimal Layout */
+.section-banking-dark { background-color: #0a0f18; color: #fff; position: relative; }
+.section-banking-dark .section-title { color: #fff; }
+.section-banking-dark .section-description { color: rgba(255,255,255,0.7); }
+.banking-minimal-feature { text-align: left; padding: 20px 0; transition: all 0.3s ease; border-left: 2px solid rgba(255,255,255,0.05); padding-left: 30px; margin-left: 15px; }
+.banking-minimal-feature:hover { border-left-color: #00BEC5; }
+.banking-minimal-icon { font-size: 40px; margin-bottom: 20px; color: #00BEC5; }
+.banking-minimal-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 15px; color: #fff; }
+.banking-minimal-desc { color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 0; font-size: 0.95rem; }
+
+
+
+/* Banking Interactive Overlapping Tabs */
+.custom-banking-tabs { gap: 10px; position: relative; z-index: 2; }
+.banking-tab-btn { text-align: left; display: flex; align-items: center; padding: 18px 25px !important; border-radius: 20px !important; background: transparent; color: #555 !important; font-weight: 600; font-size: 1.1rem; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); border: 1px solid transparent !important; }
+.banking-tab-btn:hover { background: #f8fcfc; color: #111 !important; }
+.banking-tab-btn.active { background: #ffffff !important; color: #00BEC5 !important; box-shadow: 0 15px 40px rgba(0,0,0,0.08) !important; border-color: rgba(0, 190, 197, 0.15) !important; transform: translateX(30px); }
+.banking-tab-btn .tab-icon { font-size: 24px; margin-right: 15px; filter: grayscale(100%); opacity: 0.5; transition: all 0.3s ease; }
+.banking-tab-btn.active .tab-icon { filter: grayscale(0%); opacity: 1; transform: scale(1.2); }
+.banking-tab-content-wrapper { background: linear-gradient(135deg, #f4f9f9 0%, #fdfdfd 100%); border-radius: 40px; border: 1px solid rgba(0,190,197,0.1); padding: 80px 60px; min-height: 450px; display: flex; align-items: center; margin-left: -40px; z-index: 1; position: relative; overflow: hidden; }
+.banking-content-card { position: relative; z-index: 2; }
+.banking-content-card .bg-watermark { position: absolute; right: 0; bottom: -50%; font-size: 200px; opacity: 0.03; z-index: -1; pointer-events: none; }
+.banking-content-card h3 { font-weight: 800; font-size: 2.2rem; color: #111; margin-bottom: 20px; }
+.banking-content-card p { line-height: 1.8; color: #555; }
+@media (max-width: 991px) { .banking-tab-btn.active { transform: translateX(0); } .banking-tab-content-wrapper { margin-left: 0; margin-top: 30px; padding: 40px 30px; min-height: auto; } }
+
+
+
+/* Banking Slider Styles */
+.banking-slider-section { background: #f0f5f7; position: relative; }
+.banking-slider { padding-bottom: 20px; padding-top: 20px; }
+.banking-slide-card { background: #ffffff; border: 1px solid rgba(0, 190, 197, 0.15); border-radius: 30px; padding: 40px; height: 100%; transition: all 0.4s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.02); position: relative; overflow: hidden; z-index: 1; }
+.banking-slide-card:hover { box-shadow: 0 20px 50px rgba(0, 190, 197, 0.1); transform: translateY(-8px); border-color: rgba(0, 190, 197, 0.3); }
+.banking-slide-card .bg-icon { position: absolute; right: -20px; bottom: -20px; font-size: 140px; opacity: 0.02; z-index: -1; pointer-events: none; }
+.banking-slide-card h4 { font-weight: 700; font-size: 1.5rem; margin-top: 25px; margin-bottom: 15px; color: #111; }
+.banking-slide-card p { color: #555; line-height: 1.7; }
+.banking-slide-icon-wrap { width: 70px; height: 70px; border-radius: 20px; background: rgba(0, 190, 197, 0.1); color: #00BEC5; display: flex; align-items: center; justify-content: center; font-size: 32px; transition: all 0.3s ease; }
+.banking-slide-card:hover .banking-slide-icon-wrap { background: #00BEC5; color: #fff; transform: scale(1.1); }
+.banking-slider .swiper-pagination-bullet { width: 12px; height: 12px; background: #ddd; opacity: 1; margin: 0 6px !important; transition: all 0.3s ease; }
+.banking-slider .swiper-pagination-bullet-active { background: #00BEC5; width: 30px; border-radius: 10px; }
+
+
+
+/* Banking Slider Navigation Arrows */
+.banking-slider .swiper-button-next, .banking-slider .swiper-button-prev { background: #fff; width: 50px; height: 50px; border-radius: 50%; box-shadow: 0 5px 20px rgba(0,0,0,0.1); color: #00BEC5; transition: all 0.3s ease; }
+.banking-slider .swiper-button-next:after, .banking-slider .swiper-button-prev:after { font-size: 20px; font-weight: bold; }
+.banking-slider .swiper-button-next:hover, .banking-slider .swiper-button-prev:hover { background: #00BEC5; color: #fff; box-shadow: 0 10px 25px rgba(0, 190, 197, 0.4); }
+
+
+
+/* Banking Slider Custom Arrows */
+.banking-slider-nav { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 40px; }
+.custom-slider-arrow { width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; border-radius: 16px; background: #fff; cursor: pointer; position: relative; z-index: 1; transition: all 0.3s ease; }
+.custom-slider-arrow::before { content: ''; position: absolute; inset: 0; border-radius: 16px; padding: 1.5px; background: linear-gradient(135deg, #46C7A9 0%, #2A73A6 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; z-index: -1; transition: all 0.3s ease; }
+.custom-slider-arrow i { font-size: 20px; background: linear-gradient(135deg, #46C7A9 0%, #2A73A6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 400; transition: all 0.3s ease; }
+.custom-slider-arrow:hover { background: linear-gradient(135deg, #46C7A9 0%, #2A73A6 100%); box-shadow: 0 10px 20px rgba(0, 190, 197, 0.2); }
+.custom-slider-arrow:hover i { background: none; -webkit-text-fill-color: #fff; color: #fff; }
+.custom-slider-arrow:hover::before { opacity: 0; }
+.custom-slider-arrow.swiper-button-disabled { opacity: 0.5; cursor: not-allowed; }
+.custom-slider-arrow.swiper-button-disabled:hover { background: #fff; box-shadow: none; }
+.custom-slider-arrow.swiper-button-disabled:hover i { background: linear-gradient(135deg, #46C7A9 0%, #2A73A6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.custom-slider-arrow.swiper-button-disabled:hover::before { opacity: 1; }
+
+
+.arrow-svg { stroke: url(#arrowGrad); transition: stroke 0.3s ease; }
+.custom-slider-arrow:hover .arrow-svg { stroke: #ffffff; }
+.custom-slider-arrow.swiper-button-disabled:hover .arrow-svg { stroke: url(#arrowGrad); }
+
+
+
+/* Text Gradient Class */
+.text-theme-gradient { background: linear-gradient(135deg, #46C7A9 0%, #2A73A6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; }
+
+
+
+/* Vibrant CTA Redesign */
+.industry-custom-cta-vibrant { background: linear-gradient(135deg, #46C7A9 0%, #2A73A6 100%) !important; border-radius: 40px !important; padding: 100px 40px !important; position: relative; overflow: hidden !important; text-align: center; box-shadow: 0 25px 50px rgba(42, 115, 166, 0.25) !important; }
+.cta-vibrant-bg-pattern { position: absolute; top: -50%; right: -20%; width: 800px; height: 800px; background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 60%); pointer-events: none; }
+.cta-vibrant-bg-pattern-2 { position: absolute; bottom: -50%; left: -20%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%); pointer-events: none; }
+.industry-custom-cta-vibrant .cta-main-title { font-size: 48px !important; font-weight: 800 !important; color: #ffffff !important; line-height: 1.2 !important; margin-bottom: 25px !important; position: relative; z-index: 2; }
+.industry-custom-cta-vibrant .cta-sub-title { font-size: 20px !important; color: rgba(255, 255, 255, 0.9) !important; line-height: 1.6 !important; margin-bottom: 45px !important; max-width: 750px; margin-left: auto; margin-right: auto; position: relative; z-index: 2; }
+.industry-custom-cta-vibrant .cta-premium-btn { display: inline-flex !important; align-items: center !important; justify-content: center !important; gap: 12px !important; background: #ffffff !important; color: #2A73A6 !important; padding: 22px 45px !important; border-radius: 50px !important; font-size: 18px !important; font-weight: 800 !important; text-decoration: none !important; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important; transition: all 0.4s ease !important; position: relative; z-index: 2; }
+.industry-custom-cta-vibrant .cta-premium-btn:hover { transform: translateY(-5px) !important; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25) !important; color: #46C7A9 !important; }
+.industry-custom-cta-vibrant .cta-premium-btn i { transition: transform 0.3s ease; }
+.industry-custom-cta-vibrant .cta-premium-btn:hover i { transform: translateX(5px); }
+@media (max-width: 991px) { .industry-custom-cta-vibrant { padding: 60px 30px !important; } .industry-custom-cta-vibrant .cta-main-title { font-size: 36px !important; } .industry-custom-cta-vibrant .cta-sub-title { font-size: 18px !important; } }
+@media (max-width: 575px) { .industry-custom-cta-vibrant .cta-main-title { font-size: 30px !important; } .industry-custom-cta-vibrant .cta-sub-title { font-size: 16px !important; } }
+
+
+
+/* Global Font Update */
+h3, h4, .h3, .h4 { font-family: "Sora", sans-serif !important; }
+
+
+
+/* Banking Slider H4 Tweak */
+.banking-slide-card h4 { font-weight: 500 !important; font-size: 19px !important; }
 

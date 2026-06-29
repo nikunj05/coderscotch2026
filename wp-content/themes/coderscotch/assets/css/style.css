@@ -12669,3 +12669,31 @@ html, body {
   background: #fff;
   padding-bottom: 20px;
 }
+
+/* Fintech Integrations List */
+.integrations-list .integration-label { min-width: 320px; }
+.integrations-list .icon-wrap { background-color: rgba(0, 190, 197, 0.1); color: #00BEC5; width: 60px; height: 60px; }
+.integrations-list .integration-pills .badge { background-color: #f8f9fa; color: #333; border: 1px solid #eaeaea; font-size: 14px; }
+
+
+
+/* Fintech Features Grid */
+.feature-card-premium { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.feature-card-premium:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important; border-color: #00BEC5 !important; }
+.feature-card-premium .icon-wrap { width: 56px; height: 56px; background-color: rgba(0, 190, 197, 0.1); color: #00BEC5; }
+
+
+
+/* Fintech Animated Elements */
+.floating-fintech-element { position: absolute; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border: 1px solid rgba(0,190,197,0.2); border-radius: 50px; padding: 12px 24px; z-index: 5; pointer-events: none; animation: floatElement 6s ease-in-out infinite; box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
+.floating-fintech-element.badge-success .success-dot { width: 10px; height: 10px; background: #00BEC5; border-radius: 50%; animation: pulseDot 2s infinite; }
+.floating-fintech-element.badge-transfer .transfer-icon { color: #00BEC5; }
+.floating-fintech-element.delay-1 { animation-delay: 1.5s; }
+.floating-fintech-element.delay-2 { animation-delay: 3s; }
+@keyframes floatElement { 0% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-20px) rotate(1deg); } 100% { transform: translateY(0px) rotate(0deg); } }
+@keyframes pulseDot { 0% { box-shadow: 0 0 0 0 rgba(0, 190, 197, 0.6); } 70% { box-shadow: 0 0 0 12px rgba(0, 190, 197, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 190, 197, 0); } }
+.fintech-abstract-bg { position: absolute; pointer-events: none; z-index: 0; opacity: 0.4; }
+.fintech-abstract-bg.shape-1 { top: 10%; right: 5%; animation: floatElement 8s ease-in-out infinite reverse; }
+.fintech-abstract-bg.shape-2 { bottom: 10%; left: -5%; animation: floatElement 10s ease-in-out infinite; }
+.glow-orb { position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(0,190,197,0.15) 0%, rgba(0,190,197,0) 70%); border-radius: 50%; pointer-events: none; z-index: 0; }
+

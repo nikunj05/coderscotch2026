@@ -13120,3 +13120,89 @@ h3, h4, .h3, .h4 { font-family: "Sora", sans-serif !important; }
     .tuvoc-hero-actions { justify-content: center; }
     .tuvoc-sticky-sidebar { position: relative; top: 0; margin-bottom: 40px; text-align: center; }
 }
+
+/* Real Estate Solutions Custom CSS */
+.build-for-card.border-info {
+  border-top-color: #00BEC5 !important;
+}
+
+#solutions-stack-section {
+  overflow: visible !important;
+}
+
+#solutions-stack-heading {
+  position: sticky;
+  top: 100px;
+  z-index: 0;
+  background-color: var(--bs-light, #f8f9fa);
+  padding: 20px 0;
+}
+
+/* Stacked Cards CSS */
+.stacked-cards-wrapper {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.stacked-card {
+  position: sticky;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 3rem;
+  box-shadow: 0 -15px 35px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.04);
+  margin-bottom: 5vh;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+  z-index: 1 !important;
+}
+@media (max-width: 768px) {
+  .stacked-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+    margin-bottom: 5vh;
+  }
+}
+.stacked-card:last-child {
+  margin-bottom: 10vh;
+}
+.sc-number {
+  font-size: 80px;
+  font-weight: 900;
+  color: #00BEC5;
+  opacity: 0.15;
+  margin-right: 2.5rem;
+  line-height: 1;
+}
+@media (max-width: 768px) {
+  .sc-number {
+    margin-right: 0;
+    margin-bottom: 1rem;
+    font-size: 60px;
+  }
+}
+.sc-content h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.75rem;
+}
+.sc-content p {
+  font-size: 1.1rem;
+  color: #6c757d;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Vertical Stacking Offsets */
+.stacked-card.card-1 { top: 200px; }
+.stacked-card.card-2 { top: 225px; }
+.stacked-card.card-3 { top: 250px; }
+.stacked-card.card-4 { top: 275px; }
+.stacked-card.card-5 { top: 300px; }
+.stacked-card.card-6 { top: 325px; }
+.stacked-card.card-7 { top: 350px; }
+.stacked-card.card-8 { top: 375px; }
+.stacked-card.card-9 { top: 400px; }

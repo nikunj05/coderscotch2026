@@ -10538,10 +10538,13 @@ img {
     margin-bottom: 25px;
 }
 .clutch-premium-card .badge-footer {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
     background: linear-gradient(135deg, rgba(0, 190, 197, 0.08) 0%, rgba(67, 206, 162, 0.08) 100%);
     border: 1px solid rgba(0, 190, 197, 0.15);
-    padding: 8px 18px;
+    padding: 13px 20px;
     border-radius: 30px;
     font-size: 14px;
     font-weight: 700;
@@ -12827,3 +12830,293 @@ h3, h4, .h3, .h4 { font-family: "Sora", sans-serif !important; }
 /* Banking Slider H4 Tweak */
 .banking-slide-card h4 { font-weight: 500 !important; font-size: 19px !important; }
 
+
+
+/* Fintech Timeline Elements */
+.fintech-timeline-line { width: 2px; background: linear-gradient(180deg, rgba(0,190,197,0) 0%, rgba(0,190,197,0.3) 15%, rgba(0,190,197,0.3) 85%, rgba(0,190,197,0) 100%); }
+.fintech-timeline-icon { width: 80px; height: 80px; background: #fff; color: #00BEC5; border: 6px solid #f2fbfb; position: relative; z-index: 2; }
+
+
+
+
+
+
+
+/* Hire Page Intro Section */
+.hire-react-section { background-color: #ffffff; }
+.hire-react-content { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 60px !important; align-items: center !important; margin-top: 50px; }
+.hire-react-img-wrapper { position: relative; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 60px rgba(15, 23, 42, 0.1); border: 8px solid #f8fafc; }
+.hire-react-checklist { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0 !important; }
+.hire-react-checklist-item { display: flex; align-items: center; gap: 16px; padding: 20px 0 !important; border-radius: 0 !important; background: transparent !important; border: none !important; border-bottom: 1px solid rgba(0,0,0,0.06) !important; font-size: 20px; font-weight: 600; color: #1e293b; box-shadow: none !important; transition: all 0.3s ease; }
+.hire-react-checklist-item:last-child { border-bottom: none !important; }
+.hire-react-checklist-item:hover { transform: translateX(10px); background: transparent !important; box-shadow: none !important; border-color: rgba(0,0,0,0.06) !important; }
+@media (max-width: 991px) { .hire-react-content { grid-template-columns: 1fr !important; gap: 40px !important; } }
+
+
+
+/* Hire Page Services Section */
+.hire-services-section { background: #f0f5f7 !important; }
+.hire-services-grid { display: grid; grid-template-columns: repeat(2, 1fr) !important; gap: 30px !important; margin-top: 50px; }
+.hire-service-card { background: #ffffff !important; border-radius: 24px !important; padding: 40px !important; border: 1px solid rgba(0, 190, 197, 0.1) !important; box-shadow: 0 10px 30px rgba(0,0,0,0.03) !important; transition: all 0.4s ease !important; position: relative; overflow: hidden; height: 100%; }
+.hire-services-section .hire-service-card .hire-service-card-inner { background: transparent !important; box-shadow: none !important; padding: 0 !important; border-radius: 0 !important; border: none !important; }
+.hire-services-section .hire-service-card .hire-service-card-inner::before { display: none !important; }
+.hire-services-section .hire-service-card:hover .hire-service-card-inner { background: transparent !important; }
+.hire-service-card-icon { width: 70px !important; height: 70px !important; border-radius: 16px !important; background: rgba(0, 190, 197, 0.1) !important; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; transition: all 0.4s ease; }
+.hire-service-card:hover .hire-service-card-icon { background: linear-gradient(135deg, #46C7A9 0%, #2A73A6 100%) !important; }
+.hire-service-card:hover .hire-service-card-icon img { filter: brightness(0) invert(1); }
+.hire-service-card-title { font-size: 24px !important; font-weight: 700 !important; margin-bottom: 15px !important; color: #1e293b !important; }
+.hire-service-card-desc { font-size: 16px !important; color: #64748b !important; line-height: 1.6 !important; margin-bottom: 0 !important; }
+@media (max-width: 767px) { .hire-services-grid { grid-template-columns: 1fr !important; } }
+
+
+
+/* Hire Page Process & Models */
+.hiring-models-section { background: #ffffff !important; }
+.hiring-process-flow { display: flex; justify-content: space-between; position: relative; margin: 60px 0 80px; padding: 0 40px; }
+.hiring-process-flow .process-line { position: absolute; top: 30px; left: 80px; right: 80px; height: 4px; background: rgba(0, 190, 197, 0.1); z-index: 1; border-radius: 4px; }
+.process-step { position: relative; z-index: 2; text-align: center; width: 140px; }
+.step-marker { width: 64px; height: 64px; background: #ffffff; border: 4px solid #f0f5f7; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: all 0.4s ease; }
+.step-number { font-size: 20px; font-weight: 800; color: #64748b; font-family: "Sora", sans-serif; }
+.process-step:hover .step-marker { border-color: #46C7A9; transform: scale(1.1); box-shadow: 0 15px 30px rgba(70, 199, 169, 0.2); }
+.process-step:hover .step-number { color: #2A73A6; }
+.step-title { font-size: 18px; font-weight: 700; color: #1e293b; }
+.hiring-models-grid { display: grid; grid-template-columns: repeat(3, 1fr) !important; gap: 30px !important; margin-bottom: 60px; }
+.hiring-model-card { background: #ffffff !important; border-radius: 24px !important; padding: 40px !important; box-shadow: 0 15px 40px rgba(15, 23, 42, 0.05) !important; border: 1px solid rgba(0,0,0,0.03) !important; transition: all 0.4s ease !important; text-align: center; position: relative; overflow: hidden; z-index: 1; }
+.hiring-models-section .hiring-model-card .model-card-inner { background: transparent !important; box-shadow: none !important; padding: 0 !important; border-radius: 0 !important; }
+.hiring-models-section .hiring-model-card:hover .model-card-inner { background: transparent !important; }
+.hiring-model-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, #46C7A9 0%, #2A73A6 100%); opacity: 0; transition: opacity 0.4s ease; z-index: -1; }
+.hiring-model-card:hover { transform: translateY(-10px) !important; }
+.hiring-model-card:hover::before { opacity: 1; }
+.hiring-model-card .model-icon { width: 80px !important; height: 80px !important; background: rgba(0, 190, 197, 0.1) !important; border-radius: 50% !important; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px !important; transition: all 0.4s ease !important; }
+.hiring-model-card:hover .model-icon { background: rgba(255, 255, 255, 0.2) !important; }
+.hiring-model-card .model-icon img { transition: transform 0.4s ease !important; }
+.hiring-model-card:hover .model-icon img { transform: scale(1.1); }
+.hiring-model-card .model-title { font-size: 24px !important; font-weight: 800 !important; color: #1e293b !important; margin-bottom: 15px !important; transition: color 0.4s ease !important; }
+.hiring-model-card:hover .model-title { color: #ffffff !important; }
+.hiring-model-card .model-desc { font-size: 16px !important; color: #64748b !important; line-height: 1.6 !important; transition: color 0.4s ease !important; }
+.hiring-model-card:hover .model-desc { color: rgba(255, 255, 255, 0.9) !important; }
+@media (max-width: 991px) { .hiring-process-flow { flex-direction: column; align-items: center; gap: 40px; } .hiring-process-flow .process-line { width: 4px; height: 100%; top: 0; left: 50%; right: auto; transform: translateX(-50%); } .hiring-models-grid { grid-template-columns: 1fr !important; } }
+
+/* ==========================================================================
+   Tuvoc Redesign Styles for Hire Developer Page
+   ========================================================================== */
+
+/* Hero Banner */
+.tuvoc-hero-section {
+    background: linear-gradient(135deg, #f2fbfa 0%, #ffffff 100%);
+    padding: 140px 0 80px;
+    position: relative;
+    overflow: hidden;
+}
+.tuvoc-hero-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+.tuvoc-hero-content {
+    flex: 0 0 55%;
+    max-width: 55%;
+}
+.tuvoc-hero-title {
+    font-size: 48px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+.tuvoc-hero-title .highlight-text {
+    background: linear-gradient(135deg, #00BEC5 0%, #43CEA2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+.tuvoc-hero-desc {
+    font-size: 18px;
+    color: #4b5563;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+.tuvoc-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    background: #ffffff;
+    border: 1px solid rgba(0, 190, 197, 0.2);
+    border-radius: 12px;
+    padding: 20px 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0, 190, 197, 0.05);
+}
+.tuvoc-stat-box {
+    padding: 15px;
+    border-right: 1px solid rgba(0,0,0,0.1);
+}
+.tuvoc-stat-box:nth-child(even) {
+    border-right: none;
+}
+.tuvoc-stat-box h4 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 5px;
+}
+.tuvoc-stat-box p {
+    font-size: 14px;
+    color: #374151;
+    margin: 0;
+    font-weight: 500;
+}
+.tuvoc-hero-actions {
+    display: flex;
+    gap: 20px;
+}
+
+.tuvoc-hero-image {
+    flex: 0 0 45%;
+    max-width: 45%;
+    position: relative;
+}
+.tuvoc-hero-image img {
+    max-width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 2;
+}
+.tuvoc-blob {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(0, 190, 197, 0.15) 0%, rgba(67, 206, 162, 0.1) 100%);
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: 1;
+}
+
+/* Services Split Layout */
+.tuvoc-services-section {
+    background: #ffffff;
+    padding: 100px 0;
+}
+.tuvoc-sticky-sidebar {
+    position: sticky;
+    top: 120px;
+}
+.tuvoc-services-title {
+    font-size: 40px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 25px;
+    line-height: 1.2;
+}
+.tuvoc-services-desc {
+    font-size: 16px;
+    color: #4b5563;
+    line-height: 1.7;
+    margin-bottom: 35px;
+}
+.tuvoc-service-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 190, 197, 0.1);
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+}
+.tuvoc-service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+.tuvoc-service-card-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 20px;
+}
+.tuvoc-service-card-desc {
+    font-size: 16px;
+    color: #4b5563;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Engagement Models */
+.tuvoc-engagement-section {
+    background: #f4fbfb;
+    padding: 100px 0;
+}
+.tuvoc-engagement-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+.tuvoc-engagement-header h2 {
+    font-size: 42px;
+    font-weight: 800;
+    color: #111827;
+}
+.tuvoc-engagement-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+.tuvoc-engagement-card:hover {
+    transform: translateY(-5px);
+}
+.tuvoc-engagement-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+}
+.tuvoc-engagement-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 20px;
+}
+.tuvoc-engagement-divider {
+    border: 0;
+    height: 1px;
+    background: #e5e7eb;
+    margin: 0 auto 30px;
+    width: 80%;
+}
+.tuvoc-engagement-desc {
+    font-size: 16px;
+    color: #4b5563;
+    line-height: 1.7;
+    text-align: left;
+}
+.tuvoc-engagement-desc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.tuvoc-engagement-desc ul li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 15px;
+}
+.tuvoc-engagement-desc ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #00BEC5;
+    font-weight: bold;
+}
+
+@media (max-width: 991px) {
+    .tuvoc-hero-wrapper { flex-direction: column; }
+    .tuvoc-hero-content, .tuvoc-hero-image { flex: 0 0 100%; max-width: 100%; text-align: center; }
+    .tuvoc-stats-grid { gap: 20px; }
+    .tuvoc-hero-actions { justify-content: center; }
+    .tuvoc-sticky-sidebar { position: relative; top: 0; margin-bottom: 40px; text-align: center; }
+}

@@ -20,130 +20,116 @@ function get_highlighted_title($field_name) {
 <!-- Banner Section Start -->
 <section class="common-banner-section hire-developer-banner-section position-relative z-index-0">
   <div class="container">
-    <div class="banner-section-content">
-      <div class="connect-section">
-        <div class="heading_section text-center">
-          <h1 class="section-title">
+    <div class="tuvoc-hero-wrapper">
+      <div class="connect-section tuvoc-hero-content" data-aos="fade-right" data-aos-duration="800">
+        <div class="heading_section text-start">
+          <h1 class="section-title tuvoc-hero-title">
             <?php echo get_highlighted_title('hire_banner_title'); ?>
           </h1>
           <?php if ($banner_desc = get_field('hire_banner_description')) : ?>
-            <p class="section-description">
+            <p class="section-description tuvoc-hero-desc">
               <?php echo wp_kses_post($banner_desc); ?>
             </p>
           <?php endif; ?>
         </div>
-        <a href="<?php echo get_permalink( get_page_by_path('contact-us') ); ?>" class="button button-primary mx-auto">
-          Speak to our expert
-          <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M0 23C0 10.2975 10.2975 0 23 0C35.7025 0 46 10.2975 46 23C46 35.7025 35.7025 46 23 46C10.2975 46 0 35.7025 0 23Z"
-              fill="url(#paint0_linear_507_314)"></path>
-            <path
-              d="M28.625 18V26.125C28.625 26.2908 28.5591 26.4497 28.4419 26.5669C28.3247 26.6842 28.1657 26.75 28 26.75C27.8342 26.75 27.6753 26.6842 27.558 26.5669C27.4408 26.4497 27.375 26.2908 27.375 26.125V19.5086L18.4422 28.4422C18.3249 28.5595 18.1658 28.6253 18 28.6253C17.8341 28.6253 17.6751 28.5595 17.5578 28.4422C17.4405 28.3249 17.3746 28.1659 17.3746 28C17.3746 27.8341 17.4405 27.6751 17.5578 27.5578L26.4914 18.625H19.875C19.7092 18.625 19.5502 18.5592 19.433 18.4419C19.3158 18.3247 19.25 18.1658 19.25 18C19.25 17.8342 19.3158 17.6753 19.433 17.5581C19.5502 17.4408 19.7092 17.375 19.875 17.375H28C28.1657 17.375 28.3247 17.4408 28.4419 17.5581C28.5591 17.6753 28.625 17.8342 28.625 18Z"
-              fill="white"></path>
-            <defs>
-              <linearGradient id="paint0_linear_507_314" x1="7.80357" y1="5.75" x2="61.8887" y2="67.3571"
-                gradientUnits="userSpaceOnUse">
-                <stop stop-color="#00BEC5"></stop>
-                <stop offset="1" stop-color="#43CEA2"></stop>
-              </linearGradient>
-            </defs>
-          </svg>
-        </a>
+        
+        <div class="tuvoc-stats-grid">
+          <div class="tuvoc-stat-box">
+            <h4>95%</h4>
+            <p>Development Accuracy</p>
+          </div>
+          <div class="tuvoc-stat-box">
+            <h4>99%</h4>
+            <p>Utilization Transparency</p>
+          </div>
+          <div class="tuvoc-stat-box">
+            <h4>85%</h4>
+            <p>Increase in ROI</p>
+          </div>
+          <div class="tuvoc-stat-box">
+            <h4>99%</h4>
+            <p>Data Security</p>
+          </div>
+        </div>
+
+        <div class="tuvoc-hero-actions d-flex align-items-center gap-4">
+          <a href="<?php echo get_permalink( get_page_by_path('contact-us') ); ?>" class="button button-secondary">
+            Get a Free Consultation
+            <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="46" height="46" rx="10" fill="white"></rect>
+              <path d="M28.625 18V26.125C28.625 26.2908 28.5591 26.4497 28.4419 26.5669C28.3247 26.6842 28.1657 26.75 28 26.75C27.8342 26.75 27.6753 26.6842 27.558 26.5669C27.4408 26.4497 27.375 26.2908 27.375 26.125V19.5086L18.4422 28.4422C18.3249 28.5595 18.1658 28.6253 18 28.6253C17.8341 28.6253 17.6751 28.5595 17.5578 28.4422C17.4405 28.3249 17.3746 28.1659 17.3746 28C17.3746 27.8341 17.4405 27.6751 17.5578 27.5578L26.4914 18.625H19.875C19.7092 18.625 19.5502 18.5592 19.433 18.4419C19.3158 18.3247 19.25 18.1658 19.25 18C19.25 17.8342 19.3158 17.6753 19.433 17.5581C19.5502 17.4408 19.7092 17.375 19.875 17.375H28C28.1657 17.375 28.3247 17.4408 28.4419 17.5581C28.5591 17.6753 28.625 17.8342 28.625 18Z" fill="#00BEC5"></path>
+            </svg>
+          </a>
+          <a href="<?php echo get_permalink( get_page_by_path('contact-us') ); ?>" class="button button-primary">
+            Hire Developer
+            <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 23C0 10.2975 10.2975 0 23 0C35.7025 0 46 10.2975 46 23C46 35.7025 35.7025 46 23 46C10.2975 46 0 35.7025 0 23Z" fill="#00BEC5"></path>
+              <path d="M28.625 18V26.125C28.625 26.2908 28.5591 26.4497 28.4419 26.5669C28.3247 26.6842 28.1657 26.75 28 26.75C27.8342 26.75 27.6753 26.6842 27.558 26.5669C27.4408 26.4497 27.375 26.2908 27.375 26.125V19.5086L18.4422 28.4422C18.3249 28.5595 18.1658 28.6253 18 28.6253C17.8341 28.6253 17.6751 28.5595 17.5578 28.4422C17.4405 28.3249 17.3746 28.1659 17.3746 28C17.3746 27.8341 17.4405 27.6751 17.5578 27.5578L26.4914 18.625H19.875C19.7092 18.625 19.5502 18.5592 19.433 18.4419C19.3158 18.3247 19.25 18.1658 19.25 18C19.25 17.8342 19.3158 17.6753 19.433 17.5581C19.5502 17.4408 19.7092 17.375 19.875 17.375H28C28.1657 17.375 28.3247 17.4408 28.4419 17.5581C28.5591 17.6753 28.625 17.8342 28.625 18Z" fill="white"></path>
+            </svg>
+          </a>
+        </div>
       </div>
-      <div class="hire-developer-banner-image">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/hire-dev-banner-img1.svg" alt="hire dev banner img 1" width="250" height="236" class="hire-developer-banner-img hire-dev-img1">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/hire-dev-banner-img2.svg" alt="hire dev banner img 2" width="250" height="236" class="hire-developer-banner-img hire-dev-img2">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/hire-dev-banner-img3.svg" alt="hire dev banner img 3" width="250" height="236" class="hire-developer-banner-img hire-dev-img3">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/hire-dev-banner-img4.svg" alt="hire dev banner img 4" width="250" height="236" class="hire-developer-banner-img hire-dev-img4">
+      
+      <div class="tuvoc-hero-image" data-aos="fade-left" data-aos-duration="800">
+        <div class="tuvoc-blob"></div>
+        <?php 
+          $hero_img_data = get_field('hire_intro_image');
+          $hero_img_url = '';
+          if (is_array($hero_img_data) && isset($hero_img_data['url'])) {
+              $hero_img_url = $hero_img_data['url'];
+          } elseif (is_string($hero_img_data) && !empty($hero_img_data)) {
+              $hero_img_url = $hero_img_data;
+          } else {
+              $hero_img_url = get_template_directory_uri() . '/assets/images/aboutus-banner-img.png';
+          }
+        ?>
+        <img src="<?php echo esc_url($hero_img_url); ?>" alt="Hire Developer" style="max-width: 80%; margin: 0 auto; display: block; position: relative; z-index: 2;">
       </div>
     </div>
   </div>
 </section>
 <!-- Banner Section End -->
 
-<!-- Hire Section Start -->
-<section class="hire-react-section section-space-tb">
-  <div class="container">
-    <div class="heading_section text-left">
-      <h2 class="section-title">
-        <?php echo get_highlighted_title('hire_intro_title'); ?>
-      </h2>
-      <?php if ($intro_desc = get_field('hire_intro_description')) : ?>
-        <p class="section-description">
-          <?php echo wp_kses_post($intro_desc); ?>
-        </p>
-      <?php endif; ?>
-    </div>
-
-    <div class="hire-react-content">
-      <div class="hire-react-img-wrapper">
-        <?php if ($intro_img = get_field('hire_intro_image')) : ?>
-            <img src="<?php echo esc_url($intro_img); ?>" alt="Hire Developer" class="hire-react-img"
-              width="470" height="402">
-        <?php endif; ?>
-      </div>
-
-      <?php if (have_rows('hire_intro_checklist')) : ?>
-        <ul class="hire-react-checklist">
-          <?php while (have_rows('hire_intro_checklist')) : the_row(); ?>
-            <li class="hire-react-checklist-item">
-              <span class="hire-react-check-icon">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/checked-icon.svg" alt="check icon" width="28" height="28">
-              </span>
-              <span><?php the_sub_field('item_text'); ?></span>
-            </li>
-          <?php endwhile; ?>
-        </ul>
-      <?php endif; ?>
-    </div>
-  </div>
-</section>
-<!-- Hire Section End -->
 
 <!-- Expert Services Section Start -->
-<section class="hire-services-section section-space-tb">
+<section class="tuvoc-services-section">
   <div class="container">
-
-    <div class="heading_section text-center">
-      <h2 class="section-title">
-        <?php echo get_highlighted_title('hire_services_title'); ?>
-      </h2>
-      <?php if ($services_desc = get_field('hire_services_description')) : ?>
-        <p class="section-description">
-          <?php echo wp_kses_post($services_desc); ?>
-        </p>
-      <?php endif; ?>
-    </div>
-
-    <?php if (have_rows('hire_services_list')) : ?>
-      <div class="hire-services-grid">
-        <?php while (have_rows('hire_services_list')) : the_row(); ?>
-          <div class="hire-service-card">
-            <div class="hire-service-card-inner">
-              <div class="hire-service-card-icon">
-                <?php if ($icon = get_sub_field('icon')) : ?>
-                    <img src="<?php echo esc_url($icon); ?>" alt="<?php the_sub_field('title'); ?>" width="32" height="32">
-                <?php endif; ?>
-              </div>
-              <h3 class="hire-service-card-title"><?php the_sub_field('title'); ?></h3>
-              <p class="hire-service-card-desc"><?php the_sub_field('description'); ?></p>
-            </div>
-          </div>
-        <?php endwhile; ?>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="tuvoc-sticky-sidebar" data-aos="fade-right" data-aos-duration="800">
+          <h2 class="tuvoc-services-title">
+            <?php echo get_highlighted_title('hire_services_title'); ?>
+          </h2>
+          <?php if ($services_desc = get_field('hire_services_description')) : ?>
+            <p class="tuvoc-services-desc">
+              <?php echo wp_kses_post($services_desc); ?>
+            </p>
+          <?php endif; ?>
+          <a href="<?php echo get_permalink( get_page_by_path('contact-us') ); ?>" class="tuvoc-btn-primary">Connect With Developer</a>
+        </div>
       </div>
-    <?php endif; ?>
+      <div class="col-lg-8">
+        <?php if (have_rows('hire_services_list')) : ?>
+          <div class="tuvoc-services-list" data-aos="fade-up" data-aos-duration="800">
+            <?php while (have_rows('hire_services_list')) : the_row(); ?>
+              <div class="tuvoc-service-card">
+                <h3 class="tuvoc-service-card-title"><?php the_sub_field('title'); ?></h3>
+                <p class="tuvoc-service-card-desc"><?php the_sub_field('description'); ?></p>
+              </div>
+            <?php endwhile; ?>
+          </div>
+        <?php endif; ?>
+      </div>
+    </div>
   </div>
 </section>
 <!-- Expert Services Section End -->
 
 <!-- Hiring Models Section Start -->
-<section class="hiring-models-section section-space-tb">
+<section class="tuvoc-engagement-section">
   <div class="container">
-    <div class="heading_section text-center">
-      <h2 class="section-title">
-        <?php echo get_highlighted_title('hiring_models_title'); ?>
-      </h2>
+    <div class="tuvoc-engagement-header">
+      <h2><?php echo get_highlighted_title('hiring_models_title'); ?></h2>
     </div>
 
     <!-- Process Flow -->
@@ -163,19 +149,23 @@ function get_highlighted_title($field_name) {
 
     <!-- Hiring Models Cards -->
     <?php if (have_rows('hiring_models_list')) : ?>
-      <div class="hiring-models-grid">
-        <?php while (have_rows('hiring_models_list')) : the_row(); 
-          $model_type = get_sub_field('model_type');
-        ?>
-          <div class="hiring-model-card <?php echo esc_attr($model_type); ?>-model">
-            <div class="model-card-inner">
-              <div class="model-icon">
+      <div class="row mt-5 pt-4">
+        <?php while (have_rows('hiring_models_list')) : the_row(); ?>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="tuvoc-engagement-card" data-aos="fade-up" data-aos-duration="800">
+              <div class="tuvoc-engagement-icon">
                 <?php if ($icon = get_sub_field('icon')) : ?>
-                  <img src="<?php echo esc_url($icon); ?>" alt="<?php the_sub_field('title'); ?>" width="40" height="40">
+                  <img src="<?php echo esc_url($icon); ?>" alt="<?php the_sub_field('title'); ?>" width="60" height="60" style="object-fit: contain;">
                 <?php endif; ?>
               </div>
-              <h3 class="model-title"><?php the_sub_field('title'); ?></h3>
-              <p class="model-desc"><?php the_sub_field('description'); ?></p>
+              <h3 class="tuvoc-engagement-title"><?php the_sub_field('title'); ?></h3>
+              <hr class="tuvoc-engagement-divider">
+              <div class="tuvoc-engagement-desc">
+                <?php 
+                  $desc = get_sub_field('description'); 
+                  echo '<p>' . wp_kses_post($desc) . '</p>';
+                ?>
+              </div>
             </div>
           </div>
         <?php endwhile; ?>
@@ -185,21 +175,28 @@ function get_highlighted_title($field_name) {
     <?php 
     $cta_text = get_field('hiring_cta_text');
     $cta_link = get_field('hiring_cta_link');
+    $cta_subtitle = 'Partner with Coder Scotch to design, build, and scale custom applications that simplify operations, improve user experience, and support long-term business growth.';
     if ($cta_text && $cta_link) : ?>
-      <div class="hiring-cta-wrapper text-center">
-        <a href="<?php echo esc_url($cta_link); ?>" class="button button-primary mx-auto">
-         <?php echo esc_html($cta_text); ?>
-          <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 23C0 10.2975 10.2975 0 23 0C35.7025 0 46 10.2975 46 23C46 35.7025 35.7025 46 23 46C10.2975 46 0 35.7025 0 23Z" fill="url(#paint0_linear_507_314)"></path>
-            <path d="M28.625 18V26.125C28.625 26.2908 28.5591 26.4497 28.4419 26.5669C28.3247 26.6842 28.1657 26.75 28 26.75C27.8342 26.75 27.6753 26.6842 27.558 26.5669C27.4408 26.4497 27.375 26.2908 27.375 26.125V19.5086L18.4422 28.4422C18.3249 28.5595 18.1658 28.6253 18 28.6253C17.8341 28.6253 17.6751 28.5595 17.5578 28.4422C17.4405 28.3249 17.3746 28.1659 17.3746 28C17.3746 27.8341 17.4405 27.6751 17.5578 27.5578L26.4914 18.625H19.875C19.7092 18.625 19.5502 18.5592 19.433 18.4419C19.3158 18.3247 19.25 18.1658 19.25 18C19.25 17.8342 19.3158 17.6753 19.433 17.5581C19.5502 17.4408 19.7092 17.375 19.875 17.375H28C28.1657 17.375 28.3247 17.4408 28.4419 17.5581C28.5591 17.6753 28.625 17.8342 28.625 18Z" fill="white"></path>
-            <defs>
-              <linearGradient id="paint0_linear_507_314" x1="7.80357" y1="5.75" x2="61.8887" y2="67.3571" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#00BEC5"></stop>
-                <stop offset="1" stop-color="#43CEA2"></stop>
-              </linearGradient>
-            </defs>
-          </svg>
-        </a>
+      <div class="industry-custom-cta mt-5">
+        <div class="cta-glow-1"></div>
+        <div class="cta-glow-2"></div>
+        <div class="cta-flex-container">
+          <div class="cta-text-side">
+            <h2 class="cta-main-title" data-aos="fade" data-aos-duration="800">
+              <?php echo esc_html($cta_text); ?>
+            </h2>
+            <p class="cta-sub-title"><?php echo wp_kses_post($cta_subtitle); ?></p>
+          </div>
+          <div class="cta-button-side" data-aos="fade" data-aos-duration="800">
+            <a href="<?php echo esc_url($cta_link); ?>" class="cta-premium-btn">
+              Contact Us
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00BEC5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
     <?php endif; ?>
   </div>

@@ -23,3 +23,7 @@ wp-config.php
 
 # Keep mu-plugins if needed
 !/wp-content/mu-plugins/
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore

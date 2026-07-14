@@ -283,7 +283,12 @@ get_header(); ?>
           <img src="<?php echo get_template_directory_uri(); ?>/assets/images/connect-effect-left.png" alt="connect-effect" width="280" height="216">
         </div>
         <a href="<?php echo get_permalink( get_page_by_path('contact-us') ); ?>" class="connect-content">
-          <h2 class="connect-title">Connect with us</h2>
+          <h2 class="connect-title">
+            <?php 
+            $connect_label = get_field('connect_with_us_label');
+            echo $connect_label ? esc_html($connect_label) : 'Connect With Us'; 
+            ?>
+          </h2>
           <span class="section-tag-button">
             <div class="section-tag">
               <div class="section-tag-circle">
@@ -555,7 +560,7 @@ get_header(); ?>
           // Filter by category if on a specific page
           global $post;
           if (isset($post->post_name)) {
-              if ($post->post_name === 'mobile-app-development-company') {
+              if ($post->post_name === 'custom-mobile-app-development-company') {
                   $args['tax_query'] = array(
                       array(
                           'taxonomy' => 'our_work_cat',
@@ -743,9 +748,9 @@ get_header(); ?>
       $process_steps = get_field('process_steps_repeater');
       if ($process_steps) : ?>
         <div class="process-steps-grid">
-          <?php $s = 1; foreach ($process_steps as $step) : 
-              $step_title = $step['step_title'];
-              $step_desc = $step['step_description'];
+          <?php $s = 1; foreach ($process_steps as $i => $step) : 
+              $step_title = !empty($step['step_title']) ? $step['step_title'] : get_post_meta(get_the_ID(), 'process_steps_repeater_' . $i . '_step_title', true);
+              $step_desc = !empty($step['step_description']) ? $step['step_description'] : get_post_meta(get_the_ID(), 'process_steps_repeater_' . $i . '_step_description', true);
           ?>
             <div class="process-step-item">
               <div class="step-number-circle"><?php echo str_pad($s, 2, '0', STR_PAD_LEFT); ?></div>

@@ -194,7 +194,7 @@ while (have_posts()) : the_post();
                 ?>
               </div>
             </div>
-            <div class="blog-detail-box-card recent-blog-box-card tag-blog-card">
+            <div class="blog-detail-box-card recent-blog-box-card tag-blog-card d-none">
               <h3 class="blog-detail-recent-blog-title ">Tags</h3>
               <div class="blog-card-tag-list d-flex align-items-center">
                 <?php
@@ -217,7 +217,7 @@ while (have_posts()) : the_post();
           <div class="sticky-sidebar-widget" style="position: sticky; top: 100px; padding-bottom: 40px;">
               <div class="blog-detail-box-card content-box-card sidebar-form-card" style="padding: 24px; border: 1px solid #e0e0e0; border-radius: 12px; background: #fff;">
                   <h3 class="blog-detail-box-card-title mb-3" style="font-size: 1.15rem; font-weight: 600; color: #1a1a1a;">Share Your Requirements!</h3>
-                  <img src="<?= get_template_directory_uri() ?>/assets/images/blog-image/blog-detail-main-image.png" alt="Share requirements" class="img-fluid rounded-3 mb-4" style="object-fit: cover; height: 140px; width: 100%;">
+                  <img src="<?= get_template_directory_uri() ?>/assets/images/blog-image/contact-us-sidebar.png" alt="Share requirements" class="img-fluid rounded-3 mb-4" style="object-fit: cover; height: 140px; width: 100%;">
                   
                   <?php echo do_shortcode('[contact-form-7 id="3593" title="Sidebar Sticky Form"]'); ?>
               </div>

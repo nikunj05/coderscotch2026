@@ -187,21 +187,7 @@
                             <?= get_the_title(120); ?>
                           </a>
                         </li>
-                        <li>
-                          <a href="<?php echo get_permalink( get_page_by_path('our-services') ); ?>">
-                            <div class="footer-card-link-icon d-flex">
-                              <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                  d="M16.1355 10.5V7.5C16.1355 4.67157 16.1355 3.25736 15.2569 2.37868C14.3782 1.5 12.964 1.5 10.1355 1.5H9.38556C6.55718 1.5 5.14298 1.5 4.26430 2.37867C3.38562 3.25734 3.38561 4.67154 3.38559 7.49995L3.38556 10.4999C3.38554 13.3284 3.38552 14.7426 4.26421 15.6213C5.14288 16.5 6.55711 16.5 9.38556 16.5H10.1355C12.964 16.5 14.3782 16.5 15.2569 15.6213C16.1355 14.7427 16.1355 13.3284 16.1355 10.5Z"
-                                  stroke="#00BEC5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M6.76056 5.25H12.7606M6.76056 9H12.7606M6.76056 12.75H9.76056" stroke="#00BEC5"
-                                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                              </svg>
-                            </div>
-                            <?= get_the_title(581); ?>
-                          </a>
-                        </li>
+                        
                       </ul>
                       <div class="footer-card-separetion-line"></div>
                       <ul class="footer-social-media">
